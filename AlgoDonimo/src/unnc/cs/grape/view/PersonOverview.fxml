@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.7809364548494984" layoutX="200.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="497.0">
+               <children>
+                  <SplitPane dividerPositions="0.9015151515151515" layoutX="117.0" layoutY="79.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="437.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane accessibleText="Mid" minHeight="0.0" minWidth="0.0" prefHeight="336.0" prefWidth="510.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#51779a" height="191.0" layoutX="117.0" layoutY="54.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#517290" height="144.0" layoutX="190.0" layoutY="101.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#517594" height="108.0" layoutX="256.0" layoutY="137.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5a7590" height="191.0" layoutX="324.0" layoutY="54.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+                              <Label layoutX="127.0" layoutY="253.0" text="6">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="199.0" layoutY="253.0" text="4">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="266.0" layoutY="253.0" text="3">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="334.0" layoutY="253.0" text="6">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                      <AnchorPane accessibleText="Mid" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Label layoutX="86.0" layoutY="7.0" prefHeight="15.0" prefWidth="138.0" text="speed bar">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.3282828282828283" layoutX="-16.0" layoutY="63.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="211.0" prefWidth="126.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="42.0" text="Choose algorithm" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <SplitPane dividerPositions="0.2835249042145594" layoutY="32.0" orientation="VERTICAL" prefHeight="263.0" prefWidth="126.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <TitledPane layoutX="-15.0" layoutY="-43.0" prefHeight="71.0" prefWidth="124.0" text="Comment" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <content>
+                                                <TextArea prefHeight="200.0" prefWidth="200.0" text="For loop" />
+                                             </content>
+                                          </TitledPane>
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="133.0" prefWidth="124.0">
+                                       <children>
+                                          <TitledPane animated="false" layoutY="-10.0" prefHeight="184.0" prefWidth="124.0" text="Running code" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <content>
+                                                <TextArea prefHeight="200.0" prefWidth="200.0" text="for(i=0;i&lt;10;i++）&#10;{&#10;    int a=666;&#10;}" />
+                                             </content>
+                                          </TitledPane>
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
