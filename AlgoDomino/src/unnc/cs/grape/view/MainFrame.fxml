@@ -16,7 +16,7 @@
                <children>
                   <SplitPane dividerPositions="0.9015151515151515" layoutX="117.0" layoutY="79.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="437.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane accessibleText="Mid" minHeight="0.0" minWidth="0.0" prefHeight="336.0" prefWidth="510.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="336.0" prefWidth="510.0">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#51779a" height="191.0" layoutX="117.0" layoutY="54.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#517290" height="144.0" layoutX="190.0" layoutY="101.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
@@ -43,7 +43,7 @@
                                  </font>
                               </Label>
                            </children></AnchorPane>
-                      <AnchorPane accessibleText="Mid" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
                               <Label layoutX="86.0" layoutY="7.0" prefHeight="15.0" prefWidth="138.0" text="speed bar">
                                  <font>
@@ -82,7 +82,7 @@
                                        <children>
                                           <TitledPane animated="false" layoutY="-10.0" prefHeight="184.0" prefWidth="124.0" text="Running code" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <content>
-                                                <TextArea prefHeight="200.0" prefWidth="200.0" text="for(i=0;i&lt;10;i++）&#10;{&#10;    int a=666;&#10;}" />
+                                                <TextArea prefHeight="200.0" prefWidth="200.0" text="for(i=0;i&lt;10;i++)&#10;{&#10;    int a=666;&#10;}" />
                                              </content>
                                           </TitledPane>
                                        </children>
