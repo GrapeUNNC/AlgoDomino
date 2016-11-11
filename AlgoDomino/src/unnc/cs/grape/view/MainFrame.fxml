@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
@@ -17,7 +16,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <SplitPane dividerPositions="0.7809364548494984" layoutX="200.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.8076923076923077" layoutX="200.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="497.0">
                <children>
@@ -52,24 +51,22 @@
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #DDDDDD;">
                            <children>
-                              <Slider layoutX="51.0" layoutY="21.0" prefHeight="14.0" prefWidth="104.0" />
-                              <Button contentDisplay="GRAPHIC_ONLY" layoutX="18.0" layoutY="72.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" rotate="45.0" scaleShape="false" style="-fx-border-style: triangle;" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="72.0">
-                                 <padding>
-                                    <Insets left="1.0" />
-                                 </padding>
-                              </Button>
-                              <ScrollBar layoutX="51.0" layoutY="72.0" prefHeight="20.0" prefWidth="347.0" style="-fx-background-color: white;" />
-                              <Label layoutX="14.0" layoutY="21.0" text="Slow" />
-                              <Label layoutX="155.0" layoutY="21.0" text="Fast" />
-                              <TextField layoutX="185.0" layoutY="17.0" prefHeight="23.0" prefWidth="24.0" text="1" />
-                              <Label layoutX="51.0" layoutY="40.0" text="1" />
-                              <Label layoutX="136.0" layoutY="40.0" text="10" />
-                              <Label layoutX="222.0" layoutY="21.0" text="Input:" />
-                              <TextField layoutX="259.0" layoutY="17.0" prefHeight="23.0" prefWidth="141.0" />
-                              <Button layoutX="405.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="51.0" text="Sort">
+                              <Slider layoutX="41.0" layoutY="61.0" prefHeight="14.0" prefWidth="70.0" />
+                              <ScrollBar layoutX="87.0" layoutY="19.0" prefHeight="20.0" prefWidth="347.0" style="-fx-background-color: white;" />
+                              <Label layoutX="8.0" layoutY="59.0" text="Slow" />
+                              <Label layoutX="114.0" layoutY="61.0" text="Fast" />
+                              <TextField layoutX="142.0" layoutY="56.0" prefHeight="23.0" prefWidth="24.0" text="1" />
+                              <Label layoutX="53.0" layoutY="76.0" text="1" />
+                              <Label layoutX="101.0" layoutY="77.0" text="10" />
+                              <Label layoutX="180.0" layoutY="60.0" text="Input:" />
+                              <TextField layoutX="216.0" layoutY="56.0" prefHeight="23.0" prefWidth="141.0" />
+                              <Button layoutX="360.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="47.0" text="Sort">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Button>
+                              <Label layoutX="214.0" layoutY="82.0" text="The data should be splited by &quot;,&quot;" />
+                              <Button layoutX="45.0" layoutY="18.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="24.0" />
+                              <Button layoutX="412.0" layoutY="55.0" mnemonicParsing="false" text="Random" />
                            </children>
                         </AnchorPane>
                     </items>
@@ -89,14 +86,14 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <MenuButton layoutX="4.0" layoutY="29.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="116.0" text="Bubble">
+                              <MenuButton layoutX="4.0" layoutY="29.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="100.0" text="Bubble Sort">
                                 <items>
                                   <MenuItem mnemonicParsing="false" text="Action 1" />
                                   <MenuItem mnemonicParsing="false" text="Action 2" />
                                 </items>
                               </MenuButton>
                               <Label layoutX="14.0" layoutY="64.0" text="Shape:" />
-                              <MenuButton layoutX="3.0" layoutY="85.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="116.0" text="Rectangle">
+                              <MenuButton layoutX="3.0" layoutY="85.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="100.0" text="Rectangle">
                                 <items>
                                   <MenuItem mnemonicParsing="false" text="Action 1" />
                                   <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -121,7 +118,7 @@
                                        <children>
                                           <TitledPane animated="false" layoutY="-10.0" prefHeight="184.0" prefWidth="124.0" text="Running code" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <content>
-                                                <TextArea prefHeight="200.0" prefWidth="200.0" text="for(i=0;i&lt;10;i++)&#10;{&#10;    int a=666;&#10;}" />
+                                                <TextArea prefHeight="160.0" prefWidth="85.0" text="for(i=0;i&lt;10;i++)&#10;{&#10;    int a=666;&#10;}" />
                                              </content>
                                           </TitledPane>
                                        </children>
