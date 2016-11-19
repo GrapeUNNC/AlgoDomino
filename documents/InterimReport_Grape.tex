@@ -19,7 +19,16 @@
 \usepackage[protrusion=true,expansion=true]{microtype}	
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
 \usepackage{graphicx}
-\usepackage[nottoc,numbib]{tocbibind}
+\usepackage[nottoc,numbib]{tocbibind} % Required for inlucde reference in TOC
+\usepackage[pdfstartview=FitH,
+CJKbookmarks=true,
+bookmarksnumbered=true,
+bookmarksopen=true,
+colorlinks,
+pdfborder=001,
+linkcolor=black,
+citecolor=blue,
+]{hyperref} % Required for hyper link references
 
 % ------------------------------------------------------------------------------
 % Definitions (do not change this)
@@ -116,6 +125,7 @@
 
 \section{Progress Report}
 % FINGAL subsession
+Reference Example\cite{Debray:2000:CTC:349214.349233}
 \clearpage
 
 % ------------------------------------------------------------------------------
@@ -129,7 +139,7 @@
 % Bibliography
 % ------------------------------------------------------------------------------
 \bibliographystyle{plain}
-\bibliography{report}
+\bibliography{InterimReport_Grape}
 % ------------------------------------------------------------------------------
 % End document
 % ------------------------------------------------------------------------------
