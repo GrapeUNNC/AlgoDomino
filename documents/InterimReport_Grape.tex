@@ -9,7 +9,7 @@
 % -------------------------------------------------------------------------------
 % Preamble
 % -------------------------------------------------------------------------------
-\documentclass[paper=a4, fontsize=11pt,twoside]{scrartcl}		% KOMA article
+\documentclass[paper=a4, fontsize=11pt,twoside]{scrartcl}		% Koma article
 
 \usepackage[a4paper,pdftex]{geometry}										% A4paper margins
 \setlength{\oddsidemargin}{5mm}												% Remove 'twosided' indentation
@@ -19,6 +19,7 @@
 \usepackage[protrusion=true,expansion=true]{microtype}	
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
 \usepackage{graphicx}
+\usepackage[nottoc,numbib]{tocbibind}
 
 % ------------------------------------------------------------------------------
 % Definitions (do not change this)
@@ -50,8 +51,7 @@
 		Group 5\\	
 		The University Of Nottingham Ningbo China\\	
         }
-
-
+    
 \begin{document}
 % ------------------------------------------------------------------------------
 % Maketitle
@@ -61,56 +61,62 @@
 \printtitle									% Print the title data as defined above
   	\vfill
 \printauthor								% Print the author data as defined above
+\cleardoublepage
 % ------------------------------------------------------------------------------
 %  table of contents
 % ------------------------------------------------------------------------------
 \newpage
 \tableofcontents
+\thispagestyle{empty}	
+\newpage
+\cleardoublepage
 % ------------------------------------------------------------------------------
 % Begin document
 % ------------------------------------------------------------------------------
 
-\newpage
+
+\setcounter{page}{1}
 
 % ------------------------------------------------------------------------------
 % INTRODUCTION      Kan LIU
 % ------------------------------------------------------------------------------
-
 
 \section{Introduction}
 \subsection{Description}
 \subsection{Goal}
 \subsection{Roles of member }
 
+\clearpage
 % ------------------------------------------------------------------------------
 % Background Research   Kan LIU, Jiaying SUN, Zhe REN
 % ------------------------------------------------------------------------------
 \section{Background Research}
-
+\clearpage
 % ------------------------------------------------------------------------------
 % Requirement Specification
 % ------------------------------------------------------------------------------
 
 \section{Requirement Specification}
-
+\clearpage
 % ------------------------------------------------------------------------------
 % Design      Muyi JIANG ,Yangyu GAO
 % -----------------------------------------------------------------------------
 
 \section{Design}
-
+\clearpage
 % ------------------------------------------------------------------------------
 % Implementation     Zhe REN, Jiaying SUN, Yangyu GAO
 % -----------------------------------------------------------------------------
 
 \section{Implementation}
-
+\clearpage
 % ------------------------------------------------------------------------------
 % Progress Report    Zhefeng ZHOU
 % -----------------------------------------------------------------------------
 
 \section{Progress Report}
-
+% FINGAL subsession
+\clearpage
 
 % ------------------------------------------------------------------------------
 % Appendices
@@ -118,13 +124,12 @@
 
 
 \section{Appendices}
-
+\clearpage
 % ------------------------------------------------------------------------------
 % Bibliography
 % ------------------------------------------------------------------------------
-
-\section{Bibliography}
-
+\bibliographystyle{plain}
+\bibliography{report}
 % ------------------------------------------------------------------------------
 % End document
 % ------------------------------------------------------------------------------
