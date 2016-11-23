@@ -15,6 +15,11 @@
 \setlength{\oddsidemargin}{5mm}												% Remove 'twosided' indentation
 \setlength{\evensidemargin}{5mm}
 
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+
 \usepackage[english]{babel}
 \usepackage[protrusion=true,expansion=true]{microtype}	
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
@@ -66,11 +71,11 @@ citecolor=blue,
 % Maketitle
 % ------------------------------------------------------------------------------
 \thispagestyle{empty}				% Remove page numbering on this page
-
 \printtitle									% Print the title data as defined above
   	\vfill
 \printauthor								% Print the author data as defined above
 \cleardoublepage
+
 % ------------------------------------------------------------------------------
 %  table of contents
 % ------------------------------------------------------------------------------
@@ -79,67 +84,84 @@ citecolor=blue,
 \thispagestyle{empty}	
 \newpage
 \cleardoublepage
+
 % ------------------------------------------------------------------------------
 % Begin document
 % ------------------------------------------------------------------------------
-
 
 \setcounter{page}{1}
 
 % ------------------------------------------------------------------------------
 % INTRODUCTION      Kan LIU
 % ------------------------------------------------------------------------------
-
 \section{Introduction}
 \subsection{Description}
 \subsection{Goal}
 \subsection{Roles of member }
-
 \clearpage
+
 % ------------------------------------------------------------------------------
 % Background Research   Kan LIU, Jiaying SUN, Zhe REN
 % ------------------------------------------------------------------------------
 \section{Background Research}
 \clearpage
+
 % ------------------------------------------------------------------------------
 % Requirement Specification
 % ------------------------------------------------------------------------------
-
 \section{Requirement Specification}
 \clearpage
+
 % ------------------------------------------------------------------------------
 % Design      Muyi JIANG ,Yangyu GAO
 % -----------------------------------------------------------------------------
-
 \section{Design}
 \clearpage
+
 % ------------------------------------------------------------------------------
 % Implementation     Zhe REN, Jiaying SUN, Yangyu GAO
 % -----------------------------------------------------------------------------
-
 \section{Implementation}
 \clearpage
+
 % ------------------------------------------------------------------------------
 % Progress Report    Zhefeng ZHOU
 % -----------------------------------------------------------------------------
-
 \section{Progress Report}
-% FINGAL subsession
+This section mainly covers 3 parts, progress we made, problems we met and our time plan. The first subsection summarizes the progress we made so far, the second subsection discusses some problems encountered, including both technical and management issues, and the third subsection talks about the future time plan of the project. \\
 Reference Example\cite{Debray:2000:CTC:349214.349233}
+
+\subsection{Progress to date}
+% FINGAL progess
+As mentioned in the previous sections, a portion of this project is dedicated to research and investigation in order to elicit the requirements, best technologies for the job and conduct some feasibility studies on past existing or novel solutions that solve some part(s) or all of the problem. It is therefore important to emphasize the role these play and their sizable contribution to the progress made. The progress thus far is as follows:
+\begin{enumerate}
+	\item \textbf{Project Website: } The project website is using Jekyll and is free hosting in GitHub Pages, which link is \url{grapeUNNC.github.io}. The website provide basic introduction of the project and the team role.
+	\item \textbf{Requirements Specification: }The Functional and Non-Functional requirements specifications were determined and enumerated. The elicitation of these specifications had an effect on the time frame of the project such that it necessarily had to be adjusted to account for further research and implementation components.
+	\item \textbf{System Design: }Given the requirements of the system, it was necessary to formulate a design which would be followed in the implementation of the system. This also added to the direction of the project so that the Feasibility Study and Prototyping stages were better informed with respect to suitability.
+	\item \textbf{Feasible Study: }An evaluation of current novel and existing technologies and systems is made in order to best determine the extent to which they solved the problem(s) outlined in the Specifications. A decision was also made on which of these would be used in order to progress with this project and solve the problems outlined therein.
+	\item \textbf{Prototype: }Basic prototyping was done following the designs of the system to trial run some of the technologies chosen for parts of the project and evaluate the scope, direction and projections of the project.
+\end{enumerate}
+\subsection{Problems encountered}
+% FINGAL problems
+\subsubsection{title}
+\subsection{Time Plans}
+% FINGAL plans
+
+
 \clearpage
 
 % ------------------------------------------------------------------------------
 % Appendices
 % ------------------------------------------------------------------------------
-
-
 \section{Appendices}
 \clearpage
+
 % ------------------------------------------------------------------------------
 % Bibliography
 % ------------------------------------------------------------------------------
 \bibliographystyle{plain}
 \bibliography{InterimReport_Grape}
+
 % ------------------------------------------------------------------------------
 % End document
 % ------------------------------------------------------------------------------
