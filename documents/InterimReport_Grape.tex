@@ -14,7 +14,7 @@
 \usepackage[a4paper,pdftex]{geometry}										% A4paper margins
 \setlength{\oddsidemargin}{5mm}												% Remove 'twosided' indentation
 \setlength{\evensidemargin}{5mm}
-
+\usepackage{graphicx}
 
 \usepackage{fancyhdr} % Required for custom headers
 \usepackage{lastpage} % Required to determine the last page for the footer
@@ -129,6 +129,86 @@ Comparing to other software, there are 4 advantages. First, as an open-source so
 % Design      Muyi JIANG ,Yangyu GAO
 % -----------------------------------------------------------------------------
 \section{Design}
+<<<<<<< HEAD
+=======
+\subsection{UML Model}
+"The Unified Modeling Language (UML) is a visual, object-oriented, and multi-purpose modeling language. It is primarily designed for modeling software systems (Gregor el al, 2005)." From different perspectives of the system, UML defines use case diagram, sequence diagram, class diagram and so on. With UML, we can model the types, properties, and states of those objects as well as to integrate corresponding object flows into the activities (Gregor el al, 2005). In this section, we will analyse use case diagram and sequence diagram for our software.
+\subsubsection{Use case diagram}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.8\textwidth,height=.6\textwidth]{usecase.png}
+\caption{Use case diagram}
+\label{usecase}
+\end{figure}
+According to Wegmann and Genilloud(2000),  use case diagram is used to represent functions of the system and the intent of the diagram is to capture the roles of each participation to an action. From the figure \ref{usecase}, it can be seen that the user`s every action is captured to display in the picture, and each action extend to different functions, which clearly shows use cases of user and the functions corresponding to use case.
+\subsubsection{Sequence diagram}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.8\textwidth]{sequence.png}
+\caption{Sequence diagram}
+\label{sequence}
+\end{figure}
+Bell (2004) claims that sequence diagram primarily shows the interactions between objects in the sequential order that those events occur. The figure \ref{sequence} above shows the sequence of events happening when user have used all the functions and click running button at last. The sequence diagram clearly describes the timeline of events happening and the interactions among obejcts.
+
+\subsection{Key Implementation Decision} 
+\subsubsection{Programming languages}
+The programming language is the basic part of the software. This part will depend the software using in which Operating System(OS) and the difficulty of the coding progress. As modern university teachers and students using both Windows and MacOS, so Java is a perfect choice because Java is a coding language which can be used in most of the operating systems. Another reason of using Java is that Java is the most popular programming language in the world and has a huge amount of open source libraries to make the software better. For the Graphical User Interface(GUI) part, firstly we decided to use swing, but we found JavaFX, a better GUI library which is intended to replace Swing as the basic GUI library for JavaSE. By using JavaFX, we used the web language (HTML, CSS and JavaScript) indirectly, this could help us to write a web app efficiently if we want to.
+
+--- Optional
+
+Writing and web app could solve the operating system problems because web app is showing its contents in the web browsers and almost all the equipments have the function of using a web browser.
+
+\subsubsection{Operating systems}
+The operating system(OS) is an important part of the software, it influences a lot to users using different operating systems. In nowadays university, though most students and teachers using Windows, the MacOS users also take up a big part. So the software should run in most of the operating systems, people should run the software where ever they want.
+
+--- Optional
+
+The software can be used in Android and IOS operating systems so that people can learning and watching algorithm animations on the phone in anywhere.
+
+\subsubsection{Computers}
+Nowadays, with the development of science and technology, more and more devices have become a necessity of life, such as mobile phone, tablet, laptop and desktop. Our target is to make a software which is 
+convenient and easy for users to access, which means the software can be accessed in each kind of device, so that whenever people want to use the software, he can pick up any one of his devices around him and use it to access the software. In addition, the interface of software should be adapted to each kind of device to make users good use experience.
+
+\subsubsection{Software in use}
+\begin{enumerate}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.8\textwidth]{scrum.png}
+\caption{Basic process of Scrum}
+\label{scrum}
+\end{figure}
+	\item\textbf{Scrum: } Scrum is an agile software development methodology, which means it is an increment, iterative development process, and the development process consists of a number of short iteration cycles named sprint (the green curly arrow).  The basic process of scrum is described in the figure \ref{scrum}. In scrum, product backlog is a prioritized list of requirements used to manage product requirements. The Scrum team in a sprint selects the highest priority requirement from product backlog to develop. Then the selected requirements are analyzed and evaluated at the Scrum meeting to get a task list to be completed in the sprint called sprint backlog. When a sprint finished, the product increment is handed (Website, 2016). The process shows that scrum needs the team works as tight, focus on a single goal, understands the priorities and team memebers are clear about their roles (Rising and Janoff, 2000). It is necessary that our team works as the scrum team to develop our software. We set one sprint for a week, and finish a software requirement list as the product backlog, and everyday our team has a short meeting to discuss to-do-list, which will be released in Tower as sprint backlog. In each sprint, our team will have a formal meeting with supervisor to discuss the requirement selected and hand in product increment.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.8\textwidth]{github.png}
+\caption{Github page}
+\label{github}
+\end{figure}
+	\item \textbf{Github: } As it is known, Git is an excellent distributed version control system, which can keep the history of a file set, and can roll back the file to another state (History). GitHub is a git based web collaboration community, it can not only work as Git to keep the history of a file and roll back the file state, but also have a variety of mechanisms for everyone to work together to contribute to the project. In addition, Github integrates lots of social features which make user`s information and activities visible across open source software projects (Dabbish el al, 2012). Our group decides to use Github as a basic tool to develop the software,  so that we can upload the software project to one repository where everyone can access and work on it, control the project version in case confict happens, and search some useful open resource distributed in Github. The link is {https://github.com/}.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.8\textwidth]{tower.png}
+\caption{Tower page}
+\label{tower}
+\end{figure}
+	\item \textbf{Tower: } Tower is an Agile development based team collaboration tools, and it can be used for Scrum to release to-do-list in each sprint. It's like an online office where you can quickly process tasks, conduct discussions, review project progress, and work with your team at any time. According to Cockburn and Highsmith (2001), agile development reduces the cost of exchanging information in a team and improves the team`s amicability---members` sense of community. These points are perfectly implemented in Tower. For instance, all the tasks are displayed  in the panel, and team members can access all the tasks to know about the details and progress, which is easy to exchange information, morever, when a task is finished or assigned, every team member will be reminded, which improves the sense of community. It is obvious that Tower can help a lot to develop the software, so we use it as our team collaboration tools.The link is {https://tower.im/} 
+	\item \textbf{LaTex: } Oetiker (2010) claims that LaTex is a Tex based typesetting system. It is suitable for the production of high printing quality of science and technology and mathematics, and it also applies to all other types of documents that are generated from a simple letter to a complete book. And Oetiker (2010) also says "LaTeX is a macro package which enables authors to typeset and print their work at the highest typographical quality, using a professional layout." According to Oetiker`s points, the most important features Latex has is to print works at high quality, which is a necessary feature to be used in our software report. So we decide to use LaTex to edit our interim report and final report, to make them more academic and higher quality.
+	\item \textbf{SceneBuilder JavaFX: } According to Jackson (2010), SceneBuilder JavaFX provides a visual layout environment that allows to quickly design the user interface for JavaFX applications (UI) without having to write any code. It allows a graphical interface (GUI) control to simply drag and drop to a JavaFX scene. When you create a user interface layout, FXML layout code will be automatically generated. SceneBuilder JavaFX provides a simple and intuitive user interface that can help developers quickly create an interactive application prototype that connects GUI controls to the application logic. It is efficient for us to use SceneBuilder JavaFX to design the high-fidelity prototype of  the software.
+\end{enumerate}
+\clearpage
+\section{Implementation}
+\subsection{Main Frame}
+% Ninja progess
+For the main frame of the sorting algorithm animation, the interface is divided into 5 parts. Each of these 5 parts is not independent. 
+\begin{enumerate}
+   \item The main part is the animation. This part include several data and the geometric figure generated by them. When program is running, they will move on the basis of algorithm codes. The place changing can easily explain how the selected algorithm works. 
+   \item The second part, which is under the animation, is control function. It contains 5 functional buttons and they work together to control the animation of algorithm. The first button on the left-up corner of this part is the “play-stop” button. When the “stop” button is click, the animation will freeze at the present step. Then the “stop” button will become the “paly” button. The animation will not continue the rest step until the “play” button is clicked. 
+   \item The controller on the right side of the “play-stop” button is progress line. User can drug the button on the line to control the progress of animation. The animation will stop at differential steps with differential positions. 
+   \item The button at the lower left corner is the speed bar. The speed input box is on the right side. These two controllers is used to control the speed of animation. User can change the speed of figure moving through drugging the control line or inputting an integer level from 1 to 10. 
+   \item The last button at the lower right corner in this part is shape chosen box. User can choose or change the shape of figures in this choose box. Several figures such as rectangle, triangle and circle are provided for users. This function will not influence the process of algorithm code running. 
+
+\end{enumerate}
+>>>>>>> origin/develop
 
 
 % ------------------------------------------------------------------------------
@@ -170,7 +250,10 @@ Two algorithms both have the same default input and start in the same time after
 
 — Optional
 The main requirement only provides two algorithms to compare, so the comparison windows maybe larger. Users can choose how many algorithms they want to compare. The right hand side windows’ function should also change because of the number of windows become larger.
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/develop
 \clearpage
 
 % ------------------------------------------------------------------------------
@@ -214,6 +297,8 @@ The second half of the cycle will be composed largely of implementation, testing
 % End document
 % ------------------------------------------------------------------------------
 \end{document}
+
+
 
 
 
