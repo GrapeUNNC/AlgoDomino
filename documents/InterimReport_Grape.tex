@@ -53,18 +53,18 @@ citecolor=blue,
 % ------------------------------------------------------------------------------
 % Metadata (Change this)
 % ------------------------------------------------------------------------------
-\title{	\normalsize \textsc{AE2GRP Interim Group Report} 	% Subtitle of the document
+\title{	\normalsize \textsc{Title page subtitle} 	% Subtitle of the document
 		 	\\[2.0cm]													% 2cm spacing
 			\HRule{0.5pt} \\										% Upper rule
-			\LARGE \textbf{\uppercase{Animation of Sorting Algorithms: Domino}}	% project title
+			\LARGE \textbf{\uppercase{Interim Report}}	% Title
 			\HRule{2pt} \\ [0.5cm]								% Lower rule + 0.5cm spacing
 			\normalsize \today									% Todays date
 		}
 
 \author{
 		\textbf{Group Id:} 5\\	
-		 \textbf{Group Member: } Zhefeng ZHOU\\  Yangyu GAO\\  Jiaying SUN\\ Zhe REN\\  Muyi JIANG\\  KAN LIU\\
-		\textbf{Supervisor: } Heshan DU\\	
+		\textbf{Group Member: } Zhefeng ZHOU\\  Yangyu GAO\\  Jiaying SUN\\ Zhe REN\\  Muyi JIANG\\  KAN LIU\\
+		\textbf{Supervisor: } Heshan DU\\
         }
     
 \begin{document}
@@ -98,7 +98,7 @@ citecolor=blue,
 \section{Introduction}
 \subsection{Description}
 \subsection{Goal}
-\subsection{Roles of each member }
+\subsection{Roles of member }
 
 
 % ------------------------------------------------------------------------------
@@ -107,6 +107,7 @@ citecolor=blue,
 \section{Background Research}
 \subsection{Technical research}
 % Ninja progess
+For the main frame of the sorting algorithm animation, the interface is divided into 5 parts. Each of these 5 parts is not independent. 
 \begin{enumerate}
 	\item For platform, we choose PC to be our main operating platform. One side of the reason we choose PC is the limited personal programming ability. We don’t have experience in mobile application developing. Therefore, developing on other platforms may take us a lot of time to learn a new programming skill and the outcome may not be guaranteed either. Another reason is that although PC is not so convenient as mobile device, it has own advantage. User may not care the space that a small application occupies, but in mobile device, because of the limited storage, a small application may cause the mobile phone running slowly. For different operating system, we choose window rather than IOS and other system. According to a research from StatCounter Global Stats, from 2015 to 2016, the number of Windows users still constitute a high proportion of PC users. This situation happens not only in China, but also in the whole world. Therefore, it’s better for us to develop for the majority.
 	\item For developing tools, we use eclipse to be our program editor and compiler because we learn a lot skills about eclipse in class and it’s also convenient for us to test our code using Junit. We choose Java scene builder, which can also be used in eclipse, as our GUI designing tools. This software have a visualization of interface designing. It is more convenient for us to drug the function part into a visual interface rather than just write abstract code. 
@@ -114,13 +115,12 @@ citecolor=blue,
 	
 \end{enumerate}
 
-\subsection{Market Research}
-Comparing to other software, there are 4 advantages. First, as an open-source software, everyone can use Domino free. For target user, student, it’s user friendly. By contrast, Algorithms App is a similar application which charge for \$4.99 for Mac version. URL: https://itunes.apple.com/us/app/algorithms-app/id577563313. Secondly, this kind of tutorial software is rarely in windows desktop platform. Domino has two platforms web and windows. It fit the requirement of online user and offline user without using network. Meanwhile, in comparing page, Domino provide users acknowledge not only comparison efficient of different sorting algorithms but also one sorting algorithm’s efficiency when random input number increase. The efficiency compared to algorithms itself is a significant way to understand and this part are not included by other similar software. Finally, Domino’s interface is easy to let users to concentrate on animation and the center of screen instead of moving slight between animation and code. The appropriate place of different block is comfortable for users to use. There is a bad example in https://visualgo.net/sorting.
-
 
 % ------------------------------------------------------------------------------
 % Requirement Specification
 % ------------------------------------------------------------------------------
+\subsection{Market Research}
+Comparing to other software, there are 4 advantages. First, as an open-source software, everyone can use Domino free. For target user, student, it’s user friendly. By contrast, Algorithms App is a similar application which charge for \$4.99 for Mac version. URL: https://itunes.apple.com/us/app/algorithms-app/id577563313. Secondly, this kind of tutorial software is rarely in windows desktop platform. Domino has two platforms web and windows. It fit the requirement of online user and offline user without using network. Meanwhile, in comparing page, Domino provide users acknowledge not only comparison efficient of different sorting algorithms but also one sorting algorithm’s efficiency when random input number increase. The efficiency compared to algorithms itself is a significant way to understand and this part are not included by other similar software. Finally, Domino’s interface is easy to let users to concentrate on animation and the center of screen instead of moving slight between animation and code. The appropriate place of different block is comfortable for users to use. There is a bad example in https://visualgo.net/sorting.
 
 \section{Requirement Specification}
 \clearpage
@@ -129,8 +129,6 @@ Comparing to other software, there are 4 advantages. First, as an open-source so
 % Design      Muyi JIANG ,Yangyu GAO
 % -----------------------------------------------------------------------------
 \section{Design}
-<<<<<<< HEAD
-=======
 \subsection{UML Model}
 "The Unified Modeling Language (UML) is a visual, object-oriented, and multi-purpose modeling language. It is primarily designed for modeling software systems (Gregor el al, 2005)." From different perspectives of the system, UML defines use case diagram, sequence diagram, class diagram and so on. With UML, we can model the types, properties, and states of those objects as well as to integrate corresponding object flows into the activities (Gregor el al, 2005). In this section, we will analyse use case diagram and sequence diagram for our software.
 \subsubsection{Use case diagram}
@@ -208,27 +206,16 @@ For the main frame of the sorting algorithm animation, the interface is divided 
    \item The last button at the lower right corner in this part is shape chosen box. User can choose or change the shape of figures in this choose box. Several figures such as rectangle, triangle and circle are provided for users. This function will not influence the process of algorithm code running. 
 
 \end{enumerate}
->>>>>>> origin/develop
 
 
 % ------------------------------------------------------------------------------
 % Implementation     Zhe REN, Jiaying SUN, Yangyu GAO
 % -----------------------------------------------------------------------------
-\section{Implementation}
-
 This section introduces the basic prototype and give a particular introduction of this software. More specifically, prototypes have been done including toolbar, sorting window and comparison window. The software is based on response type so that each sectional window can change its size. Response type make the software more reasonable.
 
 \subsection{Main Page}
 \begin{enumerate}
-
-\item main frame\\
-For the main frame of the sorting algorithm animation, the interface is divided into 5 parts. Each of these 5 parts is not independent. \\
-    The main part is the animation. This part include several data and the geometric figure generated by them. When program is running, they will move on the basis of algorithm codes. The place changing can easily explain how the selected algorithm works. \\
-    The second part, which is under the animation, is control function. It contains 5 functional buttons and they work together to control the animation of algorithm. The first button on the left-up corner of this part is the “play-stop” button. When the “stop” button is click, the animation will freeze at the present step. Then the “stop” button will become the “paly” button. The animation will not continue the rest step until the “play” button is clicked. \\
-    The controller on the right side of the “play-stop” button is progress line. User can drug the button on the line to control the progress of animation. The animation will stop at differential steps with differential positions. \\
-    The button at the lower left corner is the speed bar. The speed input box is on the right side. These two controllers is used to control the speed of animation. User can change the speed of figure moving through drugging the control line or inputting an integer level from 1 to 10. \\
-    The last button at the lower right corner in this part is shape chosen box. User can choose or change the shape of figures in this choose box. Several figures such as rectangle, triangle and circle are provided for users. This function will not influence the process of algorithm code running. \\
-
+\item  Main frame \\For the main frame of the sorting algorithm animation, the interface is divided into 5 parts. Each of these 5 parts is not independent. The main part is the animation. This part include several data and the geometric figure generated by them. When program is running, they will move on the basis of algorithm codes. The place changing can easily explain how the selected algorithm works. The second part, which is under the animation, is control function. It contains 5 functional buttons and they work together to control the animation of algorithm. The first button on the left-up corner of this part is the “play-stop” button. When the “stop” button is click, the animation will freeze at the present step. Then the “stop” button will become the “paly” button. The animation will not continue the rest step until the “play” button is clicked. The controller on the right side of the “play-stop” button is progress line. User can drug the button on the line to control the progress of animation. The animation will stop at differential steps with differential positions. The button at the lower left corner is the speed bar. The speed input box is on the right side. These two controllers is used to control the speed of animation. User can change the speed of figure moving through drugging the control line or inputting an integer level from 1 to 10. The last button at the lower right corner in this part is shape chosen box. User can choose or change the shape of figures in this choose box. Several figures such as rectangle, triangle and circle are provided for users. This function will not influence the process of algorithm code running. 
 
 \item Algorithm Setting Block \\
 Sorting algorithms are able to selected in a scrollbar. The sequence of sorting algorithms is Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort, Heap Sort, Bucket Sort according to the difficulties increasing. The default algorithm is Bubble Sort. When the algorithm selected, users can click the “Start” button to start. \\
@@ -250,10 +237,6 @@ Two algorithms both have the same default input and start in the same time after
 
 — Optional
 The main requirement only provides two algorithms to compare, so the comparison windows maybe larger. Users can choose how many algorithms they want to compare. The right hand side windows’ function should also change because of the number of windows become larger.
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/develop
 \clearpage
 
 % ------------------------------------------------------------------------------
@@ -297,14 +280,6 @@ The second half of the cycle will be composed largely of implementation, testing
 % End document
 % ------------------------------------------------------------------------------
 \end{document}
-
-
-
-
-
-
-
-
 
 
 
