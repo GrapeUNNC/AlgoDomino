@@ -20,7 +20,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="497.0">
                <children>
-                  <SplitPane dividerPositions="0.7247474747474747" layoutX="117.0" layoutY="79.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="437.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitPane dividerPositions="0.7247474747474747" layoutX="117.0" layoutY="79.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="561.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-81.0" AnchorPane.topAnchor="0.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="336.0" prefWidth="510.0">
                            <children>
@@ -48,25 +48,29 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                           </children></AnchorPane>
+                           </children>
+                        </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #DDDDDD;">
                            <children>
-                              <Slider layoutX="41.0" layoutY="61.0" prefHeight="14.0" prefWidth="70.0" />
+                              <Slider layoutX="86.0" layoutY="62.0" prefHeight="14.0" prefWidth="78.0" />
                               <ScrollBar layoutX="87.0" layoutY="19.0" prefHeight="20.0" prefWidth="347.0" style="-fx-background-color: white;" />
-                              <Label layoutX="8.0" layoutY="59.0" text="Slow" />
-                              <Label layoutX="114.0" layoutY="61.0" text="Fast" />
-                              <TextField layoutX="142.0" layoutY="56.0" prefHeight="23.0" prefWidth="24.0" text="1" />
-                              <Label layoutX="53.0" layoutY="76.0" text="1" />
-                              <Label layoutX="101.0" layoutY="77.0" text="10" />
-                              <Label layoutX="180.0" layoutY="60.0" text="Input:" />
-                              <TextField layoutX="216.0" layoutY="56.0" prefHeight="23.0" prefWidth="141.0" />
-                              <Button layoutX="360.0" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="47.0" text="Sort">
+                              <Label layoutX="50.0" layoutY="63.0" text="Slow" />
+                              <Label layoutX="171.0" layoutY="61.0" text="Fast" />
+                              <TextField layoutX="204.0" layoutY="57.0" prefHeight="23.0" prefWidth="24.0" text="1" />
+                              <Label layoutX="90.0" layoutY="77.0" text="1" />
+                              <Label layoutX="149.0" layoutY="76.0" text="10" />
+                              <Button layoutX="45.0" layoutY="13.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="24.0" text="▷">
                                  <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font></Button>
-                              <Label layoutX="214.0" layoutY="82.0" text="The data should be splited by &quot;,&quot;" />
-                              <Button layoutX="45.0" layoutY="18.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="24.0" />
-                              <Button layoutX="412.0" layoutY="55.0" mnemonicParsing="false" text="Random" />
+                                    <Font size="17.0" />
+                                 </font>
+                              </Button>
+                              <MenuButton layoutX="335.0" layoutY="56.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="100.0" text="Rectangle">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                                </items>
+                              </MenuButton>
+                              <Label layoutX="271.0" layoutY="59.0" text="Shape:" />
                            </children>
                         </AnchorPane>
                     </items>
@@ -75,30 +79,34 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <SplitPane dividerPositions="0.3282828282828283" layoutX="-16.0" layoutY="63.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitPane dividerPositions="0.38636363636363635" layoutX="-16.0" layoutY="63.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="211.0" prefWidth="126.0">
                            <children>
-                              <Label layoutX="14.0" layoutY="7.0" text="Algorithm：" />
+                              <Label layoutX="14.0" layoutY="5.0" text="Algorithm：" />
                               <AnchorPane layoutX="18.0" layoutY="21.0">
                                  <children>
                                     <AnchorPane>
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <MenuButton layoutX="4.0" layoutY="29.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="100.0" text="Bubble Sort">
+                              <MenuButton layoutX="4.0" layoutY="27.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="100.0" text="Bubble Sort">
                                 <items>
                                   <MenuItem mnemonicParsing="false" text="Action 1" />
                                   <MenuItem mnemonicParsing="false" text="Action 2" />
                                 </items>
                               </MenuButton>
-                              <Label layoutX="14.0" layoutY="64.0" text="Shape:" />
-                              <MenuButton layoutX="3.0" layoutY="85.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="100.0" text="Rectangle">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
-                                </items>
-                              </MenuButton>
+                              <TextField layoutX="4.0" layoutY="96.0" prefHeight="23.0" prefWidth="100.0" promptText="6,4,3,6，" />
+                              <Label layoutX="6.0" layoutY="74.0" text="Input:" />
+                              <Button layoutX="52.0" layoutY="122.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="49.0" text="Start">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Button>
+                              <Button layoutX="51.0" layoutY="69.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="55.0" text="Random">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

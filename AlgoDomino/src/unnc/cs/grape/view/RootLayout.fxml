@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane prefHeight="430.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
@@ -11,27 +13,80 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" text="Save Screenshot" />
+              <MenuItem mnemonicParsing="false" text="Quit" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Preference">
+            <Menu mnemonicParsing="false" text="Run">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Run" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
             <items>
               <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem mnemonicParsing="false" text="Cut" />
+                  <MenuItem mnemonicParsing="false" text="Copy" />
+                  <MenuItem mnemonicParsing="false" text="Paste" />
+                  <MenuItem mnemonicParsing="false" text="Select All" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Select">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+                  <Menu mnemonicParsing="false" text="Algorithm">
+                    <items>
+                        <RadioMenuItem mnemonicParsing="false" text="Bubble Sort">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Algorithm" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem mnemonicParsing="false" text="Quick Sort" toggleGroup="$Algorithm" />
+                        <RadioMenuItem mnemonicParsing="false" text="Insertion Sort" toggleGroup="$Algorithm" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Shape">
+                     <items>
+                        <RadioMenuItem mnemonicParsing="false" text="Rectangular">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Shape" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem mnemonicParsing="false" text="Triangle" toggleGroup="$Shape" />
+                        <RadioMenuItem mnemonicParsing="false" text="Circle" toggleGroup="$Shape" />
+                     </items>
+                  </Menu>
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Close" />
-               </items>
-            </Menu>
             <Menu mnemonicParsing="false" text="Compare">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Close" />
+                  <Menu mnemonicParsing="false" text="First Algorithm">
+                    <items>
+                        <RadioMenuItem mnemonicParsing="false" text="Bubble Sort">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="firstcompare" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem mnemonicParsing="false" text="Quick Sort" toggleGroup="$firstcompare" />
+                        <RadioMenuItem mnemonicParsing="false" text="Insertion Sort" toggleGroup="$firstcompare" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Second Algorithm">
+                    <items>
+                        <RadioMenuItem mnemonicParsing="false" text="Bubble Sort">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="secondcompare" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem mnemonicParsing="false" text="Quick Sort" toggleGroup="$secondcompare" />
+                        <RadioMenuItem mnemonicParsing="false" text="Insertion Sort" toggleGroup="$secondcompare" />
+                    </items>
+                  </Menu>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About Domino" />
+                  <MenuItem mnemonicParsing="false" text="Domino Help" />
                </items>
             </Menu>
         </menus>
