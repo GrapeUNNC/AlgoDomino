@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630" prefWidth="800" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+            <Menu fx:id="Home" mnemonicParsing="false" text="Home" />
+        
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Save Screenshot" />
+              <MenuItem mnemonicParsing="false" text="Quit" />
+            </items>
+          </Menu>
+          
+          <Menu mnemonicParsing="false" text="Run">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Run" />
+            </items>
+          </Menu>
+          
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" text="Cut" />
+              <MenuItem mnemonicParsing="false" text="Copy" />
+              <MenuItem mnemonicParsing="false" text="Paste" />
+              <MenuItem mnemonicParsing="false" text="Select All" />
+			</items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Select">
+               <items>
+                  <Menu mnemonicParsing="false" text="Algorithm">
+                    <items>
+                        <RadioMenuItem mnemonicParsing="false" text="Bubble Sort" />
+                        <RadioMenuItem mnemonicParsing="false" text="Quick Sort" />
+                        <RadioMenuItem mnemonicParsing="false" text="Insertion Sort" />
+                    </items>
+                  </Menu>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Shape">
+              <items>
+                  <MenuItem mnemonicParsing="false" text="Triangle" />
+                  <MenuItem mnemonicParsing="false" text="Circle" />
+                <MenuItem mnemonicParsing="false" text="Rectangular" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Compare">
+              <items>
+                  <Menu mnemonicParsing="false" text="Bubble Sort">
+                     <items>
+                        <RadioMenuItem mnemonicParsing="false" text="Quick Sort" />
+                        <RadioMenuItem mnemonicParsing="false" text="Insertion Sort" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Quick Sort">
+                     <items>
+                        <RadioMenuItem mnemonicParsing="false" text="Bubble Sort" />
+                        <RadioMenuItem mnemonicParsing="false" text="Insertion Sort" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Insertion Sort">
+                     <items>
+                        <RadioMenuItem mnemonicParsing="false" text="Quick Sort" />
+                        <RadioMenuItem mnemonicParsing="false" text="Insertion Sort" />
+                     </items>
+                  </Menu>
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <RadioMenuItem mnemonicParsing="false" text="About Domino" />
+                  <RadioMenuItem mnemonicParsing="false" text="Domino Help" />
+               </items>
+            </Menu>
+          
+       
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
