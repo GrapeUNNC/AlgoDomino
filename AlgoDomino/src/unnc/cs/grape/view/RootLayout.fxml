@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.RootLayoutController">
+<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
    <bottom>
       <FlowPane alignment="CENTER" hgap="80.0" prefHeight="60.0" prefWidth="800.0" rowValignment="BOTTOM" vgap="20.0" BorderPane.alignment="CENTER">
          <children>
@@ -33,7 +33,7 @@
       </FlowPane>
    </bottom>
    <top>
-      <SplitPane dividerPositions="0.4375" orientation="VERTICAL" prefHeight="66.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.5625" orientation="VERTICAL" prefHeight="66.0" BorderPane.alignment="CENTER">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>

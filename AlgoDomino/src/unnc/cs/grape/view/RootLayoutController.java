@@ -1,12 +1,12 @@
 /**
  * 
  */
-package application.view;
+package unnc.cs.grape.view;
 
 
 import java.io.IOException;
 import javafx.fxml.FXML;
-import application.MainApp;
+import unnc.cs.grape.MainApp;
 
 
 public class RootLayoutController {
