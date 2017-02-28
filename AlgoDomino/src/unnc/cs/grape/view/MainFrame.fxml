@@ -94,7 +94,7 @@
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
                                           <ScrollBar layoutX="99.0" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="356.0" style="-fx-background-color: white;" />
-                                          <Button fx:id="playbutton" layoutX="35.0" layoutY="22.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="42.0" stylesheets="@MainFrame.css" />
+                                          <Button fx:id="playbutton" layoutX="35.0" layoutY="22.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="42.0" stylesheets="@assets/css/MainFrame.css" />
                                           <Label layoutX="11.0" layoutY="75.0" prefHeight="33.0" prefWidth="48.0" text="Input:">
                                              <font>
                                                 <Font size="15.0" />

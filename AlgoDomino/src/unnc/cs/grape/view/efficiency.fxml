@@ -429,7 +429,7 @@
                               <Label layoutX="256.0" layoutY="77.0" text="Fast" />
                               <Label layoutX="71.0" layoutY="79.0" text="Slow" />
                               <Slider layoutX="107.0" layoutY="78.0" prefHeight="16.0" prefWidth="141.0" />
-                              <Button fx:id="playbutton" layoutX="29.0" layoutY="16.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="42.0" stylesheets="@../view/MainFrame.css" />
+                              <Button fx:id="playbutton" layoutX="29.0" layoutY="16.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="42.0" stylesheets="@assets/css/MainFrame.css" />
                            </children>
                         </AnchorPane>
                     </items>

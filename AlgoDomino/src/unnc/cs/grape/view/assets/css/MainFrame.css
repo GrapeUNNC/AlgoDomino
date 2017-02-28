@@ -1,5 +1,5 @@
 #playbutton {          
-    -fx-background-image: url("playbutton.png");
+    -fx-background-image: url("../icon/playbutton.png");
     -fx-background-size: 40 40;
     -fx-background-repeat: no-repeat;
     -fx-background-position:center;   

@@ -20,7 +20,6 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("Visualizing sorting algorithms");
         initRootLayout();
         showMainFrame();
-        
     }
 
     /**
@@ -66,7 +65,7 @@ public class MainApp extends Application {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("efficiency/efficiency.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/efficiency.fxml"));
             AnchorPane EfficiencyInterface = loader.load();
 
             // Set person overview into the center of root layout.
