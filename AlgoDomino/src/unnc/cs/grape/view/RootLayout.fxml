@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
+<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
    <bottom>
       <FlowPane alignment="CENTER" hgap="80.0" prefHeight="60.0" prefWidth="800.0" rowValignment="BOTTOM" vgap="20.0" BorderPane.alignment="CENTER">
          <children>
@@ -135,72 +135,72 @@
                      <items>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/save_32px_1096683_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/save_32px_1096683_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="53.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/left_32px_1096664_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/left_32px_1096664_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/refresh_32px_1096680_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/refresh_32px_1096680_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/right_32px_1096681_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/right_32px_1096681_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/copy_32px_1096643_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/copy_32px_1096643_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/paste_32px_1096672_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/paste_32px_1096672_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/close_32px_1096641_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/close_32px_1096641_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/cut_32px_1096644_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/cut_32px_1096644_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/skip_backwmard_32px_1096685_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/skip_backwmard_32px_1096685_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/play_32px_1096676_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/play_32px_1096676_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/skip_forward_32px_1096686_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/skip_forward_32px_1096686_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/trash_32px_1096691_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/trash_32px_1096691_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/info_32px_1096662_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/info_32px_1096662_easyicon.net.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="313.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@toolbar/help_32px_1096658_easyicon.net.png" />
+                              <Image url="@assets/icon/toolbar/help_32px_1096658_easyicon.net.png" />
                            </image>
                         </ImageView>
                      </items>
