@@ -1,0 +1,16 @@
+/*controlStyle.css */
+ 
+.separator{
+    -fx-background-color: #FF0000;
+    -fx-background-radius: 2;
+}
+
+#playbutton {          
+    -fx-background-image: url("playbutton.png");
+    -fx-background-size: 40 40;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;   
+}
+
+
+
