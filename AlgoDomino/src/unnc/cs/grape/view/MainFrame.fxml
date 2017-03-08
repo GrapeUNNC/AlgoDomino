@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXColorPicker?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@assets/css/Interface.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.8258145363408521" layoutX="200.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -96,8 +94,6 @@
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
-                                          <ScrollBar layoutX="99.0" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="356.0" style="-fx-background-color: white;" />
-                                          <Button fx:id="playbutton" layoutX="35.0" layoutY="22.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="42.0" stylesheets="@assets/css/MainFrame.css" />
                                           <Label layoutX="11.0" layoutY="75.0" prefHeight="33.0" prefWidth="48.0" text="Input:">
                                              <font>
                                                 <Font size="15.0" />
@@ -105,10 +101,25 @@
                                           </Label>
                                           <Label layoutX="253.0" layoutY="83.0" text="Slow" />
                                           <Label layoutX="397.0" layoutY="84.0" text="Fast" />
-                                          <TextField layoutX="426.0" layoutY="80.0" prefHeight="23.0" prefWidth="24.0" text="1" />
                                           <JFXSlider blockIncrement="1.0" layoutX="283.0" layoutY="84.0" max="10.0" prefHeight="14.0" prefWidth="109.0" showTickLabels="true" />
                                           <JFXTextField layoutX="59.0" layoutY="80.0" prefHeight="25.0" prefWidth="90.0" promptText="6,4,3,6" />
-                                          <JFXButton layoutX="160.0" layoutY="80.0" prefHeight="25.0" prefWidth="76.0" text="Random" />
+                                          <JFXButton fx:id="randomButton" layoutX="160.0" layoutY="80.0" prefHeight="25.0" prefWidth="76.0" text="Random">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font></JFXButton>
+                                          <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="41.0" layoutY="22.0" prefHeight="33.0" prefWidth="28.0">
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                             <graphic>
+                                                <ImageView fx:id="playbutton" fitHeight="34.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@assets/icon/play.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </JFXButton>
+                                          <ScrollBar layoutX="92.0" layoutY="27.0" prefHeight="25.0" prefWidth="351.0" />
                                        </children>
                                     </AnchorPane>
                                 </items>
@@ -121,30 +132,11 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <SplitPane dividerPositions="0.1761744966442953" layoutX="-16.0" layoutY="63.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitPane layoutX="-16.0" layoutY="63.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="268.0" prefWidth="217.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="563.0" prefWidth="134.0">
                            <children>
-                              <VBox alignment="CENTER" layoutX="57.0" layoutY="-36.0" prefHeight="101.0" prefWidth="184.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <Label prefHeight="17.0" prefWidth="69.0" text="shape:" />
-                                    <MenuButton mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" text="Rectangle">
-                                      <items>
-                                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                                      </items>
-                                       <font>
-                                          <Font size="11.0" />
-                                       </font>
-                                    </MenuButton>
-                                    <Label prefHeight="17.0" prefWidth="66.0" text="color:" />
-                                    <JFXColorPicker prefHeight="25.0" prefWidth="24.0" />
-                                 </children>
-                              </VBox>
-                           </children></AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                           <children>
-                              <SplitPane dividerPositions="0.3972222222222222" layoutY="32.0" orientation="VERTICAL" prefHeight="263.0" prefWidth="126.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <SplitPane dividerPositions="0.3972222222222222" layoutY="-108.0" orientation="VERTICAL" prefHeight="596.0" prefWidth="134.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <items>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="174.0" prefWidth="215.0">
                                        <children>
