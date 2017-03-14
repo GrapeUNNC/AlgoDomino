@@ -9,30 +9,32 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ * The type Main app.
+ */
 public class MainApp extends Application {
 
     private Stage primaryStage;
-    private BorderPane rootLayout;
+    private static BorderPane rootLayout;
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Visualizing sorting algorithms");
-
         initRootLayout();
-
         showMainFrame();
     }
 
     /**
      * Initializes the root layout.
      */
-    public void initRootLayout() {
+
+    private void initRootLayout() {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            rootLayout = loader.load();
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
@@ -44,14 +46,23 @@ public class MainApp extends Application {
     }
 
     /**
+     * tried using webview to sort
+     */
+//    private void webViewLayout() {
+//        Scene scene = new Scene(new Browser("http://fingal.tk"));
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//    }
+
+    /**
      * Shows the person overview inside the root layout.
      */
-    public void showMainFrame() {
+    public static void showMainFrame() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/MainFrame.fxml"));
-            AnchorPane MainFrame = (AnchorPane) loader.load();
+            AnchorPane MainFrame = loader.load();
 
             // Set person overview into the center of root layout.
             rootLayout.setCenter(MainFrame);
@@ -60,14 +71,38 @@ public class MainApp extends Application {
         }
     }
 
+
+    /**
+     * Show efficiency interface.
+     */
+    public static void showEfficiencyInterface() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/efficiency.fxml"));
+            AnchorPane EfficiencyInterface = loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(EfficiencyInterface);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Returns the main stage.
-     * @return
+     *
+     * @return primary stage
      */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
