@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -17,7 +24,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@assets/css/Interface.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@assets/css/Interface.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
    <children>
       <SplitPane dividerPositions="0.8258145363408521" layoutX="200.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -29,42 +36,36 @@
                            <children>
                               <VBox layoutX="-24.0" layoutY="-116.0" prefHeight="596.0" prefWidth="163.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Button fx:id="bubble" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Bubble sort">
-                                       <font>
-                                          <Font name="System Bold" size="13.0" />
-                                       </font>
+                                    <ToggleButton fx:id="bubble" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Bubble sort">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
-                                    </Button>
-                                    <Button fx:id="insertion" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Insertion sort">
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="insertion" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Insertion sort">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
-                                       <font>
-                                          <Font name="System Bold" size="13.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="selection" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Selection sort">
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="selection" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Selection sort">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
-                                    </Button>
-                                    <Button fx:id="quick" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Quick sort">
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="quick" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Quick sort">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
-                                    </Button>
-                                    <Button fx:id="merge" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Merge sort">
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="merge" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Merge sort">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
-                                    </Button>
-                                    <Button fx:id="heap" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Heap sort">
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="heap" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Heap sort">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
-                                    </Button>
+                                    </ToggleButton>
                                  </children>
                                  <padding>
                                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

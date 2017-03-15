@@ -20,6 +20,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -48,22 +49,22 @@ public class RootLayoutController implements Initializable {
 	private HBox hbox;
 
 	@FXML
-	private Button bubble;
+	private ToggleButton bubble;
 
 	@FXML
-	private Button insertion;
+	private ToggleButton insertion;
 
 	@FXML
-	private Button selection;
+	private ToggleButton selection;
 
 	@FXML
-	private Button quick;
+	private ToggleButton quick;
 
 	@FXML
-	private Button merge;
+	private ToggleButton merge;
 
 	@FXML
-	private Button heap;
+	private ToggleButton heap;
 
 	@FXML
 	private JFXButton playButton;
