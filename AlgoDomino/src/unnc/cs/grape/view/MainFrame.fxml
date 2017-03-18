@@ -79,9 +79,9 @@
                                 <items>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
-                                          <HBox fx:id="hbox" alignment="TOP_CENTER" layoutX="58.0" layoutY="-26.0" prefHeight="437.0" prefWidth="429.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <HBox fx:id="hbox" alignment="TOP_CENTER" layoutX="58.0" layoutY="-26.0" prefHeight="437.0" prefWidth="429.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <padding>
-                                                <Insets bottom="100.0" top="100.0" />
+                                                <Insets bottom="60.0" />
                                              </padding>
                                           </HBox>
                                        </children>

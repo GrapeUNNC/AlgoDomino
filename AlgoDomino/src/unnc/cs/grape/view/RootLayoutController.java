@@ -9,15 +9,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
+import com.apple.laf.AquaButtonBorder.Toggle;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -48,23 +52,24 @@ public class RootLayoutController implements Initializable {
 	private HBox hbox;
 
 	@FXML
-	private Button bubble;
+	private ToggleButton bubble;
 
 	@FXML
-	private Button insertion;
+	private ToggleButton insertion;
 
 	@FXML
-	private Button selection;
+	private ToggleButton selection;
 
 	@FXML
-	private Button quick;
+	private ToggleButton quick;
 
 	@FXML
-	private Button merge;
+	private ToggleButton merge;
 
 	@FXML
-	private Button heap;
-
+	private ToggleButton heap;
+	
+	
 	@FXML
 	private JFXButton playButton;
 
@@ -77,6 +82,9 @@ public class RootLayoutController implements Initializable {
 	private void showEfficiencyInterface() throws IOException {
 		mainapp.showEfficiencyInterface();
 	}
+	
+	
+	
 
 	/**
 	 * Press to start sorting getInput() part is not completed yet - JiayingSun
@@ -164,6 +172,7 @@ public class RootLayoutController implements Initializable {
 			stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
 			stackPane.setId(String.valueOf(input[i]));
 			stackPane.getChildren().addAll(rectangle, text);
+			stackPane.setAlignment(Pos.BOTTOM_CENTER);
 			list.add(stackPane);
 		}
 
@@ -247,7 +256,7 @@ public class RootLayoutController implements Initializable {
 		int temp;
 		for (int i = 0; i < arr.length - 1; i++) {
 			for (int j = 1; j < arr.length - i; j++) {
-				if (arr[j - 1] < arr[j]) {
+				if (arr[j] > arr[j-1]) {
 					temp = arr[j - 1];
 					arr[j - 1] = arr[j];
 					arr[j] = temp;
@@ -270,7 +279,7 @@ public class RootLayoutController implements Initializable {
 		int temp;
 		for (int i = 1; i < arr.length; i++) {
 			for (int j = i; j > 0; j--) {
-				if (arr[j] < arr[j - 1]) {
+				if (arr[j] > arr[j - 1]) {
 					temp = arr[j];
 					arr[j] = arr[j - 1];
 					arr[j - 1] = temp;
@@ -297,7 +306,7 @@ public class RootLayoutController implements Initializable {
 		for (i = 0; i < n - 1; i++) {
 			minIndex = i;
 			for (j = i + 1; j < n; j++)
-				if (arr[j] < arr[minIndex])
+				if (arr[j] > arr[minIndex])
 					minIndex = j;
 			if (minIndex != i) {
 				tmp = arr[i];
@@ -307,6 +316,7 @@ public class RootLayoutController implements Initializable {
 			}
 		}
 		return sq;
+		
 	}
 
 	private void QuickSort() {
