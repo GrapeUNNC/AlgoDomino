@@ -83,6 +83,10 @@ public class RootLayoutController implements Initializable {
 	 */
 	@FXML
 	public void sortStart() {
+		list.clear();
+		hbox.getChildren().clear();
+		System.out.println("Clear...");
+
 		System.out.println("Pressing Start...");
 		System.out.println("Generate Rectangles...");
 		generateRec();
@@ -92,7 +96,7 @@ public class RootLayoutController implements Initializable {
 		} else {
 			sort(selectAlgo);
 		}
-		
+
 		// System.out.println("Get input...");
 		// if (input == null) {
 		// input = defaultInput;
@@ -143,25 +147,23 @@ public class RootLayoutController implements Initializable {
 	}
 
 	/**
-	 * Create rectangles on the Hbox
+	 * Create rectangles into Hbox
 	 */
 	private void generateRec() {
-		hbox.setAlignment(Pos.BOTTOM_CENTER); // center
-		hbox.setPadding(new Insets(0, 10, 0, 10)); // padding
-		hbox.setSpacing(10); // spacing
 
-		if (input == null)
+		if (input == null) {
+			// System.out.println("Use default input...");
 			input = defaultInput;
+		}
 
 		for (int i = 0; i < input.length; i++) {
-			Rectangle rectangle = new Rectangle(20, 20);
+			Rectangle rectangle = new Rectangle(20, 20 * input[i]);
 			rectangle.setFill(Color.valueOf("#ADD8E6"));
 			Text text = new Text(String.valueOf(input[i]));
 			StackPane stackPane = new StackPane();
 			stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
 			stackPane.setId(String.valueOf(input[i]));
 			stackPane.getChildren().addAll(rectangle, text);
-			// StackPane.setAlignment(text,Pos.BOTTOM_CENTER);
 			list.add(stackPane);
 		}
 
@@ -180,6 +182,48 @@ public class RootLayoutController implements Initializable {
 		t2.setByX(-30);
 		pl.getChildren().addAll(t1, t2);
 		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
+		return pl;
+	}
+
+	/**
+	 * Something wrong about this function
+	 * 
+	 * @param l1
+	 * @param l2
+	 * @param list
+	 * @param speed
+	 * @return
+	 */
+	private ParallelTransition swapSelect(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
+		int num = 1;
+		StackPane sp1 = null, sp2 = null, fSp = null;
+		TranslateTransition t1 = new TranslateTransition();
+		TranslateTransition t2 = new TranslateTransition();
+		ParallelTransition pl = new ParallelTransition();
+		t1.setNode(l1);
+		t2.setNode(l2);
+		t1.setDuration(Duration.millis(speed));
+		t2.setDuration(Duration.millis(speed));
+		boolean outerBreak = false;
+		for (int i = 0; i < list.size(); i++) {
+			if (outerBreak)
+				break;
+			if (list.get(i) == l1 || list.get(i) == l2) {
+				fSp = list.get(i);
+				for (int j = list.indexOf(fSp) + 1; j < list.size(); j++) {
+					if ((list.get(j) == l1 && list.get(j) != fSp) || (list.get(j) == l2 && list.get(j) != fSp)) {
+						outerBreak = true;
+						num = j - i;
+						break;
+					}
+				}
+			}
+		}
+		num *= 60;
+		t1.setByX(num);
+		t2.setByX(-num);
+		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
+		pl.getChildren().addAll(t1, t2);
 		return pl;
 	}
 
@@ -231,6 +275,13 @@ public class RootLayoutController implements Initializable {
 		return sq;
 	}
 
+	/**
+	 * Selection Sort
+	 * 
+	 * @param arr
+	 * @param list
+	 * @return
+	 */
 	private SequentialTransition SelectionSort(int arr[], ArrayList<StackPane> list) {
 		SequentialTransition sq = new SequentialTransition();
 		int i, j, minIndex, tmp;
@@ -244,9 +295,7 @@ public class RootLayoutController implements Initializable {
 				tmp = arr[i];
 				arr[i] = arr[minIndex];
 				arr[minIndex] = tmp;
-				// need to add a swapSeclect function...
-				// sq.getChildren().add(swapSelect(list.get(i),
-				// list.get(minIndex), list, duration));
+				sq.getChildren().add(swapSelect(list.get(i), list.get(minIndex), list, duration));
 			}
 		}
 		return sq;
