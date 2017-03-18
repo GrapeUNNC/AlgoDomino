@@ -46,15 +46,6 @@ public class MainApp extends Application {
     }
 
     /**
-     * tried using webview to sort
-     */
-//    private void webViewLayout() {
-//        Scene scene = new Scene(new Browser("http://fingal.tk"));
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-//    }
-
-    /**
      * Shows the person overview inside the root layout.
      */
     public static void showMainFrame() {
@@ -70,7 +61,6 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
-
 
     /**
      * Show efficiency interface.
