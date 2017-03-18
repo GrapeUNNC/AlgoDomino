@@ -30,7 +30,6 @@ import javafx.util.Duration;
 import unnc.cs.grape.MainApp;
 
 public class RootLayoutController implements Initializable {
-<<<<<<< HEAD
     private MainApp mainapp;
     
     private int[] input;
@@ -393,7 +392,7 @@ public class RootLayoutController implements Initializable {
         // TODO Auto-generated method stub
         
     }
-=======
+    
 	private MainApp mainapp;
 
 	private int[] input;
@@ -707,5 +706,4 @@ public class RootLayoutController implements Initializable {
 		// TODO Auto-generated method stub
 
 	}
->>>>>>> origin/develop
 }
