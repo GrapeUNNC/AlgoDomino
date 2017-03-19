@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import unnc.cs.grape.view.HelpBoxController;
 
 /**
  * The type Main app.
@@ -76,6 +77,35 @@ public class MainApp extends Application {
             rootLayout.setCenter(EfficiencyInterface);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static boolean showHelpBox() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/HelpBox.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("About Domino");
+            //dialogStage.initModality(Modality.WINDOW_MODAL);
+            //dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            HelpBoxController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
