@@ -67,11 +67,11 @@ public class RootLayoutController implements Initializable {
 
 	@FXML
 	private ToggleButton heap;
-	
+
 	@FXML
-	private ToggleGroup togglegroup; 
-	
-	
+	private ToggleGroup togglegroup;
+
+
 	@FXML
 	private JFXButton playButton;
 
@@ -84,9 +84,9 @@ public class RootLayoutController implements Initializable {
 	private void showEfficiencyInterface() throws IOException {
 		mainapp.showEfficiencyInterface();
 	}
-	
-	
-	
+
+
+
 
 	/**
 	 * Press to start sorting getInput() part is not completed yet - JiayingSun
@@ -206,7 +206,7 @@ public class RootLayoutController implements Initializable {
 
 	/**
 	 * Function working for selection sort
-	 * 
+	 *
 	 * @param l1
 	 * @param l2
 	 * @param list
@@ -296,7 +296,7 @@ public class RootLayoutController implements Initializable {
 
 	/**
 	 * Selection Sort
-	 * 
+	 *
 	 * @param arr
 	 * @param list
 	 * @return
@@ -318,7 +318,7 @@ public class RootLayoutController implements Initializable {
 			}
 		}
 		return sq;
-		
+
 	}
 
 	private void QuickSort() {
@@ -367,7 +367,12 @@ public class RootLayoutController implements Initializable {
 
 		sq.play();
 	}
-	
+
+	@FXML
+	private void handleHelpBox() {
+	   MainApp.showHelpBox();
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
