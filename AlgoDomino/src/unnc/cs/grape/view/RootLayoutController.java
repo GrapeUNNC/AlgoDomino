@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
-import com.apple.laf.AquaButtonBorder.Toggle;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.animation.ParallelTransition;
