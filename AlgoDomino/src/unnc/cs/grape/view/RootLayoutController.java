@@ -378,6 +378,11 @@ public class RootLayoutController implements Initializable {
 	   MainApp.showPreference();
 	}
 
+	@FXML
+	private void handleGuideline() {
+	   MainApp.showGuideline();
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

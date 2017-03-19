@@ -85,7 +85,7 @@
                   <Menu mnemonicParsing="false" text="Help">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#handleHelpBox" text="About Domino" />
-                        <MenuItem mnemonicParsing="false" text="Domino Help" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleGuideline" text="Domino Help" />
                      </items>
                   </Menu>
               </menus>
