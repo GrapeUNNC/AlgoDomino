@@ -79,7 +79,7 @@
                               </Menu>
                            </items>
                         </Menu>
-                        <MenuItem mnemonicParsing="false" text="Preference" />
+                        <MenuItem mnemonicParsing="false" onAction="#handlePreference" text="Preference" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Help">

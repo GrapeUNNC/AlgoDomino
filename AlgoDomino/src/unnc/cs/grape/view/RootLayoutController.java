@@ -372,6 +372,12 @@ public class RootLayoutController implements Initializable {
 	private void handleHelpBox() {
 	   MainApp.showHelpBox();
 	}
+
+	@FXML
+	private void handlePreference() {
+	   MainApp.showPreference();
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
