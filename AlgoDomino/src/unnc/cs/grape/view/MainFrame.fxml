@@ -40,28 +40,31 @@
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="togglegroup" />
+                                       </toggleGroup>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="insertion" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Insertion sort">
+                                    <ToggleButton fx:id="insertion" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Insertion sort" toggleGroup="$togglegroup">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="selection" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Selection sort">
+                                    <ToggleButton fx:id="selection" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Selection sort" toggleGroup="$togglegroup">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="quick" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Quick sort">
+                                    <ToggleButton fx:id="quick" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Quick sort" toggleGroup="$togglegroup">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="merge" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Merge sort">
+                                    <ToggleButton fx:id="merge" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Merge sort" toggleGroup="$togglegroup">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="heap" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Heap sort">
+                                    <ToggleButton fx:id="heap" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Heap sort" toggleGroup="$togglegroup">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>

@@ -68,6 +68,9 @@ public class RootLayoutController implements Initializable {
 	@FXML
 	private ToggleButton heap;
 	
+	@FXML
+	private ToggleGroup togglegroup; 
+	
 	
 	@FXML
 	private JFXButton playButton;
