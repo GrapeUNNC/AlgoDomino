@@ -187,7 +187,7 @@ public class RootLayoutController implements Initializable {
 
 	/**
 	 * Function working for bubble and insertion sort
-	 * 
+	 *
 	 * @param l1
 	 * @param l2
 	 * @param list
@@ -211,7 +211,7 @@ public class RootLayoutController implements Initializable {
 
 	/**
 	 * Function working for selection sort
-	 * 
+	 *
 	 * @param l1
 	 * @param l2
 	 * @param list
@@ -301,7 +301,7 @@ public class RootLayoutController implements Initializable {
 
 	/**
 	 * Selection Sort
-	 * 
+	 *
 	 * @param arr
 	 * @param list
 	 * @return
@@ -399,6 +399,21 @@ public class RootLayoutController implements Initializable {
 			}
 		}
 		return matchFormat;
+	}
+
+	@FXML
+	private void handleHelpBox() {
+	   MainApp.showHelpBox();
+	}
+
+	@FXML
+	private void handlePreference() {
+	   MainApp.showPreference();
+	}
+
+	@FXML
+	private void handleGuideline() {
+	   MainApp.showGuideline();
 	}
 
 	@Override
