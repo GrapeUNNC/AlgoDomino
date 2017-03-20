@@ -67,11 +67,10 @@ public class RootLayoutController implements Initializable {
 
 	@FXML
 	private ToggleButton heap;
-	
+
 	@FXML
-	private ToggleGroup togglegroup; 
-	
-	
+	private ToggleGroup togglegroup;
+
 	@FXML
 	private JFXButton playButton;
 
@@ -84,9 +83,6 @@ public class RootLayoutController implements Initializable {
 	private void showEfficiencyInterface() throws IOException {
 		mainapp.showEfficiencyInterface();
 	}
-	
-	
-	
 
 	/**
 	 * Press to start sorting getInput() part is not completed yet - JiayingSun
@@ -97,8 +93,21 @@ public class RootLayoutController implements Initializable {
 		hbox.getChildren().clear();
 		System.out.println("Clear...");
 
+		// detected input part
+		System.out.println("Get input...");
+		if (input == null) {
+			input = defaultInput;
+		} else {
+			String str = inputString.getText();
+			if (!checkInput(str)) {
+				System.out.println("Please input correct string format");
+				inputString.clear();
+			}
+		}
+
+		// press start
 		System.out.println("Pressing Start...");
-		System.out.println("Generate Rectangles...");
+		// generate rectangles
 		generateRec();
 
 		if (selectAlgo == null) {
@@ -106,18 +115,6 @@ public class RootLayoutController implements Initializable {
 		} else {
 			sort(selectAlgo);
 		}
-
-		// System.out.println("Get input...");
-		// if (input == null) {
-		// input = defaultInput;
-		// } else {
-		// String str = inputString.getText();
-		// if (!checkInput(str)) {
-		// System.out.println("Please input correct string format");
-		// inputString.clear();
-		// }
-		// }
-
 	}
 
 	/**
@@ -152,8 +149,15 @@ public class RootLayoutController implements Initializable {
 		});
 	}
 
+	/**
+	 * not complete
+	 */
 	public void randomInput() {
 		System.out.println("Generate a random input");
+//		input = new int[15];
+//		for (int i = 0; i < 15; i++) {
+//			input[i] = (int) (Math.random() * 10);
+//		}
 	}
 
 	/**
@@ -183,6 +187,7 @@ public class RootLayoutController implements Initializable {
 
 	/**
 	 * Function working for bubble and insertion sort
+	 * 
 	 * @param l1
 	 * @param l2
 	 * @param list
@@ -258,7 +263,7 @@ public class RootLayoutController implements Initializable {
 		int temp;
 		for (int i = 0; i < arr.length - 1; i++) {
 			for (int j = 1; j < arr.length - i; j++) {
-				if (arr[j] > arr[j-1]) {
+				if (arr[j] > arr[j - 1]) {
 					temp = arr[j - 1];
 					arr[j - 1] = arr[j];
 					arr[j] = temp;
@@ -318,7 +323,7 @@ public class RootLayoutController implements Initializable {
 			}
 		}
 		return sq;
-		
+
 	}
 
 	private void QuickSort() {
@@ -367,7 +372,35 @@ public class RootLayoutController implements Initializable {
 
 		sq.play();
 	}
-	
+
+	private Boolean checkInput(String str) {
+		// TODO Auto-generated method stub
+		boolean matchFormat = true;
+		for (int i = 0; i < str.length(); i++) {
+			// test all character consist of digit and ,
+			if (!(Character.isDigit(str.charAt(i)) || str.charAt(i) == ',')) {
+				matchFormat = false;
+			}
+			// test if two ,
+			if (str.charAt(i) == ',' && str.charAt(i + 1) == ',') {
+				matchFormat = false;
+			}
+		}
+		// test first and last char is digit
+		if (!Character.isDigit(str.charAt(str.length() - 1)) || !Character.isDigit(str.charAt(0))) {
+			matchFormat = false;
+		}
+
+		if (matchFormat) {
+			String[] split = str.split("\\D+");
+			input = new int[split.length];
+			for (int i = 0; i < split.length; i++) {
+				input[i] = Integer.parseInt(split[i]);
+			}
+		}
+		return matchFormat;
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
