@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_algodomino" default="compile.module.algodomino">
+  <dirname property="module.algodomino.basedir" file="${ant.file.module_algodomino}"/>
+  
+  <property name="module.jdk.home.algodomino" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.algodomino" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.algodomino" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.algodomino" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="algodomino.output.dir" value="${module.algodomino.basedir}/out/production/AlgoDomino"/>
+  <property name="algodomino.testoutput.dir" value="${module.algodomino.basedir}/out/test/AlgoDomino"/>
+  
+  <path id="algodomino.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="algodomino.module.production.classpath">
+    <path refid="${module.jdk.classpath.algodomino}"/>
+    <path refid="library.jfoenix.classpath"/>
+  </path>
+  
+  <path id="algodomino.runtime.production.module.classpath">
+    <pathelement location="${algodomino.output.dir}"/>
+    <path refid="library.jfoenix.classpath"/>
+  </path>
+  
+  <path id="algodomino.module.classpath">
+    <path refid="${module.jdk.classpath.algodomino}"/>
+    <pathelement location="${algodomino.output.dir}"/>
+    <path refid="library.jfoenix.classpath"/>
+  </path>
+  
+  <path id="algodomino.runtime.module.classpath">
+    <pathelement location="${algodomino.testoutput.dir}"/>
+    <pathelement location="${algodomino.output.dir}"/>
+    <path refid="library.jfoenix.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.algodomino">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.algodomino">
+    <patternset refid="excluded.from.module.algodomino"/>
+  </patternset>
+  
+  <path id="algodomino.module.sourcepath">
+    <dirset dir="${module.algodomino.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.algodomino" depends="compile.module.algodomino.production,compile.module.algodomino.tests" description="Compile module AlgoDomino"/>
+  
+  <target name="compile.module.algodomino.production" depends="register.custom.compilers" description="Compile module AlgoDomino; production classes">
+    <mkdir dir="${algodomino.output.dir}"/>
+    <javac2 destdir="${algodomino.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.algodomino}/javac">
+      <compilerarg line="${compiler.args.algodomino}"/>
+      <bootclasspath refid="algodomino.module.bootclasspath"/>
+      <classpath refid="algodomino.module.production.classpath"/>
+      <src refid="algodomino.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.algodomino"/>
+    </javac2>
+    
+    <copy todir="${algodomino.output.dir}">
+      <fileset dir="${module.algodomino.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.algodomino.tests" depends="register.custom.compilers,compile.module.algodomino.production" description="compile module AlgoDomino; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.algodomino" description="cleanup module">
+    <delete dir="${algodomino.output.dir}"/>
+    <delete dir="${algodomino.testoutput.dir}"/>
+  </target>
+</project>

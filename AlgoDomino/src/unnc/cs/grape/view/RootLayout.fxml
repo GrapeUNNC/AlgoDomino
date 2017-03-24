@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -12,27 +11,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="881.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
-   <bottom>
-      <FlowPane alignment="CENTER" hgap="80.0" prefHeight="60.0" prefWidth="800.0" rowValignment="BOTTOM" vgap="20.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" onAction="#switchToMainFrame" prefHeight="40.0" prefWidth="269.0" text="Single algorithm visualization" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#showEfficiencyInterface" prefHeight="40.0" prefWidth="269.0" text="Comparison between two algorithms">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Button>
-         </children>
-      </FlowPane>
-   </bottom>
    <left>
       <SplitPane orientation="VERTICAL" prefHeight="66.0" BorderPane.alignment="CENTER" />
    </left>
@@ -97,13 +79,13 @@
                               </Menu>
                            </items>
                         </Menu>
-                        <MenuItem mnemonicParsing="false" text="Preference" />
+                        <MenuItem mnemonicParsing="false" onAction="#handlePreference" text="Preference" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Help">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="About Domino" />
-                        <MenuItem mnemonicParsing="false" text="Domino Help" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleHelpBox" text="About Domino" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleGuideline" text="Domino Help" />
                      </items>
                   </Menu>
               </menus>

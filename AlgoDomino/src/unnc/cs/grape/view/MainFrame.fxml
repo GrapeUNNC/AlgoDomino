@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -15,10 +22,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@assets/css/Interface.css" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@assets/css/Interface.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
    <children>
       <SplitPane dividerPositions="0.8258145363408521" layoutX="200.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -30,42 +36,39 @@
                            <children>
                               <VBox layoutX="-24.0" layoutY="-116.0" prefHeight="596.0" prefWidth="163.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="110.0" text="Bubble sort">
-                                       <font>
-                                          <Font name="System Bold" size="13.0" />
-                                       </font>
+                                    <ToggleButton fx:id="bubble" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Bubble sort">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
-                                    </Button>
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="110.0" text="Insertion sort">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="togglegroup" />
+                                       </toggleGroup>
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="insertion" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Insertion sort" toggleGroup="$togglegroup">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
-                                       <font>
-                                          <Font name="System Bold" size="13.0" />
-                                       </font>
-                                    </Button>
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="110.0" text="Selection sort">
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="selection" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Selection sort" toggleGroup="$togglegroup">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
-                                    </Button>
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="110.0" text="Quick sort">
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="quick" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Quick sort" toggleGroup="$togglegroup">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
-                                    </Button>
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="110.0" text="Merge sort">
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="merge" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Merge sort" toggleGroup="$togglegroup">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
-                                    </Button>
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="110.0" text="Heap sort">
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="heap" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="45.0" prefWidth="110.0" text="Heap sort" toggleGroup="$togglegroup">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
-                                    </Button>
+                                    </ToggleButton>
                                  </children>
                                  <padding>
                                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -79,15 +82,9 @@
                                 <items>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
-                                          <HBox alignment="TOP_CENTER" layoutX="58.0" layoutY="-26.0" prefHeight="437.0" prefWidth="429.0" rotate="180.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5a7590" height="191.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
-                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#517594" height="108.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
-                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#517290" height="144.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
-                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#51779a" height="191.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
-                                             </children>
+                                          <HBox fx:id="hbox" alignment="TOP_CENTER" layoutX="58.0" layoutY="-26.0" prefHeight="437.0" prefWidth="429.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <padding>
-                                                <Insets bottom="100.0" top="100.0" />
+                                                <Insets bottom="60.0" />
                                              </padding>
                                           </HBox>
                                        </children>
@@ -102,12 +99,12 @@
                                           <Label layoutX="253.0" layoutY="83.0" text="Slow" />
                                           <Label layoutX="397.0" layoutY="84.0" text="Fast" />
                                           <JFXSlider blockIncrement="1.0" layoutX="283.0" layoutY="84.0" max="10.0" prefHeight="14.0" prefWidth="109.0" showTickLabels="true" />
-                                          <JFXTextField layoutX="59.0" layoutY="80.0" prefHeight="25.0" prefWidth="90.0" promptText="6,4,3,6" />
-                                          <JFXButton fx:id="randomButton" layoutX="160.0" layoutY="80.0" prefHeight="25.0" prefWidth="76.0" text="Random">
+                                          <JFXTextField fx:id="inputString" layoutX="59.0" layoutY="80.0" prefHeight="25.0" prefWidth="90.0" promptText="6,4,3,6" />
+                                          <JFXButton fx:id="random" layoutX="160.0" layoutY="80.0" onAction="#randomInput" prefHeight="25.0" prefWidth="76.0" text="Random">
                                              <font>
                                                 <Font name="System Bold" size="13.0" />
                                              </font></JFXButton>
-                                          <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="41.0" layoutY="22.0" prefHeight="33.0" prefWidth="28.0">
+                                          <JFXButton fx:id="start" contentDisplay="GRAPHIC_ONLY" layoutX="41.0" layoutY="22.0" onAction="#sortStart" prefHeight="33.0" prefWidth="28.0">
                                              <font>
                                                 <Font size="1.0" />
                                              </font>
