@@ -164,7 +164,7 @@ public class RootLayoutController implements Initializable {
 	 * Create rectangles into Hbox
 	 */
 	private void generateRec() {
-
+		Color shapeColor=PreferenceController.color;
 		if (input == null) {
 			// System.out.println("Use default input...");
 			input = defaultInput;
@@ -172,7 +172,7 @@ public class RootLayoutController implements Initializable {
 
 		for (int i = 0; i < input.length; i++) {
 			Rectangle rectangle = new Rectangle(20, 20 * input[i]);
-			rectangle.setFill(Color.valueOf("#ADD8E6"));
+			rectangle.setFill(shapeColor);
 			Text text = new Text(String.valueOf(input[i]));
 			StackPane stackPane = new StackPane();
 			stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());

@@ -24,6 +24,9 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Visualizing sorting algorithms");
+        this.primaryStage.setWidth(1280);
+        this.primaryStage.setHeight(890);
+        this.primaryStage.setResizable(false);
         initRootLayout();
         showMainFrame();
     }

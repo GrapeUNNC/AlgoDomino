@@ -20,13 +20,13 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <JFXColorPicker layoutX="37.0" layoutY="110.0" />
+                              <JFXColorPicker fx:id="colorPicker" editable="true" layoutX="37.0" layoutY="110.0" />
                               <Label layoutX="14.0" layoutY="35.0" prefHeight="29.0" prefWidth="113.0" text="Select color for">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="14.0" layoutY="64.0" prefHeight="25.0" prefWidth="113.0" text="animation figure:">
+                              <Label layoutX="14.0" layoutY="71.0" prefHeight="25.0" prefWidth="113.0" text="animation figure:">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
