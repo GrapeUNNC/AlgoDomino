@@ -36,6 +36,8 @@ public class RootLayoutController implements Initializable {
 
 	private int[] input;
 	private int[] defaultInput = { 4, 3, 2, 1, 5, 9 };
+	private int space;
+	private int width;
 	private final int duration = 600;
 	private Integer selectAlgo;
 	private ArrayList<StackPane> list = new ArrayList<>();
@@ -169,9 +171,34 @@ public class RootLayoutController implements Initializable {
 			// System.out.println("Use default input...");
 			input = defaultInput;
 		}
+		
+		//height = 0.9*hbox.height/max*rec.height
+		int hboxHeight = hbox.getHeight();
+		len = input.length;
+		int maxInput = input[0];
+		for (int i = 0 ; i < len-1 ; i++){
+			if(input[i]<=input[i+1]){
+				maxInput = input[i+1];
+			}
+		}
+		float hPercent = (float) (0.9 * hboxHeight / maxInput);
+		
+		// input num <10 default value 
+		// else %
+		int hboxWidth = hbox.getWidth();
+		
+		if(len <= 10){
+			// 60% Width max rec 10 space 9->10
+			space = 0.03 * hboxWidth;
+			width = 0.03 * hboxWidth;
+		}else{
+			// 80% Width total rec 70% space 30%
+			space = 0.8 * 0.3 * hboxWidth / len;
+			width = 0.8 * 0.7 * hboxWidth / len;
+		}
 
 		for (int i = 0; i < input.length; i++) {
-			Rectangle rectangle = new Rectangle(20, 20 * input[i]);
+			Rectangle rectangle = new Rectangle(width, hPercent * input[i]);  
 			rectangle.setFill(shapeColor);
 			Text text = new Text(String.valueOf(input[i]));
 			StackPane stackPane = new StackPane();
@@ -183,6 +210,7 @@ public class RootLayoutController implements Initializable {
 		}
 
 		hbox.getChildren().addAll(list);
+		hbox.setSpacing(space); 
 	}
 
 	/**
@@ -202,8 +230,8 @@ public class RootLayoutController implements Initializable {
 		ParallelTransition pl = new ParallelTransition();
 		t1.setNode(l1);
 		t2.setNode(l2);
-		t1.setByX(30);
-		t2.setByX(-30);
+		t1.setByX(space+width);
+		t2.setByX(-(space+width));
 		pl.getChildren().addAll(t1, t2);
 		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
 		return pl;
@@ -243,7 +271,7 @@ public class RootLayoutController implements Initializable {
 				}
 			}
 		}
-		num *= 30;
+		num *=space+width;
 		t1.setByX(num);
 		t2.setByX(-num);
 		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
