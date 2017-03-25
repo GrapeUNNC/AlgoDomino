@@ -32,72 +32,72 @@ import unnc.cs.grape.MainApp;
 
 public class RootLayoutController implements Initializable {
     private MainApp mainapp;
-    
+
     private int[] input;
     private int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
     private final int duration = 600;
     private Integer selectAlgo;
     private ArrayList<StackPane> list = new ArrayList<>();
     private SequentialTransition sq;
-    
+
     @FXML
     private Button random;
-    
+
     @FXML
     private TextField inputString;
-    
+
     @FXML
     private HBox hbox;
-    
+
     @FXML
     private ToggleButton bubble;
-    
+
     @FXML
     private ToggleButton insertion;
-    
+
     @FXML
     private ToggleButton selection;
-    
+
     @FXML
     private ToggleButton quick;
-    
+
     @FXML
     private ToggleButton merge;
-    
+
     @FXML
     private ToggleButton heap;
-    
+
     @FXML
     private ToggleGroup togglegroup;
-    
+
     @FXML
     private JFXButton playButton;
-    
+
     @FXML
     private void switchToMainFrame() throws IOException {
         mainapp.showMainFrame();
     }
-    
+
     @FXML
     private void showEfficiencyInterface() throws IOException {
         mainapp.showEfficiencyInterface();
     }
-    
+
     public void intializeRec() {
         // clear
         list.clear();
         hbox.getChildren().clear();
-        
+
         // detected input part
         System.out.println("Get input...");
-        
+
         String str = inputString.getText();
         checkInput(str);
-        
+
         // generate rectangles
         generateRec();
     }
-    
+
     /**
      * Press to start sorting
      */
@@ -111,7 +111,7 @@ public class RootLayoutController implements Initializable {
             sort(selectAlgo);
         }
     }
-    
+
     /**
      * Choose which algorithm to use
      */
@@ -143,7 +143,7 @@ public class RootLayoutController implements Initializable {
             System.out.println("Choose HeapSort...");
         });
     }
-    
+
     /**
      * not complete
      */
@@ -155,20 +155,21 @@ public class RootLayoutController implements Initializable {
             input[i] = random.nextInt(14) + 1;
         }
     }
-    
+
     /**
      * Create rectangles into Hbox
      */
     private void generateRec() {
-        
+
+    	Color shapeColor=PreferenceController.color;
         if (input == null) {
             // System.out.println("Use default input...");
             input = defaultInput;
         }
-        
+
         for (int i = 0; i < input.length; i++) {
             Rectangle rectangle = new Rectangle(20, 20 * input[i]);
-            rectangle.setFill(Color.valueOf("#ADD8E6"));
+            rectangle.setFill(shapeColor);
             Text text = new Text(String.valueOf(input[i]));
             StackPane stackPane = new StackPane();
             stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
@@ -177,10 +178,10 @@ public class RootLayoutController implements Initializable {
             stackPane.setAlignment(Pos.BOTTOM_CENTER);
             list.add(stackPane);
         }
-        
+
         hbox.getChildren().addAll(list);
     }
-    
+
     /**
      * Function working for bubble and insertion sort
      *
@@ -204,7 +205,7 @@ public class RootLayoutController implements Initializable {
         Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
         return pl;
     }
-    
+
     /**
      * Function working for selection sort
      *
@@ -246,7 +247,7 @@ public class RootLayoutController implements Initializable {
         pl.getChildren().addAll(t1, t2);
         return pl;
     }
-    
+
     /**
      * BubbleSort
      *
@@ -269,7 +270,7 @@ public class RootLayoutController implements Initializable {
         }
         return sq;
     }
-    
+
     /**
      * Insertion Sort
      *
@@ -294,7 +295,7 @@ public class RootLayoutController implements Initializable {
         }
         return sq;
     }
-    
+
     /**
      * Selection Sort
      *
@@ -319,24 +320,24 @@ public class RootLayoutController implements Initializable {
             }
         }
         return sq;
-        
+
     }
-    
+
     private void QuickSort() {
         // quick sort algorithm
     }
-    
+
     private void MergeSort() {
         // merge sort algorithm
     }
-    
+
     private void HeapSort() {
         // heap sort algorithm
     }
-    
+
     private void sort(int selectAlgo) {
         sq = new SequentialTransition();
-        
+
         switch (selectAlgo) {
             case 0:
                 // BubbleSort
@@ -365,14 +366,14 @@ public class RootLayoutController implements Initializable {
             default:
                 break;
         }
-        
+
         sq.play();
     }
-    
+
     private void checkInput(String str) {
         // TODO Auto-generated method stub
         boolean matchFormat = true;
-        
+
         // if has input
         if (str.length() > 0) {
             for (int i = 0; i < str.length(); i++) {
@@ -388,53 +389,53 @@ public class RootLayoutController implements Initializable {
                     inputString.clear();
                 }
             }
-            
+
             // test first and last char is digit
             if (!Character.isDigit(str.charAt(str.length() - 1)) && !Character.isDigit(str.charAt(0))) {
                 matchFormat = false;
                 System.out.println("Please input correct string format...");
                 inputString.clear();
             }
-            
+
             if (matchFormat) {
                 String[] split = str.split("\\D+");
                 input = new int[split.length];
                 for (int i = 0; i < split.length; i++) {
                     input[i] = Integer.parseInt(split[i]);
                 }
-                
+
                 // check numbers' limit
                 for(int i=0; i < input.length; i++) {
                     if(input[i] <= 0) {
                         System.out.println("The input number should larger than 0...");
                         inputString.clear();
                     }
-                }	
+                }
             }
         } else {
             System.out.println("No input, use default input...");
             input = defaultInput;
         }
     }
-    
+
     @FXML
     private void handleHelpBox() {
         MainApp.showHelpBox();
     }
-    
+
     @FXML
     private void handlePreference() {
         MainApp.showPreference();
     }
-    
+
     @FXML
     private void handleGuideline() {
         MainApp.showGuideline();
     }
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
-        
+
     }
 }
