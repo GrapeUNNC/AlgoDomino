@@ -26,7 +26,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
    <children>
       <JFXTabPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
@@ -86,7 +86,7 @@
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="596.0" prefWidth="452.0">
                                              <children>
-                                                <SplitPane dividerPositions="0.8023560209424084, 0.8717277486910995" layoutX="106.0" layoutY="116.0" orientation="VERTICAL" prefHeight="598.0" prefWidth="484.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <SplitPane dividerPositions="0.7695035460992907, 0.8634751773049646" layoutX="106.0" layoutY="116.0" orientation="VERTICAL" prefHeight="598.0" prefWidth="484.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <items>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="599.0" prefWidth="776.0">
                                                          <children>
@@ -142,13 +142,13 @@
                                                       </AnchorPane>
                                                       <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                          <children>
-                                                            <Label layoutX="151.0" layoutY="13.0" prefHeight="33.0" prefWidth="48.0" text="Input:">
+                                                            <Label layoutX="113.0" layoutY="1.0" prefHeight="33.0" prefWidth="48.0" text="Input:">
                                                                <font>
                                                                   <Font size="15.0" />
                                                                </font>
                                                             </Label>
-                                                            <JFXTextField fx:id="inputString" layoutX="219.0" layoutY="17.0" prefHeight="25.0" prefWidth="244.0" promptText="6,4,3,6" />
-                                                            <JFXButton fx:id="random" contentDisplay="GRAPHIC_ONLY" layoutX="481.0" layoutY="11.0" onAction="#randomInput">
+                                                            <JFXTextField fx:id="inputString" layoutX="172.0" layoutY="5.0" prefHeight="25.0" prefWidth="244.0" promptText="6,4,3,6" />
+                                                            <JFXButton fx:id="random" contentDisplay="GRAPHIC_ONLY" layoutX="424.0" layoutY="5.0" onAction="#randomInput">
                                                                <font>
                                                                   <Font size="1.0" />
                                                                </font>
@@ -160,9 +160,9 @@
                                                                   </ImageView>
                                                                </graphic>
                                                             </JFXButton>
-                                                            <JFXButton fx:id="initialize" layoutX="281.0" layoutY="50.0" prefHeight="36.0" prefWidth="132.0" text="Initialize">
+                                                            <JFXButton fx:id="initialize" layoutX="234.0" layoutY="40.0" prefHeight="25.0" prefWidth="132.0" text="Initialize">
                                                                <font>
-                                                                  <Font name="System Bold" size="18.0" />
+                                                                  <Font name="System Bold" size="12.0" />
                                                                </font>
                                                             </JFXButton>
                                                          </children>
@@ -610,31 +610,29 @@
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="192.0" prefWidth="915.0" style="-fx-background-color: #DDDDDD;">
                                              <children>
-                                                <Label layoutX="766.0" layoutY="46.0" text="Fast" />
-                                                <Label layoutX="578.0" layoutY="46.0" text="Slow" />
-                                                <JFXSlider blockIncrement="1.0" layoutX="612.0" layoutY="47.0" max="10.0" showTickLabels="true" />
+                                                <Label layoutX="668.0" layoutY="20.0" text="Fast" />
+                                                <Label layoutX="479.0" layoutY="20.0" text="Slow" />
+                                                <JFXSlider blockIncrement="1.0" layoutX="513.0" layoutY="21.0" max="10.0" showTickLabels="true" />
                                                 <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="72.0" layoutY="31.0">
                                                    <font>
                                                       <Font size="1.0" />
                                                    </font>
-                                                   <graphic>
-                                                      <ImageView fx:id="playbutton2" fitHeight="114.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@assets/icon/play.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </graphic>
                                                 </JFXButton>
-                                                <Label layoutX="154.0" layoutY="33.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="81.0" text="input size:">
+                                                <Label layoutX="139.0" layoutY="16.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="81.0" text="input size:">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXTextField layoutX="244.0" layoutY="38.0" maxWidth="163.0" prefHeight="25.0" prefWidth="163.0" promptText="100-500" />
-                                                <JFXButton fx:id="startButton" layoutX="433.0" layoutY="34.0" prefHeight="31.0" prefWidth="57.0" text="Start">
+                                                <JFXTextField layoutX="227.0" layoutY="24.0" maxWidth="163.0" prefHeight="25.0" prefWidth="163.0" promptText="100-500" />
+                                                <JFXButton fx:id="startButton" layoutX="405.0" layoutY="21.0" prefHeight="31.0" prefWidth="57.0" text="Start">
                                                    <font>
                                                       <Font name="System Bold" size="12.0" />
                                                    </font></JFXButton>
+                                                <ImageView fx:id="playbutton2" fitHeight="114.0" fitWidth="40.0" layoutX="51.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@assets/icon/play.png" />
+                                                   </image>
+                                                </ImageView>
                                              </children>
                                           </AnchorPane>
                                       </items>
