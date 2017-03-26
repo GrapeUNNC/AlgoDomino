@@ -27,6 +27,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import unnc.cs.grape.MainApp;
 
@@ -431,6 +432,16 @@ public class RootLayoutController implements Initializable {
     @FXML
     private void handleGuideline() {
         MainApp.showGuideline();
+    }
+
+    @FXML
+    private void handleQuit() {
+       MainApp.QuitPrograme();
+    }
+
+    // haven`t use now
+    public void setMainApp(MainApp mainApp) {
+        this.mainapp = mainApp;
     }
 
     @Override
