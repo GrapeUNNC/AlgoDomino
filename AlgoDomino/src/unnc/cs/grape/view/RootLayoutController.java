@@ -26,75 +26,76 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import unnc.cs.grape.MainApp;
+import unnc.cs.grape.algorithm.AlgorithmController;
 
-public class RootLayoutController implements Initializable {
+public class RootLayoutController extends AlgorithmController implements Initializable {
     private MainApp mainapp;
-    
+
     private int[] input;
     private int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
     private final int duration = 600;
     private Integer selectAlgo;
     private ArrayList<StackPane> list = new ArrayList<>();
     private SequentialTransition sq;
-    
+
     @FXML
     private Button random;
-    
+
     @FXML
     private TextField inputString;
-    
+
     @FXML
     private HBox hbox;
-    
+
     @FXML
     private ToggleButton bubble;
-    
+
     @FXML
     private ToggleButton insertion;
-    
+
     @FXML
     private ToggleButton selection;
-    
+
     @FXML
     private ToggleButton quick;
-    
+
     @FXML
     private ToggleButton merge;
-    
+
     @FXML
     private ToggleButton heap;
-    
+
     @FXML
     private ToggleGroup togglegroup;
-    
+
     @FXML
     private JFXButton playButton;
-    
+
     @FXML
     private void switchToMainFrame() throws IOException {
         mainapp.showMainFrame();
     }
-    
+
     @FXML
     private void showEfficiencyInterface() throws IOException {
         mainapp.showEfficiencyInterface();
     }
-    
+
     public void intializeRec() {
         // clear
         list.clear();
         hbox.getChildren().clear();
-        
+
         // detected input part
         System.out.println("Get input...");
-        
+
         String str = inputString.getText();
         checkInput(str);
-        
+
         // generate rectangles
         generateRec();
     }
-    
+
     /**
      * Press to start sorting
      */
@@ -140,7 +141,7 @@ public class RootLayoutController implements Initializable {
             System.out.println("Choose HeapSort...");
         });
     }
-    
+
     /**
      * not complete
      */
@@ -152,20 +153,21 @@ public class RootLayoutController implements Initializable {
             input[i] = random.nextInt(14) + 1;
         }
     }
-    
+
     /**
      * Create rectangles into Hbox
      */
     private void generateRec() {
-        
+
+    	Color shapeColor=PreferenceController.color;
         if (input == null) {
             // System.out.println("Use default input...");
             input = defaultInput;
         }
-        
+
         for (int i = 0; i < input.length; i++) {
             Rectangle rectangle = new Rectangle(20, 20 * input[i]);
-            rectangle.setFill(Color.valueOf("#ADD8E6"));
+            rectangle.setFill(shapeColor);
             Text text = new Text(String.valueOf(input[i]));
             StackPane stackPane = new StackPane();
             stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
@@ -174,202 +176,51 @@ public class RootLayoutController implements Initializable {
             stackPane.setAlignment(Pos.BOTTOM_CENTER);
             list.add(stackPane);
         }
-        
+
         hbox.getChildren().addAll(list);
     }
-    
-    /**
-     * Function working for bubble and insertion sort
-     *
-     * @param l1
-     * @param l2
-     * @param list
-     * @param speed
-     * @return
-     */
-    private ParallelTransition swap(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
-        TranslateTransition t1 = new TranslateTransition();
-        TranslateTransition t2 = new TranslateTransition();
-        t1.setDuration(Duration.millis(speed));
-        t2.setDuration(Duration.millis(speed));
-        ParallelTransition pl = new ParallelTransition();
-        t1.setNode(l1);
-        t2.setNode(l2);
-        t1.setByX(30);
-        t2.setByX(-30);
-        pl.getChildren().addAll(t1, t2);
-        Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
-        return pl;
-    }
-    
-    /**
-     * Function working for selection sort
-     *
-     * @param l1
-     * @param l2
-     * @param list
-     * @param speed
-     * @return
-     */
-    private ParallelTransition swapSelect(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
-        int num = 1;
-        StackPane sp1 = null, sp2 = null, fSp = null;
-        TranslateTransition t1 = new TranslateTransition();
-        TranslateTransition t2 = new TranslateTransition();
-        ParallelTransition pl = new ParallelTransition();
-        t1.setNode(l1);
-        t2.setNode(l2);
-        t1.setDuration(Duration.millis(speed));
-        t2.setDuration(Duration.millis(speed));
-        boolean outerBreak = false;
-        for (int i = 0; i < list.size(); i++) {
-            if (outerBreak)
-                break;
-            if (list.get(i) == l1 || list.get(i) == l2) {
-                fSp = list.get(i);
-                for (int j = list.indexOf(fSp) + 1; j < list.size(); j++) {
-                    if ((list.get(j) == l1 && list.get(j) != fSp) || (list.get(j) == l2 && list.get(j) != fSp)) {
-                        outerBreak = true;
-                        num = j - i;
-                        break;
-                    }
-                }
-            }
-        }
-        num *= 30;
-        t1.setByX(num);
-        t2.setByX(-num);
-        Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
-        pl.getChildren().addAll(t1, t2);
-        return pl;
-    }
-    
-    /**
-     * BubbleSort
-     *
-     * @param arr
-     * @param list
-     * @return
-     */
-    private SequentialTransition BubbleSort(int arr[], ArrayList<StackPane> list) {
-        SequentialTransition sq = new SequentialTransition();
-        int temp;
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = 1; j < arr.length - i; j++) {
-                if (arr[j] > arr[j - 1]) {
-                    temp = arr[j - 1];
-                    arr[j - 1] = arr[j];
-                    arr[j] = temp;
-                    sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
-                }
-            }
-        }
-        return sq;
-    }
-    
-    /**
-     * Insertion Sort
-     *
-     * @param arr
-     * @param list
-     * @return
-     */
-    private SequentialTransition InsertionSort(int[] arr, ArrayList<StackPane> list) {
-        SequentialTransition sq = new SequentialTransition();
-        int temp;
-        for (int i = 1; i < arr.length; i++) {
-            for (int j = i; j > 0; j--) {
-                if (arr[j] > arr[j - 1]) {
-                    temp = arr[j];
-                    arr[j] = arr[j - 1];
-                    arr[j - 1] = temp;
-                    sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
-                } else {
-                    break;
-                }
-            }
-        }
-        return sq;
-    }
-    
-    /**
-     * Selection Sort
-     *
-     * @param arr
-     * @param list
-     * @return
-     */
-    private SequentialTransition SelectionSort(int arr[], ArrayList<StackPane> list) {
-        SequentialTransition sq = new SequentialTransition();
-        int i, j, minIndex, tmp;
-        int n = arr.length;
-        for (i = 0; i < n - 1; i++) {
-            minIndex = i;
-            for (j = i + 1; j < n; j++)
-                if (arr[j] > arr[minIndex])
-                    minIndex = j;
-            if (minIndex != i) {
-                tmp = arr[i];
-                arr[i] = arr[minIndex];
-                arr[minIndex] = tmp;
-                sq.getChildren().add(swapSelect(list.get(i), list.get(minIndex), list, duration));
-            }
-        }
-        return sq;
-        
-    }
-    
-    private void QuickSort() {
-        // quick sort algorithm
-    }
-    
-    private void MergeSort() {
-        // merge sort algorithm
-    }
-    
-    private void HeapSort() {
-        // heap sort algorithm
-    }
-    
+
+
+
     private void sort(int selectAlgo) {
         sq = new SequentialTransition();
-        
+
         switch (selectAlgo) {
             case 0:
                 // BubbleSort
-                sq = BubbleSort(input, list);
+                sq = BubbleSort(input, list, duration);
                 break;
             case 1:
                 // InsertionSort
-                sq = InsertionSort(input, list);
+                sq = InsertionSort(input, list, duration);
                 break;
             case 2:
                 // SelectionSort
-                sq = SelectionSort(input, list);
+                sq = SelectionSort(input, list, duration);
                 break;
             case 3:
                 // MergeSort
-                sq = BubbleSort(input, list);
+                sq = BubbleSort(input, list, duration);
                 break;
             case 4:
                 // QuickSort
-                sq = BubbleSort(input, list);
+                sq = BubbleSort(input, list, duration);
                 break;
             case 5:
                 // HeapSort
-                sq = BubbleSort(input, list);
+                sq = BubbleSort(input, list, duration);
                 break;
             default:
                 break;
         }
-        
+
         sq.play();
     }
-    
+
     private void checkInput(String str) {
         // TODO Auto-generated method stub
         boolean matchFormat = true;
-        
+
         // if has input
         if (str.length() > 0) {
             for (int i = 0; i < str.length(); i++) {
@@ -385,53 +236,63 @@ public class RootLayoutController implements Initializable {
                     inputString.clear();
                 }
             }
-            
+
             // test first and last char is digit
             if (!Character.isDigit(str.charAt(str.length() - 1)) && !Character.isDigit(str.charAt(0))) {
                 matchFormat = false;
                 System.out.println("Please input correct string format...");
                 inputString.clear();
             }
-            
+
             if (matchFormat) {
                 String[] split = str.split("\\D+");
                 input = new int[split.length];
                 for (int i = 0; i < split.length; i++) {
                     input[i] = Integer.parseInt(split[i]);
                 }
-                
+
                 // check numbers' limit
                 for(int i=0; i < input.length; i++) {
                     if(input[i] <= 0) {
                         System.out.println("The input number should larger than 0...");
                         inputString.clear();
                     }
-                }	
+                }
             }
         } else {
             System.out.println("No input, use default input...");
             input = defaultInput;
         }
     }
-    
+
     @FXML
     private void handleHelpBox() {
         MainApp.showHelpBox();
     }
-    
+
     @FXML
     private void handlePreference() {
         MainApp.showPreference();
     }
-    
+
     @FXML
     private void handleGuideline() {
         MainApp.showGuideline();
     }
-    
+
+    @FXML
+    private void handleQuit() {
+       MainApp.QuitPrograme();
+    }
+
+    // haven`t use now
+    public void setMainApp(MainApp mainApp) {
+        this.mainapp = mainApp;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
-        
+
     }
 }

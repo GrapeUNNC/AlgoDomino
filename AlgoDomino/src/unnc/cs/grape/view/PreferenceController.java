@@ -35,7 +35,7 @@ public class PreferenceController {
 	    @FXML
 	    private void handleApply() {
 	    	color=colorPicker.getValue();
-	    	System.out.println(colorPicker.getValue());
+	    	//System.out.println(colorPicker.getValue());
 	        dialogStage.close();
 	    }
 }
