@@ -1,6 +1,3 @@
-/**
- *
- */
 package unnc.cs.grape.view;
 
 import java.io.IOException;
