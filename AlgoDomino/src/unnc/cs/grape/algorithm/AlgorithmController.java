@@ -151,6 +151,108 @@ public class AlgorithmController {
 
     }
 
+    private ParallelTransition swapHeap1(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed, int parent, int child) {
+        TranslateTransition t1 = new TranslateTransition();
+        TranslateTransition t2 = new TranslateTransition();
+        t1.setDuration(Duration.millis(speed));
+        t2.setDuration(Duration.millis(speed));
+        ParallelTransition pl = new ParallelTransition();
+        t1.setNode(l1);
+        t2.setNode(l2);
+        int num=child-parent;
+        num *= 30;
+        t1.setByX(num);
+        t2.setByX(-num);
+        pl.getChildren().addAll(t1, t2);
+        Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
+        return pl;
+    }
+
+    private ParallelTransition swapHeap2(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed, int parent, int child) {
+        TranslateTransition t1 = new TranslateTransition();
+        TranslateTransition t2 = new TranslateTransition();
+        t1.setDuration(Duration.millis(speed));
+        t2.setDuration(Duration.millis(speed));
+        ParallelTransition pl = new ParallelTransition();
+        t1.setNode(l1);
+        t2.setNode(l2);
+        int num=child-parent;
+        num *= 30;
+        t1.setByX(num);
+        t1.setToY(0);
+        t2.setByX(-num);
+        t2.setToY(0);
+        pl.getChildren().addAll(t1, t2);
+        Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
+        return pl;
+    }
+
+    private ParallelTransition swapHeap3(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
+        TranslateTransition t1 = new TranslateTransition();
+        TranslateTransition t2 = new TranslateTransition();
+        t1.setDuration(Duration.millis(speed));
+        t2.setDuration(Duration.millis(speed));
+        ParallelTransition pl = new ParallelTransition();
+        t1.setNode(l1);
+        t2.setNode(l2);
+        t1.setToY(-100);
+        t2.setToY(-100);
+        pl.getChildren().addAll(t1, t2);
+        return pl;
+    }
+
+    protected SequentialTransition HeapSort (int arr[], ArrayList<StackPane> list, double duration) {
+    	SequentialTransition sq = new SequentialTransition();
+    	for (int i = arr.length / 2; i >= 0; i--)
+        {
+    		int parent=i;
+            int temp = arr[parent];
+		    int child = 2 * parent + 1;
+		    while (child < arr.length)
+		    {
+		    	if (child + 1 < arr.length && arr[child] < arr[child + 1]) {
+		    		child++;
+			    }
+		        if (temp >= arr[child])
+		        	break;
+		         temp=arr[child];
+		         arr[child]=arr[parent];
+			     arr[parent] =temp;
+			     temp=arr[child];
+			     sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
+			     parent = child;
+			     child = 2 * child + 1;
+		    }
+        }
+        for (int i = arr.length - 1; i > 0; i--)
+        {
+            int temp = arr[i];
+            arr[i] = arr[0];
+            arr[0] = temp;
+            sq.getChildren().add(swapHeap3(list.get(0), list.get(i), list, duration));
+            sq.getChildren().add(swapHeap2(list.get(0), list.get(i), list, duration, 0, i));
+            int parent=0;
+            int tempFather = arr[parent];
+		    int child = 2 * parent + 1;
+		    while (child < i)
+		    {
+		    	if (child + 1 < i && arr[child] < arr[child + 1]) {
+		    		child++;
+			    }
+		        if (tempFather >= arr[child])
+		        	break;
+		         tempFather=arr[child];
+		         arr[child]=arr[parent];
+			     arr[parent] =tempFather;
+			     tempFather=arr[child];
+			     sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
+			     parent = child;
+			     child = 2 * child + 1;
+		    }
+        }
+    	return sq;
+    }
+
     protected void QuickSort() {
         // quick sort algorithm
     }
@@ -159,7 +261,5 @@ public class AlgorithmController {
         // merge sort algorithm
     }
 
-    protected void HeapSort() {
-        // heap sort algorithm
-    }
+
 }

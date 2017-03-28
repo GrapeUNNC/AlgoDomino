@@ -1,9 +1,8 @@
 package unnc.cs.grape.view;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXColorPicker;
-
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -14,6 +13,8 @@ public class PreferenceController {
 
 	 @FXML
 	 private JFXColorPicker colorPicker;
+	 @FXML
+	 private Button button;
 
 	  /**
 	   * Initializes the controller class. This method is automatically called
@@ -38,4 +39,6 @@ public class PreferenceController {
 	    	//System.out.println(colorPicker.getValue());
 	        dialogStage.close();
 	    }
+
+
 }
