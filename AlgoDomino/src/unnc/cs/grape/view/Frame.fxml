@@ -22,6 +22,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -95,6 +96,7 @@
                                                                   <Insets bottom="60.0" />
                                                                </padding>
                                                             </HBox>
+                                                            <Pane fx:id="pane" prefHeight="431.0" prefWidth="618.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                          </children>
                                                       </AnchorPane>
                                                     <AnchorPane prefHeight="104.0" prefWidth="482.0">
