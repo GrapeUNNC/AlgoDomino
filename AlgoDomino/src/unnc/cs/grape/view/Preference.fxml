@@ -59,7 +59,7 @@
                                     <Font size="13.0" />
                                  </font>
                               </JFXRadioButton>
-                              <Button layoutX="72.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleApply" prefHeight="29.0" prefWidth="86.0" text="Apply">
+                              <Button fx:id="button" layoutX="72.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleApply" prefHeight="29.0" prefWidth="86.0" text="Apply">
                                  <font>
                                     <Font size="13.0" />
                                  </font>

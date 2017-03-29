@@ -24,6 +24,7 @@ public class MainApp extends Application {
     private static Stage dialogStage1;
     private static Stage dialogStage2;
     private static Stage dialogStage3;
+    //static Scene colorScene=null;
 
 
     @Override
@@ -40,7 +41,7 @@ public class MainApp extends Application {
             @Override
             public void handle(WindowEvent event) {
                 //System.out.print("Program close");
-                if(dialogStage1!=null)
+            	if(dialogStage1!=null)
                 {
                 	 dialogStage1.close();
                 }
@@ -140,22 +141,33 @@ public class MainApp extends Application {
     public static void showPreference() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/Preference.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
-
+        	FXMLLoader loader = new FXMLLoader();
+    		loader.setLocation(MainApp.class.getResource("view/Preference.fxml"));
+    		AnchorPane page = (AnchorPane) loader.load();
+    		Scene scene=new Scene(page);
+    		/*Scene temp = null;
+    		if(colorScene==null)
+    		{
+    			scene = new Scene(page);
+    			temp = scene;
+    		}
+    		else
+    		{
+    			scene = new Scene(page);
+    			scene = colorScene;
+    			temp = scene;
+    		}
+    		colorScene=temp;*/
             // Create the dialog Stage.
             dialogStage2 = new Stage();
             dialogStage2.setTitle("Preference");
             //dialogStage.initModality(Modality.WINDOW_MODAL);
             //dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
             dialogStage2.setScene(scene);
 
             // Set the person into the controller.
             PreferenceController controller = loader.getController();
             controller.setDialogStage(dialogStage2);
-
             // Show the dialog and wait until the user closes it
             dialogStage2.showAndWait();
 

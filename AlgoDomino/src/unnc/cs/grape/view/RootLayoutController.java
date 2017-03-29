@@ -109,7 +109,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
             sort(selectAlgo);
         }
     }
-    
+
     /**
      * Choose which algorithm to use
      */
@@ -208,7 +208,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
                 break;
             case 5:
                 // HeapSort
-                sq = BubbleSort(input, list, duration);
+                sq = HeapSort(input, list, duration);
                 break;
             default:
                 break;
