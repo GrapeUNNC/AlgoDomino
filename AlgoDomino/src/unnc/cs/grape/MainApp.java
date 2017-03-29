@@ -1,13 +1,19 @@
 package unnc.cs.grape;
 
+import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import unnc.cs.grape.view.GuidelineController;
@@ -24,6 +30,7 @@ public class MainApp extends Application {
     private static Stage dialogStage1;
     private static Stage dialogStage2;
     private static Stage dialogStage3;
+    private static Scene mainScene;
     //static Scene colorScene=null;
 
 
@@ -69,8 +76,8 @@ public class MainApp extends Application {
             rootLayout = loader.load();
 
             // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
+             mainScene = new Scene(rootLayout);
+            primaryStage.setScene(mainScene);
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -218,6 +225,23 @@ public class MainApp extends Application {
         	dialogStage3.close();
         }
     }
+
+    public static void Screenshot() {
+    	 WritableImage image = mainScene.snapshot(null);
+         FileChooser fileChooser = new FileChooser();
+         fileChooser.setTitle("Save Screenshot");
+         File file = fileChooser.showSaveDialog(primaryStage);
+         if(file != null)
+         {
+             try {
+                 ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+             }
+             catch (IOException e) {
+                 System.out.println("Couldn't Save.");
+             }
+         }
+    }
+
     /**
      * Returns the main stage.
      *

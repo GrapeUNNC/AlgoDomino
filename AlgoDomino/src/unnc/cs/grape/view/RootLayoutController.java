@@ -288,6 +288,11 @@ public class RootLayoutController extends AlgorithmController implements Initial
        MainApp.QuitPrograme();
     }
 
+    @FXML
+    private void handleScreenshot() {
+       MainApp.Screenshot();
+    }
+
     // haven`t use now
     public void setMainApp(MainApp mainApp) {
         this.mainapp = mainApp;
