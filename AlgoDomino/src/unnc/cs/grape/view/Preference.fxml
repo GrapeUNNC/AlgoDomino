@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="250.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.PreferenceController">
+<AnchorPane prefHeight="250.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.PreferenceController">
    <children>
       <SplitPane dividerPositions="0.5" layoutX="71.0" layoutY="64.0" prefHeight="250.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -46,7 +46,7 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <JFXRadioButton layoutX="29.0" layoutY="44.0" selected="true" text="Englisg">
+                              <JFXRadioButton layoutX="29.0" layoutY="44.0" selected="true" text="English">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="ratio" />
                                  </toggleGroup>
