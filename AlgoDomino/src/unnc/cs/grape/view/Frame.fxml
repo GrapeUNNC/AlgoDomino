@@ -12,6 +12,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TextArea?>
@@ -22,11 +23,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
    <children>
       <JFXTabPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
@@ -86,85 +88,91 @@
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="596.0" prefWidth="452.0">
                                              <children>
-                                                <SplitPane dividerPositions="0.7695035460992907, 0.8634751773049646" layoutX="106.0" layoutY="116.0" orientation="VERTICAL" prefHeight="598.0" prefWidth="484.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <SplitPane dividerPositions="0.7535460992907801" layoutX="106.0" layoutY="116.0" orientation="VERTICAL" prefHeight="598.0" prefWidth="484.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <items>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="599.0" prefWidth="776.0">
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="619.0">
                                                          <children>
                                                             <HBox fx:id="hbox" alignment="TOP_CENTER" layoutX="58.0" layoutY="-26.0" prefHeight="452.0" prefWidth="482.0" spacing="10.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <padding>
                                                                   <Insets bottom="60.0" />
                                                                </padding>
                                                             </HBox>
+                                                            <Pane fx:id="pane" prefHeight="431.0" prefWidth="618.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                          </children>
                                                       </AnchorPane>
-                                                    <AnchorPane prefHeight="104.0" prefWidth="482.0">
+                                                      <AnchorPane prefHeight="125.0" prefWidth="622.0">
                                                          <children>
-                                                            <Label layoutX="331.0" layoutY="14.0" text="Slow" />
-                                                            <Label layoutX="502.0" layoutY="14.0" text="Fast" />
-                                                            <JFXSlider fx:id="slider" blockIncrement="1.0" layoutX="372.0" layoutY="14.0" max="10.0" prefHeight="14.0" prefWidth="109.0" showTickLabels="true" />
-                                                            <JFXButton fx:id="start" contentDisplay="GRAPHIC_ONLY" layoutX="159.0" layoutY="6.0" onAction="#sortStart" prefHeight="33.0" prefWidth="28.0">
-                                                               <font>
-                                                                  <Font size="1.0" />
-                                                               </font>
-                                                               <graphic>
-                                                                  <ImageView fx:id="playbutton" fitHeight="37.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                                                     <image>
-                                                                        <Image url="@assets/icon/play_128px_1086608_easyicon.net.png" />
-                                                                     </image>
-                                                                  </ImageView>
-                                                               </graphic>
-                                                            </JFXButton>
-                                                            <JFXButton fx:id="next" contentDisplay="GRAPHIC_ONLY" layoutX="198.0" layoutY="9.0" prefHeight="33.0" prefWidth="28.0">
-                                                               <font>
-                                                                  <Font size="1.0" />
-                                                               </font>
-                                                               <graphic>
-                                                                  <ImageView fitHeight="32.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                                                     <image>
-                                                                        <Image url="@assets/icon/next_track_128px_1086596_easyicon.net.png" />
-                                                                     </image>
-                                                                  </ImageView>
-                                                               </graphic>
-                                                            </JFXButton>
-                                                            <JFXButton fx:id="previous" contentDisplay="GRAPHIC_ONLY" layoutX="130.0" layoutY="9.0" prefHeight="33.0" prefWidth="28.0">
-                                                               <font>
-                                                                  <Font size="1.0" />
-                                                               </font>
-                                                               <graphic>
-                                                                  <ImageView fx:id="previous" fitHeight="32.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                                                     <image>
-                                                                        <Image url="@assets/icon/previous_track_128px_1086611_easyicon.net.png" />
-                                                                     </image>
-                                                                  </ImageView>
-                                                               </graphic>
-                                                            </JFXButton>
-                                                         </children>
-                                                      </AnchorPane>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                                         <children>
-                                                            <Label layoutX="113.0" layoutY="1.0" prefHeight="33.0" prefWidth="48.0" text="Input:">
-                                                               <font>
-                                                                  <Font size="15.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <JFXTextField fx:id="inputString" layoutX="172.0" layoutY="5.0" prefHeight="25.0" prefWidth="244.0" promptText="1,6,4,3,5,2" />
-                                                            <JFXButton fx:id="random" contentDisplay="GRAPHIC_ONLY" layoutX="424.0" layoutY="5.0" onAction="#randomInput">
-                                                               <font>
-                                                                  <Font size="1.0" />
-                                                               </font>
-                                                               <graphic>
-                                                                  <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                                                     <image>
-                                                                        <Image url="@assets/icon/Dice_96px_559959_easyicon.net.png" />
-                                                                     </image>
-                                                                  </ImageView>
-                                                               </graphic>
-                                                            </JFXButton>
-                                                            <JFXButton fx:id="initialize" layoutX="234.0" layoutY="40.0" onAction="#intializeRec" prefHeight="25.0" prefWidth="132.0" text="Initialize">
-                                                               <font>
-                                                                  <Font name="System Bold" size="12.0" />
-                                                               </font>
-                                                            </JFXButton>
+                                                            <VBox layoutY="61.0" prefHeight="200.0" prefWidth="622.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                <AnchorPane prefHeight="144.0" prefWidth="619.0">
+                                                                     <children>
+                                                                        <Label layoutX="113.0" layoutY="64.0" prefHeight="33.0" prefWidth="48.0" text="Input:">
+                                                                           <font>
+                                                                              <Font size="15.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <JFXTextField fx:id="inputString" layoutX="183.0" layoutY="68.0" prefHeight="25.0" prefWidth="244.0" promptText="1,6,4,3,5,2" />
+                                                                        <JFXButton fx:id="random" contentDisplay="GRAPHIC_ONLY" layoutX="432.0" layoutY="68.0" onAction="#randomInput">
+                                                                           <font>
+                                                                              <Font size="1.0" />
+                                                                           </font>
+                                                                           <graphic>
+                                                                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                                                                 <image>
+                                                                                    <Image url="@assets/icon/Dice_96px_559959_easyicon.net.png" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </graphic>
+                                                                        </JFXButton>
+                                                                        <JFXButton fx:id="initialize" layoutX="244.0" layoutY="102.0" onAction="#intializeRec" prefHeight="25.0" prefWidth="132.0" text="Initialize">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="12.0" />
+                                                                           </font>
+                                                                        </JFXButton>
+                                                                        <Label layoutX="335.0" layoutY="22.0" text="Slow" />
+                                                                        <Label layoutX="506.0" layoutY="22.0" text="Fast" />
+                                                                        <JFXButton fx:id="start" contentDisplay="GRAPHIC_ONLY" layoutX="164.0" layoutY="19.0" onAction="#sortStart" prefHeight="33.0" prefWidth="28.0">
+                                                                           <font>
+                                                                              <Font size="1.0" />
+                                                                           </font>
+                                                                           <graphic>
+                                                                              <ImageView fx:id="playbutton" fitHeight="37.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                                                                 <image>
+                                                                                    <Image url="@assets/icon/play_128px_1086608_easyicon.net.png" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </graphic>
+                                                                        </JFXButton>
+                                                                        <JFXButton fx:id="next" contentDisplay="GRAPHIC_ONLY" layoutX="203.0" layoutY="22.0" prefHeight="33.0" prefWidth="28.0">
+                                                                           <font>
+                                                                              <Font size="1.0" />
+                                                                           </font>
+                                                                           <graphic>
+                                                                              <ImageView fitHeight="32.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                                                                 <image>
+                                                                                    <Image url="@assets/icon/next_track_128px_1086596_easyicon.net.png" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </graphic>
+                                                                        </JFXButton>
+                                                                        <JFXButton fx:id="previous" contentDisplay="GRAPHIC_ONLY" layoutX="135.0" layoutY="22.0" prefHeight="33.0" prefWidth="28.0">
+                                                                           <font>
+                                                                              <Font size="1.0" />
+                                                                           </font>
+                                                                           <graphic>
+                                                                              <ImageView fx:id="previous" fitHeight="32.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                                                                 <image>
+                                                                                    <Image url="@assets/icon/previous_track_128px_1086611_easyicon.net.png" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </graphic>
+                                                                        </JFXButton>
+                                                                        <Separator layoutY="59.0" prefHeight="7.0" prefWidth="619.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0" />
+                                                                        <JFXSlider fx:id="slider" blockIncrement="1.0" indicatorPosition="RIGHT" layoutX="373.0" layoutY="15.0" max="10.0" prefHeight="48.0" prefWidth="119.0" showTickLabels="true" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                            </VBox>
                                                          </children>
                                                       </AnchorPane>
                                                   </items>
@@ -610,13 +618,25 @@
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="192.0" prefWidth="915.0" style="-fx-background-color: #DDDDDD;">
                                              <children>
-                                                <Label layoutX="668.0" layoutY="20.0" text="Fast" />
-                                                <Label layoutX="479.0" layoutY="20.0" text="Slow" />
-                                                <JFXSlider blockIncrement="1.0" layoutX="513.0" layoutY="21.0" max="10.0" showTickLabels="true" />
-                                                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="72.0" layoutY="31.0">
+                                                <Label layoutX="678.0" layoutY="36.0" prefHeight="17.0" prefWidth="31.0" text="Fast">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></Label>
+                                                <Label layoutX="479.0" layoutY="36.0" text="Slow">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></Label>
+                                                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="63.0" layoutY="16.0">
                                                    <font>
                                                       <Font size="1.0" />
                                                    </font>
+                                                   <graphic>
+                                                      <ImageView fx:id="playbutton2" fitHeight="114.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@assets/icon/play.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
                                                 </JFXButton>
                                                 <Label layoutX="139.0" layoutY="16.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="81.0" text="input size:">
                                                    <font>
@@ -628,11 +648,7 @@
                                                    <font>
                                                       <Font name="System Bold" size="12.0" />
                                                    </font></JFXButton>
-                                                <ImageView fx:id="playbutton2" fitHeight="114.0" fitWidth="40.0" layoutX="51.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@assets/icon/play.png" />
-                                                   </image>
-                                                </ImageView>
+                                                <JFXSlider blockIncrement="1.0" layoutX="523.0" layoutY="37.0" max="10.0" showTickLabels="true" />
                                              </children>
                                           </AnchorPane>
                                       </items>

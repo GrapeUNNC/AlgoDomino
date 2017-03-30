@@ -18,8 +18,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -72,6 +74,9 @@ public class RootLayoutController extends AlgorithmController implements Initial
     private JFXButton playButton;
 
     @FXML
+    private Pane pane;
+
+    @FXML
     private void switchToMainFrame() throws IOException {
         mainapp.showMainFrame();
     }
@@ -99,9 +104,10 @@ public class RootLayoutController extends AlgorithmController implements Initial
     /**
      * Press to start sorting
      */
+
     @FXML
     public void sortStart() {
-        if(hbox.getChildren() == null) {
+        if(hbox.getChildren() == null || input == null) {
             System.out.println("Please initialize first...");
         } else if (selectAlgo == null) {
             System.out.println("Please choose a algorithm to run...");
@@ -283,6 +289,11 @@ public class RootLayoutController extends AlgorithmController implements Initial
     @FXML
     private void handleQuit() {
        MainApp.QuitPrograme();
+    }
+
+    @FXML
+    private void handleScreenshot() {
+       MainApp.Screenshot();
     }
 
     // haven`t use now
