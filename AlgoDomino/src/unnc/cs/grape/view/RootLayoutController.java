@@ -21,6 +21,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -77,7 +78,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
 
     @FXML
     private Pane pane;
-    
+
     @FXML
     private void switchToMainFrame() throws IOException {
         mainapp.showMainFrame();
@@ -106,6 +107,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
     /**
      * Press to start sorting
      */
+
     @FXML
     public void sortStart() {
         if(hbox.getChildren() == null || input == null) {
@@ -295,6 +297,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
     @FXML
     private void handleScreenshot() {
        MainApp.Screenshot();
+       System.out.println("Choose BubbleSort...");
     }
 
     // haven`t use now

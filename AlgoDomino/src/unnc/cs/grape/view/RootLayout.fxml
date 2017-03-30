@@ -4,9 +4,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -38,50 +36,8 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Function">
                      <items>
-                      <Menu mnemonicParsing="false" text="Select">
-                        <items>
-                              <Menu mnemonicParsing="false" text="Algorithm">
-                                <items>
-                                    <RadioMenuItem mnemonicParsing="false" text="Bubble Sort">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="Algorithm" />
-                                       </toggleGroup>
-                                    </RadioMenuItem>
-                                    <RadioMenuItem mnemonicParsing="false" text="Quick Sort" toggleGroup="$Algorithm" />
-                                    <RadioMenuItem mnemonicParsing="false" text="Insertion Sort" toggleGroup="$Algorithm" />
-                                </items>
-                              </Menu>
-                        </items>
-                      </Menu>
-                        <Menu mnemonicParsing="false" text="Compare">
-                           <items>
-                              <Menu mnemonicParsing="false" text="First Algorithm">
-                                <items>
-                                    <RadioMenuItem mnemonicParsing="false" text="Bubble Sort">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="firstcompare" />
-                                       </toggleGroup>
-                                    </RadioMenuItem>
-                                    <RadioMenuItem mnemonicParsing="false" text="Quick Sort" toggleGroup="$firstcompare" />
-                                    <RadioMenuItem mnemonicParsing="false" text="Insertion Sort" toggleGroup="$firstcompare" />
-                                </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Second Algorithm">
-                                <items>
-                                    <RadioMenuItem mnemonicParsing="false" text="Bubble Sort">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="secondcompare" />
-                                       </toggleGroup>
-                                    </RadioMenuItem>
-                                    <RadioMenuItem mnemonicParsing="false" text="Quick Sort" toggleGroup="$secondcompare" />
-                                    <RadioMenuItem mnemonicParsing="false" text="Insertion Sort" toggleGroup="$secondcompare" />
-                                </items>
-                              </Menu>
-                           </items>
-                        </Menu>
                         <MenuItem mnemonicParsing="false" onAction="#handlePreference" text="Preference" />
-                     </items>
-                  </Menu>
+                     </items></Menu>
                   <Menu mnemonicParsing="false" text="Help">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#handleHelpBox" text="About Domino" />
