@@ -297,7 +297,6 @@ public class RootLayoutController extends AlgorithmController implements Initial
     @FXML
     private void handleScreenshot() {
        MainApp.Screenshot();
-       System.out.println("Choose BubbleSort...");
     }
 
     // haven`t use now
