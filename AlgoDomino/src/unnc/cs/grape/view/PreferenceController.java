@@ -22,6 +22,7 @@ public class PreferenceController {
 	   */
 	  @FXML
 	  private void initialize() {
+		  colorPicker.setValue(color);
 	  }
 
 	  /**
