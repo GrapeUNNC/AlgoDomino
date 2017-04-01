@@ -3,22 +3,22 @@ package unnc.cs.grape.view;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSlider;
 
-import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
-import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -26,7 +26,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 import unnc.cs.grape.MainApp;
 import unnc.cs.grape.algorithm.AlgorithmController;
 
@@ -35,7 +34,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
 
     private int[] input;
     private int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
-    private final int duration = 600;
+    private double duration = 600;
     private Integer selectAlgo;
     private ArrayList<StackPane> list = new ArrayList<>();
     private SequentialTransition sq;
@@ -75,6 +74,9 @@ public class RootLayoutController extends AlgorithmController implements Initial
 
     @FXML
     private Pane pane;
+    
+    @FXML
+    private JFXSlider slider;
 
     @FXML
     private void switchToMainFrame() throws IOException {
@@ -116,6 +118,17 @@ public class RootLayoutController extends AlgorithmController implements Initial
         }
     }
 
+    @FXML
+    public void speedChange() {
+    	Slider slider = new Slider(100, 4000, 600);
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                duration = (double) newValue;
+            }
+        });
+    }
+    
     /**
      * Choose which algorithm to use
      */
@@ -186,8 +199,6 @@ public class RootLayoutController extends AlgorithmController implements Initial
         hbox.getChildren().addAll(list);
     }
 
-
-
     private void sort(int selectAlgo) {
         sq = new SequentialTransition();
 
@@ -250,6 +261,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
                 inputString.clear();
             }
 
+            // fix later - wrong
             if (matchFormat) {
                 String[] split = str.split("\\D+");
                 input = new int[split.length];

@@ -152,27 +152,9 @@ public class MainApp extends Application {
     		loader.setLocation(MainApp.class.getResource("view/Preference.fxml"));
     		AnchorPane page = (AnchorPane) loader.load();
     		Scene scene=new Scene(page);
-    		/*Scene temp = null;
-    		if(colorScene==null)
-    		{
-    			scene = new Scene(page);
-    			temp = scene;
-    		}
-    		else
-    		{
-    			scene = new Scene(page);
-    			scene = colorScene;
-    			temp = scene;
-    		}
-    		colorScene=temp;*/
-            // Create the dialog Stage.
             dialogStage2 = new Stage();
             dialogStage2.setTitle("Preference");
-            //dialogStage.initModality(Modality.WINDOW_MODAL);
-            //dialogStage.initOwner(primaryStage);
             dialogStage2.setScene(scene);
-
-            // Set the person into the controller.
             PreferenceController controller = loader.getController();
             controller.setDialogStage(dialogStage2);
             // Show the dialog and wait until the user closes it
