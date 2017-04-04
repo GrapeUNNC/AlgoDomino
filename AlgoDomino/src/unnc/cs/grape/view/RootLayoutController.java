@@ -3,8 +3,10 @@ package unnc.cs.grape.view;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
@@ -114,12 +116,82 @@ public class RootLayoutController extends AlgorithmController implements Initial
     @FXML
     public void speedChange() {
     	Slider slider = new Slider(100, 4000, 600);
-        slider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                duration = (double) newValue;
-            }
-        });
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> duration = (double) newValue);
+    }
+
+
+    private void checkInput(String str) {
+        // if has input
+        if (str.length() > 0) {
+            String[] sp = str.split("\\D+");
+            int[] userInput = Stream.of(sp).mapToInt(Integer::parseInt).toArray();
+            input = userInput;
+            //System.out.println(Arrays.toString(userInput));
+        } else {
+            System.out.println("No input, use default input...");
+            input = defaultInput;
+        }
+    }
+
+    public void intializeRec() {
+        // clear
+        list.clear();
+        hbox.getChildren().clear();
+
+        // detected input part
+        System.out.println("Get input...");
+
+        String str = inputString.getText();
+        checkInput(str);
+
+        // generate rectangles
+        generateRec();
+    }
+
+
+    /**
+     * not complete
+     */
+    public void randomInput() {
+        System.out.println("Generate a random input");
+        int[] random = new int[15];
+        for (int i = 0; i < 15; i++) {
+            random[i] = (int)(Math.random()*20 +1);
+        }
+        input = random;
+        String strInput = Arrays.toString(random);
+        inputString.clear();
+        inputString.setText(strInput.substring(1, strInput.length()-1));
+        //System.out.println(Arrays.toString(random));
+
+        list.clear();
+        hbox.getChildren().clear();
+        generateRec();
+    }
+
+    /**
+     * Create rectangles into Hbox
+     */
+    private void generateRec() {
+
+    	Color shapeColor=PreferenceController.color;
+        if (input == null || input.length == 0) {
+            input = defaultInput;
+        }
+
+        for (int i = 0; i < input.length; i++) {
+            Rectangle rectangle = new Rectangle(20, 20 * input[i]);
+            rectangle.setFill(shapeColor);
+            Text text = new Text(String.valueOf(input[i]));
+            StackPane stackPane = new StackPane();
+            stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
+            stackPane.setId(String.valueOf(input[i]));
+            stackPane.getChildren().addAll(rectangle, text);
+            stackPane.setAlignment(Pos.BOTTOM_CENTER);
+            list.add(stackPane);
+        }
+
+        hbox.getChildren().addAll(list);
     }
 
     /**
@@ -166,66 +238,6 @@ public class RootLayoutController extends AlgorithmController implements Initial
         });
     }
 
-
-    public void intializeRec() {
-        // clear
-        list.clear();
-        hbox.getChildren().clear();
-
-        // detected input part
-        System.out.println("Get input...");
-
-        String str = inputString.getText();
-        checkInput(str);
-
-        // generate rectangles
-        generateRec();
-    }
-
-
-    /**
-     * not complete
-     */
-    public void randomInput() {
-        System.out.println("Generate a random input");
-        int[] random = new int[15];
-        for (int i = 0; i < 15; i++) {
-            random[i] = (int)(Math.random()*20 +1);
-        }
-        input = random;
-
-        list.clear();
-        hbox.getChildren().clear();
-        generateRec();
-    }
-
-    /**
-     * Create rectangles into Hbox
-     */
-    private void generateRec() {
-
-    	Color shapeColor=PreferenceController.color;
-        System.out.println(input);
-        if (input == null) {
-            // System.out.println("Use default input...");
-            input = defaultInput;
-        }
-
-        for (int i = 0; i < input.length; i++) {
-            Rectangle rectangle = new Rectangle(20, 20 * input[i]);
-            rectangle.setFill(shapeColor);
-            Text text = new Text(String.valueOf(input[i]));
-            StackPane stackPane = new StackPane();
-            stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
-            stackPane.setId(String.valueOf(input[i]));
-            stackPane.getChildren().addAll(rectangle, text);
-            stackPane.setAlignment(Pos.BOTTOM_CENTER);
-            list.add(stackPane);
-        }
-
-        hbox.getChildren().addAll(list);
-    }
-
     private void sort(int selectAlgo) {
         sq = new SequentialTransition();
 
@@ -258,56 +270,9 @@ public class RootLayoutController extends AlgorithmController implements Initial
                 break;
         }
 
+        inputString.setEditable(false);
         sq.play();
-    }
-
-    private void checkInput(String str) {
-        // TODO Auto-generated method stub
-        boolean matchFormat = true;
-
-        // if has input
-        if (str.length() > 0) {
-            for (int i = 0; i < str.length(); i++) {
-                // test all character consist of digit and ,
-                if (!(Character.isDigit(str.charAt(i)) || str.charAt(i) == ',')) {
-                    matchFormat = false;
-                    System.out.println("Please input correct string format");
-                }
-                // test if two ','
-                if (str.charAt(i) == ',' && str.charAt(i + 1) == ',') {
-                    matchFormat = false;
-                    System.out.println("Please input correct string format...");
-                    inputString.clear();
-                }
-            }
-
-            // test first and last char is digit
-            if (!Character.isDigit(str.charAt(str.length() - 1)) && !Character.isDigit(str.charAt(0))) {
-                matchFormat = false;
-                System.out.println("Please input correct string format...");
-                inputString.clear();
-            }
-
-            // fix later - wrong
-            if (matchFormat) {
-                String[] split = str.split("\\D+");
-                input = new int[split.length];
-                for (int i = 0; i < split.length; i++) {
-                    input[i] = Integer.parseInt(split[i]);
-                }
-
-                // check numbers' limit
-                for(int i=0; i < input.length; i++) {
-                    if(input[i] <= 0) {
-                        System.out.println("The input number should larger than 0...");
-                        inputString.clear();
-                    }
-                }
-            }
-        } else {
-            System.out.println("No input, use default input...");
-            input = defaultInput;
-        }
+        inputString.setEditable(true);
     }
 
     @FXML

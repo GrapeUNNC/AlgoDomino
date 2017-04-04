@@ -206,7 +206,7 @@ public class AlgorithmController {
         return pl;
     }
 
-    private ParallelTransition swapHeap3(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
+    private ParallelTransition swapHeap3(StackPane l1, StackPane l2, double speed) {
         TranslateTransition t1 = new TranslateTransition();
         TranslateTransition t2 = new TranslateTransition();
         t1.setDuration(Duration.millis(speed));
@@ -249,7 +249,7 @@ public class AlgorithmController {
             int temp = arr[i];
             arr[i] = arr[0];
             arr[0] = temp;
-            sq.getChildren().add(swapHeap3(list.get(0), list.get(i), list, duration));
+            sq.getChildren().add(swapHeap3(list.get(0), list.get(i), duration));
             sq.getChildren().add(swapHeap2(list.get(0), list.get(i), list, duration, 0, i));
             int parent=0;
             int tempFather = arr[parent];
@@ -286,14 +286,14 @@ public class AlgorithmController {
             int temp = arr[left];
             arr[left] = arr[right];
             arr[right] = temp;
-            System.out.println("SWAP " + list.get(left) + " AND " + list.get(right));
+            //System.out.println("SWAP " + list.get(left) + " AND " + list.get(right));
             animationsList.add(swap(list.get(left), list.get(right), left-right, list, duration));
         }
         if (arr[left] >= arr[end]) {
             int temp = arr[left];
             arr[left] = arr[end];
             arr[end] = temp;
-            System.out.println("SWAP " + list.get(left) + " AND " + list.get(end));
+            //System.out.println("SWAP " + list.get(left) + " AND " + list.get(end));
             animationsList.add(swap(list.get(left), list.get(end), left-end, list, duration));
         }
         else
@@ -305,7 +305,6 @@ public class AlgorithmController {
     }
 
     protected SequentialTransition quickSort(int arr[], ArrayList<StackPane> list, SequentialTransition sq, double duration) {
-        //Set<Animation> animationSet = new HashSet<>();
         List<Animation> animationList = new ArrayList<>();
         animationList = quickSortRec(arr, 0, arr.length-1, list, animationList, duration);
         sq.getChildren().addAll(animationList);
