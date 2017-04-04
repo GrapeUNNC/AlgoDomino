@@ -19,6 +19,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -27,6 +28,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import unnc.cs.grape.MainApp;
+import unnc.cs.grape.algorithm.AlgorithmCode;
 import unnc.cs.grape.algorithm.AlgorithmController;
 
 public class RootLayoutController extends AlgorithmController implements Initializable {
@@ -74,9 +76,15 @@ public class RootLayoutController extends AlgorithmController implements Initial
 
     @FXML
     private Pane pane;
-    
+
     @FXML
     private JFXSlider slider;
+
+    @FXML
+    private TextArea codeDisplay;
+
+    @FXML
+    private TextArea hintDisplay;
 
     @FXML
     private void switchToMainFrame() throws IOException {
@@ -113,7 +121,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
             }
         });
     }
-    
+
     /**
      * Choose which algorithm to use
      */
@@ -123,26 +131,38 @@ public class RootLayoutController extends AlgorithmController implements Initial
         bubble.setOnMouseClicked(event -> {
             selectAlgo = 0;
             System.out.println("Choose BubbleSort...");
+            codeDisplay.setText(AlgorithmCode.javaBubble);
+            hintDisplay.setText(AlgorithmCode.hintBubble);
         });
         insertion.setOnMouseClicked(event -> {
             selectAlgo = 1;
             System.out.println("Choose InsertionSort...");
+            codeDisplay.setText(AlgorithmCode.javaInsertion);
+            hintDisplay.setText(AlgorithmCode.hintInsertion);
         });
         selection.setOnMouseClicked(event -> {
             selectAlgo = 2;
             System.out.println("Choose SelectionSort...");
+            codeDisplay.setText(AlgorithmCode.javaSelection);
+            hintDisplay.setText(AlgorithmCode.hintSelection);
         });
         quick.setOnMouseClicked(event -> {
             selectAlgo = 3;
             System.out.println("Choose QuickSort...");
+            codeDisplay.setText(AlgorithmCode.javaQuick);
+            hintDisplay.setText(AlgorithmCode.hintQuick);
         });
         merge.setOnMouseClicked(event -> {
             selectAlgo = 4;
             System.out.println("Choose MergeSort...");
+            codeDisplay.setText(AlgorithmCode.javaMerge);
+            hintDisplay.setText(AlgorithmCode.hintMerge);
         });
         heap.setOnMouseClicked(event -> {
             selectAlgo = 5;
             System.out.println("Choose HeapSort...");
+            codeDisplay.setText(AlgorithmCode.javaHeap);
+            hintDisplay.setText(AlgorithmCode.hintHeap);
         });
     }
 
