@@ -119,7 +119,6 @@ public class RootLayoutController extends AlgorithmController implements Initial
         slider.valueProperty().addListener((observable, oldValue, newValue) -> duration = (double) newValue);
     }
 
-
     private void checkInput(String str) {
         // if has input
         if (str.length() > 0) {
@@ -148,10 +147,6 @@ public class RootLayoutController extends AlgorithmController implements Initial
         generateRec();
     }
 
-
-    /**
-     * not complete
-     */
     public void randomInput() {
         System.out.println("Generate a random input");
         int[] random = new int[15];
