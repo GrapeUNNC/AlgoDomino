@@ -88,21 +88,6 @@ public class RootLayoutController extends AlgorithmController implements Initial
         mainapp.showEfficiencyInterface();
     }
 
-    public void intializeRec() {
-        // clear
-        list.clear();
-        hbox.getChildren().clear();
-
-        // detected input part
-        System.out.println("Get input...");
-
-        String str = inputString.getText();
-        checkInput(str);
-
-        // generate rectangles
-        generateRec();
-    }
-
     /**
      * Press to start sorting
      */
@@ -161,6 +146,23 @@ public class RootLayoutController extends AlgorithmController implements Initial
         });
     }
 
+
+    public void intializeRec() {
+        // clear
+        list.clear();
+        hbox.getChildren().clear();
+
+        // detected input part
+        System.out.println("Get input...");
+
+        String str = inputString.getText();
+        checkInput(str);
+
+        // generate rectangles
+        generateRec();
+    }
+
+
     /**
      * not complete
      */
@@ -169,8 +171,10 @@ public class RootLayoutController extends AlgorithmController implements Initial
         input = new int[15];
         Random random = new Random();
         for (int i = 0; i < 15; i++) {
-            input[i] = random.nextInt(14) + 1;
+            input[i] = (int)(Math.random()*20 +1);
         }
+
+        generateRec();
     }
 
     /**
@@ -179,6 +183,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
     private void generateRec() {
 
     	Color shapeColor=PreferenceController.color;
+        System.out.println(input);
         if (input == null) {
             // System.out.println("Use default input...");
             input = defaultInput;
@@ -216,11 +221,11 @@ public class RootLayoutController extends AlgorithmController implements Initial
                 sq = SelectionSort(input, list, duration);
                 break;
             case 3:
-                // MergeSort
-                sq = BubbleSort(input, list, duration);
+                // QuickSort
+                sq = quickSort(input, list, sq, duration);
                 break;
             case 4:
-                // QuickSort
+                // MergeSort
                 sq = BubbleSort(input, list, duration);
                 break;
             case 5:

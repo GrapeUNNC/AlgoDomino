@@ -1,8 +1,9 @@
 package unnc.cs.grape.algorithm;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
+import java.util.function.Consumer;
 
+import javafx.animation.Animation;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
@@ -29,6 +30,25 @@ public class AlgorithmController {
         t2.setNode(l2);
         t1.setByX(30);
         t2.setByX(-30);
+        pl.getChildren().addAll(t1, t2);
+        Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
+        return pl;
+    }
+
+    private ParallelTransition swap(StackPane l1, StackPane l2, int xLength, ArrayList<StackPane> list, double speed) {
+        if (xLength < 0) {
+            xLength = 0 - xLength;
+        }
+
+        TranslateTransition t1 = new TranslateTransition();
+        TranslateTransition t2 = new TranslateTransition();
+        t1.setDuration(Duration.millis(speed));
+        t2.setDuration(Duration.millis(speed));
+        ParallelTransition pl = new ParallelTransition();
+        t1.setNode(l1);
+        t2.setNode(l2);
+        t1.setByX(xLength*30);
+        t2.setByX((0-xLength)*30);
         pl.getChildren().addAll(t1, t2);
         Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
         return pl;
@@ -148,7 +168,6 @@ public class AlgorithmController {
             }
         }
         return sq;
-
     }
 
     private ParallelTransition swapHeap1(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed, int parent, int child) {
@@ -224,6 +243,7 @@ public class AlgorithmController {
 			     child = 2 * child + 1;
 		    }
         }
+
         for (int i = arr.length - 1; i > 0; i--)
         {
             int temp = arr[i];
@@ -253,13 +273,47 @@ public class AlgorithmController {
     	return sq;
     }
 
-    protected void QuickSort() {
-        // quick sort algorithm
+    private Set<Animation> quickSortRec(int arr[],int start, int end, ArrayList<StackPane> list, Set<Animation> animationsSet, double duration) {
+        if (start >= end)
+            return animationsSet;
+        int mid = arr[end];
+        int left = start, right = end - 1;
+        while (left < right) {
+            while (arr[left] <= mid && left < right)
+                left++;
+            while (arr[right] >= mid && left < right)
+                right--;
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            System.out.println("SWAP " + list.get(left) + " AND " + list.get(right));
+            animationsSet.add(swap(list.get(left), list.get(right), left-right, list, duration*2));
+        }
+        if (arr[left] >= arr[end]) {
+            int temp = arr[left];
+            arr[left] = arr[end];
+            arr[end] = temp;
+            System.out.println("SWAP " + list.get(left) + " AND " + list.get(end));
+            animationsSet.add(swap(list.get(left), list.get(end), left-end, list, duration*2));
+        }
+        else
+            left++;
+
+        animationsSet.addAll(quickSortRec(arr, start, left-1, list, animationsSet, duration));
+        animationsSet.addAll(quickSortRec(arr, left+1, end, list, animationsSet, duration));
+        return animationsSet;
     }
+
+    protected SequentialTransition quickSort(int arr[], ArrayList<StackPane> list, SequentialTransition sq, double duration) {
+        Set<Animation> animationSet = new HashSet<>();
+        animationSet = quickSortRec(arr, 0, arr.length-1, list, animationSet, duration);
+        sq.getChildren().addAll(animationSet);
+        return sq;
+    }
+
+
 
     protected void MergeSort() {
         // merge sort algorithm
     }
-
-
 }
