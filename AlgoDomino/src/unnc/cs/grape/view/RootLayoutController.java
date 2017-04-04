@@ -188,12 +188,14 @@ public class RootLayoutController extends AlgorithmController implements Initial
      */
     public void randomInput() {
         System.out.println("Generate a random input");
-        input = new int[15];
-        Random random = new Random();
+        int[] random = new int[15];
         for (int i = 0; i < 15; i++) {
-            input[i] = (int)(Math.random()*20 +1);
+            random[i] = (int)(Math.random()*20 +1);
         }
+        input = random;
 
+        list.clear();
+        hbox.getChildren().clear();
         generateRec();
     }
 

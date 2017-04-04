@@ -65,7 +65,7 @@ public class AlgorithmController {
      */
     private ParallelTransition swapSelect(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
         int num = 1;
-        StackPane sp1 = null, sp2 = null, fSp = null;
+        StackPane fSp;
         TranslateTransition t1 = new TranslateTransition();
         TranslateTransition t2 = new TranslateTransition();
         ParallelTransition pl = new ParallelTransition();
@@ -273,9 +273,9 @@ public class AlgorithmController {
     	return sq;
     }
 
-    private Set<Animation> quickSortRec(int arr[],int start, int end, ArrayList<StackPane> list, Set<Animation> animationsSet, double duration) {
+    private List<Animation> quickSortRec(int arr[],int start, int end, ArrayList<StackPane> list, List<Animation> animationsList, double duration) {
         if (start >= end)
-            return animationsSet;
+            return animationsList;
         int mid = arr[end];
         int left = start, right = end - 1;
         while (left < right) {
@@ -287,27 +287,28 @@ public class AlgorithmController {
             arr[left] = arr[right];
             arr[right] = temp;
             System.out.println("SWAP " + list.get(left) + " AND " + list.get(right));
-            animationsSet.add(swap(list.get(left), list.get(right), left-right, list, duration*2));
+            animationsList.add(swap(list.get(left), list.get(right), left-right, list, duration));
         }
         if (arr[left] >= arr[end]) {
             int temp = arr[left];
             arr[left] = arr[end];
             arr[end] = temp;
             System.out.println("SWAP " + list.get(left) + " AND " + list.get(end));
-            animationsSet.add(swap(list.get(left), list.get(end), left-end, list, duration*2));
+            animationsList.add(swap(list.get(left), list.get(end), left-end, list, duration));
         }
         else
             left++;
 
-        animationsSet.addAll(quickSortRec(arr, start, left-1, list, animationsSet, duration));
-        animationsSet.addAll(quickSortRec(arr, left+1, end, list, animationsSet, duration));
-        return animationsSet;
+        quickSortRec(arr, start, left-1, list, animationsList, duration);
+        quickSortRec(arr, left+1, end, list, animationsList, duration);
+        return animationsList;
     }
 
     protected SequentialTransition quickSort(int arr[], ArrayList<StackPane> list, SequentialTransition sq, double duration) {
-        Set<Animation> animationSet = new HashSet<>();
-        animationSet = quickSortRec(arr, 0, arr.length-1, list, animationSet, duration);
-        sq.getChildren().addAll(animationSet);
+        //Set<Animation> animationSet = new HashSet<>();
+        List<Animation> animationList = new ArrayList<>();
+        animationList = quickSortRec(arr, 0, arr.length-1, list, animationList, duration);
+        sq.getChildren().addAll(animationList);
         return sq;
     }
 
