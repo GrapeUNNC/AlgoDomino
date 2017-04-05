@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
 
@@ -12,15 +11,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
 
 import javafx.animation.SequentialTransition;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -101,7 +97,6 @@ public class RootLayoutController extends AlgorithmController implements Initial
     /**
      * Press to start sorting
      */
-
     @FXML
     public void sortStart() {
         if(hbox.getChildren() == null || input == null) {
@@ -115,8 +110,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
 
     @FXML
     public void speedChange() {
-    	Slider slider = new Slider(100, 4000, 600);
-        slider.valueProperty().addListener((observable, oldValue, newValue) -> duration = (double) newValue);
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> duration = 100 * (double)(newValue));
     }
 
     private void checkInput(String str) {
@@ -151,7 +145,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
         System.out.println("Generate a random input");
         int[] random = new int[15];
         for (int i = 0; i < 15; i++) {
-            random[i] = (int)(Math.random()*20 +1);
+            random[i] = (int)(Math.random()*15 +0);
         }
         input = random;
         String strInput = Arrays.toString(random);
@@ -234,6 +228,8 @@ public class RootLayoutController extends AlgorithmController implements Initial
     }
 
     private void sort(int selectAlgo) {
+        //inputString.setDisable(true);
+        intializeRec();
         sq = new SequentialTransition();
 
         switch (selectAlgo) {
@@ -265,9 +261,10 @@ public class RootLayoutController extends AlgorithmController implements Initial
                 break;
         }
 
-        inputString.setEditable(false);
         sq.play();
-        inputString.setEditable(true);
+        String str = inputString.getText();
+        checkInput(str);
+        //inputString.setDisable(false);
     }
 
     @FXML

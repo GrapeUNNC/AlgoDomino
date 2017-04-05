@@ -1,7 +1,6 @@
 package unnc.cs.grape.algorithm;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 import javafx.animation.Animation;
 import javafx.animation.ParallelTransition;
@@ -11,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 public class AlgorithmController {
+
     /**
      * Function working for bubble and insertion sort
      *

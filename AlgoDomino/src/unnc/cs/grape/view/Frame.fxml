@@ -28,7 +28,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.RootLayoutController">
    <children>
       <JFXTabPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
@@ -111,7 +111,7 @@
                                                                               <Font size="15.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <JFXTextField fx:id="inputString" layoutX="183.0" layoutY="68.0" prefHeight="25.0" prefWidth="244.0" promptText="1,6,4,3,5,2" />
+                                                                        <JFXTextField fx:id="inputString" layoutX="183.0" layoutY="68.0" prefHeight="25.0" prefWidth="244.0" promptText="4, 3, 2, 1, 5, 6, 9, 7, 8" text="4, 3, 2, 1, 5, 6, 9, 7, 8" />
                                                                         <JFXButton fx:id="random" contentDisplay="GRAPHIC_ONLY" layoutX="432.0" layoutY="68.0" onAction="#randomInput">
                                                                            <font>
                                                                               <Font size="1.0" />
@@ -168,7 +168,7 @@
                                                                            </graphic>
                                                                         </JFXButton>
                                                                         <Separator layoutY="59.0" prefHeight="7.0" prefWidth="619.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0" />
-                                                                        <JFXSlider fx:id="slider" blockIncrement="1.0" indicatorPosition="RIGHT" layoutX="373.0" layoutY="15.0" majorTickUnit="100.0" max="4000.0" min="100.0" onDragDetected="#speedChange" prefHeight="48.0" prefWidth="119.0" showTickLabels="true" value="600.0" />
+                                                                        <JFXSlider fx:id="slider" blockIncrement="1.0" indicatorPosition="RIGHT" layoutX="373.0" layoutY="15.0" majorTickUnit="50.0" minorTickCount="5" onDragDetected="#speedChange" prefHeight="48.0" prefWidth="119.0" showTickLabels="true" showTickMarks="true" value="40.0" />
                                                                      </children>
                                                                   </AnchorPane>
                                                                </children>
