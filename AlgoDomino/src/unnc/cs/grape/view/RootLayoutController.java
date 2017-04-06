@@ -35,7 +35,9 @@ public class RootLayoutController extends AlgorithmController implements Initial
     private int[] input;
     private int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
     private double duration = 600;
-    private Integer selectAlgo;
+    private static Integer selectAlgo;
+    private static int languageSelect=0;
+    private String displayCode=null;
     private ArrayList<StackPane> list = new ArrayList<>();
     private SequentialTransition sq;
 
@@ -192,37 +194,67 @@ public class RootLayoutController extends AlgorithmController implements Initial
         bubble.setOnMouseClicked(event -> {
             selectAlgo = 0;
             System.out.println("Choose BubbleSort...");
-            codeDisplay.setText(AlgorithmCode.javaBubble);
+            if(languageSelect==0)
+        		displayCode=AlgorithmCode.javaBubble;
+        	else if(languageSelect==1)
+        		displayCode=AlgorithmCode.javaScriptBubble;
+
+            codeDisplay.setText(displayCode);
             hintDisplay.setText(AlgorithmCode.hintBubble);
         });
         insertion.setOnMouseClicked(event -> {
             selectAlgo = 1;
             System.out.println("Choose InsertionSort...");
-            codeDisplay.setText(AlgorithmCode.javaInsertion);
+            if(languageSelect==0)
+        		displayCode=AlgorithmCode.javaInsertion;
+        	else if(languageSelect==1)
+        		displayCode=AlgorithmCode.javaScriptInsertion;
+
+            codeDisplay.setText(displayCode);
             hintDisplay.setText(AlgorithmCode.hintInsertion);
         });
         selection.setOnMouseClicked(event -> {
             selectAlgo = 2;
             System.out.println("Choose SelectionSort...");
-            codeDisplay.setText(AlgorithmCode.javaSelection);
+            if(languageSelect==0)
+        		displayCode=AlgorithmCode.javaSelection;
+        	else if(languageSelect==1)
+        		displayCode=AlgorithmCode.javaScriptSelection;
+
+            codeDisplay.setText(displayCode);
             hintDisplay.setText(AlgorithmCode.hintSelection);
         });
         quick.setOnMouseClicked(event -> {
             selectAlgo = 3;
             System.out.println("Choose QuickSort...");
-            codeDisplay.setText(AlgorithmCode.javaQuick);
+            if(languageSelect==0)
+        		displayCode=AlgorithmCode.javaQuick;
+        	else if(languageSelect==1)
+        		displayCode=AlgorithmCode.javaScriptQuick;
+
+            codeDisplay.setText(displayCode);
             hintDisplay.setText(AlgorithmCode.hintQuick);
         });
         merge.setOnMouseClicked(event -> {
             selectAlgo = 4;
             System.out.println("Choose MergeSort...");
-            codeDisplay.setText(AlgorithmCode.javaMerge);
+            if(languageSelect==0)
+        		displayCode=AlgorithmCode.javaMerge;
+        	else if(languageSelect==1)
+        		displayCode=AlgorithmCode.javaScriptMerge;
+
+            codeDisplay.setText(displayCode);
             hintDisplay.setText(AlgorithmCode.hintMerge);
         });
         heap.setOnMouseClicked(event -> {
             selectAlgo = 5;
             System.out.println("Choose HeapSort...");
-            codeDisplay.setText(AlgorithmCode.javaHeap);
+            if(languageSelect==0)
+        		displayCode=AlgorithmCode.javaHeap;
+        	else if(languageSelect==1)
+        		displayCode=AlgorithmCode.javaScriptHeap;
+
+            codeDisplay.setText(displayCode);
             hintDisplay.setText(AlgorithmCode.hintHeap);
         });
     }
@@ -278,6 +310,11 @@ public class RootLayoutController extends AlgorithmController implements Initial
     }
 
     @FXML
+    private void handleSaveCode() {
+        MainApp.SaveAlgorithmCode(selectAlgo, languageSelect);
+    }
+
+    @FXML
     private void handleGuideline() {
         MainApp.showGuideline();
     }
@@ -292,10 +329,22 @@ public class RootLayoutController extends AlgorithmController implements Initial
        MainApp.Screenshot();
     }
 
+    @FXML
+    private void handleJava() {
+        languageSelect=0;
+    }
+
+    @FXML
+    private void handleJavaScript() {
+    	languageSelect=1;
+    }
+
+
     // haven`t use now
     public void setMainApp(MainApp mainApp) {
         this.mainapp = mainApp;
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

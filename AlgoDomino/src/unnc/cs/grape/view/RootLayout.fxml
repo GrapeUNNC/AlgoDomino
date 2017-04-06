@@ -4,7 +4,9 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,6 +26,7 @@
                 <Menu mnemonicParsing="false" text="File">
                   <items>
                         <MenuItem mnemonicParsing="false" onAction="#handleScreenshot" text="Save Screenshot" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleSaveCode" text="Save Code" />
                     <MenuItem mnemonicParsing="false" onAction="#handleQuit" text="Quit" />
                   </items>
                 </Menu>
@@ -36,7 +39,17 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Function">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handlePreference" text="Preference" />
+                        <Menu mnemonicParsing="false" text="Code Language">
+                           <items>
+                              <RadioMenuItem mnemonicParsing="false" onAction="#handleJava" selected="true" text="Java">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="language" />
+                                 </toggleGroup>
+                              </RadioMenuItem>
+                              <RadioMenuItem mnemonicParsing="false" onAction="#handleJavaScript" text="JavaScript" toggleGroup="$language" />
+                           </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" onAction="#handlePreference" text="Color of Chart" />
                      </items></Menu>
                   <Menu mnemonicParsing="false" text="Help">
                      <items>

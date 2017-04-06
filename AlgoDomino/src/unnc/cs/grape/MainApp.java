@@ -1,6 +1,7 @@
 package unnc.cs.grape;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -16,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import unnc.cs.grape.algorithm.AlgorithmCode;
 import unnc.cs.grape.view.GuidelineController;
 import unnc.cs.grape.view.HelpBoxController;
 import unnc.cs.grape.view.PreferenceController;
@@ -212,6 +214,8 @@ public class MainApp extends Application {
     	 WritableImage image = mainScene.snapshot(null);
          FileChooser fileChooser = new FileChooser();
          fileChooser.setTitle("Save Screenshot");
+         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+ 		 fileChooser.getExtensionFilters().add(extFilter);
          File file = fileChooser.showSaveDialog(primaryStage);
          if(file != null)
          {
@@ -223,6 +227,61 @@ public class MainApp extends Application {
              }
          }
     }
+
+    public static void SaveAlgorithmCode(Integer algo, int language) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Algorithm Code");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+		fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(primaryStage);
+        String code=null;
+        if(algo==null)
+        	System.out.println("No algorithm select");
+        if(language==0)
+        {
+        	if(algo==0)
+        		code=AlgorithmCode.javaBubble;
+        	else if(algo==1)
+        		code=AlgorithmCode.javaInsertion;
+        	else if(algo==2)
+        		code=AlgorithmCode.javaSelection;
+        	else if(algo==3)
+        		code=AlgorithmCode.javaQuick;
+        	else if(algo==4)
+        		code=AlgorithmCode.javaBubble;
+        	else if(algo==5)
+        		code=AlgorithmCode.javaHeap;
+        }
+        else if(language==1)
+        {
+        	if(algo==0)
+        		code=AlgorithmCode.javaScriptBubble;
+        	else if(algo==1)
+        		code=AlgorithmCode.javaScriptInsertion;
+        	else if(algo==2)
+        		code=AlgorithmCode.javaScriptSelection;
+        	else if(algo==3)
+        		code=AlgorithmCode.javaScriptQuick;
+        	else if(algo==4)
+        		code=AlgorithmCode.javaScriptBubble;
+        	else if(algo==5)
+        		code=AlgorithmCode.javaScriptHeap;
+        }
+
+        if(file != null)
+        {
+            try {
+        		FileWriter fileWriter;
+        		fileWriter = new FileWriter(file);
+        		fileWriter.write(code);
+        		fileWriter.close();
+            }
+            catch (IOException e) {
+                System.out.println("Couldn't Save.");
+            }
+        }
+   }
+
 
     /**
      * Returns the main stage.

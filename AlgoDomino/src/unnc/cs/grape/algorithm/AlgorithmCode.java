@@ -151,4 +151,12 @@ public class AlgorithmCode {
 			+ "copy elements back to original array";
 
 	public static String hintHeap = "heap sort";
+
+	public static String javaScriptBubble="Js bubble sort";
+	public static String javaScriptInsertion="Js insertion sort";
+	public static String javaScriptSelection="Js selection sort";
+	public static String javaScriptQuick="Js quick sort";
+	public static String javaScriptMerge="Js merge sort";
+	public static String javaScriptHeap="Js heap sort";
+
 }
