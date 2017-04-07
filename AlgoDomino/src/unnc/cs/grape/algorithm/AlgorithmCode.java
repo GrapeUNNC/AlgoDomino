@@ -10,7 +10,7 @@ public class AlgorithmCode {
     		+ "                int temp = list[j - 1];\n                list[j - 1] = list[j];\n                list[j] = temp;\n"
     		+ "            }\n        }\n    }\n}";
 
-	public static String javaInsertion="public void insertSort(int[] list) {\n"
+	public static String javaInsertion="public void insertionSort(int[] list) {\n"
 			+ "    for (int i = 1; i < list.length; i++)\n"
     		+ "    {\n"
     		+ "        int j = 0;\n        int temp = list[i];\n"
@@ -50,7 +50,7 @@ public class AlgorithmCode {
     		+ "        list[right] = list[left];\n    }\n"
     		+ "    list[left] = base;\n    return left;\n}";
 
-	public static String javaMerge="public void Merge(int[] array, int low, int mid, int high) {\n"
+	public static String javaMerge="public void mergeSort(int[] array, int low, int mid, int high) {\n"
 			+ "    int i = low;\n    int j = mid + 1;\n    int j = mid + 1;\n    int[] array2 = new int[high - low + 1];\n"
 			+ "    while (i <= mid && j <= high)\n"
 			+ "    {\n"
@@ -150,13 +150,129 @@ public class AlgorithmCode {
 			+ "        else: copy rightPartHeadValue\n"
 			+ "copy elements back to original array";
 
-	public static String hintHeap = "heap sort";
+	public static String hintHeap = "repeat (numOfElements/2) times\n"
+			+ "    build big root heap\n"
+			+ "repeat (numOfElements - 1) times\n"
+			+ "    swap root element with current index element\n"
+			+ "    adjust current heap to big root heap";
 
-	public static String javaScriptBubble="Js bubble sort";
-	public static String javaScriptInsertion="Js insertion sort";
-	public static String javaScriptSelection="Js selection sort";
-	public static String javaScriptQuick="Js quick sort";
-	public static String javaScriptMerge="Js merge sort";
-	public static String javaScriptHeap="Js heap sort";
+	public static String javaScriptBubble="function bubbleSort(arr) {\n"
+			+ "    var len = arr.length;\n"
+			+ "    for (var i = 0; i < len; i++)\n"
+    		+ "    {\n"
+    		+ "        for(var j = 0; j < len - i -1; j++)\n"
+    		+ "        {\n            if(arr[j]>arr[j+1])\n"
+    		+ "            {\n"
+    		+ "                var temp = arr[j+1];\n                arr[j+1] = arr[j];\n                arr[j] = temp;\n"
+    		+ "            }\n        }\n    }\n    return arr;\n}";
+
+	public static String javaScriptInsertion="function insertionSort(arr) {\n"
+			+ "    for (var i = 1; i < arr.length; i++)\n"
+    		+ "    {\n"
+    		+ "        var temp = arr[i];\n        var j = i - 1;\n"
+    		+ "        while (j >= 0 && arr[j] > temp)\n"
+    		+ "        {\n            arr[j + 1] = arr[j];\n            j--;\n        }\n"
+    		+ "        arr[j + 1] = temp;\n"
+    		+ "    }\n    return arr;\n}";
+
+	public static String javaScriptSelection="function selectionSort(arr) {\n"
+			+ "    var len = arr.length;\n    var index,temp;\n"
+			+ "    for(var i = 0; i < len-1 ;i++)\n"
+    		+ "    {\n"
+    		+ "        index = i;\n"
+    		+ "        for(var j = i + 1 ; j<len; j++)\n"
+    		+ "        {\n            if(arr[j] < arr[index])\n"
+    		+ "            {\n"
+    		+ "                index = j;\n"
+    		+ "            }\n        }\n"
+    		+ "        temp = arr[i];\n        arr[i] = arr[index];\n        arr[index] = temp;\n"
+    		+ "    }\n    return arr;\n}";
+
+	public static String javaScriptQuick="var quickSort = function(arr) {\n"
+			+ "    if (arr.length <= 1)\n"
+    		+ "    {\n"
+    		+ "        return arr;\n"
+    		+ "    }\n"
+    		+ "    var pivotIndex = Math.floor(arr.length / 2);\n"
+    		+ "    var pivot = arr.splice(pivotIndex, 1)[0];\n"
+    		+ "    var left = [];\n"
+    		+ "    var right = [];\n"
+    		+ "    for (var i = 0; i < arr.length; i++)\n"
+    		+ "    {\n"
+    		+ "        if (arr[i] < pivot)\n"
+    		+ "             left.push(arr[i]);\n"
+    		+ "        else\n"
+    		+ "             right.push(arr[i]);\n"
+    		+ "    }\n"
+    		+ "    return quickSort(left).concat([pivot], quickSort(right));\n}";
+
+
+	public static String javaScriptMerge="function merge(left, right) {\n"
+			+ "    var result = [];\n"
+			+ "    while(left.length > 0 && right.length > 0)\n"
+    		+ "    {\n"
+    		+ "        if(left[0] < right[0])\n"
+    		+ "            result.push(left.shift());\n"
+    		+ "        else\n"
+    		+ "            result.push(right.shift());\n"
+    		+ "    }\n"
+    		+ "    return result.concat(left).concat(right);\n}\n\n"
+    		+ "function mergeSort(arr) {\n"
+    		+ "    if(arr.length==1)\n"
+    		+ "        return arr;\n"
+    		+ "    var mid=Math.floor(arr.length/2);\n"
+    		+ "    var left_arr=arr.slice(0,mid);\n"
+    		+ "    var right_arr=arr.slice(mid);\n"
+    		+ "    return merge(mergeSort(left_arr),mergeSort(right_arr));\n}";
+
+	public static String javaScriptHeap="function heapSort(arr) {\n"
+			+ "    function maxHeapify(arr, index, heapSize)\n"
+			+ "    {\n"
+			+ "        var iMax,iLeft,iRight;\n"
+			+ "        while(true)\n"
+			+ "        {\n"
+			+ "            iMax = index;\n"
+			+ "            iLeft = 2 * index + 1;\n"
+			+ "            iRight = 2 * (index + 1);\n"
+    		+ "            if (iLeft < heapSize && arr[index] < arr[iLeft])\n"
+    		+ "                iMax = iLeft;\n"
+    		+ "            if (iRight < heapSize && arr[iMax] < arr[iRight])\n"
+    		+ "                iMax = iRight;\n"
+    		+ "            if (iMax != index)\n"
+    		+ "            {\n"
+    		+ "                swap(arr, iMax, index);\n"
+    		+ "                index = iMax;\n"
+    		+ "            }\n"
+    		+ "            else\n"
+    		+ "            {\n"
+    		+ "                break;\n"
+    		+ "            }\n"
+    		+ "        }\n"
+    		+ "    }\n"
+    		+ "    function buildMaxHeap(arr)\n"
+    		+ "    {\n"
+    		+ "        var i;\n"
+    		+ "        var iParent = Math.floor(arr.length / 2) - 1;\n"
+    		+ "        for (i = iParent; i >= 0; i--)\n"
+    		+ "            maxHeapify(arr, i, arr.length);\n"
+    		+ "    }\n"
+    		+ "    function swap(arr, i, j)\n"
+    		+ "    {\n"
+    		+ "        var temp = arr[i];\n"
+    		+ "        arr[i] = arr[j];\n"
+    		+ "        arr[j] = temp;\n"
+    		+ "    }\n"
+    		+ "    function sort(arr)\n"
+    		+ "    {\n"
+    		+ "        buildMaxHeap(arr);\n"
+    		+ "        for (var i = arr.length - 1; i > 0; i--)\n"
+    		+ "        {\n"
+    		+ "            swap(arr, 0, i);\n"
+    		+ "            maxHeapify(arr, 0, i);\n"
+    		+ "        }\n"
+    		+ "        return arr;\n"
+    		+ "    }\n\n"
+    		+ "    return sort(arr);\n}";
+
 
 }
