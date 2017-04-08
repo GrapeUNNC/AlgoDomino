@@ -236,7 +236,7 @@ public class MainApp extends Application {
         	else if(algo==3)
         		code=AlgorithmCode.javaQuick;
         	else if(algo==4)
-        		code=AlgorithmCode.javaBubble;
+        		code=AlgorithmCode.javaMerge;
         	else if(algo==5)
         		code=AlgorithmCode.javaHeap;
         }
@@ -251,7 +251,7 @@ public class MainApp extends Application {
         	else if(algo==3)
         		code=AlgorithmCode.javaScriptQuick;
         	else if(algo==4)
-        		code=AlgorithmCode.javaScriptBubble;
+        		code=AlgorithmCode.javaScriptMerge;
         	else if(algo==5)
         		code=AlgorithmCode.javaScriptHeap;
         }

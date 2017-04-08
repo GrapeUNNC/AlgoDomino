@@ -335,7 +335,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
     	else if(selectAlgo==3)
     		code=AlgorithmCode.javaQuick;
     	else if(selectAlgo==4)
-    		code=AlgorithmCode.javaBubble;
+    		code=AlgorithmCode.javaMerge;
     	else if(selectAlgo==5)
     		code=AlgorithmCode.javaHeap;
 
@@ -357,7 +357,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
     	else if(selectAlgo==3)
     		code=AlgorithmCode.javaScriptQuick;
     	else if(selectAlgo==4)
-    		code=AlgorithmCode.javaScriptBubble;
+    		code=AlgorithmCode.javaScriptMerge;
     	else if(selectAlgo==5)
     		code=AlgorithmCode.javaScriptHeap;
 
