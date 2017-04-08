@@ -1,4 +1,4 @@
-package unnc.cs.grape.algorithm;
+package unnc.cs.grape.model;
 
 public class AlgorithmCode {
 	public static String javaBubble="public void bubbleSort(int[] list) {\n"

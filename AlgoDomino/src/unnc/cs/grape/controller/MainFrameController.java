@@ -1,24 +1,12 @@
-package unnc.cs.grape.view;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.ResourceBundle;
-import java.util.stream.Stream;
+package unnc.cs.grape.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
-
 import javafx.animation.SequentialTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -26,10 +14,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import unnc.cs.grape.MainApp;
-import unnc.cs.grape.algorithm.AlgorithmCode;
 import unnc.cs.grape.algorithm.AlgorithmController;
+import unnc.cs.grape.model.AlgorithmCode;
 
-public class RootLayoutController extends AlgorithmController implements Initializable {
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.ResourceBundle;
+import java.util.stream.Stream;
+
+public class MainFrameController extends AlgorithmController implements Initializable {
     private MainApp mainapp;
 
     private int[] input;
@@ -355,7 +349,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
     	else if(selectAlgo==2)
     		code=AlgorithmCode.javaScriptSelection;
     	else if(selectAlgo==3)
-    		code=AlgorithmCode.javaScriptQuick;
+    		code= AlgorithmCode.javaScriptQuick;
     	else if(selectAlgo==4)
     		code=AlgorithmCode.javaScriptMerge;
     	else if(selectAlgo==5)

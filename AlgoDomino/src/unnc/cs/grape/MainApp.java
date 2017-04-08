@@ -8,19 +8,16 @@ import javax.imageio.ImageIO;
 
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import unnc.cs.grape.algorithm.AlgorithmCode;
-import unnc.cs.grape.view.GuidelineController;
-import unnc.cs.grape.view.HelpBoxController;
-import unnc.cs.grape.view.PreferenceController;
+import unnc.cs.grape.controller.GuidelineController;
+import unnc.cs.grape.controller.HelpBoxController;
+import unnc.cs.grape.controller.PreferenceController;
+import unnc.cs.grape.model.AlgorithmCode;
 
 /**
  * The type Main app.
@@ -28,7 +25,7 @@ import unnc.cs.grape.view.PreferenceController;
 public class MainApp extends Application {
 
     private static Stage primaryStage;
-    private static BorderPane rootLayout;
+    private static AnchorPane rootLayout;
     private static Stage dialogStage1;
     private static Stage dialogStage2;
     private static Stage dialogStage3;
@@ -44,24 +41,21 @@ public class MainApp extends Application {
         primaryStage.setHeight(660);
         primaryStage.setResizable(false);
         initRootLayout();
-        showMainFrame();
+        //showMainFrame();
 
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                //System.out.print("Program close");
-            	if(dialogStage1!=null)
-                {
-                	 dialogStage1.close();
-                }
-                if(dialogStage2!=null)
-                {
-                	dialogStage2.close();
-                }
-                if(dialogStage3!=null)
-                {
-                	dialogStage3.close();
-                }
+        primaryStage.setOnCloseRequest(event -> {
+            //System.out.print("Program close");
+            if(dialogStage1!=null)
+            {
+                 dialogStage1.close();
+            }
+            if(dialogStage2!=null)
+            {
+                dialogStage2.close();
+            }
+            if(dialogStage3!=null)
+            {
+                dialogStage3.close();
             }
         });
     }
@@ -74,30 +68,13 @@ public class MainApp extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/MainFrame.fxml"));
             rootLayout = loader.load();
 
             // Show the scene containing the root layout.
              mainScene = new Scene(rootLayout);
             primaryStage.setScene(mainScene);
             primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Shows the person overview inside the root layout.
-     */
-    public static void showMainFrame() {
-        try {
-            // Load person overview.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/Frame2.fxml"));
-            AnchorPane MainFrame = loader.load();
-
-            // Set person overview into the center of root layout.
-            rootLayout.setCenter(MainFrame);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -113,13 +90,11 @@ public class MainApp extends Application {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/HelpBox.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
+            AnchorPane page = loader.load();
 
             // Create the dialog Stage.
             dialogStage1 = new Stage();
             dialogStage1.setTitle("About Domino");
-            //dialogStage.initModality(Modality.WINDOW_MODAL);
-            //dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage1.setScene(scene);
 
@@ -140,7 +115,7 @@ public class MainApp extends Application {
             // Load the fxml file and create a new stage for the popup dialog.
         	FXMLLoader loader = new FXMLLoader();
     		loader.setLocation(MainApp.class.getResource("view/Preference.fxml"));
-    		AnchorPane page = (AnchorPane) loader.load();
+    		AnchorPane page = loader.load();
     		Scene scene=new Scene(page);
             dialogStage2 = new Stage();
             dialogStage2.setTitle("Preference");
@@ -160,13 +135,11 @@ public class MainApp extends Application {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/Guideline.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
+            AnchorPane page = loader.load();
 
             // Create the dialog Stage.
             dialogStage3 = new Stage();
             dialogStage3.setTitle("Domino Help");
-            //dialogStage.initModality(Modality.WINDOW_MODAL);
-            //dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage3.setScene(scene);
 
@@ -228,7 +201,7 @@ public class MainApp extends Application {
         if(language==0)
         {
         	if(algo==0)
-        		code=AlgorithmCode.javaBubble;
+        		code= AlgorithmCode.javaBubble;
         	else if(algo==1)
         		code=AlgorithmCode.javaInsertion;
         	else if(algo==2)

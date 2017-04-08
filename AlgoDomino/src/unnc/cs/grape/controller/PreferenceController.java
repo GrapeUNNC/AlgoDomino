@@ -1,4 +1,4 @@
-package unnc.cs.grape.view;
+package unnc.cs.grape.controller;
 
 import com.jfoenix.controls.JFXColorPicker;
 import javafx.fxml.FXML;
@@ -37,10 +37,10 @@ public class PreferenceController {
 	    @FXML
 	    private void handleApply() {
 	    	color=colorPicker.getValue();
-	    	int length=RootLayoutController.getRectangle().size();
+	    	int length= MainFrameController.getRectangle().size();
 	    	for(int i=0;i<length;i++)
 	    	{
-	    		RootLayoutController.getRectangle().get(i).setFill(color);;
+	    		MainFrameController.getRectangle().get(i).setFill(color);;
 	    	}
 	    	//System.out.println(colorPicker.getValue());
 	        dialogStage.close();
