@@ -39,6 +39,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
     private static int languageSelect=0;
     private String displayCode=null;
     private ArrayList<StackPane> list = new ArrayList<>();
+    private static ArrayList<Rectangle> recList = new ArrayList<>();
     private SequentialTransition sq;
 
     @FXML
@@ -155,8 +156,8 @@ public class RootLayoutController extends AlgorithmController implements Initial
      * Create rectangles into Hbox
      */
     private void generateRec() {
-
     	Color shapeColor=PreferenceController.color;
+
         if (input == null || input.length == 0) {
             input = defaultInput;
         }
@@ -164,6 +165,7 @@ public class RootLayoutController extends AlgorithmController implements Initial
         for (int i = 0; i < input.length; i++) {
             Rectangle rectangle = new Rectangle(20, 20 * input[i]);
             rectangle.setFill(shapeColor);
+            recList.add(rectangle);
             Text text = new Text(String.valueOf(input[i]));
             StackPane stackPane = new StackPane();
             stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
@@ -323,17 +325,53 @@ public class RootLayoutController extends AlgorithmController implements Initial
     @FXML
     private void handleJava() {
         languageSelect=0;
+        String code=null;
+        if(selectAlgo==0)
+    		code=AlgorithmCode.javaBubble;
+    	else if(selectAlgo==1)
+    		code=AlgorithmCode.javaInsertion;
+    	else if(selectAlgo==2)
+    		code=AlgorithmCode.javaSelection;
+    	else if(selectAlgo==3)
+    		code=AlgorithmCode.javaQuick;
+    	else if(selectAlgo==4)
+    		code=AlgorithmCode.javaBubble;
+    	else if(selectAlgo==5)
+    		code=AlgorithmCode.javaHeap;
+
+        codeDisplay.setText(code);
+
+
     }
 
     @FXML
     private void handleJavaScript() {
     	languageSelect=1;
+    	String code=null;
+    	if(selectAlgo==0)
+    		code=AlgorithmCode.javaScriptBubble;
+    	else if(selectAlgo==1)
+    		code=AlgorithmCode.javaScriptInsertion;
+    	else if(selectAlgo==2)
+    		code=AlgorithmCode.javaScriptSelection;
+    	else if(selectAlgo==3)
+    		code=AlgorithmCode.javaScriptQuick;
+    	else if(selectAlgo==4)
+    		code=AlgorithmCode.javaScriptBubble;
+    	else if(selectAlgo==5)
+    		code=AlgorithmCode.javaScriptHeap;
+
+    	codeDisplay.setText(code);
     }
 
 
     // haven`t use now
     public void setMainApp(MainApp mainApp) {
         this.mainapp = mainApp;
+    }
+
+    public static ArrayList<Rectangle> getRectangle() {
+    	return recList;
     }
 
 

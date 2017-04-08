@@ -37,6 +37,11 @@ public class PreferenceController {
 	    @FXML
 	    private void handleApply() {
 	    	color=colorPicker.getValue();
+	    	int length=RootLayoutController.getRectangle().size();
+	    	for(int i=0;i<length;i++)
+	    	{
+	    		RootLayoutController.getRectangle().get(i).setFill(color);;
+	    	}
 	    	//System.out.println(colorPicker.getValue());
 	        dialogStage.close();
 	    }
