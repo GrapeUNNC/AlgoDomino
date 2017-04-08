@@ -40,8 +40,8 @@ public class MainApp extends Application {
     public void start(Stage primarystage) {
         primaryStage = primarystage;
         primaryStage.setTitle("Visualizing sorting algorithms");
-        primaryStage.setWidth(1024);
-        primaryStage.setHeight(690);
+        primaryStage.setWidth(1034);
+        primaryStage.setHeight(660);
         primaryStage.setResizable(false);
         initRootLayout();
         showMainFrame();
@@ -93,7 +93,7 @@ public class MainApp extends Application {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/Frame.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/Frame2.fxml"));
             AnchorPane MainFrame = loader.load();
 
             // Set person overview into the center of root layout.
@@ -106,19 +106,7 @@ public class MainApp extends Application {
     /**
      * Show efficiency interface.
      */
-    public static void showEfficiencyInterface() {
-        try {
-            // Load person overview.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/efficiency.fxml"));
-            AnchorPane EfficiencyInterface = loader.load();
 
-            // Set person overview into the center of root layout.
-            rootLayout.setCenter(EfficiencyInterface);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void showHelpBox() {
         try {

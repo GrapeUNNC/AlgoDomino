@@ -86,15 +86,6 @@ public class RootLayoutController extends AlgorithmController implements Initial
     @FXML
     private TextArea hintDisplay;
 
-    @FXML
-    private void switchToMainFrame() throws IOException {
-        mainapp.showMainFrame();
-    }
-
-    @FXML
-    private void showEfficiencyInterface() throws IOException {
-        mainapp.showEfficiencyInterface();
-    }
 
     /**
      * Press to start sorting
