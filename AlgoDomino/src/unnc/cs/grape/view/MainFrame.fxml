@@ -160,7 +160,7 @@
                                                                      <children>
                                                                         <VBox layoutY="61.0" prefHeight="200.0" prefWidth="622.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                            <children>
-                                                                            <AnchorPane prefHeight="144.0" prefWidth="619.0">
+                                                                            <AnchorPane minHeight="-Infinity" prefHeight="135.0" prefWidth="619.0">
                                                                                  <children>
                                                                                     <Label layoutX="99.0" layoutY="63.0" prefHeight="33.0" prefWidth="48.0" text="Input:">
                                                                                        <font>
@@ -180,7 +180,7 @@
                                                                                           </ImageView>
                                                                                        </graphic>
                                                                                     </JFXButton>
-                                                                                    <JFXButton fx:id="initialize" layoutX="230.0" layoutY="101.0" onAction="#intializeRec" prefHeight="25.0" prefWidth="132.0" text="Initialize">
+                                                                                    <JFXButton fx:id="initialize" layoutX="120.0" layoutY="103.0" onAction="#intializeRec" prefHeight="25.0" prefWidth="132.0" text="Initialize">
                                                                                        <font>
                                                                                           <Font name="System Bold" size="12.0" />
                                                                                        </font>
@@ -225,6 +225,11 @@
                                                                                     </JFXButton>
                                                                                     <Separator layoutY="59.0" prefHeight="7.0" prefWidth="619.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0" />
                                                                                     <JFXSlider fx:id="slider" blockIncrement="1.0" indicatorPosition="RIGHT" layoutX="335.0" layoutY="14.0" majorTickUnit="50.0" minorTickCount="5" onDragDetected="#speedChange" prefHeight="48.0" prefWidth="119.0" showTickLabels="true" showTickMarks="true" value="40.0" />
+                                                                                    <JFXButton fx:id="clear" layoutX="291.0" layoutY="103.0" prefHeight="25.0" prefWidth="132.0" text="Clear">
+                                                                                       <font>
+                                                                                          <Font name="System Bold" size="12.0" />
+                                                                                       </font>
+                                                                                    </JFXButton>
                                                                                  </children>
                                                                               </AnchorPane>
                                                                            </children>

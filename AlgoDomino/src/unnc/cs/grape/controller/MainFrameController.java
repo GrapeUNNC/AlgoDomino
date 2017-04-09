@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -35,6 +37,7 @@ public class MainFrameController extends AlgorithmController implements Initiali
     private ArrayList<StackPane> list = new ArrayList<>();
     private static ArrayList<Rectangle> recList = new ArrayList<>();
     private SequentialTransition sq;
+    private Image pause = new Image("unnc/cs/grape/view/assets/icon/pause.png", 44, 46, false, false);
 
     @FXML
     private Button random;
@@ -67,7 +70,7 @@ public class MainFrameController extends AlgorithmController implements Initiali
     private ToggleGroup togglegroup;
 
     @FXML
-    private JFXButton playButton;
+    private ImageView playbutton;
 
     @FXML
     private Pane pane;
@@ -121,7 +124,7 @@ public class MainFrameController extends AlgorithmController implements Initiali
 
         // detected input part
         System.out.println("Get input...");
-
+        playbutton.setImage(pause);
         String str = inputString.getText();
         checkInput(str);
 
@@ -349,7 +352,7 @@ public class MainFrameController extends AlgorithmController implements Initiali
     	else if(selectAlgo==2)
     		code=AlgorithmCode.javaScriptSelection;
     	else if(selectAlgo==3)
-    		code= AlgorithmCode.javaScriptQuick;
+    		code=AlgorithmCode.javaScriptQuick;
     	else if(selectAlgo==4)
     		code=AlgorithmCode.javaScriptMerge;
     	else if(selectAlgo==5)
