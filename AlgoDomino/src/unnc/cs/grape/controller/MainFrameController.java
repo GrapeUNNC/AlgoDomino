@@ -31,9 +31,16 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
 
+
 public class MainFrameController implements Initializable {
 	private MainApp mainapp;
 
+	private static final int SPACING = 30;
+	private int[] helper;
+    private StackPane[] helperNodes;
+    private static final int SORT_GROUP_MOVE_DELTA = 150;
+    private static final Duration SPEED = Duration.millis(400);
+    
 	private int[] input;
 	private int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
 	private double duration = 600;
@@ -43,6 +50,7 @@ public class MainFrameController implements Initializable {
 	private static int languageSelect = 0;
 	private String displayCode = null;
 	private ArrayList<StackPane> list = new ArrayList<>();
+	private ArrayList<StackPane> mergelist = new ArrayList<>();
 	private static ArrayList<Rectangle> recList = new ArrayList<>();
 	private SequentialTransition sq;
 	private Image pause = new Image("unnc/cs/grape/view/assets/icon/pause.png", 44, 46, false, false);
@@ -187,6 +195,8 @@ public class MainFrameController implements Initializable {
 
 	public void intializeRec() {
 		// clear
+		mergelist.clear();
+		pane.getChildren().clear();
 		list.clear();
 		hbox.getChildren().clear();
 
@@ -198,6 +208,23 @@ public class MainFrameController implements Initializable {
 
 		// generate rectangles
 		generateRec();
+	}
+	
+	public void intializeMergeRec() {
+		// clear
+		mergelist.clear();
+		pane.getChildren().clear();
+		list.clear();
+		hbox.getChildren().clear();
+
+		// detected input part
+		System.out.println("Get input...");
+		playbutton.setImage(pause);
+		String str = inputString.getText();
+		checkInput(str);
+
+		// generate rectangles
+		generateMergeRec();
 	}
 
 	public void randomInput() {
@@ -212,8 +239,10 @@ public class MainFrameController implements Initializable {
 		inputString.setText(strInput.substring(1, strInput.length() - 1));
 		// System.out.println(Arrays.toString(random));
 
+		mergelist.clear();
 		list.clear();
 		hbox.getChildren().clear();
+		pane.getChildren().clear();
 		generateRec();
 	}
 
@@ -239,8 +268,35 @@ public class MainFrameController implements Initializable {
 			stackPane.setAlignment(Pos.BOTTOM_CENTER);
 			list.add(stackPane);
 		}
-
+		
 		hbox.getChildren().addAll(list);
+		
+		
+	}
+	
+	
+	private void generateMergeRec(){
+		
+		if (input == null || input.length == 0) {
+			input = defaultInput;
+		}
+	
+	for (int i = 0; i < input.length; i++) {
+		Rectangle rectangle = new Rectangle(20, 20 * input[i]);
+		rectangle.setFill((Color.valueOf("#FF7F50")));
+		recList.add(rectangle);
+		Text text = new Text(String.valueOf(input[i]));
+		StackPane stackPane = new StackPane();
+		stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
+		stackPane.setId(String.valueOf(input[i]));
+		stackPane.getChildren().addAll(rectangle, text);
+		stackPane.setAlignment(Pos.BOTTOM_CENTER);
+		stackPane.setTranslateX(SPACING * i);
+		mergelist.add(stackPane);
+	}
+
+	
+	pane.getChildren().addAll(mergelist);
 	}
 
 	/**
@@ -319,32 +375,37 @@ public class MainFrameController implements Initializable {
 
 	private void sort(int selectAlgo) {
 		// inputString.setDisable(true);
-		intializeRec();
 		sq = new SequentialTransition();
 
 		switch (selectAlgo) {
 		case 0:
 			// BubbleSort
+			intializeRec();
 			sq = BubbleSort(input, list, duration);
 			break;
 		case 1:
 			// InsertionSort
+			intializeRec();
 			sq = InsertionSort(input, list, duration);
 			break;
 		case 2:
 			// SelectionSort
+			intializeRec();
 			sq = SelectionSort(input, list, duration);
 			break;
 		case 3:
 			// QuickSort
+			intializeRec();
 			sq = quickSort(input, list, sq, duration);
 			break;
 		case 4:
 			// MergeSort
-			sq = BubbleSort(input, list, duration);
+			intializeMergeRec();
+			sq = MergeSort(input, mergelist, sq);
 			break;
 		case 5:
 			// HeapSort
+			intializeRec();
 			sq = HeapSort(input, list, duration);
 			break;
 		default:
@@ -720,11 +781,98 @@ public class MainFrameController implements Initializable {
 		sq.getChildren().addAll(animationList);
 		return sq;
 	}
+	
+	private TranslateTransition move(StackPane sp, int X) {
+        TranslateTransition t = new TranslateTransition();
+        t.setNode(sp);
+        t.setDuration(SPEED);
+        t.setToX(X);
+        t.setToY(SORT_GROUP_MOVE_DELTA);
+        return t;
 
-	protected void MergeSort() {
-		// merge sort algorithm
-	}
+    }
 
+    public SequentialTransition MergeSort(int arr[], ArrayList<StackPane> list, SequentialTransition sq) {
+        int number = arr.length;
+        this.helper = new int[number];
+        this.helperNodes = new StackPane[number];
+        sortRange(0, number - 1, arr, sq, list);
+        return sq;
+    }
+
+    private void sortRange(int low, int high, int arr[], SequentialTransition sq, ArrayList<StackPane> list) {
+        // check if low is smaller then high, if not then the array is sorted
+        if (low < high) {
+            // Get the index of the element which is in the middle
+            int middle = low + (high - low) / 2;
+            // Sort the left side of the array
+            sortRange(low, middle, arr, sq, list);
+            // Sort the right side of the array
+            sortRange(middle + 1, high, arr, sq, list);
+            // Combine them both
+            merge(low, middle, high, arr, list, sq);
+        }
+    }
+
+
+    private void merge(int low, int middle, int high, int arr[], ArrayList<StackPane> list, SequentialTransition sq) {
+        // Copy both parts into the helper array
+        for (int i = low; i <= high; i++) {
+            helper[i] = arr[i];
+            helperNodes[i] = list.get(i);
+        }
+
+        int i = low;
+        int j = middle + 1;
+        int k = low;
+        // Copy the smallest values from either the left or the right side back
+        // to the original array
+
+        while (i <= middle && j <= high) {
+            if (helper[i] <= helper[j]) {
+                arr[k] = helper[i];
+                list.set(k, helperNodes[i]);
+                sq.getChildren().add(move(helperNodes[i], k * SPACING));
+                i++;
+            } else {
+                arr[k] = helper[j];
+                list.set(k, helperNodes[j]);
+                sq.getChildren().add(move(helperNodes[j], k * SPACING));
+                j++;
+            }
+            k++;
+        }
+        // Copy the rest of the left side of the array into the target array
+        while (i <= middle) {
+            arr[k] = helper[i];
+            list.set(k, helperNodes[i]);
+            sq.getChildren().add(move(helperNodes[i], k * SPACING));
+            k++;
+            i++;
+        }
+
+        // Even if we didn't move in the array because it was already ordered, 
+        // move on screen for any remaining nodes in the target array.
+        while (j <= high) {
+            sq.getChildren().add(move(helperNodes[j], k * SPACING));
+            k++;
+            j++;
+        }
+
+        ParallelTransition moveUp = new ParallelTransition();
+
+        for (int z = low; z <= high; z++) {
+            TranslateTransition moveNodeUp = new TranslateTransition();
+            moveNodeUp.setNode(helperNodes[z]);
+            moveNodeUp.setDuration(SPEED);
+            moveNodeUp.setByY(-SORT_GROUP_MOVE_DELTA);
+            moveUp.getChildren().add(moveNodeUp);
+        }
+
+        sq.getChildren().add(moveUp);
+    }
+
+	
 	// Compare Part
 	public void chooseAlgo_c() {
 		bubble_c.setOnAction(event -> {
@@ -808,4 +956,6 @@ public class MainFrameController implements Initializable {
 		// TODO Auto-generated method stub
 
 	}
+
+
 }
