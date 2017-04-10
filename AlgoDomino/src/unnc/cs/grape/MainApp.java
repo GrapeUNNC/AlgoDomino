@@ -228,6 +228,36 @@ public class MainApp extends Application {
         	else if(algo==5)
         		code=AlgorithmCode.javaScriptHeap;
         }
+        else if(language==2)
+        {
+        	if(algo==0)
+        		code=AlgorithmCode.cBubble;
+        	else if(algo==1)
+        		code=AlgorithmCode.cInsertion;
+        	else if(algo==2)
+        		code=AlgorithmCode.cSelection;
+        	else if(algo==3)
+        		code=AlgorithmCode.cQuick;
+        	else if(algo==4)
+        		code=AlgorithmCode.cMerge;
+        	else if(algo==5)
+        		code=AlgorithmCode.cHeap;
+        }
+        else if(language==3)
+        {
+        	if(algo==0)
+        		code=AlgorithmCode.pythonBubble;
+        	else if(algo==1)
+        		code=AlgorithmCode.pythonInsertion;
+        	else if(algo==2)
+        		code=AlgorithmCode.pythonSelection;
+        	else if(algo==3)
+        		code=AlgorithmCode.pythonQuick;
+        	else if(algo==4)
+        		code=AlgorithmCode.pythonMerge;
+        	else if(algo==5)
+        		code=AlgorithmCode.pythonHeap;
+        }
 
         if(file != null)
         {

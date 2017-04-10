@@ -1,54 +1,44 @@
 package unnc.cs.grape.model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class AlgorithmCode {
-	public static String javaBubble="public void bubbleSort(int[] list) {\n"
-			+ "    for (int i = 0; i < list.length - 1; i++)\n"
-    		+ "    {\n"
-    		+ "        for (int j = list.length - 1; j > i; j--)\n"
-    		+ "        {\n            if (list[j - 1] > list[j])\n"
-    		+ "            {\n"
-    		+ "                int temp = list[j - 1];\n                list[j - 1] = list[j];\n                list[j] = temp;\n"
-    		+ "            }\n        }\n    }\n}";
+	public static String javaBubble=readTxtFile("src/unnc/cs/grape/model/bubbleJava.txt").toString();
 
-	public static String javaInsertion="public void insertionSort(int[] list) {\n"
-			+ "    for (int i = 1; i < list.length; i++)\n"
-    		+ "    {\n"
-    		+ "        int j = 0;\n        int temp = list[i];\n"
-    		+ "        for (j = i - 1; j >= 0 && temp < list[j]; j--)\n"
-    		+ "        {\n            list[j + 1] = list[j];\n        }\n"
-    		+ "        list[j + 1] = temp;\n"
-    		+ "    }\n}";
+	public static String javaInsertion=readTxtFile("src/unnc/cs/grape/model/insertJava.txt").toString();
 
-	public static String javaSelection="public void selectionSort(int[] list) {\n"
-			+ "    for (int i = 0; i < list.length - 1; i++)\n"
-    		+ "    {\n"
-    		+ "        int temp = 0;\n        int index = i;\n"
-    		+ "        for (int j = i + 1; j < list.length; j++)\n"
-    		+ "        {\n            if (list[index] > list[j])\n"
-    		+ "            {\n"
-    		+ "                index = j;\n"
-    		+ "            }\n        }\n"
-    		+ "        temp = list[index];\n        list[index] = list[i];\n        list[i] = temp;\n"
-    		+ "    }\n}";
+	public static String javaSelection=readTxtFile("src/unnc/cs/grape/model/selectJava.txt").toString();
 
-	public static String javaQuick="private void quickSort(int[] list, int left, int right) {\n"
-			+ "    if (left < right)\n"
-    		+ "    {\n"
-    		+ "        int base = division(list, left, right);\n"
-    		+ "        quickSort(list, left, base - 1);\n"
-    		+ "        quickSort(list, base + 1, right);\n"
-    		+ "    }\n}\n\n"
-    		+ "public int division(int[] list, int left, int right) {\n"
-    		+ "    int base = list[left];\n"
-    		+ "    while (left < right)\n"
-    		+ "    {\n"
-    		+ "        while (left < right && list[right] >= base)\n"
-    		+ "             right--;\n"
-    		+ "        list[left] = list[right];\n"
-    		+ "        while (left < right && list[left] <= base)\n"
-    		+ "             left++;\n"
-    		+ "        list[right] = list[left];\n    }\n"
-    		+ "    list[left] = base;\n    return left;\n}";
+	public static String javaQuick=readTxtFile("src/unnc/cs/grape/model/quickJava.txt").toString();
+
+	public static String cQuick=readTxtFile("src/unnc/cs/grape/model/quickC.txt").toString();
+
+	public static String cBubble=readTxtFile("src/unnc/cs/grape/model/bubbleC.txt").toString();
+
+	public static String cInsertion=readTxtFile("src/unnc/cs/grape/model/insertC.txt").toString();
+
+	public static String cSelection=readTxtFile("src/unnc/cs/grape/model/selectC.txt").toString();
+
+	public static String cMerge=readTxtFile("src/unnc/cs/grape/model/mergeC.txt").toString();
+
+	public static String cHeap=readTxtFile("src/unnc/cs/grape/model/heapC.txt").toString();
+
+	public static String pythonHeap=readTxtFile("src/unnc/cs/grape/model/heapPython.txt").toString();
+
+	public static String pythonBubble=readTxtFile("src/unnc/cs/grape/model/bubblePython.txt").toString();
+
+	public static String pythonInsertion=readTxtFile("src/unnc/cs/grape/model/insertPython.txt").toString();
+
+	public static String pythonSelection=readTxtFile("src/unnc/cs/grape/model/selectPython.txt").toString();
+
+	public static String pythonQuick=readTxtFile("src/unnc/cs/grape/model/quickPython.txt").toString();
+
+	public static String pythonMerge=readTxtFile("src/unnc/cs/grape/model/mergePython.txt").toString();
 
 	public static String javaMerge="public void mergeSort(int[] array, int low, int mid, int high) {\n"
 			+ "    int i = low;\n    int j = mid + 1;\n    int j = mid + 1;\n    int[] array2 = new int[high - low + 1];\n"
@@ -273,6 +263,41 @@ public class AlgorithmCode {
     		+ "        return arr;\n"
     		+ "    }\n\n"
     		+ "    return sort(arr);\n}";
+
+	 public static StringBuffer readTxtFile(String filePath) {
+		 StringBuffer strBuffer=null;
+	        try {
+	            File file = new File(filePath);
+	            if (file.isFile() && file.exists()) {
+	            	InputStreamReader inputReader = null;
+	                BufferedReader bufferReader = null;
+	                try
+	                {
+	                    InputStream inputStream = new FileInputStream(file);
+	                    inputReader = new InputStreamReader(inputStream);
+	                    bufferReader = new BufferedReader(inputReader);
+	                    // 读取一行
+	                    String line = null;
+	                    strBuffer = new StringBuffer();
+
+	                    while ((line = bufferReader.readLine()) != null)
+	                    {
+	                        strBuffer.append(line+'\n');
+	                    }
+	                }
+	                catch (IOException e)
+	                {
+	                	System.out.println("文件不存在!");
+	                }
+	            } else {
+	                System.out.println("文件不存在!");
+	            }
+	        } catch (Exception e) {
+	            System.out.println("文件读取错误!");
+	        }
+	        return strBuffer;
+
+	    }
 
 
 }

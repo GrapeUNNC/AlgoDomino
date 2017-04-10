@@ -40,7 +40,7 @@ public class MainFrameController implements Initializable {
     private StackPane[] helperNodes;
     private static final int SORT_GROUP_MOVE_DELTA = 150;
     private static final Duration SPEED = Duration.millis(400);
-    
+
 	private int[] input;
 	private int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
 	private double duration = 600;
@@ -209,7 +209,7 @@ public class MainFrameController implements Initializable {
 		// generate rectangles
 		generateRec();
 	}
-	
+
 	public void intializeMergeRec() {
 		// clear
 		mergelist.clear();
@@ -268,19 +268,19 @@ public class MainFrameController implements Initializable {
 			stackPane.setAlignment(Pos.BOTTOM_CENTER);
 			list.add(stackPane);
 		}
-		
+
 		hbox.getChildren().addAll(list);
-		
-		
+
+
 	}
-	
-	
+
+
 	private void generateMergeRec(){
-		
+
 		if (input == null || input.length == 0) {
 			input = defaultInput;
 		}
-	
+
 	for (int i = 0; i < input.length; i++) {
 		Rectangle rectangle = new Rectangle(20, 20 * input[i]);
 		rectangle.setFill((Color.valueOf("#FF7F50")));
@@ -295,7 +295,7 @@ public class MainFrameController implements Initializable {
 		mergelist.add(stackPane);
 	}
 
-	
+
 	pane.getChildren().addAll(mergelist);
 	}
 
@@ -312,6 +312,10 @@ public class MainFrameController implements Initializable {
 				displayCode = AlgorithmCode.javaBubble;
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptBubble;
+			else if (languageSelect == 2)
+				displayCode = AlgorithmCode.cBubble;
+			else if (languageSelect == 3)
+				displayCode = AlgorithmCode.pythonBubble;
 
 			codeDisplay.setText(displayCode);
 			hintDisplay.setText(AlgorithmCode.hintBubble);
@@ -323,6 +327,10 @@ public class MainFrameController implements Initializable {
 				displayCode = AlgorithmCode.javaInsertion;
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptInsertion;
+			else if (languageSelect == 2)
+				displayCode = AlgorithmCode.cInsertion;
+			else if (languageSelect == 3)
+				displayCode = AlgorithmCode.pythonInsertion;
 
 			codeDisplay.setText(displayCode);
 			hintDisplay.setText(AlgorithmCode.hintInsertion);
@@ -334,6 +342,10 @@ public class MainFrameController implements Initializable {
 				displayCode = AlgorithmCode.javaSelection;
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptSelection;
+			else if (languageSelect == 2)
+				displayCode = AlgorithmCode.cSelection;
+			else if (languageSelect == 3)
+				displayCode = AlgorithmCode.pythonSelection;
 
 			codeDisplay.setText(displayCode);
 			hintDisplay.setText(AlgorithmCode.hintSelection);
@@ -345,6 +357,10 @@ public class MainFrameController implements Initializable {
 				displayCode = AlgorithmCode.javaQuick;
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptQuick;
+			else if (languageSelect == 2)
+				displayCode = AlgorithmCode.cQuick;
+			else if (languageSelect == 3)
+				displayCode = AlgorithmCode.pythonQuick;
 
 			codeDisplay.setText(displayCode);
 			hintDisplay.setText(AlgorithmCode.hintQuick);
@@ -356,6 +372,10 @@ public class MainFrameController implements Initializable {
 				displayCode = AlgorithmCode.javaMerge;
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptMerge;
+			else if (languageSelect == 2)
+				displayCode = AlgorithmCode.cMerge;
+			else if (languageSelect == 3)
+				displayCode = AlgorithmCode.pythonMerge;
 
 			codeDisplay.setText(displayCode);
 			hintDisplay.setText(AlgorithmCode.hintMerge);
@@ -367,6 +387,10 @@ public class MainFrameController implements Initializable {
 				displayCode = AlgorithmCode.javaHeap;
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptHeap;
+			else if (languageSelect == 2)
+				displayCode = AlgorithmCode.cHeap;
+			else if (languageSelect == 3)
+				displayCode = AlgorithmCode.pythonHeap;
 
 			codeDisplay.setText(displayCode);
 			hintDisplay.setText(AlgorithmCode.hintHeap);
@@ -485,6 +509,46 @@ public class MainFrameController implements Initializable {
 			code = AlgorithmCode.javaScriptMerge;
 		else if (selectAlgo == 5)
 			code = AlgorithmCode.javaScriptHeap;
+
+		codeDisplay.setText(code);
+	}
+
+	@FXML
+	private void handleC() {
+		languageSelect = 2;
+		String code = null;
+		if (selectAlgo == 0)
+			code = AlgorithmCode.cBubble;
+		else if (selectAlgo == 1)
+			code = AlgorithmCode.cInsertion;
+		else if (selectAlgo == 2)
+			code = AlgorithmCode.cSelection;
+		else if (selectAlgo == 3)
+			code = AlgorithmCode.cQuick;
+		else if (selectAlgo == 4)
+			code = AlgorithmCode.cMerge;
+		else if (selectAlgo == 5)
+			code = AlgorithmCode.cHeap;
+
+		codeDisplay.setText(code);
+	}
+
+	@FXML
+	private void handlePython() {
+		languageSelect = 3;
+		String code = null;
+		if (selectAlgo == 0)
+			code = AlgorithmCode.pythonBubble;
+		else if (selectAlgo == 1)
+			code = AlgorithmCode.pythonInsertion;
+		else if (selectAlgo == 2)
+			code = AlgorithmCode.pythonSelection;
+		else if (selectAlgo == 3)
+			code = AlgorithmCode.pythonQuick;
+		else if (selectAlgo == 4)
+			code = AlgorithmCode.pythonMerge;
+		else if (selectAlgo == 5)
+			code = AlgorithmCode.pythonHeap;
 
 		codeDisplay.setText(code);
 	}
@@ -781,7 +845,7 @@ public class MainFrameController implements Initializable {
 		sq.getChildren().addAll(animationList);
 		return sq;
 	}
-	
+
 	private TranslateTransition move(StackPane sp, int X) {
         TranslateTransition t = new TranslateTransition();
         t.setNode(sp);
@@ -851,7 +915,7 @@ public class MainFrameController implements Initializable {
             i++;
         }
 
-        // Even if we didn't move in the array because it was already ordered, 
+        // Even if we didn't move in the array because it was already ordered,
         // move on screen for any remaining nodes in the target array.
         while (j <= high) {
             sq.getChildren().add(move(helperNodes[j], k * SPACING));
@@ -872,7 +936,7 @@ public class MainFrameController implements Initializable {
         sq.getChildren().add(moveUp);
     }
 
-	
+
 	// Compare Part
 	public void chooseAlgo_c() {
 		bubble_c.setOnAction(event -> {
@@ -939,8 +1003,8 @@ public class MainFrameController implements Initializable {
 			System.out.println("Choose 5...");
 		});
 	}
-	
-	
+
+
 
 	// haven`t use now
 	public void setMainApp(MainApp mainApp) {
