@@ -1,10 +1,11 @@
-package unnc.cs.grape.view;
+package unnc.cs.grape.controller;
 
 import com.jfoenix.controls.JFXColorPicker;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import unnc.cs.grape.controller.MainFrameController;
 
 public class PreferenceController {
 

@@ -1,4 +1,4 @@
-package unnc.cs.grape.view;
+package unnc.cs.grape.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
@@ -180,6 +180,10 @@ public class MainFrameController implements Initializable {
 			input = defaultInput;
 		}
 	}
+
+	public void clear() {
+        inputString.clear();
+    }
 
 	public void intializeRec() {
 		// clear
