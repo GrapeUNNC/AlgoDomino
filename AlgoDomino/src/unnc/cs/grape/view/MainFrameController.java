@@ -1,4 +1,4 @@
-package unnc.cs.grape.controller;
+package unnc.cs.grape.view;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
@@ -38,6 +38,8 @@ public class MainFrameController implements Initializable {
 	private int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
 	private double duration = 600;
 	private static Integer selectAlgo;
+	private Integer selectAlgo_c;
+	private Integer selectAlgo_c_1;
 	private static int languageSelect = 0;
 	private String displayCode = null;
 	private ArrayList<StackPane> list = new ArrayList<>();
@@ -85,10 +87,67 @@ public class MainFrameController implements Initializable {
 	private JFXSlider slider;
 
 	@FXML
+	private JFXSlider slider_c;
+
+	@FXML
 	private TextArea codeDisplay;
 
 	@FXML
 	private TextArea hintDisplay;
+
+	@FXML
+	private JFXButton startButton;
+
+	@FXML
+	private MenuItem bubble_c;
+
+	@FXML
+	private MenuItem selection_c;
+
+	@FXML
+	private MenuItem insertion_c;
+
+	@FXML
+	private MenuItem quick_c;
+
+	@FXML
+	private MenuItem merge_c;
+
+	@FXML
+	private MenuItem heap_c;
+
+	@FXML
+	private MenuItem bubble_c_2;
+
+	@FXML
+	private MenuItem selection_c_2;
+
+	@FXML
+	private MenuItem insertion_c_2;
+
+	@FXML
+	private MenuItem quick_c_2;
+
+	@FXML
+	private MenuItem merge_c_2;
+
+	@FXML
+	private MenuItem heap_c_2;
+
+	@FXML
+	private MenuButton algo1;
+
+	@FXML
+	private MenuButton algo2;
+
+	@FXML
+	private TextField inputString_c;
+
+	@FXML
+	private Label label_left;
+
+	@FXML
+	private Label label_right;
 
 	/**
 	 * Press to start sorting
@@ -663,8 +722,74 @@ public class MainFrameController implements Initializable {
 	}
 
 	// Compare Part
+	public void chooseAlgo_c() {
+		bubble_c.setOnAction(event -> {
+			selectAlgo_c = 0;
+			label_left.setText("Bubble Sort");
+			System.out.println("Choose 0...");
+		});
+		selection_c.setOnAction(event -> {
+			selectAlgo_c = 1;
+			label_left.setText("Selection Sort");
+			System.out.println("Choose 1...");
+		});
+		insertion_c.setOnAction(event -> {
+			selectAlgo_c = 2;
+			label_left.setText("Insertion Sort");
+			System.out.println("Choose 2...");
+		});
+		quick_c.setOnAction(event -> {
+			selectAlgo_c = 3;
+			label_left.setText("Quick Sort");
+			System.out.println("Choose 3...");
+		});
+		merge_c.setOnAction(event -> {
+			selectAlgo_c = 4;
+			label_left.setText("Merge Sort");
+			System.out.println("Choose 4...");
+		});
+		heap_c.setOnAction(event -> {
+			selectAlgo_c = 5;
+			label_left.setText("Heap Sort");
+			System.out.println("Choose 5...");
+		});
+	}
+
+	public void chooseAlgo_c_2() {
+		bubble_c_2.setOnAction(event -> {
+			selectAlgo_c_1 = 0;
+			label_right.setText("Bubble Sort");
+			System.out.println("Choose 0...");
+		});
+		selection_c_2.setOnAction(event -> {
+			selectAlgo_c_1 = 1;
+			label_right.setText("Selection Sort");
+			System.out.println("Choose 1...");
+		});
+		insertion_c_2.setOnAction(event -> {
+			selectAlgo_c_1 = 2;
+			label_right.setText("Insertion Sort");
+			System.out.println("Choose 2...");
+		});
+		quick_c_2.setOnAction(event -> {
+			selectAlgo_c_1 = 3;
+			label_right.setText("Quick Sort");
+			System.out.println("Choose 3...");
+		});
+		merge_c_2.setOnAction(event -> {
+			selectAlgo_c_1 = 4;
+			label_right.setText("Merge Sort");
+			System.out.println("Choose 4...");
+		});
+		heap_c_2.setOnAction(event -> {
+			selectAlgo_c_1 = 5;
+			label_right.setText("Heap Sort");
+			System.out.println("Choose 5...");
+		});
+	}
 	
 	
+
 	// haven`t use now
 	public void setMainApp(MainApp mainApp) {
 		this.mainapp = mainApp;

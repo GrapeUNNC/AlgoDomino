@@ -1,4 +1,4 @@
-package unnc.cs.grape.controller;
+package unnc.cs.grape.view;
 
 import javafx.fxml.FXML;
 import javafx.stage.Stage;

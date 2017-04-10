@@ -31,7 +31,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.view.MainFrameController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <left>
@@ -301,7 +301,7 @@
                                                                      <children>
                                                                         <VBox alignment="CENTER" layoutX="-70.0" layoutY="-177.0" prefHeight="441.0" prefWidth="282.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                            <children>
-                                                                              <Label alignment="CENTER" prefHeight="37.0" prefWidth="210.0">
+                                                                              <Label fx:id="label_left" alignment="CENTER" prefHeight="37.0" prefWidth="210.0">
                                                                                  <font>
                                                                                     <Font name="System Bold" size="17.0" />
                                                                                  </font>
@@ -321,7 +321,7 @@
                                                                   </AnchorPane>
                                                                   <VBox alignment="CENTER" prefHeight="425.0" prefWidth="280.0">
                                                                      <children>
-                                                                        <Label alignment="CENTER" prefHeight="37.0" prefWidth="210.0">
+                                                                        <Label fx:id="label_right" alignment="CENTER" prefHeight="37.0" prefWidth="210.0">
                                                                            <font>
                                                                               <Font name="System Bold" size="17.0" />
                                                                            </font>
@@ -373,13 +373,13 @@
                                                                   <Font size="16.0" />
                                                                </font>
                                                             </Label>
-                                                            <JFXTextField layoutX="227.0" layoutY="24.0" maxWidth="163.0" prefHeight="25.0" prefWidth="163.0" promptText="100-500" />
+                                                            <JFXTextField fx:id="inputString_c" layoutX="227.0" layoutY="24.0" maxWidth="163.0" prefHeight="25.0" prefWidth="163.0" promptText="100-500" />
                                                             <JFXButton fx:id="startButton" layoutX="405.0" layoutY="21.0" prefHeight="31.0" prefWidth="57.0" text="Start">
                                                                <font>
                                                                   <Font name="System Bold" size="12.0" />
                                                                </font>
                                                             </JFXButton>
-                                                            <JFXSlider blockIncrement="1.0" layoutX="523.0" layoutY="37.0" max="10.0" showTickLabels="true" />
+                                                            <JFXSlider fx:id="slider_c" blockIncrement="1.0" layoutX="523.0" layoutY="37.0" max="10.0" showTickLabels="true" />
                                                          </children>
                                                       </AnchorPane>
                                                   </items>
@@ -399,27 +399,27 @@
                                                                         <Font size="15.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="39.0" prefWidth="154.0" text="Choose Algorithm" VBox.vgrow="ALWAYS">
+                                                                  <MenuButton fx:id="algo1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseAlgo_c" prefHeight="39.0" prefWidth="154.0" text="Choose Algorithm" VBox.vgrow="ALWAYS">
                                                                      <items>
-                                                                        <MenuItem mnemonicParsing="false" text="Bubble Sort" />
-                                                                        <MenuItem mnemonicParsing="false" text="Selection Sort" />
-                                                                        <MenuItem mnemonicParsing="false" text="Insertion Sort" />
-                                                                        <MenuItem mnemonicParsing="false" text="Quick Sort" />
-                                                                        <MenuItem mnemonicParsing="false" text="Merge Sort" />
-                                                                        <MenuItem mnemonicParsing="false" text="Heap Sort" />
+                                                                        <MenuItem fx:id="bubble_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Bubble Sort" />
+                                                                        <MenuItem fx:id="selection_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Selection Sort" />
+                                                                        <MenuItem fx:id="insertion_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Insertion Sort" />
+                                                                        <MenuItem fx:id="quick_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Quick Sort" />
+                                                                        <MenuItem fx:id="merge_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Merge Sort" />
+                                                                        <MenuItem fx:id="heap_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Heap Sort" />
                                                                      </items>
                                                                      <VBox.margin>
                                                                         <Insets left="10.0" right="10.0" top="5.0" />
                                                                      </VBox.margin>
                                                                   </MenuButton>
-                                                                  <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="36.0" prefWidth="154.0" text="Choose Algorithm" VBox.vgrow="ALWAYS">
+                                                                  <MenuButton fx:id="algo2" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseAlgo_c_2" prefHeight="36.0" prefWidth="154.0" text="Choose Algorithm" VBox.vgrow="ALWAYS">
                                                                      <items>
-                                                                        <MenuItem mnemonicParsing="false" text="Bubble Sort" />
-                                                                        <MenuItem mnemonicParsing="false" text="Selection Sort" />
-                                                                        <MenuItem mnemonicParsing="false" text="Insertion Sort" />
-                                                                        <MenuItem mnemonicParsing="false" text="Quick Sort" />
-                                                                        <MenuItem mnemonicParsing="false" text="Merge Sort" />
-                                                                        <MenuItem mnemonicParsing="false" text="Heap Sort" />
+                                                                        <MenuItem fx:id="bubble_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Bubble Sort" />
+                                                                        <MenuItem fx:id="selection_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Selection Sort" />
+                                                                        <MenuItem fx:id="insertion_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Insertion Sort" />
+                                                                        <MenuItem fx:id="quick_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Quick Sort" />
+                                                                        <MenuItem fx:id="merge_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Merge Sort" />
+                                                                        <MenuItem fx:id="heap_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Heap Sort" />
                                                                      </items>
                                                                      <VBox.margin>
                                                                         <Insets left="10.0" right="10.0" top="10.0" />

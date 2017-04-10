@@ -14,10 +14,10 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import unnc.cs.grape.controller.GuidelineController;
-import unnc.cs.grape.controller.HelpBoxController;
-import unnc.cs.grape.controller.PreferenceController;
 import unnc.cs.grape.model.AlgorithmCode;
+import unnc.cs.grape.view.GuidelineController;
+import unnc.cs.grape.view.HelpBoxController;
+import unnc.cs.grape.view.PreferenceController;
 
 /**
  * The type Main app.

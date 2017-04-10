@@ -1,4 +1,4 @@
-package unnc.cs.grape.controller;
+package unnc.cs.grape.view;
 
 import com.jfoenix.controls.JFXColorPicker;
 import javafx.fxml.FXML;
