@@ -205,11 +205,11 @@ public class MainApp extends Application {
         	if(algo==0)
         		code= AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/bubbleJava.txt");
         	else if(algo==1)
-        		code=AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/insertJava.txt").toString();
+        		code=AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/insertJava.txt");
         	else if(algo==2)
-        		code=AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/selectJava.txt").toString();
+        		code=AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/selectJava.txt");
         	else if(algo==3)
-        		code=AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/quickJava.txt").toString();
+        		code=AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/quickJava.txt");
         	else if(algo==4)
         		code=AlgorithmCode.javaMerge;
         	else if(algo==5)

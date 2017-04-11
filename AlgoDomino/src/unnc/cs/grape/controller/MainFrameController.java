@@ -331,7 +331,7 @@ public class MainFrameController implements Initializable {
 			selectAlgo = 1;
 			System.out.println("Choose InsertionSort...");
 			if (languageSelect == 0)
-				displayCode = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/insertJava.txt").toString();
+				displayCode = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/insertJava.txt");
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptInsertion;
 			else if (languageSelect == 2)
@@ -346,7 +346,7 @@ public class MainFrameController implements Initializable {
 			selectAlgo = 2;
 			System.out.println("Choose SelectionSort...");
 			if (languageSelect == 0)
-				displayCode = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/selectJava.txt").toString();
+				displayCode = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/selectJava.txt");
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptSelection;
 			else if (languageSelect == 2)
@@ -361,7 +361,7 @@ public class MainFrameController implements Initializable {
 			selectAlgo = 3;
 			System.out.println("Choose QuickSort...");
 			if (languageSelect == 0)
-				displayCode = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/quickJava.txt").toString();
+				displayCode = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/quickJava.txt");
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptQuick;
 			else if (languageSelect == 2)
@@ -486,11 +486,11 @@ public class MainFrameController implements Initializable {
 		if (selectAlgo == 0)
 			code = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/bubbleJava.txt");
 		else if (selectAlgo == 1)
-			code = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/insertJava.txt").toString();
+			code = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/insertJava.txt");
 		else if (selectAlgo == 2)
-			code = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/selectJava.txt").toString();
+			code = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/selectJava.txt");
 		else if (selectAlgo == 3)
-			code = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/quickJava.txt").toString();
+			code = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/quickJava.txt");
 		else if (selectAlgo == 4)
 			code = AlgorithmCode.javaMerge;
 		else if (selectAlgo == 5)
