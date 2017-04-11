@@ -1,6 +1,7 @@
 package unnc.cs.grape.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSlider;
 
 import javafx.animation.Animation;
@@ -156,12 +157,18 @@ public class MainFrameController implements Initializable {
 
 	@FXML
 	private Label label_right;
+	
+	@FXML
+	private JFXComboBox<Label> comboBox;
+	
+
 
 	/**
 	 * Press to start sorting
 	 */
 	@FXML
 	public void sortStart() {
+
 		if (hbox.getChildren() == null || input == null) {
 			System.out.println("Please initialize first...");
 		} else if (selectAlgo == null) {
@@ -1004,6 +1011,13 @@ public class MainFrameController implements Initializable {
 		});
 	}
 
+	public void chooseA1(){
+			Label text = new Label();
+			text = comboBox.getSelectionModel().getSelectedItem();
+			label_right.setText(text.getText());
+			System.out.println(comboBox.getSelectionModel().getSelectedItem());
+		
+	}	
 
 
 	// haven`t use now
