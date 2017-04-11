@@ -178,7 +178,7 @@ public class MainApp extends Application {
          FileChooser.ExtensionFilter extFilterPng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
          FileChooser.ExtensionFilter extFilterJpg = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
  		 fileChooser.getExtensionFilters().add(extFilterPng);
- 		 fileChooser.getExtensionFilters().add(extFilterJpg);		 
+ 		 fileChooser.getExtensionFilters().add(extFilterJpg);
          File file = fileChooser.showSaveDialog(primaryStage);
          if(file != null)
          {
@@ -203,13 +203,13 @@ public class MainApp extends Application {
         if(language==0)
         {
         	if(algo==0)
-        		code= AlgorithmCode.javaBubble;
+        		code= AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/bubbleJava.txt");
         	else if(algo==1)
-        		code=AlgorithmCode.javaInsertion;
+        		code=AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/insertJava.txt").toString();
         	else if(algo==2)
-        		code=AlgorithmCode.javaSelection;
+        		code=AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/selectJava.txt").toString();
         	else if(algo==3)
-        		code=AlgorithmCode.javaQuick;
+        		code=AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/quickJava.txt").toString();
         	else if(algo==4)
         		code=AlgorithmCode.javaMerge;
         	else if(algo==5)

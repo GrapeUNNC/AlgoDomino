@@ -157,10 +157,10 @@ public class MainFrameController implements Initializable {
 
 	@FXML
 	private Label label_right;
-	
+
 	@FXML
 	private JFXComboBox<Label> comboBox;
-	
+
 
 
 	/**
@@ -316,7 +316,7 @@ public class MainFrameController implements Initializable {
 			selectAlgo = 0;
 			System.out.println("Choose BubbleSort...");
 			if (languageSelect == 0)
-				displayCode = AlgorithmCode.javaBubble;
+				displayCode = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/bubbleJava.txt");
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptBubble;
 			else if (languageSelect == 2)
@@ -331,7 +331,7 @@ public class MainFrameController implements Initializable {
 			selectAlgo = 1;
 			System.out.println("Choose InsertionSort...");
 			if (languageSelect == 0)
-				displayCode = AlgorithmCode.javaInsertion;
+				displayCode = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/insertJava.txt").toString();
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptInsertion;
 			else if (languageSelect == 2)
@@ -346,7 +346,7 @@ public class MainFrameController implements Initializable {
 			selectAlgo = 2;
 			System.out.println("Choose SelectionSort...");
 			if (languageSelect == 0)
-				displayCode = AlgorithmCode.javaSelection;
+				displayCode = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/selectJava.txt").toString();
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptSelection;
 			else if (languageSelect == 2)
@@ -361,7 +361,7 @@ public class MainFrameController implements Initializable {
 			selectAlgo = 3;
 			System.out.println("Choose QuickSort...");
 			if (languageSelect == 0)
-				displayCode = AlgorithmCode.javaQuick;
+				displayCode = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/quickJava.txt").toString();
 			else if (languageSelect == 1)
 				displayCode = AlgorithmCode.javaScriptQuick;
 			else if (languageSelect == 2)
@@ -484,13 +484,13 @@ public class MainFrameController implements Initializable {
 		languageSelect = 0;
 		String code = null;
 		if (selectAlgo == 0)
-			code = AlgorithmCode.javaBubble;
+			code = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/bubbleJava.txt");
 		else if (selectAlgo == 1)
-			code = AlgorithmCode.javaInsertion;
+			code = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/insertJava.txt").toString();
 		else if (selectAlgo == 2)
-			code = AlgorithmCode.javaSelection;
+			code = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/selectJava.txt").toString();
 		else if (selectAlgo == 3)
-			code = AlgorithmCode.javaQuick;
+			code = AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/quickJava.txt").toString();
 		else if (selectAlgo == 4)
 			code = AlgorithmCode.javaMerge;
 		else if (selectAlgo == 5)
@@ -1016,8 +1016,8 @@ public class MainFrameController implements Initializable {
 			text = comboBox.getSelectionModel().getSelectedItem();
 			label_right.setText(text.getText());
 			System.out.println(comboBox.getSelectionModel().getSelectedItem());
-		
-	}	
+
+	}
 
 
 	// haven`t use now

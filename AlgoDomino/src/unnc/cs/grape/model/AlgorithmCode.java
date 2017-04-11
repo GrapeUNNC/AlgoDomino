@@ -8,13 +8,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class AlgorithmCode {
-	public static String javaBubble="test1";//readTxtFile("src/unnc/cs/grape/model/bubbleJava.txt").toString();
+	//public static String javaBubble=readTxtFile("src/unnc/cs/grape/model/bubbleJava.txt");
 
-	public static String javaInsertion="test2";//readTxtFile("src/unnc/cs/grape/model/insertJava.txt").toString();
+	//public static String javaInsertion="test2";//readTxtFile("src/unnc/cs/grape/model/insertJava.txt").toString();
 
-	public static String javaSelection="test3";//readTxtFile("src/unnc/cs/grape/model/selectJava.txt").toString();
+	//public static String javaSelection="test3";//readTxtFile("src/unnc/cs/grape/model/selectJava.txt").toString();
 
-	public static String javaQuick="test4";//readTxtFile("src/unnc/cs/grape/model/quickJava.txt").toString();
+	//public static String javaQuick="test4";//readTxtFile("src/unnc/cs/grape/model/quickJava.txt").toString();
 
 	public static String cQuick="test5";//readTxtFile("src/unnc/cs/grape/model/quickC.txt").toString();
 
@@ -264,7 +264,7 @@ public class AlgorithmCode {
     		+ "    }\n\n"
     		+ "    return sort(arr);\n}";
 
-	 public static StringBuffer readTxtFile(String filePath) {
+	 public static String readTxtFile(String filePath) {
 		 StringBuffer strBuffer=null;
 	        try {
 	            File file = new File(filePath);
@@ -294,7 +294,7 @@ public class AlgorithmCode {
 	        } catch (Exception e) {
 	            System.out.println("qqq!");
 	        }
-	        return strBuffer;
+	        return strBuffer.toString();
 
 	    }
 
