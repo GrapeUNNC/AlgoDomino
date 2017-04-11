@@ -8,37 +8,37 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class AlgorithmCode {
-	public static String javaBubble=readTxtFile("src/unnc/cs/grape/model/bubbleJava.txt").toString();
+	public static String javaBubble="test1";//readTxtFile("src/unnc/cs/grape/model/bubbleJava.txt").toString();
 
-	public static String javaInsertion=readTxtFile("src/unnc/cs/grape/model/insertJava.txt").toString();
+	public static String javaInsertion="test2";//readTxtFile("src/unnc/cs/grape/model/insertJava.txt").toString();
 
-	public static String javaSelection=readTxtFile("src/unnc/cs/grape/model/selectJava.txt").toString();
+	public static String javaSelection="test3";//readTxtFile("src/unnc/cs/grape/model/selectJava.txt").toString();
 
-	public static String javaQuick=readTxtFile("src/unnc/cs/grape/model/quickJava.txt").toString();
+	public static String javaQuick="test4";//readTxtFile("src/unnc/cs/grape/model/quickJava.txt").toString();
 
-	public static String cQuick=readTxtFile("src/unnc/cs/grape/model/quickC.txt").toString();
+	public static String cQuick="test5";//readTxtFile("src/unnc/cs/grape/model/quickC.txt").toString();
 
-	public static String cBubble=readTxtFile("src/unnc/cs/grape/model/bubbleC.txt").toString();
+	public static String cBubble="test6";//readTxtFile("src/unnc/cs/grape/model/bubbleC.txt").toString();
 
-	public static String cInsertion=readTxtFile("src/unnc/cs/grape/model/insertC.txt").toString();
+	public static String cInsertion="test7";//readTxtFile("src/unnc/cs/grape/model/insertC.txt").toString();
 
-	public static String cSelection=readTxtFile("src/unnc/cs/grape/model/selectC.txt").toString();
+	public static String cSelection="test8";//readTxtFile("src/unnc/cs/grape/model/selectC.txt").toString();
 
-	public static String cMerge=readTxtFile("src/unnc/cs/grape/model/mergeC.txt").toString();
+	public static String cMerge="test9";//readTxtFile("src/unnc/cs/grape/model/mergeC.txt").toString();
 
-	public static String cHeap=readTxtFile("src/unnc/cs/grape/model/heapC.txt").toString();
+	public static String cHeap="test10";//readTxtFile("src/unnc/cs/grape/model/heapC.txt").toString();
 
-	public static String pythonHeap=readTxtFile("src/unnc/cs/grape/model/heapPython.txt").toString();
+	public static String pythonHeap="test11";//readTxtFile("src/unnc/cs/grape/model/heapPython.txt").toString();
 
-	public static String pythonBubble=readTxtFile("src/unnc/cs/grape/model/bubblePython.txt").toString();
+	public static String pythonBubble="test12";//readTxtFile("src/unnc/cs/grape/model/bubblePython.txt").toString();
 
-	public static String pythonInsertion=readTxtFile("src/unnc/cs/grape/model/insertPython.txt").toString();
+	public static String pythonInsertion="test13";//readTxtFile("src/unnc/cs/grape/model/insertPython.txt").toString();
 
-	public static String pythonSelection=readTxtFile("src/unnc/cs/grape/model/selectPython.txt").toString();
+	public static String pythonSelection="test14";//readTxtFile("src/unnc/cs/grape/model/selectPython.txt").toString();
 
-	public static String pythonQuick=readTxtFile("src/unnc/cs/grape/model/quickPython.txt").toString();
+	public static String pythonQuick="test15";//readTxtFile("src/unnc/cs/grape/model/quickPython.txt").toString();
 
-	public static String pythonMerge=readTxtFile("src/unnc/cs/grape/model/mergePython.txt").toString();
+	public static String pythonMerge="test16";//readTxtFile("src/unnc/cs/grape/model/mergePython.txt").toString();
 
 	public static String javaMerge="public void mergeSort(int[] array, int low, int mid, int high) {\n"
 			+ "    int i = low;\n    int j = mid + 1;\n    int j = mid + 1;\n    int[] array2 = new int[high - low + 1];\n"
@@ -276,7 +276,6 @@ public class AlgorithmCode {
 	                    InputStream inputStream = new FileInputStream(file);
 	                    inputReader = new InputStreamReader(inputStream);
 	                    bufferReader = new BufferedReader(inputReader);
-	                    // 读取一行
 	                    String line = null;
 	                    strBuffer = new StringBuffer();
 
@@ -287,13 +286,13 @@ public class AlgorithmCode {
 	                }
 	                catch (IOException e)
 	                {
-	                	System.out.println("文件不存在!");
+	                	System.out.println("sss");
 	                }
 	            } else {
-	                System.out.println("文件不存在!");
+	                System.out.println("ddd");
 	            }
 	        } catch (Exception e) {
-	            System.out.println("文件读取错误!");
+	            System.out.println("qqq!");
 	        }
 	        return strBuffer;
 
