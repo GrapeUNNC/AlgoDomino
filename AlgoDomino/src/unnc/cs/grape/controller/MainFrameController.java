@@ -167,6 +167,7 @@ public class MainFrameController implements Initializable {
 		} else if (selectAlgo == null) {
 			System.out.println("Please choose a algorithm to run...");
 		} else {
+			playbutton.setImage(pause);
 			sort(selectAlgo);
 		}
 	}
@@ -202,7 +203,6 @@ public class MainFrameController implements Initializable {
 
 		// detected input part
 		System.out.println("Get input...");
-		playbutton.setImage(pause);
 		String str = inputString.getText();
 		checkInput(str);
 

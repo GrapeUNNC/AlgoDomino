@@ -175,8 +175,10 @@ public class MainApp extends Application {
     	 WritableImage image = mainScene.snapshot(null);
          FileChooser fileChooser = new FileChooser();
          fileChooser.setTitle("Save Screenshot");
-         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
- 		 fileChooser.getExtensionFilters().add(extFilter);
+         FileChooser.ExtensionFilter extFilterPng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+         FileChooser.ExtensionFilter extFilterJpg = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+ 		 fileChooser.getExtensionFilters().add(extFilterPng);
+ 		 fileChooser.getExtensionFilters().add(extFilterJpg);		 
          File file = fileChooser.showSaveDialog(primaryStage);
          if(file != null)
          {
