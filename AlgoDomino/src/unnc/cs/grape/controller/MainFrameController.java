@@ -160,10 +160,8 @@ public class MainFrameController implements Initializable {
     private Label label_right;
 
     @FXML
-    private JFXComboBox<String> combo;
-    private int selectAlgo_c_1;
-    private int selectAlgo_c;
-
+    private JFXComboBox<Label> combo1, combo2;
+    private String compareAlgo1, compareAlgo2;
 
 
     /**
@@ -838,75 +836,14 @@ public class MainFrameController implements Initializable {
     }
 
 
-    // Compare Part
-    public void chooseAlgo_c() {
-        bubble_c.setOnAction(event -> {
-            selectAlgo_c = 0;
-            label_left.setText("Bubble Sort");
-            System.out.println("Choose 0...");
-        });
-        selection_c.setOnAction(event -> {
-            selectAlgo_c = 1;
-            label_left.setText("Selection Sort");
-            System.out.println("Choose 1...");
-        });
-        insertion_c.setOnAction(event -> {
-            selectAlgo_c = 2;
-            label_left.setText("Insertion Sort");
-            System.out.println("Choose 2...");
-        });
-        quick_c.setOnAction(event -> {
-            selectAlgo_c = 3;
-            label_left.setText("Quick Sort");
-            System.out.println("Choose 3...");
-        });
-        merge_c.setOnAction(event -> {
-            selectAlgo_c = 4;
-            label_left.setText("Merge Sort");
-            System.out.println("Choose 4...");
-        });
-        heap_c.setOnAction(event -> {
-            selectAlgo_c = 5;
-            label_left.setText("Heap Sort");
-            System.out.println("Choose 5...");
-        });
+    public void chooseFirstAlgo() {
+        compareAlgo1 = combo1.getSelectionModel().getSelectedItem().getAccessibleText();
+        label_right.setText(combo1.getSelectionModel().getSelectedItem().getText());
     }
 
-    public void chooseAlgo_c_2() {
-        bubble_c_2.setOnAction(event -> {
-            selectAlgo_c_1 = 0;
-            label_right.setText("Bubble Sort");
-            System.out.println("Choose 0...");
-        });
-        selection_c_2.setOnAction(event -> {
-            selectAlgo_c_1 = 1;
-            label_right.setText("Selection Sort");
-            System.out.println("Choose 1...");
-        });
-        insertion_c_2.setOnAction(event -> {
-            selectAlgo_c_1 = 2;
-            label_right.setText("Insertion Sort");
-            System.out.println("Choose 2...");
-        });
-        quick_c_2.setOnAction(event -> {
-            selectAlgo_c_1 = 3;
-            label_right.setText("Quick Sort");
-            System.out.println("Choose 3...");
-        });
-        merge_c_2.setOnAction(event -> {
-            selectAlgo_c_1 = 4;
-            label_right.setText("Merge Sort");
-            System.out.println("Choose 4...");
-        });
-        heap_c_2.setOnAction(event -> {
-            selectAlgo_c_1 = 5;
-            label_right.setText("Heap Sort");
-            System.out.println("Choose 5...");
-        });
-    }
-
-    public void chooseA1() {
-        label_right.setText(combo.getSelectionModel().getSelectedItem());
+    public void chooseSecAlgo() {
+        compareAlgo2 = combo1.getSelectionModel().getSelectedItem().getAccessibleText();
+        label_left.setText(combo2.getSelectionModel().getSelectedItem().getText());
     }
 
 

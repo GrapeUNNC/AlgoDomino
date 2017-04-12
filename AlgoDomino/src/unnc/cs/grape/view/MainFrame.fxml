@@ -260,7 +260,7 @@
                                                                      <children>
                                                                         <TitledPane animated="false" collapsible="false" layoutX="-15.0" layoutY="-43.0" prefHeight="71.0" prefWidth="124.0" text="Algorithm Hint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                            <content>
-                                                                              <TextArea fx:id="hintDisplay" editable="false" prefHeight="200.0" prefWidth="200.0" style="-: ;" />
+                                                                              <TextArea fx:id="hintDisplay" editable="false" prefHeight="200.0" prefWidth="200.0" />
                                                                            </content>
                                                                         </TitledPane>
                                                                      </children>
@@ -404,38 +404,13 @@
                                                                         <Font size="15.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <MenuButton fx:id="algo1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseAlgo_c" prefHeight="39.0" prefWidth="154.0" text="Choose Algorithm" VBox.vgrow="ALWAYS">
-                                                                     <items>
-                                                                        <MenuItem fx:id="bubble_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Bubble Sort" />
-                                                                        <MenuItem fx:id="selection_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Selection Sort" />
-                                                                        <MenuItem fx:id="insertion_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Insertion Sort" />
-                                                                        <MenuItem fx:id="quick_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Quick Sort" />
-                                                                        <MenuItem fx:id="merge_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Merge Sort" />
-                                                                        <MenuItem fx:id="heap_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Heap Sort" />
-                                                                     </items>
-                                                                     <VBox.margin>
-                                                                        <Insets left="10.0" right="10.0" top="5.0" />
-                                                                     </VBox.margin>
-                                                                  </MenuButton>
-                                                                  <MenuButton fx:id="algo2" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseAlgo_c_2" prefHeight="36.0" prefWidth="154.0" text="Choose Algorithm" VBox.vgrow="ALWAYS">
-                                                                     <items>
-                                                                        <MenuItem fx:id="bubble_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Bubble Sort" />
-                                                                        <MenuItem fx:id="selection_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Selection Sort" />
-                                                                        <MenuItem fx:id="insertion_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Insertion Sort" />
-                                                                        <MenuItem fx:id="quick_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Quick Sort" />
-                                                                        <MenuItem fx:id="merge_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Merge Sort" />
-                                                                        <MenuItem fx:id="heap_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Heap Sort" />
-                                                                     </items>
-                                                                     <VBox.margin>
-                                                                        <Insets left="10.0" right="10.0" top="10.0" />
-                                                                     </VBox.margin>
-                                                                  </MenuButton>
-                                                                  <JFXComboBox fx:id="combo" onAction="#chooseA1" prefHeight="25.0" prefWidth="154.0">
+
+                                                                  <JFXComboBox fx:id="combo1" onAction="#chooseFirstAlgo" prefHeight="25.0" prefWidth="154.0">
 																		<items>  
 																			<FXCollections fx:factory="observableArrayList">  
-																				<String fx:value="Bubble Sort" />  
-																				<String fx:value="Quick Sort" />  
-																				<String fx:value="Selection Sort" />  
+																				<Label text="Bubble Sort" accessibleText="bubble"/>
+																				<Label text="Quick Sort" accessibleText="quick"/>
+																				<Label text="Selection Sort" accessibleText="select"/>
 																			</FXCollections>  
  																		</items>
                                                                   </JFXComboBox>
