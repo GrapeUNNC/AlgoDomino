@@ -3,6 +3,9 @@ package unnc.cs.grape;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 
@@ -14,9 +17,9 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import unnc.cs.grape.model.AlgorithmCode;
 import unnc.cs.grape.controller.GuidelineController;
 import unnc.cs.grape.controller.HelpBoxController;
+import unnc.cs.grape.controller.MainFrameController;
 import unnc.cs.grape.controller.PreferenceController;
 
 /**
@@ -25,23 +28,20 @@ import unnc.cs.grape.controller.PreferenceController;
 public class MainApp extends Application {
 
     private static Stage primaryStage;
-    private static AnchorPane rootLayout;
     private static Stage dialogStage1;
     private static Stage dialogStage2;
     private static Stage dialogStage3;
     private static Scene mainScene;
-    //static Scene colorScene=null;
 
 
     @Override
-    public void start(Stage primarystage) {
-        primaryStage = primarystage;
+    public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
         primaryStage.setTitle("Visualizing sorting algorithms");
         primaryStage.setWidth(1034);
         primaryStage.setHeight(660);
         primaryStage.setResizable(false);
         initRootLayout();
-        //showMainFrame();
 
         primaryStage.setOnCloseRequest(event -> {
             //System.out.print("Program close");
@@ -69,7 +69,10 @@ public class MainApp extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/MainFrame.fxml"));
-            rootLayout = loader.load();
+            AnchorPane rootLayout = loader.load();
+
+            MainFrameController mfc = loader.getController();
+            mfc.setup();
 
             // Show the scene containing the root layout.
              mainScene = new Scene(rootLayout);
@@ -85,7 +88,7 @@ public class MainApp extends Application {
      */
 
 
-    public static void showHelpBox() {
+    public void showHelpBox() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -110,7 +113,7 @@ public class MainApp extends Application {
         }
     }
 
-    public static void showPreference() {
+    public void showPreference() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
         	FXMLLoader loader = new FXMLLoader();
@@ -130,7 +133,7 @@ public class MainApp extends Application {
         }
     }
 
-    public static void showGuideline() {
+    public void showGuideline() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -155,7 +158,7 @@ public class MainApp extends Application {
         }
     }
 
-    public static void QuitPrograme() {
+    public void QuitProgram() {
         primaryStage.close();
         if(dialogStage1!=null)
         {
@@ -171,7 +174,7 @@ public class MainApp extends Application {
         }
     }
 
-    public static void Screenshot() {
+    public void Screenshot() {
     	 WritableImage image = mainScene.snapshot(null);
          FileChooser fileChooser = new FileChooser();
          fileChooser.setTitle("Save Screenshot");
@@ -191,7 +194,7 @@ public class MainApp extends Application {
          }
     }
 
-    public static void SaveAlgorithmCode(Integer algo, int language) {
+    public void SaveAlgorithmCode(String algo, String language) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Algorithm Code");
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
@@ -200,66 +203,15 @@ public class MainApp extends Application {
         String code=null;
         if(algo==null)
         	System.out.println("No algorithm select");
-        if(language==0)
-        {
-        	if(algo==0)
-        		code= AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/bubbleJava.txt");
-        	else if(algo==1)
-        		code=AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/insertJava.txt");
-        	else if(algo==2)
-        		code=AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/selectJava.txt");
-        	else if(algo==3)
-        		code=AlgorithmCode.readTxtFile("src/unnc/cs/grape/model/quickJava.txt");
-        	else if(algo==4)
-        		code=AlgorithmCode.javaMerge;
-        	else if(algo==5)
-        		code=AlgorithmCode.javaHeap;
+
+
+        String fileName = "./code/" + algo + language + ".txt";
+        try {
+            code = new String(Files.readAllBytes(Paths.get(fileName)), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        else if(language==1)
-        {
-        	if(algo==0)
-        		code=AlgorithmCode.javaScriptBubble;
-        	else if(algo==1)
-        		code=AlgorithmCode.javaScriptInsertion;
-        	else if(algo==2)
-        		code=AlgorithmCode.javaScriptSelection;
-        	else if(algo==3)
-        		code=AlgorithmCode.javaScriptQuick;
-        	else if(algo==4)
-        		code=AlgorithmCode.javaScriptMerge;
-        	else if(algo==5)
-        		code=AlgorithmCode.javaScriptHeap;
-        }
-        else if(language==2)
-        {
-        	if(algo==0)
-        		code=AlgorithmCode.cBubble;
-        	else if(algo==1)
-        		code=AlgorithmCode.cInsertion;
-        	else if(algo==2)
-        		code=AlgorithmCode.cSelection;
-        	else if(algo==3)
-        		code=AlgorithmCode.cQuick;
-        	else if(algo==4)
-        		code=AlgorithmCode.cMerge;
-        	else if(algo==5)
-        		code=AlgorithmCode.cHeap;
-        }
-        else if(language==3)
-        {
-        	if(algo==0)
-        		code=AlgorithmCode.pythonBubble;
-        	else if(algo==1)
-        		code=AlgorithmCode.pythonInsertion;
-        	else if(algo==2)
-        		code=AlgorithmCode.pythonSelection;
-        	else if(algo==3)
-        		code=AlgorithmCode.pythonQuick;
-        	else if(algo==4)
-        		code=AlgorithmCode.pythonMerge;
-        	else if(algo==5)
-        		code=AlgorithmCode.pythonHeap;
-        }
+
 
         if(file != null)
         {

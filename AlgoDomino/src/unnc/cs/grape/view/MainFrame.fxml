@@ -34,7 +34,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <left>
@@ -106,7 +106,7 @@
                                                          <children>
                                                             <VBox alignment="TOP_CENTER" layoutX="-24.0" layoutY="-116.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="163.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
-                                                                  <ToggleButton fx:id="bubble" contentDisplay="CENTER" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Bubble sort">
+                                                                  <ToggleButton fx:id="bubble" accessibleText="bubble" contentDisplay="CENTER" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Bubble sort">
                                                                      <VBox.margin>
                                                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                                      </VBox.margin>
@@ -114,22 +114,22 @@
                                                                         <ToggleGroup fx:id="togglegroup" />
                                                                      </toggleGroup>
                                                                   </ToggleButton>
-                                                                  <ToggleButton fx:id="insertion" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Insertion sort" toggleGroup="$togglegroup">
+                                                                  <ToggleButton fx:id="insertion" accessibleText="insert" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Insertion sort" toggleGroup="$togglegroup">
                                                                      <VBox.margin>
                                                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                                      </VBox.margin>
                                                                   </ToggleButton>
-                                                                  <ToggleButton fx:id="selection" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Selection sort" toggleGroup="$togglegroup">
+                                                                  <ToggleButton fx:id="selection" accessibleText="select" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Selection sort" toggleGroup="$togglegroup">
                                                                      <VBox.margin>
                                                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                                      </VBox.margin>
                                                                   </ToggleButton>
-                                                                  <ToggleButton fx:id="quick" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Quick sort" toggleGroup="$togglegroup">
+                                                                  <ToggleButton fx:id="quick" accessibleText="quick" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Quick sort" toggleGroup="$togglegroup">
                                                                      <VBox.margin>
                                                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                                      </VBox.margin>
                                                                   </ToggleButton>
-                                                                  <ToggleButton fx:id="merge" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Merge sort" toggleGroup="$togglegroup">
+                                                                  <ToggleButton fx:id="merge" accessibleText="merge" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Merge sort" toggleGroup="$togglegroup">
                                                                      <VBox.margin>
                                                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                                      </VBox.margin>
