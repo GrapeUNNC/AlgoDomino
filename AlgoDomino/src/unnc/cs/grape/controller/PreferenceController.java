@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import unnc.cs.grape.controller.MainFrameController;
 
 public class PreferenceController {
 
@@ -41,7 +40,7 @@ public class PreferenceController {
 	    	int length= MainFrameController.getRectangle().size();
 	    	for(int i=0;i<length;i++)
 	    	{
-	    		MainFrameController.getRectangle().get(i).setFill(color);;
+	    		MainFrameController.getRectangle().get(i).setFill(color);
 	    	}
 	    	//System.out.println(colorPicker.getValue());
 	        dialogStage.close();

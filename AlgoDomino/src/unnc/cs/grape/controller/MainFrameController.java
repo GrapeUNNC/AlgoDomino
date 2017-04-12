@@ -21,7 +21,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import javafx.util.Pair;
 import unnc.cs.grape.MainApp;
 
 import java.io.*;
@@ -38,7 +37,7 @@ import java.util.stream.Stream;
 
 
 public class MainFrameController implements Initializable {
-    private MainApp mainapp = new MainApp();
+    private final MainApp mainapp = new MainApp();
 
     private static final int SPACING = 30;
     private int[] helper;
@@ -47,16 +46,15 @@ public class MainFrameController implements Initializable {
     private static final Duration SPEED = Duration.millis(400);
 
     private int[] input;
-    private int[] defaultInput = {4, 3, 2, 1, 5, 6, 9, 7, 8};
+    private final int[] defaultInput = {4, 3, 2, 1, 5, 6, 9, 7, 8};
     private double duration = 600;
     private String selectAlgo = null;
     private String languageSelect = "Java";
-    private ArrayList<StackPane> list = new ArrayList<>();
-    private ArrayList<StackPane> mergelist = new ArrayList<>();
-    private static ArrayList<Rectangle> recList = new ArrayList<>();
-    ArrayList<ToggleButton> toggleList = new ArrayList<>();
-    private SequentialTransition sq;
-    private Image pause = new Image("unnc/cs/grape/view/assets/icon/pause.png", 44, 46, false, false);
+    private final ArrayList<StackPane> list = new ArrayList<>();
+    private final ArrayList<StackPane> mergelist = new ArrayList<>();
+    private static final ArrayList<Rectangle> recList = new ArrayList<>();
+    private final ArrayList<ToggleButton> toggleList = new ArrayList<>();
+    private final Image pause = new Image("unnc/cs/grape/view/assets/icon/pause.png", 44, 46, false, false);
 
     @FXML
     private Button random;
@@ -167,15 +165,6 @@ public class MainFrameController implements Initializable {
     private int selectAlgo_c;
 
 
-    public void setup() {
-        toggleList.add(bubble);
-        toggleList.add(insertion);
-        toggleList.add(selection);
-        toggleList.add(quick);
-        toggleList.add(merge);
-        toggleList.add(heap);
-    }
-
 
     /**
      * Press to start sorting
@@ -201,8 +190,7 @@ public class MainFrameController implements Initializable {
         // if has input
         if (str.length() > 0) {
             String[] sp = str.split("\\D+");
-            int[] userInput = Stream.of(sp).mapToInt(Integer::parseInt).toArray();
-            input = userInput;
+            input = Stream.of(sp).mapToInt(Integer::parseInt).toArray();
             // System.out.println(Arrays.toString(userInput));
         } else {
             System.out.println("No input, use default input...");
@@ -230,7 +218,7 @@ public class MainFrameController implements Initializable {
         generateRec();
     }
 
-    public void intializeMergeRec() {
+    private void intializeMergeRec() {
         // clear
         mergelist.clear();
         pane.getChildren().clear();
@@ -276,14 +264,14 @@ public class MainFrameController implements Initializable {
             input = defaultInput;
         }
 
-        for (int i = 0; i < input.length; i++) {
-            Rectangle rectangle = new Rectangle(20, 20 * input[i]);
+        for (int anInput : input) {
+            Rectangle rectangle = new Rectangle(20, 20 * anInput);
             rectangle.setFill(shapeColor);
             recList.add(rectangle);
-            Text text = new Text(String.valueOf(input[i]));
+            Text text = new Text(String.valueOf(anInput));
             StackPane stackPane = new StackPane();
             stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
-            stackPane.setId(String.valueOf(input[i]));
+            stackPane.setId(String.valueOf(anInput));
             stackPane.getChildren().addAll(rectangle, text);
             stackPane.setAlignment(Pos.BOTTOM_CENTER);
             list.add(stackPane);
@@ -319,7 +307,7 @@ public class MainFrameController implements Initializable {
         pane.getChildren().addAll(mergelist);
     }
 
-    public void displayCode(String language, String algo) {
+    private void displayCode(String language, String algo) {
         String fileName = "./code/" + algo + language + ".txt";
         try {
             codeDisplay.setText(new String(Files.readAllBytes(Paths.get(fileName)), StandardCharsets.UTF_8));
@@ -375,7 +363,7 @@ public class MainFrameController implements Initializable {
 
     private void sort(String selectAlgo) {
         // inputString.setDisable(true);
-        sq = new SequentialTransition();
+        SequentialTransition sq = new SequentialTransition();
 
         switch (selectAlgo) {
             case "bubble":
@@ -550,7 +538,7 @@ public class MainFrameController implements Initializable {
      * @param list
      * @return
      */
-    protected SequentialTransition BubbleSort(int arr[], ArrayList<StackPane> list, double duration) {
+    private SequentialTransition BubbleSort(int arr[], ArrayList<StackPane> list, double duration) {
         SequentialTransition sq = new SequentialTransition();
         int temp;
         for (int i = 0; i < arr.length - 1; i++) {
@@ -573,7 +561,7 @@ public class MainFrameController implements Initializable {
      * @param list
      * @return
      */
-    protected SequentialTransition InsertionSort(int[] arr, ArrayList<StackPane> list, double duration) {
+    private SequentialTransition InsertionSort(int[] arr, ArrayList<StackPane> list, double duration) {
         SequentialTransition sq = new SequentialTransition();
         int temp;
         for (int i = 1; i < arr.length; i++) {
@@ -598,7 +586,7 @@ public class MainFrameController implements Initializable {
      * @param list
      * @return
      */
-    protected SequentialTransition SelectionSort(int arr[], ArrayList<StackPane> list, double duration) {
+    private SequentialTransition SelectionSort(int arr[], ArrayList<StackPane> list, double duration) {
         SequentialTransition sq = new SequentialTransition();
         int i, j, minIndex, tmp;
         int n = arr.length;
@@ -669,7 +657,7 @@ public class MainFrameController implements Initializable {
         return pl;
     }
 
-    protected SequentialTransition HeapSort(int arr[], ArrayList<StackPane> list, double duration) {
+    private SequentialTransition HeapSort(int arr[], ArrayList<StackPane> list, double duration) {
         SequentialTransition sq = new SequentialTransition();
         for (int i = arr.length / 2; i >= 0; i--) {
             int parent = i;
@@ -751,8 +739,8 @@ public class MainFrameController implements Initializable {
         return animationsList;
     }
 
-    protected SequentialTransition quickSort(int arr[], ArrayList<StackPane> list, SequentialTransition sq,
-                                             double duration) {
+    private SequentialTransition quickSort(int arr[], ArrayList<StackPane> list, SequentialTransition sq,
+                                           double duration) {
         List<Animation> animationList = new ArrayList<>();
         animationList = quickSortRec(arr, 0, arr.length - 1, list, animationList, duration);
         sq.getChildren().addAll(animationList);
@@ -769,7 +757,7 @@ public class MainFrameController implements Initializable {
 
     }
 
-    public SequentialTransition MergeSort(int arr[], ArrayList<StackPane> list, SequentialTransition sq) {
+    private SequentialTransition MergeSort(int arr[], ArrayList<StackPane> list, SequentialTransition sq) {
         int number = arr.length;
         this.helper = new int[number];
         this.helperNodes = new StackPane[number];
@@ -926,11 +914,6 @@ public class MainFrameController implements Initializable {
     }
 
 
-    // haven`t use now
-    public void setMainApp(MainApp mainApp) {
-        this.mainapp = mainApp;
-    }
-
     public static ArrayList<Rectangle> getRectangle() {
         return recList;
     }
@@ -938,8 +921,11 @@ public class MainFrameController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
-
+        toggleList.add(bubble);
+        toggleList.add(insertion);
+        toggleList.add(selection);
+        toggleList.add(quick);
+        toggleList.add(merge);
+        toggleList.add(heap);
     }
-
-
 }

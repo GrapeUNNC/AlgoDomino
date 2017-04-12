@@ -19,7 +19,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import unnc.cs.grape.controller.GuidelineController;
 import unnc.cs.grape.controller.HelpBoxController;
-import unnc.cs.grape.controller.MainFrameController;
 import unnc.cs.grape.controller.PreferenceController;
 
 /**
@@ -36,7 +35,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+        MainApp.primaryStage = primaryStage;
         primaryStage.setTitle("Visualizing sorting algorithms");
         primaryStage.setWidth(1034);
         primaryStage.setHeight(660);
@@ -70,9 +69,6 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/MainFrame.fxml"));
             AnchorPane rootLayout = loader.load();
-
-            MainFrameController mfc = loader.getController();
-            mfc.setup();
 
             // Show the scene containing the root layout.
              mainScene = new Scene(rootLayout);
@@ -227,15 +223,6 @@ public class MainApp extends Application {
         }
    }
 
-
-    /**
-     * Returns the main stage.
-     *
-     * @return primary stage
-     */
-    public static Stage getPrimaryStage() {
-        return primaryStage;
-    }
 
     /**
      * The entry point of application.
