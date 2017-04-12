@@ -160,7 +160,7 @@ public class MainFrameController implements Initializable {
     private Label label_right;
 
     @FXML
-    private JFXComboBox<Label> comboBox;
+    private JFXComboBox<String> combo;
     private int selectAlgo_c_1;
     private int selectAlgo_c;
 
@@ -906,11 +906,7 @@ public class MainFrameController implements Initializable {
     }
 
     public void chooseA1() {
-        Label text = new Label();
-        text = comboBox.getSelectionModel().getSelectedItem();
-        label_right.setText(text.getText());
-        System.out.println(comboBox.getSelectionModel().getSelectedItem());
-
+        label_right.setText(combo.getSelectionModel().getSelectedItem());
     }
 
 

@@ -430,7 +430,7 @@
                                                                         <Insets left="10.0" right="10.0" top="10.0" />
                                                                      </VBox.margin>
                                                                   </MenuButton>
-                                                                  <JFXComboBox fx:id="comboBox" onAction="#chooseA1" prefHeight="25.0" prefWidth="154.0">
+                                                                  <JFXComboBox fx:id="combo" onAction="#chooseA1" prefHeight="25.0" prefWidth="154.0">
 																		<items>  
 																			<FXCollections fx:factory="observableArrayList">  
 																				<String fx:value="Bubble Sort" />  
