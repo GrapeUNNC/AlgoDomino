@@ -1,0 +1,23 @@
+private void quickSort(int[] list, int left, int right) {
+    if (left < right)
+    {
+        int base = division(list, left, right);
+        quickSort(list, left, base - 1);
+        quickSort(list, base + 1, right);
+    }
+}
+
+public int division(int[] list, int left, int right) {
+    int base = list[left];
+    while (left < right)
+    {
+        while (left < right && list[right] >= base)
+            right--;
+        list[left] = list[right];
+        while (left < right && list[left] <= base)
+            left++;
+        list[right] = list[left];
+    }
+    list[left] = base;
+    return left;
+}
