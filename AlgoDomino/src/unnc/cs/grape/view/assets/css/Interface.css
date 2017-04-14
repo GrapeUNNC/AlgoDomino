@@ -105,7 +105,9 @@
     -fx-text-fill: WHITE;
 }	 
 	 
+#combo1{
 
+}
 /* The main scrollbar **track** CSS class  */
 .mylistview .scroll-bar:horizontal .track,
 .mylistview .scroll-bar:vertical .track{

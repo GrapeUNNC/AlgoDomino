@@ -120,6 +120,12 @@ public class MainFrameController implements Initializable {
 
     @FXML
     private Label label_right;
+    
+    @FXML
+    private Label firstAlgoComplex;
+    
+    @FXML
+    private Label secondAlgoComplex;
 
     @FXML
     private JFXComboBox<Label> combo1, combo2;
@@ -832,6 +838,7 @@ public class MainFrameController implements Initializable {
     public void chooseFirstAlgo() {
         compareAlgo1 = combo1.getSelectionModel().getSelectedItem().getAccessibleText();
         label_right.setText(combo1.getSelectionModel().getSelectedItem().getText());
+        firstAlgoComplex.setText(combo1.getSelectionModel().getSelectedItem().getText());
     }
 
     /**
@@ -840,6 +847,7 @@ public class MainFrameController implements Initializable {
     public void chooseSecAlgo() {
         compareAlgo2 = combo2.getSelectionModel().getSelectedItem().getAccessibleText();
         label_left.setText(combo2.getSelectionModel().getSelectedItem().getText());
+        secondAlgoComplex.setText(combo1.getSelectionModel().getSelectedItem().getText());
     }
 
 

@@ -1,0 +1,23 @@
+def adjust_heap(list, i, size):
+    lchild = 2 * i + 1
+    rchild = 2 * i + 2
+    max = i
+    if i < size / 2:
+        if lchild < size and list[lchild] > list[max]:
+            max = lchild
+        if rchild < size and list[rchild] > list[max]:
+            max = rchild
+        if max != i:
+            list[max], list[i] = list[i], list[max]
+            adjust_heap(list, max, size)
+
+def build_heap(list, size):
+    for i in range(0, (size/2))[::-1]:
+        adjust_heap(list, i, size)
+
+def heap_sort(list):
+    size = len(list)
+    build_heap(list, size)
+    for i in range(0, size)[::-1]:
+        list[0], list[i] = list[i], list[0]
+        adjust_heap(list, 0, i)
