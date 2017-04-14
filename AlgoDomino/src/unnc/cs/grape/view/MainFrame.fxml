@@ -184,7 +184,7 @@
                                                                                           </ImageView>
                                                                                        </graphic>
                                                                                     </JFXButton>
-                                                                                    <JFXButton fx:id="initialize" layoutX="120.0" layoutY="103.0" onAction="#intializeRec" prefHeight="25.0" prefWidth="132.0" text="Initialize">
+                                                                                    <JFXButton fx:id="initialize" layoutX="120.0" layoutY="103.0" onAction="#initializeRec" prefHeight="25.0" prefWidth="132.0" text="Initialize">
                                                                                        <font>
                                                                                           <Font name="System Bold" size="12.0" />
                                                                                        </font>
@@ -198,7 +198,7 @@
                                                                                        <graphic>
                                                                                           <ImageView fx:id="playbutton" fitHeight="37.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                                                                                              <image>
-                                                                                                <Image url="@assets/icon/play_128px_1086608_easyicon.net.png" />
+                                                                                                <Image url="@assets/icon/play.png" />
                                                                                              </image>
                                                                                           </ImageView>
                                                                                        </graphic>

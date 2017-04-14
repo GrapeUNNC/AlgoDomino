@@ -208,7 +208,6 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
 
-
         if(file != null)
         {
             try {
