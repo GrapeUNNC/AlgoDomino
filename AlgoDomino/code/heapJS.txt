@@ -1,0 +1,33 @@
+function heapSort(arr) {
+    var heapSize = arr.length, temp;
+    for (var i = Math.floor(heapSize / 2); i >= 0; i--)
+    {
+        heapify(arr, i, heapSize);
+    }
+    for (var j = heapSize - 1; j >= 1; j--)
+    {
+        temp = arr[0];
+        arr[0] = arr[j];
+        arr[j] = temp;
+        heapify(arr, 0, --heapSize);
+    }
+}
+
+function heapify(arr, x, len) {
+    var l = 2 * x, r = 2 * x + 1, largest = x, temp;
+    if (l < len && arr[l] > arr[largest]) 
+    {
+        largest = l;
+    }
+    if (r < len && arr[r] > arr[largest]) 
+    {
+        largest = r;
+    }
+    if (largest != x) 
+    {
+        temp = arr[x];
+        arr[x] = arr[largest];
+        arr[largest] = temp;
+        heapify(arr, largest, len);
+    }
+}

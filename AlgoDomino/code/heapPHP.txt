@@ -1,0 +1,28 @@
+function HeapAdjust(array &$arr,$start,$end){
+    $temp = $arr[$start];
+    for($j = 2 * $start + 1;$j <= $end;$j = 2 * $j + 1)
+    {
+        if($j != $end && $arr[$j] < $arr[$j + 1]){
+            $j ++;
+        }
+        if($temp >= $arr[$j]){
+            break;
+        }
+        $arr[$start] = $arr[$j];
+        $start = $j;
+    }
+    $arr[$start] = $temp;
+}
+
+function HeapSort(array &$arr){
+    $count = count($arr);
+    for($i = floor($count / 2) - 1;$i >= 0;$i --)
+    {
+        HeapAdjust($arr,$i,$count);
+    }
+    for($i = $count - 1;$i >= 0;$i --)
+    {
+        swap($arr,0,$i);  
+        HeapAdjust($arr,0,$i - 1);
+    }
+}
