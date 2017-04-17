@@ -119,10 +119,10 @@ public class MainFrameController implements Initializable {
 
     @FXML
     private Label label_right;
-    
+
     @FXML
     private Label firstAlgoComplex;
-    
+
     @FXML
     private Label secondAlgoComplex;
 
@@ -340,6 +340,15 @@ public class MainFrameController implements Initializable {
         }
     }
 
+    private void displayHint(String algo) {
+        String fileName = "./code/" + algo + "Hint.txt";
+        try {
+            hintDisplay.setText(new String(Files.readAllBytes(Paths.get(fileName)), StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * Choose which algorithm to use
@@ -352,6 +361,7 @@ public class MainFrameController implements Initializable {
             selectAlgo = button.getAccessibleText();
             System.out.println(selectAlgo);
             displayCode(languageSelect, selectAlgo);
+            displayHint(selectAlgo);
         }));
     }
 
@@ -445,6 +455,12 @@ public class MainFrameController implements Initializable {
     @FXML
     private void handlePython() {
         languageSelect = "Python";
+        displayCode(languageSelect, selectAlgo);
+    }
+
+    @FXML
+    private void handlePHP() {
+        languageSelect = "PHP";
         displayCode(languageSelect, selectAlgo);
     }
 

@@ -1,0 +1,7 @@
+do
+    swapped = false
+    for i = 1 to indexOfLastUnsortedElement
+        if leftElement > rightElement
+            swap(leftElement, rightElement)
+            swapped = true
+while swapped
