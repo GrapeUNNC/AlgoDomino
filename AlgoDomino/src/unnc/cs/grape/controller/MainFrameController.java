@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSlider;
 
+import com.sun.xml.internal.bind.v2.model.annotation.Quick;
 import javafx.animation.Animation;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
@@ -28,9 +29,10 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.SQLClientInfoException;
 import java.util.*;
 import java.util.stream.Stream;
+
+import static java.lang.StrictMath.floor;
 
 
 /**
@@ -46,7 +48,7 @@ public class MainFrameController implements Initializable {
 //    private static final Duration SPEED = Duration.millis(400);
 
 
-    private SequentialTransition sq = new SequentialTransition();
+    private SequentialTransition st = new SequentialTransition();
     private int[] input;
     private final int[] defaultInput = {4, 3, 2, 1, 5, 6, 9, 7, 8};
     private double duration = 600;
@@ -56,12 +58,10 @@ public class MainFrameController implements Initializable {
     private final ArrayList<StackPane> mergelist = new ArrayList<>();
     private static final ArrayList<Rectangle> recList = new ArrayList<>();
     private final ArrayList<ToggleButton> toggleList = new ArrayList<>();
+    private ArrayList<Animation> animationList = new ArrayList<>();
 
     private final Image pause = new Image("unnc/cs/grape/view/assets/icon/pause.png", 44, 46, false, false);
     private final Image play = new Image("unnc/cs/grape/view/assets/icon/play.png", 44, 46, false, false);
-
-    @FXML
-    private Button random;
 
     @FXML
     private TextField inputString;
@@ -88,10 +88,6 @@ public class MainFrameController implements Initializable {
     private ToggleButton heap;
 
     @FXML
-    private ToggleGroup togglegroup;
-
-
-    @FXML
     private ImageView playbutton;
 
     @FXML
@@ -111,6 +107,9 @@ public class MainFrameController implements Initializable {
 
     @FXML
     private JFXButton start;
+
+    @FXML
+    private JFXButton next;
 
     @FXML
     private TextField inputString_c;
@@ -158,27 +157,47 @@ public class MainFrameController implements Initializable {
         playbutton.setId("pausebutton");
         playbutton.setImage(pause);
         start.setOnAction(event -> {
-            sq.pause();
+            st.pause();
             changeReplayButton();
         });
     }
 
     private void changeReplayButton() {
+        System.out.println(st.getCurrentTime());
         playbutton.setId("replaybutton");
         playbutton.setImage(play);
         start.setOnAction(event -> {
-            sq.play();
+            st.play();
             changePauseButton();
         });
     }
 
+    public void next() {
+        int step = (int) floor(st.getCurrentTime().toMillis() / 600) - 1;
+        if (step >= 0){
+            st.getChildren().get(step).setOnFinished(event -> {
+                st.pause();
+                nextStep(step+1);
+            });
+            next.setOnAction(event -> nextStep(step+1));
+            st.playFrom(Duration.millis((step+1)*600-1));
+        }
+    }
+
+    private void nextStep(int step) {
+        st.getChildren().get(step+1).setOnFinished(event -> {
+            st.pause();
+        });
+        next.setOnAction(event -> nextStep(step+1));
+        st.playFrom(Duration.millis((step)*600-1));
+    }
 
     /**
      * Speed change.
      */
     @FXML
     public void speedChange() {
-        slider.valueProperty().addListener((observable, oldValue, newValue) -> duration = 100 * (double) (newValue));
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> st.setRate((double) (newValue) / 20));
     }
 
     /**
@@ -328,8 +347,8 @@ public class MainFrameController implements Initializable {
     @FXML
     public void chooseAlgo() {
         toggleList.forEach(button -> button.setOnMouseClicked(event -> {
+            inputString.setDisable(false);
             changePalyButton();
-            sq = new SequentialTransition();
             selectAlgo = button.getAccessibleText();
             System.out.println(selectAlgo);
             displayCode(languageSelect, selectAlgo);
@@ -337,39 +356,42 @@ public class MainFrameController implements Initializable {
     }
 
     private void sort(String selectAlgo) {
-        // inputString.setDisable(true);
-        sq = new SequentialTransition();
+        inputString.setDisable(true);
+        //st = new SequentialTransition();
         initializeRec();
 
         switch (selectAlgo) {
             case "bubble":
-                sq = BubbleSort(input, list, duration);
+                st = BubbleSort(input, list, duration);
                 break;
             case "insert":
-                sq = InsertionSort(input, list, duration);
+                st = InsertionSort(input, list, duration);
                 break;
             case "select":
-                sq = SelectionSort(input, list, duration);
+                st = SelectionSort(input, list, duration);
                 break;
             case "quick":
-                sq = QuickSort(input, list, sq, duration);
+                st = QuickSort(input, list, st, duration);
                 break;
             case "merge":
-                sq = MergeSort(input, list, sq, duration);
+                st = MergeSort(input, list, st, duration);
                 //intializeMergeRec();
                 //sq = MergeSort(input, mergelist, sq);
                 break;
             case "heap":
-                sq = HeapSort(input, list, duration);
+                st = HeapSort(input, list, duration);
                 break;
             default:
                 break;
         }
 
-        sq.play();
+        st.play();
+        st.setOnFinished(event -> {
+            inputString.setDisable(false);
+            changePalyButton();
+        });
         String str = inputString.getText();
         checkInput(str);
-        // inputString.setDisable(false);
     }
 
     @FXML
@@ -428,13 +450,9 @@ public class MainFrameController implements Initializable {
 
     // sort control part
     private ParallelTransition swap(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
-        TranslateTransition t1 = new TranslateTransition();
-        TranslateTransition t2 = new TranslateTransition();
-        t1.setDuration(Duration.millis(speed));
-        t2.setDuration(Duration.millis(speed));
+        TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
+        TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
         ParallelTransition pl = new ParallelTransition();
-        t1.setNode(l1);
-        t2.setNode(l2);
         t1.setByX(30);
         t2.setByX(-30);
         pl.getChildren().addAll(t1, t2);
@@ -447,13 +465,9 @@ public class MainFrameController implements Initializable {
             xLength = 0 - xLength;
         }
 
-        TranslateTransition t1 = new TranslateTransition();
-        TranslateTransition t2 = new TranslateTransition();
-        t1.setDuration(Duration.millis(speed));
-        t2.setDuration(Duration.millis(speed));
+        TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
+        TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
         ParallelTransition pl = new ParallelTransition();
-        t1.setNode(l1);
-        t2.setNode(l2);
         t1.setByX(xLength * 30);
         t2.setByX((0 - xLength) * 30);
         pl.getChildren().addAll(t1, t2);
@@ -464,13 +478,10 @@ public class MainFrameController implements Initializable {
     private ParallelTransition swapSelect(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
         int num = 1;
         StackPane fSp;
-        TranslateTransition t1 = new TranslateTransition();
-        TranslateTransition t2 = new TranslateTransition();
+        TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
+        TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
         ParallelTransition pl = new ParallelTransition();
-        t1.setNode(l1);
-        t2.setNode(l2);
-        t1.setDuration(Duration.millis(speed));
-        t2.setDuration(Duration.millis(speed));
+
         boolean outerBreak = false;
         for (int i = 0; i < list.size(); i++) {
             if (outerBreak)
@@ -649,10 +660,10 @@ public class MainFrameController implements Initializable {
         return sq;
     }
 
-    private List<Animation> quickSortRec(int arr[], int start, int end, ArrayList<StackPane> list,
-                                         List<Animation> animationsList, double duration) {
+    private ArrayList<Animation> quickSortRec(int arr[], int start, int end, ArrayList<StackPane> list,
+                                         ArrayList<Animation> animationList, double duration) {
         if (start >= end)
-            return animationsList;
+            return animationList;
         int mid = arr[end];
         int left = start, right = end - 1;
         while (left < right) {
@@ -665,7 +676,7 @@ public class MainFrameController implements Initializable {
             arr[right] = temp;
             // System.out.println("SWAP " + list.get(left) + " AND " +
             // list.get(right));
-            animationsList.add(swap(list.get(left), list.get(right), left - right, list, duration));
+            animationList.add(swap(list.get(left), list.get(right), left - right, list, duration));
         }
         if (arr[left] >= arr[end]) {
             int temp = arr[left];
@@ -673,24 +684,30 @@ public class MainFrameController implements Initializable {
             arr[end] = temp;
             // System.out.println("SWAP " + list.get(left) + " AND " +
             // list.get(end));
-            animationsList.add(swap(list.get(left), list.get(end), left - end, list, duration));
+            animationList.add(swap(list.get(left), list.get(end), left - end, list, duration));
         } else
             left++;
 
-        quickSortRec(arr, start, left - 1, list, animationsList, duration);
-        quickSortRec(arr, left + 1, end, list, animationsList, duration);
-        return animationsList;
+        quickSortRec(arr, start, left - 1, list, animationList, duration);
+        quickSortRec(arr, left + 1, end, list, animationList, duration);
+        return animationList;
     }
 
     private SequentialTransition QuickSort(int arr[], ArrayList<StackPane> list, SequentialTransition sq,
                                            double duration) {
-        List<Animation> animationList = new ArrayList<>();
+        animationList = new ArrayList<>();
         animationList = quickSortRec(arr, 0, arr.length - 1, list, animationList, duration);
         sq.getChildren().addAll(animationList);
         return sq;
     }
 
-    private List<Animation> mergeSortRec(int arr[], int left, int right, List<Animation> animationList,
+    private TranslateTransition moveUp(StackPane l1, double speed) {
+        TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
+        t1.setByY(-40);
+        return t1;
+    }
+
+    private ArrayList<Animation> mergeSortRec(int arr[], int left, int right, ArrayList<Animation> animationList,
                                          ArrayList<StackPane> list, double duration) {
         if (left >= right) {
             return animationList;
@@ -702,7 +719,7 @@ public class MainFrameController implements Initializable {
         return animationList;
     }
 
-    private List<Animation> merge(int[] arr, List<Animation> animationList, int left, int center, int right, double duration) {
+    private ArrayList<Animation> merge(int[] arr, ArrayList<Animation> animationList, int left, int center, int right, double duration) {
         int[] tempArray = new int[arr.length];
         int mid = center + 1;
         int third  = left;
@@ -711,16 +728,20 @@ public class MainFrameController implements Initializable {
         while (left <= center && mid <= right) {
             if (arr[left] <= arr[mid]) {
                 tempArray[third++] = arr[left++];
+                st.getChildren().add(moveUp(list.get(left-1), duration));
             } else {
                 tempArray[third++] = arr[mid++];
+                st.getChildren().add(moveUp(list.get(mid-1), duration));
             }
         }
 
         while (mid <= right) {
             tempArray[third++] = arr[mid++];
+            st.getChildren().add(moveUp(list.get(mid-1), duration));
         }
         while (left <= center) {
             tempArray[third++] = arr[left++];
+            st.getChildren().add(moveUp(list.get(left-1), duration));
         }
 
         while (temp <= right) {
@@ -734,7 +755,6 @@ public class MainFrameController implements Initializable {
 
     private SequentialTransition MergeSort(int arr[], ArrayList<StackPane> list, SequentialTransition sq,
                                            double duration) {
-        List<Animation> animationList = new ArrayList<>();
         animationList = mergeSortRec(arr, 0, arr.length - 1, animationList, list, duration);
         sq.getChildren().addAll(animationList);
         return sq;
