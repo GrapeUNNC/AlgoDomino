@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.collections.FXCollections?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
@@ -210,13 +231,13 @@
                                                                                        </graphic>
                                                                                     </JFXButton>
                                                                                     <Separator layoutY="59.0" prefHeight="7.0" prefWidth="619.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0" />
-                                                                                    <JFXSlider fx:id="slider" blockIncrement="1.0" indicatorPosition="RIGHT" layoutX="377.0" layoutY="14.0" majorTickUnit="50.0" minorTickCount="5" onDragDetected="#speedChange" prefHeight="48.0" prefWidth="119.0" showTickLabels="true" showTickMarks="true" value="40.0" />
+                                                                                    <JFXSlider fx:id="volumeSlider" blockIncrement="1.0" indicatorPosition="RIGHT" layoutX="377.0" layoutY="14.0" majorTickUnit="50.0" minorTickCount="5" onDragDetected="#speedChange" prefHeight="48.0" prefWidth="119.0" showTickLabels="true" showTickMarks="true" value="40.0" />
                                                                                     <JFXButton fx:id="clear" layoutX="291.0" layoutY="103.0" onAction="#clear" prefHeight="25.0" prefWidth="132.0" text="Clear">
                                                                                        <font>
                                                                                           <Font name="System Bold" size="12.0" />
                                                                                        </font>
                                                                                     </JFXButton>
-                                                                                    <Slider fx:id="progressBar" layoutX="123.0" layoutY="19.0" prefHeight="27.0" prefWidth="202.0" />
+                                                                                    <Slider fx:id="timeSlider" layoutX="123.0" layoutY="19.0" onDragDetected="#timeChange" prefHeight="27.0" prefWidth="202.0" />
                                                                                  </children>
                                                                               </AnchorPane>
                                                                            </children>
