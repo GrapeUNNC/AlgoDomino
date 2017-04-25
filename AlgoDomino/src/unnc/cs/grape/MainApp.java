@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -196,9 +198,15 @@ public class MainApp extends Application {
 		fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showSaveDialog(primaryStage);
         String code=null;
-        if(algo==null)
+        if(algo==null){
         	System.out.println("No algorithm select");
-
+        	Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Error Dialog");
+        	alert.setHeaderText(null);
+        	alert.setContentText("No algorithm selected!");
+        	alert.showAndWait();
+        	return;
+        }
 
         String fileName = "./code/" + algo + language + ".txt";
         try {

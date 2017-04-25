@@ -10,10 +10,8 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -143,7 +141,12 @@ public class MainFrameController implements Initializable {
         if (hbox.getChildren() == null || input == null) {
             System.out.println("Please initialize first...");
         } else if (selectAlgo == null) {
-            System.out.println("Please choose a algorithm to run...");
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Please choose an algorithm to run!");
+            alert.showAndWait();
+            System.out.println("Please choose an algorithm to run...");
         } else {
             sort(selectAlgo);
             changePauseButton();
@@ -238,6 +241,11 @@ public class MainFrameController implements Initializable {
             // System.out.println(Arrays.toString(userInput));
         } else {
             System.out.println("No input, use default input...");
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText("Warning");
+            alert.setContentText("You don't have an input in the text area, the program will use default value as input!");
+            alert.showAndWait();
             input = defaultInput;
         }
     }
@@ -887,7 +895,7 @@ public class MainFrameController implements Initializable {
     public void chooseSecAlgo() {
         compareAlgo2 = combo2.getSelectionModel().getSelectedItem().getAccessibleText();
         label_left.setText(combo2.getSelectionModel().getSelectedItem().getText());
-        secondAlgoComplex.setText(combo1.getSelectionModel().getSelectedItem().getText());
+        secondAlgoComplex.setText(combo2.getSelectionModel().getSelectedItem().getText());
     }
 
 
