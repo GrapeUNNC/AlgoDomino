@@ -1,14 +1,5 @@
 package unnc.cs.grape;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import javax.imageio.ImageIO;
-
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +11,14 @@ import javafx.stage.Stage;
 import unnc.cs.grape.controller.GuidelineController;
 import unnc.cs.grape.controller.HelpBoxController;
 import unnc.cs.grape.controller.PreferenceController;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * The type Main app.
