@@ -33,7 +33,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <left>
@@ -206,7 +206,7 @@
                                                                                           </ImageView>
                                                                                        </graphic>
                                                                                     </JFXButton>
-                                                                                    <JFXButton fx:id="next" contentDisplay="GRAPHIC_ONLY" layoutX="157.0" layoutY="14.0" onAction="#next" prefHeight="33.0" prefWidth="28.0">
+                                                                                    <JFXButton fx:id="next" contentDisplay="GRAPHIC_ONLY" layoutX="79.0" layoutY="10.0" prefHeight="41.0" prefWidth="38.0">
                                                                                        <font>
                                                                                           <Font size="1.0" />
                                                                                        </font>

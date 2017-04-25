@@ -35,9 +35,6 @@ import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
 
-import static java.lang.StrictMath.floor;
-
-
 /**
  * The type Main frame controller.
  */
@@ -49,7 +46,6 @@ public class MainFrameController implements Initializable {
 //    private StackPane[] helperNodes;
 //    private static final int SORT_GROUP_MOVE_DELTA = 150;
 //    private static final Duration SPEED = Duration.millis(400);
-
 
     private SequentialTransition st = new SequentialTransition();
     private int[] input;
@@ -153,11 +149,10 @@ public class MainFrameController implements Initializable {
             System.out.println("Please choose an algorithm to run...");
         } else {
             sort(selectAlgo);
-            changePauseButton();
         }
     }
 
-    private void changePalyButton() {
+    private void changePlayButton() {
         playbutton.setId("playbutton");
         playbutton.setImage(play);
         start.setOnAction(event -> sortStart());
@@ -174,7 +169,6 @@ public class MainFrameController implements Initializable {
     }
 
     private void changeReplayButton() {
-        System.out.println(st.getCurrentTime());
         playbutton.setId("replaybutton");
         playbutton.setImage(play);
         start.setOnAction(event -> {
@@ -184,31 +178,10 @@ public class MainFrameController implements Initializable {
         });
     }
 
-    public void next() {
-        int step = (int) floor(st.getCurrentTime().toMillis() / 600) - 1;
-        if (step >= 0){
-            st.getChildren().get(step).setOnFinished(event -> {
-                st.pause();
-                nextStep(step+1);
-            });
-            next.setOnAction(event -> nextStep(step+1));
-            st.playFrom(Duration.millis((step+1)*600-1));
-        }
-    }
-
-    private void nextStep(int step) {
-        st.getChildren().get(step+1).setOnFinished(event -> {
-            st.pause();
-        });
-        next.setOnAction(event -> nextStep(step+1));
-        st.playFrom(Duration.millis((step)*600-1));
-    }
-
-
     public void timeChange() {
-        st.pause();
         timeSlider.valueProperty().addListener(e -> {
-            if (timeSlider.isValueChanging()) {
+            if (timeSlider.isValueChanging() && timeSlider.getValue() != 0) {
+                st.pause();
                 st.playFrom(st.getTotalDuration().multiply(timeSlider.getValue() / 100));
                 if (playbutton.getId() == "replaybutton") {
                     st.pause();
@@ -224,8 +197,8 @@ public class MainFrameController implements Initializable {
             if(!currentTime.equals(duration)) {
                 timeSlider.setValue(currentTime.divide(duration.toMillis()).toMillis() * 100);
             } else {
-                timeSlider.setValue(0);
                 timeSlider.setDisable(true);
+                st.stop();
             }
         });
     }
@@ -236,7 +209,7 @@ public class MainFrameController implements Initializable {
      */
     @FXML
     public void speedChange() {
-        volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> st.setRate((double) (newValue) / 20));
+        volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> st.setRate((double) (newValue) / 40));
     }
 
     /**
@@ -256,8 +229,6 @@ public class MainFrameController implements Initializable {
         list.clear();
         hbox.getChildren().clear();
 
-        // detected input part
-        System.out.println("Get input...");
         String str = inputString.getText();
         checkInput(str);
 
@@ -401,7 +372,7 @@ public class MainFrameController implements Initializable {
     public void chooseAlgo() {
         toggleList.forEach(button -> button.setOnMouseClicked(event -> {
             inputString.setDisable(false);
-            changePalyButton();
+            changePlayButton();
             selectAlgo = button.getAccessibleText();
             System.out.println(selectAlgo);
             displayCode(languageSelect, selectAlgo);
@@ -411,6 +382,7 @@ public class MainFrameController implements Initializable {
 
     private void sort(String selectAlgo) {
         inputString.setDisable(true);
+        changePauseButton();
         st = new SequentialTransition();
         initializeRec();
 
@@ -439,13 +411,17 @@ public class MainFrameController implements Initializable {
                 break;
         }
 
-        st.currentTimeProperty().addListener(observable -> updateProgress());
-        st.play();
-        timeSlider.setDisable(false);
+        st.currentTimeProperty().addListener(observable -> {
+            updateProgress();
+        });
+        st.setRate(volumeSlider.getValue()/40);
         st.setOnFinished(event -> {
             inputString.setDisable(false);
-            changePalyButton();
+            changePlayButton();
         });
+        st.play();
+        timeSlider.setDisable(false);
+
 
         String str = inputString.getText();
         checkInput(str);
