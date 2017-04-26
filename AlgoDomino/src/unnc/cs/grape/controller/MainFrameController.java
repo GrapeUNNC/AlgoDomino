@@ -63,7 +63,6 @@ public class MainFrameController implements Initializable {
 	private static ArrayList<Rectangle> recList = new ArrayList<>();
 	private final ArrayList<ToggleButton> toggleList = new ArrayList<>();
 	private static Color color_change = Color.valueOf("#1565C0");
-	private static Color rec_color = PreferenceController.color;
 
 	private final Image pause = new Image("unnc/cs/grape/view/assets/icon/pause.png", 44, 46, false, false);
 	private final Image play = new Image("unnc/cs/grape/view/assets/icon/play.png", 44, 46, false, false);
