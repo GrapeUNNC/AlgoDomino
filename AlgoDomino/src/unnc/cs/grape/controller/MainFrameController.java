@@ -301,6 +301,11 @@ public class MainFrameController implements Initializable {
 	 * Random input.
 	 */
 	public void randomInput() {
+        st.stop();
+        st = new SequentialTransition();
+        timeSlider.setValue(0);
+        changePlayButton();
+
 		System.out.println("Generate a random input");
 		int[] random = new int[15];
 		for (int i = 0; i < 15; i++) {
