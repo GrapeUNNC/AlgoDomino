@@ -1,7 +1,7 @@
 
 # Created by https://www.gitignore.io/api/java,eclipse
 
-Algo*/out
+AlgoDomino/out
 /.idea
 
 ### Eclipse ###
