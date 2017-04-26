@@ -102,7 +102,7 @@ public class MainFrameController implements Initializable {
 
 	@FXML
 	private ImageView playbutton;
-	
+
 	@FXML
 	private ImageView bubbleImg;
 
@@ -231,12 +231,12 @@ public class MainFrameController implements Initializable {
 	public void bubbleEnter() {
 		bubbleImg.setImage(bubbleGif);
 	}
-	
+
 	@FXML
 	public void bubbleExit() {
 		bubbleImg.setImage(bubbleJpg);
 	}
-	
+
 	/**
 	 * Clear.
 	 */
@@ -712,7 +712,9 @@ public class MainFrameController implements Initializable {
 				arr[child] = arr[parent];
 				arr[parent] = temp;
 				temp = arr[child];
+				sq.getChildren().add(changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
 				sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
+				sq.getChildren().add(changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
 				parent = child;
 				child = 2 * child + 1;
 			}
@@ -722,9 +724,10 @@ public class MainFrameController implements Initializable {
 			int temp = arr[i];
 			arr[i] = arr[0];
 			arr[0] = temp;
+			sq.getChildren().add(changeColor(list.get(0), list.get(i), PreferenceController.color, color_change));
 			sq.getChildren().add(swapHeap3(list.get(0), list.get(i), duration));
-
 			sq.getChildren().add(swapHeap2(list.get(0), list.get(i), list, duration, 0, i));
+			sq.getChildren().add(changeColor(list.get(0), list.get(i), color_change, PreferenceController.color));
 			int parent = 0;
 			int tempFather = arr[parent];
 			int child = 2 * parent + 1;
@@ -738,7 +741,9 @@ public class MainFrameController implements Initializable {
 				arr[child] = arr[parent];
 				arr[parent] = tempFather;
 				tempFather = arr[child];
+				sq.getChildren().add(changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
 				sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
+				sq.getChildren().add(changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
 				parent = child;
 				child = 2 * child + 1;
 			}
@@ -943,19 +948,19 @@ public class MainFrameController implements Initializable {
 	// }
 
 /** Compare Part **/
-    
+
     public void chooseFirstAlgo() {
         compareAlgo1 = combo1.getSelectionModel().getSelectedItem().getAccessibleText();
         label_left.setText(combo1.getSelectionModel().getSelectedItem().getText());
         firstAlgoComplex.setText(combo1.getSelectionModel().getSelectedItem().getText());
     }
-    
+
     public void chooseSecAlgo() {
         compareAlgo2 = combo2.getSelectionModel().getSelectedItem().getAccessibleText();
         label_right.setText(combo2.getSelectionModel().getSelectedItem().getText());
         secondAlgoComplex.setText(combo2.getSelectionModel().getSelectedItem().getText());
     }
-    
+
     @FXML
     public void startCompare() {
         clear_c();
@@ -963,13 +968,13 @@ public class MainFrameController implements Initializable {
         int[] input_c = getInput();
         generate_c(list_l, hbox_left, input_c);
         generate_c(list_r, hbox_right, input_c);
-        
+
         double duration = 600;
-        
+
         sort_c(compareAlgo1, sq_c_1, list_l, duration, input_c);
         sort_c(compareAlgo2, sq_c_2, list_r, duration, input_c);
     }
-    
+
     private void sort_c(String compareAlgo, SequentialTransition sq_c, ArrayList<StackPane> list, double duration,
                         int[] input) {
         switch (compareAlgo) {
@@ -996,26 +1001,26 @@ public class MainFrameController implements Initializable {
             default:
                 break;
         }
-        
+
         sq_c.play();
     }
-    
+
     private void clear_c() {
         list_l.clear();
         list_r.clear();
-        
+
         if (!hbox_left.getChildren().isEmpty())
             hbox_left.getChildren().clear();
         if (!hbox_right.getChildren().isEmpty())
             hbox_right.getChildren().clear();
     }
-    
+
     private int[] getInput() {
         int[] input_c;
         int min, max, randomNum;
-        
+
         String str = inputString_c.getText();
-        
+
         if (str.isEmpty()) {
             min = 1;
             max = 6;
@@ -1026,29 +1031,29 @@ public class MainFrameController implements Initializable {
             min = in[0];
             max = in[1];
         }
-        
+
         input_c = new int[max - min + 1];
-        
+
         for (int i = 0; i < input_c.length; i++) {
             randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
             input_c[i] = randomNum;
         }
-        
+
         return input_c;
     }
-    
+
     private void generate_c(ArrayList<StackPane> list, HBox hbox, int[] input) {
         Color shapeColor = PreferenceController.color;
         double width, height, space;
-        
+
         int max = input[0];
         for (int i : input) {
             if (i >= max)
                 max = i;
         }
-        
+
         width = (hbox.getWidth() / input.length) / 3 * 2;
-        
+
         for (int anInput : input) {
             height = (hbox.getWidth() / max) * anInput;
             Rectangle rectangle = new Rectangle(width, height);
@@ -1063,12 +1068,12 @@ public class MainFrameController implements Initializable {
             stackPane.setAlignment(Pos.BOTTOM_CENTER);
             list.add(stackPane);
         }
-        
+
         space = width / 2;
         hbox.setSpacing(space);
         hbox.getChildren().addAll(list);
     }
-    
+
     /**
      * Gets rectangle.
      *
@@ -1077,11 +1082,11 @@ public class MainFrameController implements Initializable {
     public static ArrayList<Rectangle> getRectangle() {
         return recList;
     }
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
-        
+
         toggleList.add(bubble);
         toggleList.add(insertion);
         toggleList.add(selection);
