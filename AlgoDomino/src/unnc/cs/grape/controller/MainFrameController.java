@@ -53,6 +53,7 @@ public class MainFrameController implements Initializable {
 	private SequentialTransition sq_c_2 = new SequentialTransition();
 	private int[] input;
 	private final int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
+	private int sortOrder=0;
 	private double duration = 600;
 	private String selectAlgo = null;
 	private String languageSelect = "Java";
@@ -67,7 +68,7 @@ public class MainFrameController implements Initializable {
 
 	private final Image pause = new Image("unnc/cs/grape/view/assets/icon/pause.png", 44, 46, false, false);
 	private final Image play = new Image("unnc/cs/grape/view/assets/icon/play.png", 44, 46, false, false);
-		private final Image bubbleGif = new Image("unnc/cs/grape/view/assets/icon/bubble.gif", 92, 76, false, false);
+	private final Image bubbleGif = new Image("unnc/cs/grape/view/assets/icon/bubble.gif", 92, 76, false, false);
 	private final Image bubbleJpg = new Image("unnc/cs/grape/view/assets/icon/bubble.jpg", 92, 76, false, false);
 
 	@FXML
@@ -301,11 +302,6 @@ public class MainFrameController implements Initializable {
 	 * Random input.
 	 */
 	public void randomInput() {
-        st.stop();
-        st = new SequentialTransition();
-        timeSlider.setValue(0);
-        changePlayButton();
-
 		System.out.println("Generate a random input");
 		int[] random = new int[15];
 		for (int i = 0; i < 15; i++) {
@@ -517,6 +513,16 @@ public class MainFrameController implements Initializable {
 		displayCode(languageSelect, selectAlgo);
 	}
 
+	@FXML
+	private void handleAscendingOrder() {
+		sortOrder=0;;
+	}
+
+	@FXML
+	private void handleDescendingOrder() {
+		sortOrder=1;
+	}
+
 	private ParallelTransition changeColor(StackPane l1, StackPane l2, Color from, Color to) {
 		Rectangle rec1 = (Rectangle) l1.getChildren().get(0);
 		Rectangle rec2 = (Rectangle) l2.getChildren().get(0);
@@ -593,14 +599,27 @@ public class MainFrameController implements Initializable {
 		int temp;
 		for (int i = 0; i < arr.length - 1; i++) {
 			for (int j = 1; j < arr.length - i; j++) {
-				if (arr[j] < arr[j - 1]) {
-					temp = arr[j - 1];
-					arr[j - 1] = arr[j];
-					arr[j] = temp;
-					// change color and move
-                    sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
-					sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
-					sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
+				if(sortOrder==0){
+					if (arr[j] < arr[j - 1]) {
+						temp = arr[j - 1];
+						arr[j - 1] = arr[j];
+						arr[j] = temp;
+						// change color and move
+						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
+						sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
+						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
+					}
+				}
+				else{
+					if (arr[j] > arr[j - 1]) {
+						temp = arr[j - 1];
+						arr[j - 1] = arr[j];
+						arr[j] = temp;
+						// change color and move
+						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
+						sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
+						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
+					}
 				}
 			}
 		}
@@ -612,16 +631,29 @@ public class MainFrameController implements Initializable {
 		int temp;
 		for (int i = 1; i < arr.length; i++) {
 			for (int j = i; j > 0; j--) {
-				if (arr[j] < arr[j - 1]) {
-					temp = arr[j];
-					arr[j] = arr[j - 1];
-					arr[j - 1] = temp;
-
-                    sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
-                    sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
-                    sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
-				} else {
-					break;
+				if(sortOrder==0){
+					if (arr[j] < arr[j - 1]) {
+						temp = arr[j];
+						arr[j] = arr[j - 1];
+						arr[j - 1] = temp;
+						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
+						sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
+						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
+					} else {
+						break;
+					}
+				}
+				else{
+					if (arr[j] > arr[j - 1]) {
+						temp = arr[j];
+						arr[j] = arr[j - 1];
+						arr[j - 1] = temp;
+						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
+						sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
+						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
+					} else {
+						break;
+					}
 				}
 			}
 		}
@@ -633,17 +665,33 @@ public class MainFrameController implements Initializable {
 		int i, j, minIndex, tmp;
 		int n = arr.length;
 		for (i = 0; i < n - 1; i++) {
-			minIndex = i;
-			for (j = i + 1; j < n; j++)
-				if (arr[j] < arr[minIndex])
-					minIndex = j;
-			if (minIndex != i) {
-				tmp = arr[i];
-				arr[i] = arr[minIndex];
-				arr[minIndex] = tmp;
-				sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), PreferenceController.color, color_change));
-				sq.getChildren().add(swapSelect(list.get(i), list.get(minIndex), list, duration));
-				sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), color_change, PreferenceController.color));
+			if(sortOrder==0){
+				minIndex = i;
+				for (j = i + 1; j < n; j++)
+					if (arr[j] < arr[minIndex])
+						minIndex = j;
+				if (minIndex != i) {
+					tmp = arr[i];
+					arr[i] = arr[minIndex];
+					arr[minIndex] = tmp;
+					sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), PreferenceController.color, color_change));
+					sq.getChildren().add(swapSelect(list.get(i), list.get(minIndex), list, duration));
+					sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), color_change, PreferenceController.color));
+				}
+			}
+			else{
+				minIndex = i;
+				for (j = i + 1; j < n; j++)
+					if (arr[j] > arr[minIndex])
+						minIndex = j;
+				if (minIndex != i) {
+					tmp = arr[i];
+					arr[i] = arr[minIndex];
+					arr[minIndex] = tmp;
+					sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), PreferenceController.color, color_change));
+					sq.getChildren().add(swapSelect(list.get(i), list.get(minIndex), list, duration));
+					sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), color_change, PreferenceController.color));
+				}
 			}
 		}
 		return sq;
@@ -724,7 +772,6 @@ public class MainFrameController implements Initializable {
 				child = 2 * child + 1;
 			}
 		}
-
 		for (int i = arr.length - 1; i > 0; i--) {
 			int temp = arr[i];
 			arr[i] = arr[0];

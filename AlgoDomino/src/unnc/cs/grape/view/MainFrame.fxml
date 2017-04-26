@@ -33,7 +33,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <left>
@@ -67,6 +67,16 @@
                                  </items>
                               </Menu>
                               <MenuItem mnemonicParsing="false" onAction="#handlePreference" text="Color of Chart" />
+                              <Menu mnemonicParsing="false" text="Sort Order">
+                                 <items>
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#handleAscendingOrder" selected="true" text="Ascending Order">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="Order" />
+                                       </toggleGroup>
+                                    </RadioMenuItem>
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#handleDescendingOrder" text="Descending Order" toggleGroup="$Order" />
+                                 </items>
+                              </Menu>
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Help">
