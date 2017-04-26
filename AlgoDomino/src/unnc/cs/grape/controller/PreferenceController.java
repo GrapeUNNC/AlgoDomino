@@ -13,8 +13,6 @@ public class PreferenceController {
 
 	 @FXML
 	 private JFXColorPicker colorPicker;
-	 @FXML
-	 private Button button;
 
 	  /**
 	   * Initializes the controller class. This method is automatically called
@@ -45,6 +43,16 @@ public class PreferenceController {
 	    	//System.out.println(colorPicker.getValue());
 	        dialogStage.close();
 	    }
+
+	    public void test(int index) {
+            color=Color.valueOf("#1565C0");
+            MainFrameController.getRectangle().get(7).setFill(color);
+//            int length= MainFrameController.getRectangle().size();
+//            for(int i=0;i<length;i++)
+//            {
+//                MainFrameController.getRectangle().get(i).setFill(color);
+//            }
+        }
 
 
 }

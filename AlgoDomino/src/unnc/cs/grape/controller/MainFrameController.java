@@ -3,12 +3,7 @@ package unnc.cs.grape.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSlider;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.ParallelTransition;
-import javafx.animation.SequentialTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -28,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import unnc.cs.grape.MainApp;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -64,10 +60,10 @@ public class MainFrameController implements Initializable {
 	private final ArrayList<StackPane> list_l = new ArrayList<>();
     private final ArrayList<StackPane> list_r = new ArrayList<>();
 	private final ArrayList<StackPane> mergeList = new ArrayList<>();
-	private static final ArrayList<Rectangle> recList = new ArrayList<>();
+	private static ArrayList<Rectangle> recList = new ArrayList<>();
 	private final ArrayList<ToggleButton> toggleList = new ArrayList<>();
-	private Color color_change = Color.web("#6600FF");
-	private Color rec_color = PreferenceController.color;
+	private static Color color_change = Color.valueOf("#1565C0");
+	private static Color rec_color = PreferenceController.color;
 
 	private final Image pause = new Image("unnc/cs/grape/view/assets/icon/pause.png", 44, 46, false, false);
 	private final Image play = new Image("unnc/cs/grape/view/assets/icon/play.png", 44, 46, false, false);
@@ -238,8 +234,9 @@ public class MainFrameController implements Initializable {
 	 */
 	public void initializeRec() {
 		// clear
-		mergeList.clear();
+		//mergeList.clear();s
 		pane.getChildren().clear();
+        recList.clear();
 		list.clear();
 		hbox.getChildren().clear();
 
@@ -268,22 +265,22 @@ public class MainFrameController implements Initializable {
 		}
 	}
 
-	private void intializeMergeRec() {
-		// clear
-		mergeList.clear();
-		pane.getChildren().clear();
-		list.clear();
-		hbox.getChildren().clear();
-
-		// detected input part
-		System.out.println("Get input...");
-		playbutton.setImage(new Image(""));
-		String str = inputString.getText();
-		checkInput(str);
-
-		// generate rectangles
-		generateMergeRec();
-	}
+//	private void intializeMergeRec() {
+//		// clear
+//		//mergeList.clear();
+//		pane.getChildren().clear();
+//		list.clear();
+//		hbox.getChildren().clear();
+//
+//		// detected input part
+//		System.out.println("Get input...");
+//		playbutton.setImage(new Image(""));
+//		String str = inputString.getText();
+//		checkInput(str);
+//
+//		// generate rectangles
+//		//generateMergeRec();
+//	}
 
 	/**
 	 * Random input.
@@ -300,7 +297,8 @@ public class MainFrameController implements Initializable {
 		inputString.setText(strInput.substring(1, strInput.length() - 1));
 		// System.out.println(Arrays.toString(random));
 
-		mergeList.clear();
+		//mergeList.clear();
+        recList.clear();
 		list.clear();
 		hbox.getChildren().clear();
 		pane.getChildren().clear();
@@ -321,43 +319,46 @@ public class MainFrameController implements Initializable {
 			Rectangle rectangle = new Rectangle(20, 20 * anInput);
 			rectangle.setFill(shapeColor);
 			recList.add(rectangle);
+
 			Text text = new Text(String.valueOf(anInput));
-			StackPane stackPane = new StackPane();
-			stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
-			stackPane.setId(String.valueOf(anInput));
-			stackPane.getChildren().addAll(rectangle, text);
-			stackPane.setAlignment(Pos.BOTTOM_CENTER);
-			list.add(stackPane);
+			StackPane sp = new StackPane();
+			sp.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
+			sp.setId(String.valueOf(anInput));
+			sp.getChildren().addAll(rectangle, text);
+			sp.setAlignment(Pos.BOTTOM_CENTER);
+			list.add(sp);
 		}
+
+		System.out.println(recList.size());
 
 		hbox.getChildren().addAll(list);
 	}
 
-	private void generateMergeRec() {
-		Color shapeColor = PreferenceController.color;
-
-		if (input == null || input.length == 0) {
-			input = defaultInput;
-		}
-
-		for (int i = 0; i < input.length; i++) {
-			Rectangle rectangle = new Rectangle(20, 20 * input[i]);
-			rectangle.setFill(shapeColor);
-			recList.add(rectangle);
-			Text text = new Text(String.valueOf(input[i]));
-			StackPane stackPane = new StackPane();
-			stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
-			stackPane.setId(String.valueOf(input[i]));
-			stackPane.getChildren().addAll(rectangle, text);
-			stackPane.setAlignment(Pos.BOTTOM_CENTER);
-			stackPane.setTranslateX(SPACING * i);
-			mergeList.add(stackPane);
-		}
-
-		pane.getChildren().addAll(mergeList);
-		pane.setTranslateX(200);
-		pane.setTranslateY(200);
-	}
+//	private void generateMergeRec() {
+//		Color shapeColor = PreferenceController.color;
+//
+//		if (input == null || input.length == 0) {
+//			input = defaultInput;
+//		}
+//
+//		for (int i = 0; i < input.length; i++) {
+//			Rectangle rectangle = new Rectangle(20, 20 * input[i]);
+//			rectangle.setFill(shapeColor);
+//			recList.add(rectangle);
+//			Text text = new Text(String.valueOf(input[i]));
+//			StackPane stackPane = new StackPane();
+//			stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
+//			stackPane.setId(String.valueOf(input[i]));
+//			stackPane.getChildren().addAll(rectangle, text);
+//			stackPane.setAlignment(Pos.BOTTOM_CENTER);
+//			stackPane.setTranslateX(SPACING * i);
+//			mergeList.add(stackPane);
+//		}
+//
+//		pane.getChildren().addAll(mergeList);
+//		pane.setTranslateX(200);
+//		pane.setTranslateY(200);
+//	}
 
 	private void displayCode(String language, String algo) {
 		String fileName = "./code/" + algo + language + ".txt";
@@ -498,28 +499,26 @@ public class MainFrameController implements Initializable {
 		displayCode(languageSelect, selectAlgo);
 	}
 
-	private Timeline change_color(StackPane l1, StackPane l2, Color color) {
+	private ParallelTransition changeColor(StackPane l1, StackPane l2, Color from, Color to) {
 		Rectangle rec1 = (Rectangle) l1.getChildren().get(0);
 		Rectangle rec2 = (Rectangle) l2.getChildren().get(0);
-		Timeline tl = new Timeline();
 
-		KeyFrame changeColor = new KeyFrame(Duration.seconds(0.25), new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				rec1.setFill(color);
-				rec2.setFill(color);
-			}
-		});
+        FillTransition f1 = new FillTransition(Duration.millis(10), rec1, from, to);
+        FillTransition f2 = new FillTransition(Duration.millis(10), rec2, from, to);
 
-		tl.getKeyFrames().add(changeColor);
-		return tl;
+        ParallelTransition pl = new ParallelTransition();
+        pl.getChildren().addAll(f1, f2);
+
+        return pl;
 	}
 
 	// sort control part
 	private ParallelTransition swap(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
 		TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
 		TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
-		ParallelTransition pl = new ParallelTransition();
-		t1.setByX(30);
+
+        ParallelTransition pl = new ParallelTransition();
+        t1.setByX(30);
 		t2.setByX(-30);
 		pl.getChildren().addAll(t1, t2);
 		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
@@ -581,9 +580,9 @@ public class MainFrameController implements Initializable {
 					arr[j - 1] = arr[j];
 					arr[j] = temp;
 					// change color and move
-					sq.getChildren().add(change_color(list.get(j - 1), list.get(j), color_change));
+                    sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), rec_color, color_change));
 					sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
-					sq.getChildren().add(change_color(list.get(j - 1), list.get(j), rec_color));
+					sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, rec_color));
 				}
 			}
 		}
@@ -599,7 +598,9 @@ public class MainFrameController implements Initializable {
 					temp = arr[j];
 					arr[j] = arr[j - 1];
 					arr[j - 1] = temp;
-					sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
+                    sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), rec_color, color_change));
+                    sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
+                    sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, rec_color));
 				} else {
 					break;
 				}
@@ -744,7 +745,9 @@ public class MainFrameController implements Initializable {
 			arr[right] = temp;
 			// System.out.println("SWAP " + list.get(left) + " AND " +
 			// list.get(right));
+            animationList.add(changeColor(list.get(left), list.get(right), rec_color, color_change));
 			animationList.add(swap(list.get(left), list.get(right), left - right, list, duration));
+            animationList.add(changeColor(list.get(left), list.get(right), color_change, rec_color));
 		}
 		if (arr[left] >= arr[end]) {
 			int temp = arr[left];
@@ -752,7 +755,9 @@ public class MainFrameController implements Initializable {
 			arr[end] = temp;
 			// System.out.println("SWAP " + list.get(left) + " AND " +
 			// list.get(end));
+            animationList.add(changeColor(list.get(left), list.get(end), rec_color, color_change));
 			animationList.add(swap(list.get(left), list.get(end), left - end, list, duration));
+            animationList.add(changeColor(list.get(left), list.get(end), color_change, rec_color));
 		} else
 			left++;
 
