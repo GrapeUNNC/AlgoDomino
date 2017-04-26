@@ -213,6 +213,7 @@ public class MainFrameController implements Initializable {
 				timeSlider.setValue(currentTime.divide(duration.toMillis()).toMillis() * 100);
 			} else {
 				timeSlider.setDisable(true);
+                inputString.setDisable(true);
 				st.stop();
 			}
 		});
@@ -223,8 +224,7 @@ public class MainFrameController implements Initializable {
 	 */
 	@FXML
 	public void speedChange() {
-		volumeSlider.valueProperty()
-				.addListener((observable, oldValue, newValue) -> st.setRate((double) (newValue) / 40));
+		volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> st.setRate((double) (newValue) / 40));
 	}
 
 	@FXML
@@ -344,8 +344,6 @@ public class MainFrameController implements Initializable {
 			list.add(sp);
 		}
 
-		System.out.println(recList.size());
-
 		hbox.getChildren().addAll(list);
 	}
 
@@ -428,7 +426,7 @@ public class MainFrameController implements Initializable {
 			st = QuickSort(input, st, duration);
 			break;
 		case "merge":
-			st = MergeSort(input, list, st, duration);
+			st = MergeSort(input, st, duration);
 			// intializeMergeRec();
 			// sq = MergeSort(input, mergelist, sq);
 			break;
@@ -595,9 +593,9 @@ public class MainFrameController implements Initializable {
 					arr[j - 1] = arr[j];
 					arr[j] = temp;
 					// change color and move
-                    sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), rec_color, color_change));
+                    sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
 					sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
-					sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, rec_color));
+					sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
 				}
 			}
 		}
@@ -614,9 +612,9 @@ public class MainFrameController implements Initializable {
 					arr[j] = arr[j - 1];
 					arr[j - 1] = temp;
 
-                    sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), rec_color, color_change));
+                    sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
                     sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
-                    sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, rec_color));
+                    sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
 				} else {
 					break;
 				}
@@ -638,9 +636,9 @@ public class MainFrameController implements Initializable {
 				tmp = arr[i];
 				arr[i] = arr[minIndex];
 				arr[minIndex] = tmp;
-				sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), rec_color, color_change));
+				sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), PreferenceController.color, color_change));
 				sq.getChildren().add(swapSelect(list.get(i), list.get(minIndex), list, duration));
-				sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), color_change, rec_color));
+				sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), color_change, PreferenceController.color));
 			}
 		}
 		return sq;
@@ -764,9 +762,9 @@ public class MainFrameController implements Initializable {
 			arr[right] = temp;
 			// System.out.println("SWAP " + list.get(left) + " AND " +
 			// list.get(right));
-            animationList.add(changeColor(list.get(left), list.get(right), rec_color, color_change));
+            animationList.add(changeColor(list.get(left), list.get(right), PreferenceController.color, color_change));
 			animationList.add(swap(list.get(left), list.get(right), left - right, list, duration));
-            animationList.add(changeColor(list.get(left), list.get(right), color_change, rec_color));
+            animationList.add(changeColor(list.get(left), list.get(right), color_change, PreferenceController.color));
 		}
 		if (arr[left] >= arr[end]) {
 			int temp = arr[left];
@@ -774,9 +772,9 @@ public class MainFrameController implements Initializable {
 			arr[end] = temp;
 			// System.out.println("SWAP " + list.get(left) + " AND " +
 			// list.get(end));
-            animationList.add(changeColor(list.get(left), list.get(end), rec_color, color_change));
+            animationList.add(changeColor(list.get(left), list.get(end), PreferenceController.color, color_change));
 			animationList.add(swap(list.get(left), list.get(end), left - end, list, duration));
-            animationList.add(changeColor(list.get(left), list.get(end), color_change, rec_color));
+            animationList.add(changeColor(list.get(left), list.get(end), color_change, PreferenceController.color));
 		} else
 			left++;
 
@@ -797,14 +795,13 @@ public class MainFrameController implements Initializable {
 		return t1;
 	}
 
-	private ArrayList<Animation> mergeSortRec(int arr[], int left, int right, ArrayList<Animation> animationList,
-			ArrayList<StackPane> list, double duration) {
+	private ArrayList<Animation> mergeSortRec(int arr[], int left, int right, ArrayList<Animation> animationList, double duration) {
 		if (left >= right) {
 			return animationList;
 		}
 		int center = (left + right) / 2;
-		mergeSortRec(arr, left, center, animationList, list, duration);
-		mergeSortRec(arr, center + 1, right, animationList, list, duration);
+		mergeSortRec(arr, left, center, animationList, duration);
+		mergeSortRec(arr, center + 1, right, animationList, duration);
 		animationList = merge(arr, animationList, left, center, right, duration);
 		return animationList;
 	}
@@ -844,10 +841,10 @@ public class MainFrameController implements Initializable {
 		return animationList;
 	}
 
-	private SequentialTransition MergeSort(int arr[], ArrayList<StackPane> list, SequentialTransition sq,
+	private SequentialTransition MergeSort(int arr[], SequentialTransition sq,
 			double duration) {
 		ArrayList<Animation> animationList = new ArrayList<>();
-		animationList = mergeSortRec(arr, 0, arr.length - 1, animationList, list, duration);
+		animationList = mergeSortRec(arr, 0, arr.length - 1, animationList, duration);
 		sq.getChildren().addAll(animationList);
 		return sq;
 	}

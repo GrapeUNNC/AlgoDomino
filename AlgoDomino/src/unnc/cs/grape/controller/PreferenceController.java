@@ -44,15 +44,5 @@ public class PreferenceController {
 	        dialogStage.close();
 	    }
 
-	    public void test(int index) {
-            color=Color.valueOf("#1565C0");
-            MainFrameController.getRectangle().get(7).setFill(color);
-//            int length= MainFrameController.getRectangle().size();
-//            for(int i=0;i<length;i++)
-//            {
-//                MainFrameController.getRectangle().get(i).setFill(color);
-//            }
-        }
-
 
 }
