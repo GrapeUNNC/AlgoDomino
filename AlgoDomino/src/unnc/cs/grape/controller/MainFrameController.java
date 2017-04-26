@@ -67,6 +67,8 @@ public class MainFrameController implements Initializable {
 
 	private final Image pause = new Image("unnc/cs/grape/view/assets/icon/pause.png", 44, 46, false, false);
 	private final Image play = new Image("unnc/cs/grape/view/assets/icon/play.png", 44, 46, false, false);
+		private final Image bubbleGif = new Image("unnc/cs/grape/view/assets/icon/bubble.gif", 92, 76, false, false);
+	private final Image bubbleJpg = new Image("unnc/cs/grape/view/assets/icon/bubble.jpg", 92, 76, false, false);
 
 	@FXML
 	private TextField inputString;
@@ -100,6 +102,9 @@ public class MainFrameController implements Initializable {
 
 	@FXML
 	private ImageView playbutton;
+	
+	@FXML
+	private ImageView bubbleImg;
 
 	@FXML
 	private Pane pane;
@@ -222,6 +227,16 @@ public class MainFrameController implements Initializable {
 				.addListener((observable, oldValue, newValue) -> st.setRate((double) (newValue) / 40));
 	}
 
+	@FXML
+	public void bubbleEnter() {
+		bubbleImg.setImage(bubbleGif);
+	}
+	
+	@FXML
+	public void bubbleExit() {
+		bubbleImg.setImage(bubbleJpg);
+	}
+	
 	/**
 	 * Clear.
 	 */
@@ -598,6 +613,7 @@ public class MainFrameController implements Initializable {
 					temp = arr[j];
 					arr[j] = arr[j - 1];
 					arr[j - 1] = temp;
+
                     sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), rec_color, color_change));
                     sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
                     sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, rec_color));
@@ -622,7 +638,9 @@ public class MainFrameController implements Initializable {
 				tmp = arr[i];
 				arr[i] = arr[minIndex];
 				arr[minIndex] = tmp;
+				sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), rec_color, color_change));
 				sq.getChildren().add(swapSelect(list.get(i), list.get(minIndex), list, duration));
+				sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), color_change, rec_color));
 			}
 		}
 		return sq;
@@ -707,6 +725,7 @@ public class MainFrameController implements Initializable {
 			arr[i] = arr[0];
 			arr[0] = temp;
 			sq.getChildren().add(swapHeap3(list.get(0), list.get(i), duration));
+
 			sq.getChildren().add(swapHeap2(list.get(0), list.get(i), list, duration, 0, i));
 			int parent = 0;
 			int tempFather = arr[parent];
