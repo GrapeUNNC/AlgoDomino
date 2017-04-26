@@ -32,7 +32,7 @@ public class MainApp extends Application {
     private static Stage dialogStage2;
     private static Stage dialogStage3;
     private static Scene mainScene;
-
+    
 
     @Override
     public void start(Stage primaryStage) {
