@@ -106,6 +106,15 @@ public class MainFrameController implements Initializable {
 
 	@FXML
 	private ImageView bubbleImg;
+	@FXML
+	private ImageView insertionImg;
+	@FXML
+	private ImageView selectionImg;
+	@FXML
+	private ImageView quickImg;
+	@FXML
+	private ImageView heapImg;
+
 
 	@FXML
 	private Pane pane;
@@ -236,6 +245,42 @@ public class MainFrameController implements Initializable {
 	@FXML
 	public void bubbleExit() {
 		bubbleImg.setImage(bubbleJpg);
+	}
+	@FXML
+	public void insertionEnter() {
+		insertionImg.setImage(new Image("unnc/cs/grape/view/assets/icon/insertion.gif", 92, 76, false, false));
+	}
+
+	@FXML
+	public void insertionExit() {
+		insertionImg.setImage(new Image("unnc/cs/grape/view/assets/icon/insertion.jpg", 92, 76, false, false));
+	}
+	@FXML
+	public void selectionEnter() {
+		selectionImg.setImage(new Image("unnc/cs/grape/view/assets/icon/selection.gif", 92, 76, false, false));
+	}
+
+	@FXML
+	public void selectionExit() {
+		selectionImg.setImage(new Image("unnc/cs/grape/view/assets/icon/selection.jpg", 92, 76, false, false));
+	}
+	@FXML
+	public void quickEnter() {
+		quickImg.setImage(new Image("unnc/cs/grape/view/assets/icon/quick.gif", 92, 76, false, false));
+	}
+
+	@FXML
+	public void quickExit() {
+		quickImg.setImage(new Image("unnc/cs/grape/view/assets/icon/quick.jpg", 92, 76, false, false));
+	}
+	@FXML
+	public void heapEnter() {
+		heapImg.setImage(new Image("unnc/cs/grape/view/assets/icon/heap.gif", 92, 76, false, false));
+	}
+
+	@FXML
+	public void heapExit() {
+		heapImg.setImage(new Image("unnc/cs/grape/view/assets/icon/heap.jpg", 92, 76, false, false));
 	}
 
 	/**
