@@ -599,7 +599,10 @@ public class MainFrameController implements Initializable {
 					temp = arr[j];
 					arr[j] = arr[j - 1];
 					arr[j - 1] = temp;
+					// change color and move
+					sq.getChildren().add(change_color(list.get(j - 1), list.get(j), color_change));
 					sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
+					sq.getChildren().add(change_color(list.get(j - 1), list.get(j), rec_color));
 				} else {
 					break;
 				}
@@ -621,7 +624,9 @@ public class MainFrameController implements Initializable {
 				tmp = arr[i];
 				arr[i] = arr[minIndex];
 				arr[minIndex] = tmp;
+				sq.getChildren().add(change_color(list.get(i), list.get(minIndex), color_change));
 				sq.getChildren().add(swapSelect(list.get(i), list.get(minIndex), list, duration));
+				sq.getChildren().add(change_color(list.get(i), list.get(minIndex), rec_color));
 			}
 		}
 		return sq;
@@ -695,7 +700,9 @@ public class MainFrameController implements Initializable {
 				arr[child] = arr[parent];
 				arr[parent] = temp;
 				temp = arr[child];
+				sq.getChildren().add(change_color(list.get(parent), list.get(child), color_change));
 				sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
+				sq.getChildren().add(change_color(list.get(parent), list.get(child), rec_color));
 				parent = child;
 				child = 2 * child + 1;
 			}
@@ -705,8 +712,13 @@ public class MainFrameController implements Initializable {
 			int temp = arr[i];
 			arr[i] = arr[0];
 			arr[0] = temp;
+			sq.getChildren().add(change_color(list.get(0), list.get(i), color_change));
 			sq.getChildren().add(swapHeap3(list.get(0), list.get(i), duration));
+			sq.getChildren().add(change_color(list.get(0), list.get(i), rec_color));
+			
+			sq.getChildren().add(change_color(list.get(0), list.get(i), color_change));
 			sq.getChildren().add(swapHeap2(list.get(0), list.get(i), list, duration, 0, i));
+			sq.getChildren().add(change_color(list.get(0), list.get(i), rec_color));
 			int parent = 0;
 			int tempFather = arr[parent];
 			int child = 2 * parent + 1;
@@ -720,7 +732,9 @@ public class MainFrameController implements Initializable {
 				arr[child] = arr[parent];
 				arr[parent] = tempFather;
 				tempFather = arr[child];
+				sq.getChildren().add(change_color(list.get(parent), list.get(child), color_change));
 				sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
+				sq.getChildren().add(change_color(list.get(parent), list.get(child), rec_color));
 				parent = child;
 				child = 2 * child + 1;
 			}
