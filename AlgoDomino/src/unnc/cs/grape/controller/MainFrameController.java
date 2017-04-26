@@ -71,6 +71,8 @@ public class MainFrameController implements Initializable {
 
 	private final Image pause = new Image("unnc/cs/grape/view/assets/icon/pause.png", 44, 46, false, false);
 	private final Image play = new Image("unnc/cs/grape/view/assets/icon/play.png", 44, 46, false, false);
+		private final Image bubbleGif = new Image("unnc/cs/grape/view/assets/icon/bubble.gif", 92, 76, false, false);
+	private final Image bubbleJpg = new Image("unnc/cs/grape/view/assets/icon/bubble.jpg", 92, 76, false, false);
 
 	@FXML
 	private TextField inputString;
@@ -104,6 +106,9 @@ public class MainFrameController implements Initializable {
 
 	@FXML
 	private ImageView playbutton;
+	
+	@FXML
+	private ImageView bubbleImg;
 
 	@FXML
 	private Pane pane;
@@ -226,6 +231,16 @@ public class MainFrameController implements Initializable {
 				.addListener((observable, oldValue, newValue) -> st.setRate((double) (newValue) / 40));
 	}
 
+	@FXML
+	public void bubbleEnter() {
+		bubbleImg.setImage(bubbleGif);
+	}
+	
+	@FXML
+	public void bubbleExit() {
+		bubbleImg.setImage(bubbleJpg);
+	}
+	
 	/**
 	 * Clear.
 	 */

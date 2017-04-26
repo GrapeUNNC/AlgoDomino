@@ -33,7 +33,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <left>
@@ -99,7 +99,7 @@
                                                          <children>
                                                             <VBox alignment="TOP_CENTER" layoutX="-24.0" layoutY="-116.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="163.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
-                                                                  <ToggleButton fx:id="bubble" accessibleText="bubble" contentDisplay="TOP" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Bubble sort">
+                                                                  <ToggleButton fx:id="bubble" accessibleText="bubble" contentDisplay="TOP" mnemonicParsing="false" onAction="#chooseAlgo" onMouseEntered="#bubbleEnter" onMouseExited="#bubbleExit" prefHeight="50.0" prefWidth="120.0" text="Bubble sort">
                                                                      <VBox.margin>
                                                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                                      </VBox.margin>
@@ -107,9 +107,9 @@
                                                                         <ToggleGroup fx:id="togglegroup" />
                                                                      </toggleGroup>
                                                                      <graphic>
-                                                                        <ImageView fitHeight="77.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                                                                        <ImageView fx:id="bubbleImg" fitHeight="76.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
                                                                            <image>
-                                                                              <Image url="@assets/icon/bubble.gif" />
+                                                                              <Image url="@assets/icon/bubble.jpg" />
                                                                            </image>
                                                                         </ImageView>
                                                                      </graphic>
