@@ -106,6 +106,8 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	@FXML
 	private ImageView quickImg;
 	@FXML
+	private ImageView mergeImg;
+	@FXML
 	private ImageView heapImg;
 
 	@FXML
@@ -266,7 +268,17 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	public void quickExit() {
 		quickImg.setImage(new Image("unnc/cs/grape/view/assets/icon/quick.jpg", 92, 76, false, false));
 	}
+	
+	@FXML
+	public void mergeEnter() {
+		mergeImg.setImage(new Image("unnc/cs/grape/view/assets/icon/merge.gif", 92, 76, false, false));
+	}
 
+	@FXML
+	public void mergeExit() {
+		mergeImg.setImage(new Image("unnc/cs/grape/view/assets/icon/merge.jpg", 92, 76, false, false));
+	}
+	
 	@FXML
 	public void heapEnter() {
 		heapImg.setImage(new Image("unnc/cs/grape/view/assets/icon/heap.gif", 92, 76, false, false));
