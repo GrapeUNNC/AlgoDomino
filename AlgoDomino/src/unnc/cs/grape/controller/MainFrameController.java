@@ -929,98 +929,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		sq.getChildren().addAll(animationList);
 		return sq;
 	}
-	//
-	// private TranslateTransition move(StackPane sp, int X) {
-	// TranslateTransition t = new TranslateTransition();
-	// t.setNode(sp);
-	// t.setDuration(SPEED);
-	// t.setToX(X);
-	// t.setToY(SORT_GROUP_MOVE_DELTA);
-	// return t;
-	//
-	// }
-	//
-	// private SequentialTransition MergeSort(int arr[], ArrayList<StackPane>
-	// list, SequentialTransition sq) {
-	// int number = arr.length;
-	// this.helper = new int[number];
-	// this.helperNodes = new StackPane[number];
-	// sortRange(0, number - 1, arr, sq, list);
-	// return sq;
-	// }
-	//
-	// private void sortRange(int low, int high, int arr[], SequentialTransition
-	// sq, ArrayList<StackPane> list) {
-	// // check if low is smaller then high, if not then the array is sorted
-	// if (low < high) {
-	// // Get the index of the element which is in the middle
-	// int middle = low + (high - low) / 2;
-	// // Sort the left side of the array
-	// sortRange(low, middle, arr, sq, list);
-	// // Sort the right side of the array
-	// sortRange(middle + 1, high, arr, sq, list);
-	// // Combine them both
-	// merge(low, middle, high, arr, list, sq);
-	// }
-	// }
-	//
-	// private void merge(int low, int middle, int high, int arr[],
-	// ArrayList<StackPane> list, SequentialTransition sq) {
-	// // Copy both parts into the helper array
-	// for (int i = low; i <= high; i++) {
-	// helper[i] = arr[i];
-	// helperNodes[i] = list.get(i);
-	// }
-	//
-	// int i = low;
-	// int j = middle + 1;
-	// int k = low;
-	// // Copy the smallest values from either the left or the right side back
-	// // to the original array
-	//
-	// while (i <= middle && j <= high) {
-	// if (helper[i] <= helper[j]) {
-	// arr[k] = helper[i];
-	// list.set(k, helperNodes[i]);
-	// sq.getChildren().add(move(helperNodes[i], k * SPACING));
-	// i++;
-	// } else {
-	// arr[k] = helper[j];
-	// list.set(k, helperNodes[j]);
-	// sq.getChildren().add(move(helperNodes[j], k * SPACING));
-	// j++;
-	// }
-	// k++;
-	// }
-	// // Copy the rest of the left side of the array into the target array
-	// while (i <= middle) {
-	// arr[k] = helper[i];
-	// list.set(k, helperNodes[i]);
-	// sq.getChildren().add(move(helperNodes[i], k * SPACING));
-	// k++;
-	// i++;
-	// }
-	//
-	// // Even if we didn't move in the array because it was already ordered,
-	// // move on screen for any remaining nodes in the target array.
-	// while (j <= high) {
-	// sq.getChildren().add(move(helperNodes[j], k * SPACING));
-	// k++;
-	// j++;
-	// }
-	//
-	// ParallelTransition moveUp = new ParallelTransition();
-	//
-	// for (int z = low; z <= high; z++) {
-	// TranslateTransition moveNodeUp = new TranslateTransition();
-	// moveNodeUp.setNode(helperNodes[z]);
-	// moveNodeUp.setDuration(SPEED);
-	// moveNodeUp.setByY(-SORT_GROUP_MOVE_DELTA);
-	// moveUp.getChildren().add(moveNodeUp);
-	// }
-	//
-	// sq.getChildren().add(moveUp);
-	// }
 
 	/** Compare Part **/
 	public void chooseFirstAlgo() {
@@ -1131,7 +1039,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		width = (hbox.getWidth() / input.length) / 3 * 2;
 
 		for (int anInput : input) {
-			height = (hbox.getWidth() / max) * anInput;
+    			height = (hbox.getWidth() / max) * anInput;
 			Rectangle rectangle = new Rectangle(width, height);
 			rectangle.setFill(shapeColor);
 			StackPane stackPane = new StackPane();
