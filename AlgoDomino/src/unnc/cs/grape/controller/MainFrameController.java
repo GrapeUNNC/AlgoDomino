@@ -163,7 +163,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		if (hbox.getChildren() == null || input == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Warning Dialog");
-			alert.setHeaderText("Warning");
+			alert.setHeaderText(null);
 			alert.setContentText("Please initialize first!");
 			alert.showAndWait();
 
@@ -174,7 +174,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			alert.setHeaderText(null);
 			alert.setContentText("Please choose an algorithm to run!");
 			alert.showAndWait();
-			System.out.println("Please choose an algorithm to run...");
 		} else {
 			sort(selectAlgo);
 		}
@@ -324,7 +323,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			if (input.length > 15) {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");
-				alert.setHeaderText("Warning");
+				alert.setHeaderText(null);
 				alert.setContentText("The input size should less than 15!");
 				alert.showAndWait();
 			} else {
@@ -345,19 +344,12 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			} else {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");
-				alert.setHeaderText("Warning");
+				alert.setHeaderText(null);
 				alert.setContentText("The input should start with an integer!");
 				alert.showAndWait();
 			}
 		} else {
 			System.out.println("No input, use default input...");
-			// Alert alert = new Alert(AlertType.WARNING);
-			// alert.setTitle("Warning Dialog");
-			// alert.setHeaderText("Warning");
-			// alert.setContentText(
-			// "You don't have an input in the text area, the program will use
-			// default value as input!");
-			// alert.showAndWait();
 			input = defaultInput;
 		}
 	}
@@ -880,9 +872,9 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			animationList.add(changeColor(list.get(left), list.get(end), PreferenceController.color, color_change));
 			animationList.add(swap(list.get(left), list.get(end), left - end, list, duration));
 			animationList.add(changeColor(list.get(left), list.get(end), color_change, PreferenceController.color));
-		} else
+		} else {
 			left++;
-
+		}
 		quickSortRec(arr, start, left - 1, animationList, duration);
 		quickSortRec(arr, left + 1, end, animationList, duration);
 		return animationList;
@@ -1079,7 +1071,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	@FXML
 	public void startCompare() {
 		clear_c();
-		System.out.println("Generate rectangles");
 
 		if (compareAlgo1 == null || compareAlgo2 == null) {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -1088,18 +1079,26 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			alert.setContentText("Please choose the algorithms to compare!");
 			alert.showAndWait();
 		} else {
-			if (inputString_c.getText() != null) {
+			if (!inputString_c.getText().isEmpty()) {
 				input_c = getInput();
-				generate_c(list_l, hbox_left, input_c);
-				generate_c(list_r, hbox_right, input_c);
+				if(input_c == null) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("Warning Dialog");
+					alert.setHeaderText(null);
+					alert.setContentText("Please input with a right format!");
+					alert.showAndWait();
+				} else {
+					generate_c(list_l, hbox_left, input_c);
+					generate_c(list_r, hbox_right, input_c);
 
-				sq_c_1 = sort_c(compareAlgo1, list_l, duration_c, input_c, hbox_left.getWidth());
-				sq_c_1.play();
-				showTime(sq_c_1, duration_c, time_left);
+					sq_c_1 = sort_c(compareAlgo1, list_l, duration_c, input_c, hbox_left.getWidth());
+					sq_c_1.play();
+					showTime(sq_c_1, duration_c, time_left);
 
-				sq_c_2 = sort_c(compareAlgo2, list_r, duration_c, input_c, hbox_right.getWidth());
-				sq_c_2.play();
-				showTime(sq_c_2, duration_c, time_right);
+					sq_c_2 = sort_c(compareAlgo2, list_r, duration_c, input_c, hbox_right.getWidth());
+					sq_c_2.play();
+					showTime(sq_c_2, duration_c, time_right);
+				}
 			} else {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");
@@ -1165,27 +1164,23 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	}
 
 	private int[] getInput() {
-		int[] input_c;
+		int[] input_c = null;
 		int min, max, randomNum;
 
 		String str = inputString_c.getText();
 
-		if (str.isEmpty()) {
-			min = 1;
-			max = 100;
-		} else {
-			int[] in = new int[2];
-			String[] sp = str.split("\\D+");
-			in = Stream.of(sp).mapToInt(Integer::parseInt).toArray();
+		int[] in = new int[2];
+		String[] sp = str.split("\\D+");
+		in = Stream.of(sp).mapToInt(Integer::parseInt).toArray();
+		if (in.length == 2) {
 			min = in[0];
 			max = in[1];
-		}
+			input_c = new int[max - min + 1];
 
-		input_c = new int[max - min + 1];
-
-		for (int i = 0; i < input_c.length; i++) {
-			randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
-			input_c[i] = randomNum;
+			for (int i = 0; i < input_c.length; i++) {
+				randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
+				input_c[i] = randomNum;
+			}
 		}
 
 		return input_c;
@@ -1194,7 +1189,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	private void generate_c(ArrayList<StackPane> list, HBox hbox, int[] input) {
 		Color shapeColor = PreferenceController.color;
 		double width, height, space;
-
+		
 		int max = input[0];
 		for (int i : input) {
 			if (i >= max)
