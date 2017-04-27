@@ -327,7 +327,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 				alert.setContentText("The input size should less than 15!");
 				alert.showAndWait();
 			} else {
-				if(!checkMaxAndMinInput()){
+				if (!checkMaxAndMinInput()) {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("Warning Dialog");
 					alert.setHeaderText(null);
@@ -343,15 +343,15 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	}
 
 	private boolean checkMaxAndMinInput() {
-		for(int i : input) {
-			if(i > 15)
+		for (int i : input) {
+			if (i > 15)
 				return false;
-			if(i < 1)
+			if (i < 1)
 				return false;
 		}
 		return true;
 	}
-	
+
 	private void checkInput(String str) {
 		// if has input
 		if (str.length() > 0) {
@@ -1099,7 +1099,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		} else {
 			if (!inputString_c.getText().isEmpty()) {
 				input_c = getInput();
-				if(input_c == null) {
+				if (input_c == null) {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("Warning Dialog");
 					alert.setHeaderText(null);
@@ -1207,7 +1207,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	private void generate_c(ArrayList<StackPane> list, HBox hbox, int[] input) {
 		Color shapeColor = PreferenceController.color;
 		double width, height, space;
-		
+
 		int max = input[0];
 		for (int i : input) {
 			if (i >= max)
