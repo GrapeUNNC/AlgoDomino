@@ -327,11 +327,11 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 				alert.setContentText("The input size should less than 15!");
 				alert.showAndWait();
 			} else {
-				if(!checkMaxInput()){
+				if(!checkMaxAndMinInput()){
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("Warning Dialog");
 					alert.setHeaderText(null);
-					alert.setContentText("The input integer shouldn't be larger than 15!");
+					alert.setContentText("The input integer shouldn't be larger than 15 or smaller than 1!");
 					alert.showAndWait();
 				} else {
 					generateRec();
@@ -342,9 +342,11 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		}
 	}
 
-	private boolean checkMaxInput() {
+	private boolean checkMaxAndMinInput() {
 		for(int i : input) {
 			if(i > 15)
+				return false;
+			if(i < 1)
 				return false;
 		}
 		return true;
