@@ -856,6 +856,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		if (start >= end)
 			return animationList;
 		int mid = arr[end];
+        animationList.add(changeColor(list.get(end), list.get(end), PreferenceController.color, Color.DARKCYAN));
 		int left = start, right = end - 1;
 		while (left < right) {
 			while (arr[left] <= mid && left < right)
@@ -883,6 +884,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		} else
 			left++;
 
+        animationList.add(changeColor(list.get(end), list.get(end), Color.DARKCYAN, PreferenceController.color));
 		quickSortRec(arr, start, left - 1, animationList, duration);
 		quickSortRec(arr, left + 1, end, animationList, duration);
 		return animationList;
