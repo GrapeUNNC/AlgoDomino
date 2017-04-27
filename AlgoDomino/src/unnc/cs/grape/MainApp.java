@@ -32,12 +32,12 @@ public class MainApp extends Application {
     private static Stage dialogStage2;
     private static Stage dialogStage3;
     private static Scene mainScene;
-    
+
 
     @Override
     public void start(Stage primaryStage) {
         MainApp.primaryStage = primaryStage;
-        primaryStage.setTitle("Visualizing sorting algorithms");
+        primaryStage.setTitle("Domino");
         primaryStage.setWidth(1034);
         primaryStage.setHeight(660);
         primaryStage.setResizable(false);
