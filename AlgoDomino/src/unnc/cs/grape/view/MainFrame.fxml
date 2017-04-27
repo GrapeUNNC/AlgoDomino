@@ -34,7 +34,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <left>
@@ -345,7 +345,7 @@
                                                                                  </font>
                                                                               </Label>
                                                                               <HBox fx:id="hbox_left" maxHeight="280.0" maxWidth="280.0" minHeight="280.0" minWidth="280.0" prefHeight="280.0" prefWidth="280.0" />
-                                                                              <Label prefHeight="23.0" prefWidth="90.0" text="time:">
+                                                                              <Label fx:id="time_left" prefHeight="23.0" prefWidth="90.0">
                                                                                  <font>
                                                                                     <Font name="System Bold" size="15.0" />
                                                                                  </font>
@@ -365,7 +365,7 @@
                                                                            </font>
                                                                         </Label>
                                                                         <HBox fx:id="hbox_right" maxHeight="280.0" maxWidth="280.0" minHeight="280.0" minWidth="280.0" prefHeight="280.0" prefWidth="280.0" />
-                                                                        <Label prefHeight="23.0" prefWidth="90.0" text="time:">
+                                                                        <Label fx:id="time_right" prefHeight="23.0" prefWidth="90.0">
                                                                            <font>
                                                                               <Font name="System Bold" size="15.0" />
                                                                            </font>

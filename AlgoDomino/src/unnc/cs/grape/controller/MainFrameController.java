@@ -56,7 +56,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
     private final ArrayList<StackPane> list_r = new ArrayList<>();
 	private static ArrayList<Rectangle> recList = new ArrayList<>();
 	private final ArrayList<ToggleButton> toggleList = new ArrayList<>();
-	private ArrayList<SequentialTransition> sq_list = new ArrayList<>();
 	private static Color color_change = Color.valueOf("#1565C0");
 
 	private final Image pause = new Image("unnc/cs/grape/view/assets/icon/pause.png", 44, 46, false, false);
@@ -139,6 +138,12 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 	@FXML
 	private Label label_right;
+	
+	@FXML
+	private Label time_left;
+
+	@FXML
+	private Label time_right;
 
 	@FXML
 	private Label firstAlgoComplex;
@@ -1056,9 +1061,25 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		generate_c(list_r, hbox_right, input_c);
 
 		sq_c_1 = sort_c(compareAlgo1, list_l, duration_c, input_c, hbox_left.getWidth());
-		sq_c_2 = sort_c(compareAlgo2, list_r, duration_c, input_c, hbox_right.getWidth());
-
 		sq_c_1.play();
+		System.out.println(String.valueOf(sq_c_1.getChildren().size() * duration));
+		showTime(sq_c_1, duration_c, time_left);
+		
+		sq_c_2 = sort_c(compareAlgo2, list_r, duration_c, input_c, hbox_right.getWidth());
+		sq_c_2.play();
+		showTime(sq_c_2, duration_c, time_right);
+	}
+	
+	private void showTime(SequentialTransition sq, double duration, Label label) {
+		try{
+			if(sq.getChildren().size()!=0) {
+				label.setText("time: " + String.valueOf(sq.getChildren().size() * duration / 1000 + "s"));
+			} else {
+				label.setText("time: 0");
+			}
+		} catch (NullPointerException e) {
+			System.out.println(" -- Exception --");
+		}
 	}
 
 	private SequentialTransition sort_c(String compareAlgo, ArrayList<StackPane> list, double duration, int[] input,
@@ -1139,9 +1160,9 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			if (i >= max)
 				max = i;
 		}
-
+		
 		width = (hbox.getWidth() / input.length) / 3 * 2;
-
+		
 		for (int anInput : input) {
 			height = (hbox.getWidth() / max) * anInput;
 			Rectangle rectangle = new Rectangle(width, height);
