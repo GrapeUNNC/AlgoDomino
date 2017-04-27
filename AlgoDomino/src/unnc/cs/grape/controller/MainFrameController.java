@@ -327,13 +327,29 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 				alert.setContentText("The input size should less than 15!");
 				alert.showAndWait();
 			} else {
-				generateRec();
+				if(!checkMaxInput()){
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("Warning Dialog");
+					alert.setHeaderText(null);
+					alert.setContentText("The input integer shouldn't be larger than 15!");
+					alert.showAndWait();
+				} else {
+					generateRec();
+				}
 			}
 		} catch (NullPointerException e) {
 			System.out.println("---Exception---");
 		}
 	}
 
+	private boolean checkMaxInput() {
+		for(int i : input) {
+			if(i > 15)
+				return false;
+		}
+		return true;
+	}
+	
 	private void checkInput(String str) {
 		// if has input
 		if (str.length() > 0) {
