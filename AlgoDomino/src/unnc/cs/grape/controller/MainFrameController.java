@@ -53,7 +53,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	private String languageSelect = "Java";
 	private final ArrayList<StackPane> list = new ArrayList<>();
 	private final ArrayList<StackPane> list_l = new ArrayList<>();
-    private final ArrayList<StackPane> list_r = new ArrayList<>();
+	private final ArrayList<StackPane> list_r = new ArrayList<>();
 	private static ArrayList<Rectangle> recList = new ArrayList<>();
 	private final ArrayList<ToggleButton> toggleList = new ArrayList<>();
 	private static Color color_change = Color.valueOf("#1565C0");
@@ -138,7 +138,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 	@FXML
 	private Label label_right;
-	
+
 	@FXML
 	private Label time_left;
 
@@ -161,6 +161,12 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	@FXML
 	public void sortStart() {
 		if (hbox.getChildren() == null || input == null) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Warning Dialog");
+			alert.setHeaderText("Warning");
+			alert.setContentText("Please initialize first!");
+			alert.showAndWait();
+
 			System.out.println("Please initialize first...");
 		} else if (selectAlgo == null) {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -273,7 +279,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	public void quickExit() {
 		quickImg.setImage(new Image("unnc/cs/grape/view/assets/icon/quick.jpg", 92, 76, false, false));
 	}
-	
+
 	@FXML
 	public void mergeEnter() {
 		mergeImg.setImage(new Image("unnc/cs/grape/view/assets/icon/merge.gif", 92, 76, false, false));
@@ -283,7 +289,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	public void mergeExit() {
 		mergeImg.setImage(new Image("unnc/cs/grape/view/assets/icon/merge.jpg", 92, 76, false, false));
 	}
-	
+
 	@FXML
 	public void heapEnter() {
 		heapImg.setImage(new Image("unnc/cs/grape/view/assets/icon/heap.gif", 92, 76, false, false));
@@ -314,29 +320,47 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 		String str = inputString.getText();
 		checkInput(str);
-
-		// generate rectangles
-		generateRec();
+		try {
+			if (input.length > 15) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Warning Dialog");
+				alert.setHeaderText("Warning");
+				alert.setContentText("The input size should less than 15!");
+				alert.showAndWait();
+			} else {
+				generateRec();
+			}
+		} catch (NullPointerException e) {
+			System.out.println("---Exception---");
+		}
 	}
 
 	private void checkInput(String str) {
 		// if has input
 		if (str.length() > 0) {
-			String[] sp = str.split("\\D+");
-			input = Stream.of(sp).mapToInt(Integer::parseInt).toArray();
-			// System.out.println(Arrays.toString(userInput));
+			char ch = str.charAt(0);
+			if (Character.isDigit(ch)) {
+				String[] sp = str.split("\\D+");
+				input = Stream.of(sp).mapToInt(Integer::parseInt).toArray();
+			} else {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Warning Dialog");
+				alert.setHeaderText("Warning");
+				alert.setContentText("The input should start with an integer!");
+				alert.showAndWait();
+			}
 		} else {
 			System.out.println("No input, use default input...");
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Warning Dialog");
-			alert.setHeaderText("Warning");
-			alert.setContentText(
-					"You don't have an input in the text area, the program will use default value as input!");
-			alert.showAndWait();
+			// Alert alert = new Alert(AlertType.WARNING);
+			// alert.setTitle("Warning Dialog");
+			// alert.setHeaderText("Warning");
+			// alert.setContentText(
+			// "You don't have an input in the text area, the program will use
+			// default value as input!");
+			// alert.showAndWait();
 			input = defaultInput;
 		}
 	}
-
 
 	/**
 	 * Random input.
@@ -345,15 +369,14 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		System.out.println("Generate a random input");
 		int[] random = new int[15];
 		for (int i = 0; i < 15; i++) {
-			random[i] = (int) (Math.random() * 15 + 0);
+			random[i] = (int) (Math.random() * 15 + 1);
 		}
 		input = random;
 		String strInput = Arrays.toString(random);
 		inputString.clear();
 		inputString.setText(strInput.substring(1, strInput.length() - 1));
-		// System.out.println(Arrays.toString(random));
 
-        recList.clear();
+		recList.clear();
 		list.clear();
 		hbox.getChildren().clear();
 		pane.getChildren().clear();
@@ -878,62 +901,63 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	}
 
 	private TranslateTransition moveDown(StackPane l1, double speed, int distance) {
-        distance *= 30;
-        TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
-        t1.setByY(40);
-        t1.setByX(distance);
-        return t1;
-    }
+		distance *= 30;
+		TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
+		t1.setByY(40);
+		t1.setByX(distance);
+		return t1;
+	}
 
-	private ArrayList<Animation> mergeSortRec(int arr[], int left, int right, ArrayList<Animation> animationList, double duration) {
+	private ArrayList<Animation> mergeSortRec(int arr[], int left, int right, ArrayList<Animation> animationList,
+			double duration) {
 
 		if (left >= right) {
 			return animationList;
 		}
 		int center = (left + right) / 2;
- 		mergeSortRec(arr, left, center, animationList, duration);
- 		mergeSortRec(arr, center + 1, right, animationList, duration);
- 		animationList = merge(arr, animationList, left, center, right, duration);
+		mergeSortRec(arr, left, center, animationList, duration);
+		mergeSortRec(arr, center + 1, right, animationList, duration);
+		animationList = merge(arr, animationList, left, center, right, duration);
 		return animationList;
 	}
 
 	private ArrayList<Animation> merge(int[] arr, ArrayList<Animation> animationList, int left, int center, int right,
 			double duration) {
 		int[] tempArray = new int[arr.length];
-        ArrayList<StackPane> tempList = new ArrayList<>(list);
+		ArrayList<StackPane> tempList = new ArrayList<>(list);
 		int mid = center + 1;
 		int third = left;
 		int temp = left;
 
-        for (int i=left; i<=right; i++) {
-            animationList.add(moveUp(list.get(i), 250));
-        }
+		for (int i = left; i <= right; i++) {
+			animationList.add(moveUp(list.get(i), 250));
+		}
 
 		while (left <= center && mid <= right) {
 			if (arr[left] <= arr[mid]) {
-                animationList.add(moveDown(list.get(left), duration, third-left));
-                tempList.set(third, list.get(left));
+				animationList.add(moveDown(list.get(left), duration, third - left));
+				tempList.set(third, list.get(left));
 				tempArray[third++] = arr[left++];
 			} else {
-                animationList.add(moveDown(list.get(mid), duration, third-mid));
-                tempList.set(third, list.get(mid));
-                tempArray[third++] = arr[mid++];
+				animationList.add(moveDown(list.get(mid), duration, third - mid));
+				tempList.set(third, list.get(mid));
+				tempArray[third++] = arr[mid++];
 			}
 		}
 
 		while (mid <= right) {
-            animationList.add(moveDown(list.get(mid), duration, third-mid));
-            tempList.set(third, list.get(mid));
-            tempArray[third++] = arr[mid++];
+			animationList.add(moveDown(list.get(mid), duration, third - mid));
+			tempList.set(third, list.get(mid));
+			tempArray[third++] = arr[mid++];
 		}
 		while (left <= center) {
-            animationList.add(moveDown(list.get(left), duration, third-left));
-            tempList.set(third, list.get(left));
+			animationList.add(moveDown(list.get(left), duration, third - left));
+			tempList.set(third, list.get(left));
 			tempArray[third++] = arr[left++];
 		}
 
 		while (temp <= right) {
-            list.set(temp, tempList.get(temp));
+			list.set(temp, tempList.get(temp));
 			arr[temp] = tempArray[temp++];
 		}
 
@@ -1056,23 +1080,39 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	public void startCompare() {
 		clear_c();
 		System.out.println("Generate rectangles");
-		input_c = getInput();
-		generate_c(list_l, hbox_left, input_c);
-		generate_c(list_r, hbox_right, input_c);
 
-		sq_c_1 = sort_c(compareAlgo1, list_l, duration_c, input_c, hbox_left.getWidth());
-		sq_c_1.play();
-		System.out.println(String.valueOf(sq_c_1.getChildren().size() * duration));
-		showTime(sq_c_1, duration_c, time_left);
-		
-		sq_c_2 = sort_c(compareAlgo2, list_r, duration_c, input_c, hbox_right.getWidth());
-		sq_c_2.play();
-		showTime(sq_c_2, duration_c, time_right);
+		if (compareAlgo1 == null || compareAlgo2 == null) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Warning Dialog");
+			alert.setHeaderText(null);
+			alert.setContentText("Please choose the algorithms to compare!");
+			alert.showAndWait();
+		} else {
+			if (inputString_c.getText() != null) {
+				input_c = getInput();
+				generate_c(list_l, hbox_left, input_c);
+				generate_c(list_r, hbox_right, input_c);
+
+				sq_c_1 = sort_c(compareAlgo1, list_l, duration_c, input_c, hbox_left.getWidth());
+				sq_c_1.play();
+				showTime(sq_c_1, duration_c, time_left);
+
+				sq_c_2 = sort_c(compareAlgo2, list_r, duration_c, input_c, hbox_right.getWidth());
+				sq_c_2.play();
+				showTime(sq_c_2, duration_c, time_right);
+			} else {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Warning Dialog");
+				alert.setHeaderText(null);
+				alert.setContentText("Please input first!");
+				alert.showAndWait();
+			}
+		}
 	}
-	
+
 	private void showTime(SequentialTransition sq, double duration, Label label) {
-		try{
-			if(sq.getChildren().size()!=0) {
+		try {
+			if (sq.getChildren().size() != 0) {
 				label.setText("time: " + String.valueOf(sq.getChildren().size() * duration / 1000 + "s"));
 			} else {
 				label.setText("time: 0");
@@ -1132,7 +1172,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 		if (str.isEmpty()) {
 			min = 1;
-			max = 6;
+			max = 100;
 		} else {
 			int[] in = new int[2];
 			String[] sp = str.split("\\D+");
@@ -1160,9 +1200,9 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			if (i >= max)
 				max = i;
 		}
-		
+
 		width = (hbox.getWidth() / input.length) / 3 * 2;
-		
+
 		for (int anInput : input) {
 			height = (hbox.getWidth() / max) * anInput;
 			Rectangle rectangle = new Rectangle(width, height);
