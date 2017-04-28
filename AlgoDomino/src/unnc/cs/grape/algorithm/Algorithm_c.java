@@ -77,8 +77,8 @@ public class Algorithm_c {
 		return pl;
 	}
 
-	public SequentialTransition BubbleSort_c(int[] arr, ArrayList<StackPane> list, double duration, double dist) {
-		SequentialTransition sq = new SequentialTransition();
+	public ArrayList<Animation> BubbleSort_c(int[] arr, ArrayList<StackPane> list, double duration, double dist) {
+		ArrayList<Animation> sq = new ArrayList<Animation>();
 		int temp;
 		for (int i = 0; i < arr.length - 1; i++) {
 			for (int j = 1; j < arr.length - i; j++) {
@@ -87,15 +87,15 @@ public class Algorithm_c {
 					arr[j - 1] = arr[j];
 					arr[j] = temp;
 					// change color and move
-					sq.getChildren().add(swapMe(list.get(j - 1), list.get(j), list, duration, dist));
+					sq.add(swapMe(list.get(j - 1), list.get(j), list, duration, dist));
 				}
 			}
 		}
 		return sq;
 	}
 
-	public SequentialTransition InsertionSort_c(int[] arr, ArrayList<StackPane> list, double duration, double dist) {
-		SequentialTransition sq = new SequentialTransition();
+	public ArrayList<Animation> InsertionSort_c(int[] arr, ArrayList<StackPane> list, double duration, double dist) {
+		ArrayList<Animation> sq = new ArrayList<Animation>();
 		int temp;
 		for (int i = 1; i < arr.length; i++) {
 			for (int j = i; j > 0; j--) {
@@ -103,7 +103,7 @@ public class Algorithm_c {
 					temp = arr[j];
 					arr[j] = arr[j - 1];
 					arr[j - 1] = temp;
-					sq.getChildren().add(swapMe(list.get(j - 1), list.get(j), list, duration, dist));
+					sq.add(swapMe(list.get(j - 1), list.get(j), list, duration, dist));
 				} else {
 					break;
 				}
@@ -112,8 +112,8 @@ public class Algorithm_c {
 		return sq;
 	}
 
-	public SequentialTransition SelectionSort_c(int[] arr, ArrayList<StackPane> list, double duration, double dist) {
-		SequentialTransition sq = new SequentialTransition();
+	public ArrayList<Animation> SelectionSort_c(int[] arr, ArrayList<StackPane> list, double duration, double dist) {
+		ArrayList<Animation> sq = new ArrayList<Animation>();
 		int i, j, minIndex, tmp;
 		int n = arr.length;
 		for (i = 0; i < n - 1; i++) {
@@ -125,7 +125,7 @@ public class Algorithm_c {
 				tmp = arr[i];
 				arr[i] = arr[minIndex];
 				arr[minIndex] = tmp;
-				sq.getChildren().add(swapSelect(list.get(i), list.get(minIndex), list, duration, dist));
+				sq.add(swapSelect(list.get(i), list.get(minIndex), list, duration, dist));
 			}
 		}
 		return sq;
@@ -148,9 +148,9 @@ public class Algorithm_c {
 		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
 		return pl;
 	}
-
-	protected SequentialTransition HeapSort_c(int arr[], ArrayList<StackPane> list, double duration, double dist) {
-		SequentialTransition sq = new SequentialTransition();
+	
+	protected ArrayList<Animation> HeapSort_c(int arr[], ArrayList<StackPane> list, double duration, double dist) {
+		ArrayList<Animation> sq = new ArrayList<Animation>();
 		for (int i = arr.length / 2; i >= 0; i--) {
 			int parent = i;
 			int temp = arr[parent];
@@ -165,7 +165,7 @@ public class Algorithm_c {
 				arr[child] = arr[parent];
 				arr[parent] = temp;
 				temp = arr[child];
-				sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child, dist));
+				sq.add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child, dist));
 				parent = child;
 				child = 2 * child + 1;
 			}
@@ -174,7 +174,7 @@ public class Algorithm_c {
 			int temp = arr[i];
 			arr[i] = arr[0];
 			arr[0] = temp;
-			sq.getChildren().add(swapHeap1(list.get(0), list.get(i), list, duration, 0, i, dist));
+			sq.add(swapHeap1(list.get(0), list.get(i), list, duration, 0, i, dist));
 			int parent = 0;
 			int tempFather = arr[parent];
 			int child = 2 * parent + 1;
@@ -188,7 +188,7 @@ public class Algorithm_c {
 				arr[child] = arr[parent];
 				arr[parent] = tempFather;
 				tempFather = arr[child];
-				sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child, dist));
+				sq.add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child, dist));
 				parent = child;
 				child = 2 * child + 1;
 			}
@@ -227,10 +227,11 @@ public class Algorithm_c {
 		return animationList;
 	}
 
-	protected SequentialTransition QuickSort_c(int arr[], ArrayList<StackPane> list, double duration, double dist) {
-		SequentialTransition sq = new SequentialTransition();
+	protected ArrayList<Animation> QuickSort_c(int arr[], ArrayList<StackPane> list, double duration, double dist) {
+//		SequentialTransition sq = new SequentialTransition();
 		ArrayList<Animation> animationList = new ArrayList<>();
-		sq.getChildren().addAll(quickSortRec(arr, 0, arr.length - 1, list, animationList, duration, dist));
-		return sq;
+		return quickSortRec(arr, 0, arr.length - 1, list, animationList, duration, dist);
+//		sq.getChildren().addAll(quickSortRec(arr, 0, arr.length - 1, list, animationList, duration, dist));
+//		return sq;
 	}
 }

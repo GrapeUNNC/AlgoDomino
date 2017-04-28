@@ -1108,14 +1108,16 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 				} else {
 					generate_c(list_l, hbox_left, input_c);
 					generate_c(list_r, hbox_right, input_c);
-
-					sq_c_1 = sort_c(compareAlgo1, list_l, duration_c, input_c, hbox_left.getWidth());
-					sq_c_1.play();
-					showTime(sq_c_1, duration_c, time_left);
-
-					sq_c_2 = sort_c(compareAlgo2, list_r, duration_c, input_c, hbox_right.getWidth());
-					sq_c_2.play();
-					showTime(sq_c_2, duration_c, time_right);
+					ArrayList<Animation> l1 = new ArrayList<Animation>();
+					ArrayList<Animation> l2 = new ArrayList<Animation>();
+					l1 = sort_c(compareAlgo1, list_l, duration_c, input_c, hbox_left.getWidth());
+					showTime(l1, duration_c, time_left);
+					input_c = getInput();
+					l2 = sort_c(compareAlgo2, list_r, duration_c, input_c, hbox_right.getWidth());
+					showTime(l2, duration_c, time_right);
+					SequentialTransition sq = new SequentialTransition();
+					sq = playTwoAnima(l1, l2);
+					sq.play();
 				}
 			} else {
 				Alert alert = new Alert(AlertType.WARNING);
@@ -1127,10 +1129,38 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		}
 	}
 
-	private void showTime(SequentialTransition sq, double duration, Label label) {
+	private SequentialTransition playTwoAnima(ArrayList<Animation> sq1, ArrayList<Animation> sq2) {
+		ArrayList<Animation> animationList = new ArrayList<>();
+		SequentialTransition sq = new SequentialTransition();
+
+		int size = sq1.size() < sq2.size() ? sq1.size() : sq2.size();
+		for (int i = 0; i < size; i++) {
+			animationList.add(sq1.get(i));
+			animationList.add(sq2.get(i));
+		}
+
+		if (size == sq1.size()) {
+			for (int m = size; m < sq2.size(); m++) {
+				animationList.add(sq2.get(m));
+			}
+		} else {
+			for (int m = size; m < sq1.size(); m++) {
+				animationList.add(sq1.get(m));
+			}
+		}
+		// animationList.addAll(sq2);
+		// System.out.println(animationList.size());
+		// animationList.addAll(sq1);
+		// System.out.println(animationList.size());
+
+		sq.getChildren().addAll(animationList);
+		return sq;
+	}
+
+	private void showTime(ArrayList<Animation> sq, double duration, Label label) {
 		try {
-			if (sq.getChildren().size() != 0) {
-				label.setText("time: " + String.valueOf(sq.getChildren().size() * duration / 1000 + "s"));
+			if (sq.size() != 0) {
+				label.setText("time: " + String.valueOf(sq.size() * duration / 1000 + "s"));
 			} else {
 				label.setText("time: 0");
 			}
@@ -1139,9 +1169,9 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		}
 	}
 
-	private SequentialTransition sort_c(String compareAlgo, ArrayList<StackPane> list, double duration, int[] input,
+	private ArrayList<Animation> sort_c(String compareAlgo, ArrayList<StackPane> list, double duration, int[] input,
 			double dist) {
-		SequentialTransition sq_c = new SequentialTransition();
+		ArrayList<Animation> sq_c = new ArrayList<>();
 
 		double swap_dist = dist / input.length;
 		switch (compareAlgo) {
