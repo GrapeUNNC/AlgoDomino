@@ -228,11 +228,72 @@ public class Algorithm_c {
 	}
 
 	protected ArrayList<Animation> QuickSort_c(int arr[], ArrayList<StackPane> list, double duration, double dist) {
-		// SequentialTransition sq = new SequentialTransition();
 		ArrayList<Animation> animationList = new ArrayList<>();
 		return quickSortRec(arr, 0, arr.length - 1, list, animationList, duration, dist);
-		// sq.getChildren().addAll(quickSortRec(arr, 0, arr.length - 1, list,
-		// animationList, duration, dist));
-		// return sq;
+	}
+
+	private TranslateTransition moveDown(StackPane l1, double speed, int distance, double dist) {
+		distance *= dist;
+		TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
+		// t1.setByY(40);
+		t1.setByX(distance);
+		return t1;
+	}
+
+	private ArrayList<Animation> mergeSortRec(int arr[], int left, int right, ArrayList<Animation> animationList,
+			double duration, ArrayList<StackPane> list, double dist) {
+
+		if (left >= right) {
+			return animationList;
+		}
+		int center = (left + right) / 2;
+		mergeSortRec(arr, left, center, animationList, duration, list, dist);
+		mergeSortRec(arr, center + 1, right, animationList, duration, list, dist);
+		animationList = merge(arr, animationList, left, center, right, duration, list, dist);
+		return animationList;
+	}
+
+	private ArrayList<Animation> merge(int[] arr, ArrayList<Animation> animationList, int left, int center, int right,
+			double duration, ArrayList<StackPane> list, double dist) {
+		int[] tempArray = new int[arr.length];
+		ArrayList<StackPane> tempList = new ArrayList<>(list);
+		int mid = center + 1;
+		int third = left;
+		int temp = left;
+
+		while (left <= center && mid <= right) {
+			if (arr[left] <= arr[mid]) {
+				animationList.add(moveDown(list.get(left), duration, third - left, dist));
+				tempList.set(third, list.get(left));
+				tempArray[third++] = arr[left++];
+			} else {
+				animationList.add(moveDown(list.get(mid), duration, third - mid, dist));
+				tempList.set(third, list.get(mid));
+				tempArray[third++] = arr[mid++];
+			}
+		}
+
+		while (mid <= right) {
+			animationList.add(moveDown(list.get(mid), duration, third - mid, dist));
+			tempList.set(third, list.get(mid));
+			tempArray[third++] = arr[mid++];
+		}
+		while (left <= center) {
+			animationList.add(moveDown(list.get(left), duration, third - left, dist));
+			tempList.set(third, list.get(left));
+			tempArray[third++] = arr[left++];
+		}
+
+		while (temp <= right) {
+			list.set(temp, tempList.get(temp));
+			arr[temp] = tempArray[temp++];
+		}
+
+		return animationList;
+	}
+
+	public ArrayList<Animation> MergeSort_c(int arr[], ArrayList<StackPane> list, double duration, double dist) {
+		ArrayList<Animation> animationList = new ArrayList<>();
+		return mergeSortRec(arr, 0, arr.length - 1, animationList, duration, list, dist);
 	}
 }

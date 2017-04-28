@@ -41,8 +41,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	private final MainApp mainapp = new MainApp();
 
 	private SequentialTransition st = new SequentialTransition();
-	private SequentialTransition sq_c_1 = new SequentialTransition();
-	private SequentialTransition sq_c_2 = new SequentialTransition();
 	private int[] input;
 	private int[] input_c;
 	private final int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
@@ -992,6 +990,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 	public void chooseSecAlgo() {
 		compareAlgo2 = combo2.getSelectionModel().getSelectedItem().getAccessibleText();
+		System.out.println(compareAlgo2);
 		label_right.setText(combo2.getSelectionModel().getSelectedItem().getText());
 		secondAlgoComplex.setText(combo2.getSelectionModel().getSelectedItem().getText());
 	}
@@ -1086,7 +1085,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		case "bubble":
 			sq_c = BubbleSort_c(input, list, duration, swap_dist);
 			break;
-		case "insert":
+		case "insertion":
 			sq_c = InsertionSort_c(input, list, duration, swap_dist);
 			break;
 		case "select":
@@ -1095,11 +1094,9 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		case "quick":
 			sq_c = QuickSort_c(input, list, duration, swap_dist);
 			break;
-		// case "merge":
-		// sq_c = MergeSort(input, list, sq, duration);
-		// //intializeMergeRec();
-		// //sq = MergeSort(input, mergelist, sq);
-		// break;
+		case "merge":
+			sq_c = MergeSort_c(input, list, duration, swap_dist);
+			break;
 		case "heap":
 			sq_c = HeapSort_c(input, list, duration, swap_dist);
 			break;
