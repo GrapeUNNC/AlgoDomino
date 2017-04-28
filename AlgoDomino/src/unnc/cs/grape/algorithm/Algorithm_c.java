@@ -148,7 +148,7 @@ public class Algorithm_c {
 		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
 		return pl;
 	}
-	
+
 	protected ArrayList<Animation> HeapSort_c(int arr[], ArrayList<StackPane> list, double duration, double dist) {
 		ArrayList<Animation> sq = new ArrayList<Animation>();
 		for (int i = arr.length / 2; i >= 0; i--) {
@@ -228,10 +228,11 @@ public class Algorithm_c {
 	}
 
 	protected ArrayList<Animation> QuickSort_c(int arr[], ArrayList<StackPane> list, double duration, double dist) {
-//		SequentialTransition sq = new SequentialTransition();
+		// SequentialTransition sq = new SequentialTransition();
 		ArrayList<Animation> animationList = new ArrayList<>();
 		return quickSortRec(arr, 0, arr.length - 1, list, animationList, duration, dist);
-//		sq.getChildren().addAll(quickSortRec(arr, 0, arr.length - 1, list, animationList, duration, dist));
-//		return sq;
+		// sq.getChildren().addAll(quickSortRec(arr, 0, arr.length - 1, list,
+		// animationList, duration, dist));
+		// return sq;
 	}
 }

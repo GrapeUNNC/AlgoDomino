@@ -866,7 +866,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		if (start >= end)
 			return animationList;
 		int mid = arr[end];
-        animationList.add(changeColor(list.get(end), list.get(end), PreferenceController.color, Color.DARKCYAN));
+		animationList.add(changeColor(list.get(end), list.get(end), PreferenceController.color, Color.DARKCYAN));
 		int left = start, right = end - 1;
 		while (left < right) {
 			while (arr[left] <= mid && left < right)
@@ -892,9 +892,9 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			animationList.add(swap(list.get(left), list.get(end), left - end, list, duration));
 			animationList.add(changeColor(list.get(left), list.get(end), color_change, PreferenceController.color));
 		} else {
-            left++;
-        }
-        animationList.add(changeColor(list.get(end), list.get(end), Color.DARKCYAN, PreferenceController.color));
+			left++;
+		}
+		animationList.add(changeColor(list.get(end), list.get(end), Color.DARKCYAN, PreferenceController.color));
 		quickSortRec(arr, start, left - 1, animationList, duration);
 		quickSortRec(arr, left + 1, end, animationList, duration);
 		return animationList;
@@ -999,7 +999,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	@FXML
 	public void startCompare() {
 		clear_c();
-
 		if (compareAlgo1 == null || compareAlgo2 == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Warning Dialog");
@@ -1016,17 +1015,19 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					alert.setContentText("Please input with a right format!");
 					alert.showAndWait();
 				} else {
+					int[] copyof = Arrays.copyOf(input_c, input_c.length);
 					generate_c(list_l, hbox_left, input_c);
 					generate_c(list_r, hbox_right, input_c);
 					ArrayList<Animation> l1 = new ArrayList<Animation>();
 					ArrayList<Animation> l2 = new ArrayList<Animation>();
+
 					l1 = sort_c(compareAlgo1, list_l, duration_c, input_c, hbox_left.getWidth());
 					showTime(l1, duration_c, time_left);
-					input_c = getInput();
-					l2 = sort_c(compareAlgo2, list_r, duration_c, input_c, hbox_right.getWidth());
+
+					l2 = sort_c(compareAlgo2, list_r, duration_c, copyof, hbox_right.getWidth());
 					showTime(l2, duration_c, time_right);
 					SequentialTransition sq = new SequentialTransition();
-					sq = playTwoAnima(l1, l2);
+					sq = playTwoAnimate(l1, l2);
 					sq.play();
 				}
 			} else {
@@ -1039,30 +1040,27 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		}
 	}
 
-	private SequentialTransition playTwoAnima(ArrayList<Animation> sq1, ArrayList<Animation> sq2) {
+	private SequentialTransition playTwoAnimate(ArrayList<Animation> sq1, ArrayList<Animation> sq2) {
 		ArrayList<Animation> animationList = new ArrayList<>();
 		SequentialTransition sq = new SequentialTransition();
 
-		int size = sq1.size() < sq2.size() ? sq1.size() : sq2.size();
+		int size = sq1.size() <= sq2.size() ? sq1.size() : sq2.size();
 		for (int i = 0; i < size; i++) {
 			animationList.add(sq1.get(i));
 			animationList.add(sq2.get(i));
 		}
 
 		if (size == sq1.size()) {
+			// System.out.println("!");
 			for (int m = size; m < sq2.size(); m++) {
 				animationList.add(sq2.get(m));
 			}
 		} else {
+			// System.out.println("!!");
 			for (int m = size; m < sq1.size(); m++) {
 				animationList.add(sq1.get(m));
 			}
 		}
-		// animationList.addAll(sq2);
-		// System.out.println(animationList.size());
-		// animationList.addAll(sq1);
-		// System.out.println(animationList.size());
-
 		sq.getChildren().addAll(animationList);
 		return sq;
 	}
@@ -1155,14 +1153,14 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		}
 
 		width = (hbox.getWidth() / input.length) / 3 * 2;
-
-		for (int anInput : input) {
-    			height = (hbox.getWidth() / max) * anInput;
+		for (int i = 0; i < input.length; i++) {
+			// for (int anInput : input) {
+			height = (hbox.getWidth() / max) * input[i];
 			Rectangle rectangle = new Rectangle(width, height);
 			rectangle.setFill(shapeColor);
 			StackPane stackPane = new StackPane();
 			stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
-			stackPane.setId(String.valueOf(anInput));
+			stackPane.setId(String.valueOf(input[i]));
 			stackPane.getChildren().add(rectangle);
 			stackPane.setAlignment(Pos.BOTTOM_CENTER);
 			list.add(stackPane);
