@@ -1118,20 +1118,18 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 	private int[] getInput() {
 		int[] input_c = null;
-		int min, max, randomNum;
+		int randomNum;
 
 		String str = inputString_c.getText();
 
-		int[] in = new int[2];
+		int[] in = new int[1];
 		String[] sp = str.split("\\D+");
 		in = Stream.of(sp).mapToInt(Integer::parseInt).toArray();
-		if (in.length == 2) {
-			min = in[0];
-			max = in[1];
-			input_c = new int[max - min + 1];
+		if (in.length == 1) {
+			input_c = new int[in[0]];
 
 			for (int i = 0; i < input_c.length; i++) {
-				randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
+				randomNum = ThreadLocalRandom.current().nextInt(1, in[0]);
 				input_c[i] = randomNum;
 			}
 		}

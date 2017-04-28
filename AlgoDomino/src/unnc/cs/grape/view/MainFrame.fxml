@@ -394,7 +394,7 @@
                                                                   <Font name="System Bold" size="16.0" />
                                                                </font>
                                                             </Label>
-                                                            <JFXTextField fx:id="inputString_c" layoutX="251.0" layoutY="27.0" maxWidth="262.0" prefHeight="25.0" prefWidth="262.0" promptText="100-500" />
+                                                            <JFXTextField fx:id="inputString_c" layoutX="251.0" layoutY="27.0" maxWidth="262.0" prefHeight="25.0" prefWidth="262.0" promptText="100" />
                                                             <JFXButton fx:id="startButton" layoutX="547.0" layoutY="24.0" onAction="#startCompare" prefHeight="31.0" prefWidth="57.0" text="Start">
                                                                <font>
                                                                   <Font name="System Bold" size="12.0" />
