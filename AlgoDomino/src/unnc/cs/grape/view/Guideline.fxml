@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.GuidelineController">
+<AnchorPane prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.GuidelineController">
    <children>
       <JFXTabPane prefHeight="610.0" prefWidth="810.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
@@ -21,9 +21,9 @@
                               <Font size="16.0" />
                            </font>
                         </Button>
-                        <ImageView fitHeight="471.0" fitWidth="738.0" layoutX="56.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="464.0" fitWidth="776.0" layoutX="56.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@assets/icon/guide1.png" />
+                              <Image url="@assets/icon/sin.gif" />
                            </image>
                         </ImageView>
                      </children></AnchorPane>
@@ -37,9 +37,9 @@
                               <Font size="16.0" />
                            </font>
                         </Button>
-                        <ImageView fitHeight="495.0" fitWidth="733.0" layoutX="59.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="463.0" fitWidth="764.0" layoutX="59.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@assets/icon/guide2.png" />
+                              <Image url="@assets/icon/cmp.gif" />
                            </image>
                         </ImageView>
                      </children></AnchorPane>
