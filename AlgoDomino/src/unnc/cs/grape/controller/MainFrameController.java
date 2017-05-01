@@ -803,57 +803,116 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 	private SequentialTransition HeapSort(int arr[], ArrayList<StackPane> list, double duration) {
 		SequentialTransition sq = new SequentialTransition();
-		for (int i = arr.length / 2; i >= 0; i--) {
-			int parent = i;
-			int temp = arr[parent];
-			int child = 2 * parent + 1;
-			while (child < arr.length) {
-				if (child + 1 < arr.length && arr[child] < arr[child + 1]) {
-					child++;
-				}
-				if (temp >= arr[child])
-					break;
-				temp = arr[child];
-				arr[child] = arr[parent];
-				arr[parent] = temp;
-				temp = arr[child];
-				sq.getChildren()
+		if(sortOrder==0)
+		{
+			for (int i = arr.length / 2; i >= 0; i--) {
+				int parent = i;
+				int temp = arr[parent];
+				int child = 2 * parent + 1;
+				while (child < arr.length) {
+					if (child + 1 < arr.length && arr[child] < arr[child + 1]) {
+						child++;
+					}
+					if (temp >= arr[child])
+						break;
+					temp = arr[child];
+					arr[child] = arr[parent];
+					arr[parent] = temp;
+					temp = arr[child];
+					sq.getChildren()
 						.add(changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
-				sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
-				sq.getChildren()
+					sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
+					sq.getChildren()
 						.add(changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
-				parent = child;
-				child = 2 * child + 1;
+					parent = child;
+					child = 2 * child + 1;
+				}
+			}
+			for (int i = arr.length - 1; i > 0; i--) {
+				int temp = arr[i];
+				arr[i] = arr[0];
+				arr[0] = temp;
+				sq.getChildren().add(changeColor(list.get(0), list.get(i), PreferenceController.color, color_change));
+				sq.getChildren().add(swapHeap3(list.get(0), list.get(i), duration));
+				sq.getChildren().add(swapHeap2(list.get(0), list.get(i), list, duration, 0, i));
+				sq.getChildren().add(changeColor(list.get(0), list.get(i), color_change, PreferenceController.color));
+				int parent = 0;
+				int tempFather = arr[parent];
+				int child = 2 * parent + 1;
+				while (child < i) {
+					if (child + 1 < i && arr[child] < arr[child + 1]) {
+						child++;
+					}
+					if (tempFather >= arr[child])
+						break;
+					tempFather = arr[child];
+					arr[child] = arr[parent];
+					arr[parent] = tempFather;
+					tempFather = arr[child];
+					sq.getChildren()
+						.add(changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
+					sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
+					sq.getChildren()
+						.add(changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
+					parent = child;
+					child = 2 * child + 1;
+				}
 			}
 		}
-		for (int i = arr.length - 1; i > 0; i--) {
-			int temp = arr[i];
-			arr[i] = arr[0];
-			arr[0] = temp;
-			sq.getChildren().add(changeColor(list.get(0), list.get(i), PreferenceController.color, color_change));
-			sq.getChildren().add(swapHeap3(list.get(0), list.get(i), duration));
-			sq.getChildren().add(swapHeap2(list.get(0), list.get(i), list, duration, 0, i));
-			sq.getChildren().add(changeColor(list.get(0), list.get(i), color_change, PreferenceController.color));
-			int parent = 0;
-			int tempFather = arr[parent];
-			int child = 2 * parent + 1;
-			while (child < i) {
-				if (child + 1 < i && arr[child] < arr[child + 1]) {
-					child++;
-				}
-				if (tempFather >= arr[child])
-					break;
-				tempFather = arr[child];
-				arr[child] = arr[parent];
-				arr[parent] = tempFather;
-				tempFather = arr[child];
-				sq.getChildren()
+		else
+		{
+			for (int i = arr.length / 2; i >= 0; i--) {
+				int parent = i;
+				int temp = arr[parent];
+				int child = 2 * parent + 1;
+				while (child < arr.length) {
+					if (child + 1 < arr.length && arr[child] > arr[child + 1]) {
+						child++;
+					}
+					if (temp <= arr[child])
+						break;
+					temp = arr[child];
+					arr[child] = arr[parent];
+					arr[parent] = temp;
+					temp = arr[child];
+					sq.getChildren()
 						.add(changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
-				sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
-				sq.getChildren()
+					sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
+					sq.getChildren()
 						.add(changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
-				parent = child;
-				child = 2 * child + 1;
+					parent = child;
+					child = 2 * child + 1;
+				}
+			}
+			for (int i = arr.length - 1; i > 0; i--) {
+				int temp = arr[i];
+				arr[i] = arr[0];
+				arr[0] = temp;
+				sq.getChildren().add(changeColor(list.get(0), list.get(i), PreferenceController.color, color_change));
+				sq.getChildren().add(swapHeap3(list.get(0), list.get(i), duration));
+				sq.getChildren().add(swapHeap2(list.get(0), list.get(i), list, duration, 0, i));
+				sq.getChildren().add(changeColor(list.get(0), list.get(i), color_change, PreferenceController.color));
+				int parent = 0;
+				int tempFather = arr[parent];
+				int child = 2 * parent + 1;
+				while (child < i) {
+					if (child + 1 < i && arr[child] > arr[child + 1]) {
+						child++;
+					}
+					if (tempFather <= arr[child])
+						break;
+					tempFather = arr[child];
+					arr[child] = arr[parent];
+					arr[parent] = tempFather;
+					tempFather = arr[child];
+					sq.getChildren()
+						.add(changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
+					sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
+					sq.getChildren()
+						.add(changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
+					parent = child;
+					child = 2 * child + 1;
+				}
 			}
 		}
 		return sq;
