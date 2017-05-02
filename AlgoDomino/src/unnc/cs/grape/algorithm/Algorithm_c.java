@@ -43,36 +43,20 @@ public class Algorithm_c {
 	}
 
 	private ParallelTransition swapSelect(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed,
-			double dist) {
-		int num = 1;
-		StackPane fSp = null;
-		TranslateTransition t1 = new TranslateTransition();
-		TranslateTransition t2 = new TranslateTransition();
+			double dist,int distance) {
+		TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
+		TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
+		t1.setDuration(Duration.millis(speed));
+		t2.setDuration(Duration.millis(speed));
 		ParallelTransition pl = new ParallelTransition();
 		t1.setNode(l1);
 		t2.setNode(l2);
-		t1.setDuration(Duration.millis(speed));
-		t2.setDuration(Duration.millis(speed));
-		boolean outerBreak = false;
-		for (int i = 0; i < list.size(); i++) {
-			if (outerBreak)
-				break;
-			if (list.get(i) == l1 || list.get(i) == l2) {
-				fSp = list.get(i);
-				for (int j = list.indexOf(fSp) + 1; j < list.size(); j++) {
-					if ((list.get(j) == l1 && list.get(j) != fSp) || (list.get(j) == l2 && list.get(j) != fSp)) {
-						outerBreak = true;
-						num = j - i;
-						break;
-					}
-				}
-			}
-		}
+		int num = Math.abs(distance);
 		num *= dist;
 		t1.setByX(num);
 		t2.setByX(-num);
-		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
 		pl.getChildren().addAll(t1, t2);
+		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
 		return pl;
 	}
 
@@ -124,7 +108,7 @@ public class Algorithm_c {
 				tmp = arr[i];
 				arr[i] = arr[minIndex];
 				arr[minIndex] = tmp;
-				sq.add(swapSelect(list.get(i), list.get(minIndex), list, duration, dist));
+				sq.add(swapSelect(list.get(i), list.get(minIndex), list, duration, dist,minIndex-i));
 			}
 		}
 		return sq;
