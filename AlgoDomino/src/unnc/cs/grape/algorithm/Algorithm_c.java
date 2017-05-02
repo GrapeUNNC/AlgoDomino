@@ -11,6 +11,8 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 public class Algorithm_c {
+	private long totalTime;
+	
 	private ParallelTransition swap(StackPane l1, StackPane l2, int xLength, ArrayList<StackPane> list, double speed,
 			double dist) {
 		if (xLength < 0) {
@@ -77,7 +79,8 @@ public class Algorithm_c {
 		return pl;
 	}
 
-	public ArrayList<Animation> BubbleSort_c(int[] arr, ArrayList<StackPane> list, double duration, double dist) {
+	protected ArrayList<Animation> BubbleSort_c(int[] arr, ArrayList<StackPane> list, double duration, double dist) {
+		long startTime   = System.currentTimeMillis();
 		ArrayList<Animation> sq = new ArrayList<Animation>();
 		int temp;
 		for (int i = 0; i < arr.length - 1; i++) {
@@ -91,10 +94,15 @@ public class Algorithm_c {
 				}
 			}
 		}
+		
+		long endTime   = System.currentTimeMillis();
+		totalTime = endTime - startTime;
+		
 		return sq;
 	}
 
-	public ArrayList<Animation> InsertionSort_c(int[] arr, ArrayList<StackPane> list, double duration, double dist) {
+	protected ArrayList<Animation> InsertionSort_c(int[] arr, ArrayList<StackPane> list, double duration, double dist) {
+		long startTime   = System.currentTimeMillis();
 		ArrayList<Animation> sq = new ArrayList<Animation>();
 		int temp;
 		for (int i = 1; i < arr.length; i++) {
@@ -109,10 +117,15 @@ public class Algorithm_c {
 				}
 			}
 		}
+		
+		long endTime   = System.currentTimeMillis();
+		totalTime = endTime - startTime;
+		
 		return sq;
 	}
 
-	public ArrayList<Animation> SelectionSort_c(int[] arr, ArrayList<StackPane> list, double duration, double dist) {
+	protected ArrayList<Animation> SelectionSort_c(int[] arr, ArrayList<StackPane> list, double duration, double dist) {
+		long startTime   = System.currentTimeMillis();
 		ArrayList<Animation> sq = new ArrayList<Animation>();
 		int i, j, minIndex, tmp;
 		int n = arr.length;
@@ -128,6 +141,10 @@ public class Algorithm_c {
 				sq.add(swapSelect(list.get(i), list.get(minIndex), list, duration, dist));
 			}
 		}
+		
+		long endTime   = System.currentTimeMillis();
+		totalTime = endTime - startTime;
+		
 		return sq;
 	}
 
@@ -150,6 +167,7 @@ public class Algorithm_c {
 	}
 
 	protected ArrayList<Animation> HeapSort_c(int arr[], ArrayList<StackPane> list, double duration, double dist) {
+		long startTime = System.currentTimeMillis();
 		ArrayList<Animation> sq = new ArrayList<Animation>();
 		for (int i = arr.length / 2; i >= 0; i--) {
 			int parent = i;
@@ -193,6 +211,10 @@ public class Algorithm_c {
 				child = 2 * child + 1;
 			}
 		}
+		
+		long endTime   = System.currentTimeMillis();
+		totalTime = endTime - startTime;
+
 		return sq;
 	}
 
@@ -228,8 +250,12 @@ public class Algorithm_c {
 	}
 
 	protected ArrayList<Animation> QuickSort_c(int arr[], ArrayList<StackPane> list, double duration, double dist) {
+		long startTime = System.currentTimeMillis();
 		ArrayList<Animation> animationList = new ArrayList<>();
-		return quickSortRec(arr, 0, arr.length - 1, list, animationList, duration, dist);
+		animationList = quickSortRec(arr, 0, arr.length - 1, list, animationList, duration, dist);
+		long endTime   = System.currentTimeMillis();
+		totalTime = endTime - startTime;
+		return animationList;
 	}
 
 	private TranslateTransition moveDown(StackPane l1, double speed, int distance, double dist) {
@@ -292,8 +318,16 @@ public class Algorithm_c {
 		return animationList;
 	}
 
-	public ArrayList<Animation> MergeSort_c(int arr[], ArrayList<StackPane> list, double duration, double dist) {
+	protected ArrayList<Animation> MergeSort_c(int arr[], ArrayList<StackPane> list, double duration, double dist) {
+		long startTime = System.currentTimeMillis();
 		ArrayList<Animation> animationList = new ArrayList<>();
-		return mergeSortRec(arr, 0, arr.length - 1, animationList, duration, list, dist);
+		animationList = mergeSortRec(arr, 0, arr.length - 1, animationList, duration, list, dist);
+		long endTime   = System.currentTimeMillis();
+		totalTime = endTime - startTime;
+		return animationList;
+	}
+	
+	protected long getTime() {
+		return totalTime;
 	}
 }

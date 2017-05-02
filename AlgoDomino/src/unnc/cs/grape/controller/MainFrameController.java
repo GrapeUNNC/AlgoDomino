@@ -8,7 +8,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.chart.LineChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -24,6 +23,8 @@ import unnc.cs.grape.MainApp;
 import unnc.cs.grape.algorithm.Algorithm_c;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -145,28 +146,10 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	private Label time_right;
 
 	@FXML
-	private Label firstAlgoComplex;
-
-	@FXML
-	private Label secondAlgoComplex;
-
-	@FXML
 	private JFXComboBox<Label> combo1, combo2;
 
 	@FXML
-	private TableView<String> table;
-
-	@FXML
-	private TableColumn<String, String> name;
-
-	@FXML
-	private TableColumn<String, String> best;
-
-	@FXML
-	private TableColumn<String, String> average;
-
-	@FXML
-	private TableColumn<String, String> worst;
+	private Label algo1, algo2, c1, c2;
 
 	private String compareAlgo1, compareAlgo2;
 
@@ -462,7 +445,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			inputString.setDisable(false);
 			changePlayButton();
 			selectAlgo = button.getAccessibleText();
-			System.out.println(selectAlgo);
 			displayCode(languageSelect, selectAlgo);
 			displayHint(selectAlgo);
 		}));
@@ -1058,14 +1040,11 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	public void chooseFirstAlgo() {
 		compareAlgo1 = combo1.getSelectionModel().getSelectedItem().getAccessibleText();
 		label_left.setText(combo1.getSelectionModel().getSelectedItem().getText());
-		firstAlgoComplex.setText(combo1.getSelectionModel().getSelectedItem().getText());
 	}
 
 	public void chooseSecAlgo() {
 		compareAlgo2 = combo2.getSelectionModel().getSelectedItem().getAccessibleText();
-		System.out.println(compareAlgo2);
 		label_right.setText(combo2.getSelectionModel().getSelectedItem().getText());
-		secondAlgoComplex.setText(combo2.getSelectionModel().getSelectedItem().getText());
 	}
 
 	@FXML
@@ -1094,14 +1073,14 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					ArrayList<Animation> l2 = new ArrayList<Animation>();
 
 					l1 = sort_c(compareAlgo1, list_l, duration_c, input_c, hbox_left.getWidth());
-					showTime(l1, duration_c, time_left);
+					showTime(getTime(), time_left);
 
 					l2 = sort_c(compareAlgo2, list_r, duration_c, copyof, hbox_right.getWidth());
-					showTime(l2, duration_c, time_right);
+					showTime(getTime(), time_right);
 					SequentialTransition sq = new SequentialTransition();
 					sq = playTwoAnimate(l1, l2);
 					sq.play();
-					
+
 					complexityTable(compareAlgo1, compareAlgo2);
 				}
 			} else {
@@ -1139,16 +1118,8 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		return sq;
 	}
 
-	private void showTime(ArrayList<Animation> sq, double duration, Label label) {
-		try {
-			if (sq.size() != 0) {
-				label.setText("time: " + String.valueOf(sq.size() * duration / 1000 + "s"));
-			} else {
-				label.setText("time: 0");
-			}
-		} catch (NullPointerException e) {
-			System.out.println(" -- Exception --");
-		}
+	private void showTime(long time, Label label) {
+		label.setText("time: " + time + "millis");
 	}
 
 	private ArrayList<Animation> sort_c(String compareAlgo, ArrayList<StackPane> list, double duration, int[] input,
@@ -1156,6 +1127,8 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		ArrayList<Animation> sq_c = new ArrayList<>();
 
 		double swap_dist = dist / input.length;
+		BigDecimal bg = new BigDecimal(swap_dist).setScale(5, RoundingMode.UP);
+		swap_dist = bg.doubleValue();
 		switch (compareAlgo) {
 		case "bubble":
 			sq_c = BubbleSort_c(input, list, duration, swap_dist);
@@ -1223,6 +1196,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		}
 
 		width = hbox.getWidth() / input.length;
+		
 		for (int i = 0; i < input.length; i++) {
 			height = (hbox.getWidth() / max) * input[i];
 			Rectangle rectangle = new Rectangle(width, height);
@@ -1234,20 +1208,69 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			stackPane.setAlignment(Pos.BOTTOM_CENTER);
 			list.add(stackPane);
 		}
-
+		
 		hbox.setSpacing(0);
 		hbox.getChildren().addAll(list);
 	}
 
-	private void complexityTable(String algo1, String algo2) {
-		String[] bubble = { "n", "n²", "n²" };
-		String[] select = { "n²", "n²", "n²" };
-		String[] insertion = { "n", "n²", "n²" };
-		String[] heap = { "nlogn", "nlogn", "nlogn" };
-		String[] quick = { "nlogn", "nlogn", "n²" };
-		String[] merge = { "nlogn", "nlogn", "nlogn" };
-		
-		
+	private void complexityTable(String a1, String a2) {
+		switch (a1) {
+		case "bubble":
+			algo1.setText("Bubble Sort");
+			c1.setText("n²");
+			break;
+		case "insertion":
+			algo1.setText("Insertion Sort");
+			c1.setText("n²");
+			break;
+		case "select":
+			algo1.setText("Selection Sort");
+			c1.setText("n²");
+			break;
+		case "quick":
+			algo1.setText("Quick Sort");
+			c1.setText("nlogn");
+			break;
+		case "merge":
+			algo1.setText("Merge Sort");
+			c1.setText("nlogn");
+			break;
+		case "heap":
+			algo1.setText("Heap Sort");
+			c1.setText("nlogn");
+			break;
+		default:
+			break;
+		}
+
+		switch (a2) {
+		case "bubble":
+			algo2.setText("Bubble Sort");
+			c2.setText("n²");
+			break;
+		case "insertion":
+			algo2.setText("Insertion Sort");
+			c2.setText("n²");
+			break;
+		case "select":
+			algo2.setText("Selection Sort");
+			c2.setText("n²");
+			break;
+		case "quick":
+			algo2.setText("Quick Sort");
+			c2.setText("nlogn");
+			break;
+		case "merge":
+			algo2.setText("Merge Sort");
+			c2.setText("nlogn");
+			break;
+		case "heap":
+			algo2.setText("Heap Sort");
+			c2.setText("nlogn");
+			break;
+		default:
+			break;
+		}
 	}
 
 	/**
