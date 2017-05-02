@@ -78,7 +78,7 @@ public class Algorithm_c {
 			}
 		}
 		
-		long endTime  = System.currentTimeMillis();
+		long endTime   = System.currentTimeMillis();
 		totalTime = endTime - startTime;
 		
 		return sq;

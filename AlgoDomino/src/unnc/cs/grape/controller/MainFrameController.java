@@ -43,6 +43,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	private final MainApp mainapp = new MainApp();
 
 	private SequentialTransition st = new SequentialTransition();
+	private double dist;
 	private int[] input;
 	private int[] input_c;
 	private final int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
@@ -606,36 +607,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		return pl;
 	}
 
-	private ParallelTransition swapSelect(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
-		int num = 1;
-		StackPane fSp;
-		TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
-		TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
-		ParallelTransition pl = new ParallelTransition();
-
-		boolean outerBreak = false;
-		for (int i = 0; i < list.size(); i++) {
-			if (outerBreak)
-				break;
-			if (list.get(i) == l1 || list.get(i) == l2) {
-				fSp = list.get(i);
-				for (int j = list.indexOf(fSp) + 1; j < list.size(); j++) {
-					if ((list.get(j) == l1 && list.get(j) != fSp) || (list.get(j) == l2 && list.get(j) != fSp)) {
-						outerBreak = true;
-						num = j - i;
-						break;
-					}
-				}
-			}
-		}
-		num *= 30;
-		t1.setByX(num);
-		t2.setByX(-num);
-		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
-		pl.getChildren().addAll(t1, t2);
-		return pl;
-	}
-
 	private SequentialTransition BubbleSort(int arr[], ArrayList<StackPane> list, double duration) {
 		SequentialTransition sq = new SequentialTransition();
 		int temp;
@@ -681,9 +652,17 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 						temp = arr[j];
 						arr[j] = arr[j - 1];
 						arr[j - 1] = temp;
-						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
+						sq.getChildren().add(
+								changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
+
+						sq.getChildren().add(swapInsertion(list.get(j - 1), list.get(j), list, duration));
+						sq.getChildren().add(swapInsertion1(list.get(j - 1), list.get(j), list, duration));
+						sq.getChildren().add(swapInsertion2(list.get(j - 1), list.get(j), list, duration));
+
 						sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
-						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
+
+						sq.getChildren().add(
+								changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
 					} else {
 						break;
 					}
@@ -694,14 +673,19 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 						arr[j - 1] = temp;
 						sq.getChildren().add(
 								changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
+
+						sq.getChildren().add(swapInsertion(list.get(j - 1), list.get(j), list, duration));
+						sq.getChildren().add(swapInsertion1(list.get(j - 1), list.get(j), list, duration));
+						sq.getChildren().add(swapInsertion2(list.get(j - 1), list.get(j), list, duration));
+
 						sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
+
 						sq.getChildren().add(
 								changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
 					} else {
 						break;
 					}
 				}
-
 			}
 		}
 		return sq;
@@ -723,7 +707,8 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					arr[minIndex] = tmp;
 					sq.getChildren().add(
 							changeColor(list.get(i), list.get(minIndex), PreferenceController.color, color_change));
-					sq.getChildren().add(swapSelect(list.get(i), list.get(minIndex), list, duration));
+					sq.getChildren().add(swapSelect1(list.get(i), list.get(minIndex), list, duration,minIndex-i));
+					sq.getChildren().add(swapSelect2(list.get(i), list.get(minIndex), list, duration,minIndex-i));
 					sq.getChildren().add(
 							changeColor(list.get(i), list.get(minIndex), color_change, PreferenceController.color));
 				}
@@ -738,7 +723,8 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					arr[minIndex] = tmp;
 					sq.getChildren().add(
 							changeColor(list.get(i), list.get(minIndex), PreferenceController.color, color_change));
-					sq.getChildren().add(swapSelect(list.get(i), list.get(minIndex), list, duration));
+					sq.getChildren().add(swapSelect1(list.get(i), list.get(minIndex), list, duration,minIndex-i));
+					sq.getChildren().add(swapSelect2(list.get(i), list.get(minIndex), list, duration,minIndex-i));
 					sq.getChildren().add(
 							changeColor(list.get(i), list.get(minIndex), color_change, PreferenceController.color));
 				}
@@ -765,7 +751,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		return pl;
 	}
 
-
 	private ParallelTransition swapInsertion(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
 		TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
 		TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
@@ -788,20 +773,35 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		t1.setNode(l1);
 		t2.setNode(l2);
 		t1.setByX(30);
-		t2.setToY(0);
 		t2.setByX(-30);
+		pl.getChildren().addAll(t1,t2);
+		return pl;
+	}
+
+	private ParallelTransition swapInsertion2(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
+		TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
+		TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
+		t1.setDuration(Duration.millis(speed));
+		t2.setDuration(Duration.millis(speed));
+		ParallelTransition pl = new ParallelTransition();
+		t1.setNode(l1);
+		t2.setNode(l2);
+		t2.setToY(0);
 		pl.getChildren().addAll(t1,t2);
 		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
 		return pl;
 	}
 
 	private ParallelTransition swapSelect1(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed, int distance) {
+		TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
 		TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
+		t1.setDuration(Duration.millis(speed));
 		t2.setDuration(Duration.millis(speed));
 		ParallelTransition pl = new ParallelTransition();
+		t1.setNode(l1);
 		t2.setNode(l2);
 		t2.setToY(-100);
-		pl.getChildren().addAll(t2);
+		pl.getChildren().addAll(t1, t2);
 		return pl;
 	}
 
@@ -822,6 +822,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
 		return pl;
 	}
+
 
 	private ParallelTransition swapHeap2(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed,
 			int parent, int child) {
@@ -1129,10 +1130,10 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					ArrayList<Animation> l1 = new ArrayList<Animation>();
 					ArrayList<Animation> l2 = new ArrayList<Animation>();
 
-					l1 = sort_c(compareAlgo1, list_l, duration_c, input_c, hbox_left.getWidth());
+					l1 = sort_c(compareAlgo1, list_l, duration_c, input_c);
 					showTime(getTime(), time_left);
 
-					l2 = sort_c(compareAlgo2, list_r, duration_c, copyof, hbox_right.getWidth());
+					l2 = sort_c(compareAlgo2, list_r, duration_c, copyof);
 					showTime(getTime(), time_right);
 					SequentialTransition sq = new SequentialTransition();
 					sq = playTwoAnimate(l1, l2);
@@ -1161,12 +1162,10 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		}
 
 		if (size == sq1.size()) {
-			// System.out.println("!");
 			for (int m = size; m < sq2.size(); m++) {
 				animationList.add(sq2.get(m));
 			}
 		} else {
-			// System.out.println("!!");
 			for (int m = size; m < sq1.size(); m++) {
 				animationList.add(sq1.get(m));
 			}
@@ -1179,31 +1178,27 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		label.setText("time: " + time + "millis");
 	}
 
-	private ArrayList<Animation> sort_c(String compareAlgo, ArrayList<StackPane> list, double duration, int[] input,
-			double dist) {
+	private ArrayList<Animation> sort_c(String compareAlgo, ArrayList<StackPane> list, double duration, int[] input) {
 		ArrayList<Animation> sq_c = new ArrayList<>();
 
-		double swap_dist = dist / input.length;
-		BigDecimal bg = new BigDecimal(swap_dist).setScale(5, RoundingMode.UP);
-		swap_dist = bg.doubleValue();
 		switch (compareAlgo) {
 		case "bubble":
-			sq_c = BubbleSort_c(input, list, duration, swap_dist);
+			sq_c = BubbleSort_c(input, list, duration, dist);
 			break;
 		case "insertion":
-			sq_c = InsertionSort_c(input, list, duration, swap_dist);
+			sq_c = InsertionSort_c(input, list, duration, dist);
 			break;
 		case "select":
-			sq_c = SelectionSort_c(input, list, duration, swap_dist);
+			sq_c = SelectionSort_c(input, list, duration, dist);
 			break;
 		case "quick":
-			sq_c = QuickSort_c(input, list, duration, swap_dist);
+			sq_c = QuickSort_c(input, list, duration, dist);
 			break;
 		case "merge":
-			sq_c = MergeSort_c(input, list, duration, swap_dist);
+			sq_c = MergeSort_c(input, list, duration, dist);
 			break;
 		case "heap":
-			sq_c = HeapSort_c(input, list, duration, swap_dist);
+			sq_c = HeapSort_c(input, list, duration, dist);
 			break;
 		default:
 			break;
@@ -1244,19 +1239,21 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 	private void generate_c(ArrayList<StackPane> list, HBox hbox, int[] input) {
 		Color shapeColor = PreferenceController.color;
-		double width, height;
+		double height;
 
 		int max = input[0];
 		for (int i : input) {
 			if (i >= max)
 				max = i;
 		}
-
-		width = hbox.getWidth() / input.length;
 		
+		dist = hbox.getWidth() / input.length;
+		BigDecimal bg = new BigDecimal(dist).setScale(5, RoundingMode.UP);
+		dist = bg.doubleValue();
+
 		for (int i = 0; i < input.length; i++) {
 			height = (hbox.getWidth() / max) * input[i];
-			Rectangle rectangle = new Rectangle(width, height);
+			Rectangle rectangle = new Rectangle(dist, height);
 			rectangle.setFill(shapeColor);
 			StackPane stackPane = new StackPane();
 			stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
@@ -1265,7 +1262,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			stackPane.setAlignment(Pos.BOTTOM_CENTER);
 			list.add(stackPane);
 		}
-		
+
 		hbox.setSpacing(0);
 		hbox.getChildren().addAll(list);
 	}
@@ -1274,27 +1271,27 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		switch (a1) {
 		case "bubble":
 			algo1.setText("Bubble Sort");
-			c1.setText("n²");
+			c1.setText("O(n^2)");
 			break;
 		case "insertion":
 			algo1.setText("Insertion Sort");
-			c1.setText("n²");
+			c1.setText("O(n^2)");
 			break;
 		case "select":
 			algo1.setText("Selection Sort");
-			c1.setText("n²");
+			c1.setText("O(n^2)");
 			break;
 		case "quick":
 			algo1.setText("Quick Sort");
-			c1.setText("nlogn");
+			c1.setText("O(nlogn)");
 			break;
 		case "merge":
 			algo1.setText("Merge Sort");
-			c1.setText("nlogn");
+			c1.setText("O(nlogn)");
 			break;
 		case "heap":
 			algo1.setText("Heap Sort");
-			c1.setText("nlogn");
+			c1.setText("O(nlogn)");
 			break;
 		default:
 			break;
@@ -1303,27 +1300,27 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		switch (a2) {
 		case "bubble":
 			algo2.setText("Bubble Sort");
-			c2.setText("n²");
+			c2.setText("O(n^2)");
 			break;
 		case "insertion":
 			algo2.setText("Insertion Sort");
-			c2.setText("n²");
+			c2.setText("O(n^2)");
 			break;
 		case "select":
 			algo2.setText("Selection Sort");
-			c2.setText("n²");
+			c2.setText("O(n^2)");
 			break;
 		case "quick":
 			algo2.setText("Quick Sort");
-			c2.setText("nlogn");
+			c2.setText("O(nlogn)");
 			break;
 		case "merge":
 			algo2.setText("Merge Sort");
-			c2.setText("nlogn");
+			c2.setText("O(nlogn)");
 			break;
 		case "heap":
 			algo2.setText("Heap Sort");
-			c2.setText("nlogn");
+			c2.setText("O(nlogn)");
 			break;
 		default:
 			break;
