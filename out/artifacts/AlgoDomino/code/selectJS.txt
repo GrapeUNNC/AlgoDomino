@@ -1,0 +1,19 @@
+function selectionSort(arr){  
+    var len = arr.length;  
+    var index,temp;  
+    for(var i = 0; i < len-1 ;i++)
+    {  
+        index = i;  
+        for(var j = i + 1 ; j<len; j++)
+        {  
+            if(arr[j] < arr[index])
+            { 
+                index = j;
+            }  
+        }  
+        temp = arr[i];  
+        arr[i] = arr[index];  
+        arr[index] = temp;  
+    }  
+    return arr;  
+}

@@ -1,0 +1,5 @@
+repeat (numOfElements/2) times
+    build big root heap
+repeat (numOfElements - 1) times
+    swap root element with current index element
+    adjust current heap to big root heap

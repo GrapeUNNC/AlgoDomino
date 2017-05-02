@@ -8,7 +8,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.chart.LineChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -38,7 +37,7 @@ import java.util.stream.Stream;
 public class MainFrameController extends Algorithm_c implements Initializable {
 	private final MainApp mainapp = new MainApp();
 
-	private SequentialTransition st = new SequentialTransition();
+	private static SequentialTransition st = new SequentialTransition();
 	private int[] input;
 	private int[] input_c;
 	private final int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
@@ -233,7 +232,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 				timeSlider.setValue(currentTime.divide(duration.toMillis()).toMillis() * 100);
 			} else {
 				timeSlider.setDisable(true);
-				inputString.setDisable(true);
 				st.stop();
 			}
 		});
@@ -409,7 +407,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		Color shapeColor = PreferenceController.color;
 
 		if (input == null || input.length == 0) {
-			input = defaultInput;
+			input = defaultInput.clone();
 		}
 
 		for (int anInput : input) {
@@ -425,6 +423,17 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			sp.setAlignment(Pos.BOTTOM_CENTER);
 			list.add(sp);
 		}
+
+        recList.get(0).accessibleTextProperty().addListener(e -> {
+            Animation.Status s = st.getStatus();
+            Duration d = st.getCurrentTime();
+            sort(selectAlgo);
+            st.playFrom(d);
+            if (s.equals(Animation.Status.PAUSED)) {
+                st.pause();
+                changeReplayButton();
+            }
+        });
 
 		hbox.getChildren().addAll(list);
 	}
@@ -693,11 +702,9 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 						temp = arr[j];
 						arr[j] = arr[j - 1];
 						arr[j - 1] = temp;
-						sq.getChildren().add(
-								changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
+						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
 						sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
-						sq.getChildren().add(
-								changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
+						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
 					} else {
 						break;
 					}
@@ -1205,7 +1212,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	}
 
 	private void generate_c(ArrayList<StackPane> list, HBox hbox, int[] input) {
-		Color shapeColor = PreferenceController.color;
+		Color shapeColor = Color.BLACK;
 		double width, height;
 
 		int max = input[0];

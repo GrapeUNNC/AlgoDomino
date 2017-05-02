@@ -5,7 +5,6 @@ import java.util.Collections;
 
 import javafx.animation.Animation;
 import javafx.animation.ParallelTransition;
-import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
