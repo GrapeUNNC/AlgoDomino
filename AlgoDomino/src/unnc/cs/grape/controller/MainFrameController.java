@@ -43,6 +43,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	private final MainApp mainapp = new MainApp();
 
 	private SequentialTransition st = new SequentialTransition();
+	private double dist;
 	private int[] input;
 	private int[] input_c;
 	private final int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
@@ -1123,10 +1124,10 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					ArrayList<Animation> l1 = new ArrayList<Animation>();
 					ArrayList<Animation> l2 = new ArrayList<Animation>();
 
-					l1 = sort_c(compareAlgo1, list_l, duration_c, input_c, hbox_left.getWidth());
+					l1 = sort_c(compareAlgo1, list_l, duration_c, input_c);
 					showTime(getTime(), time_left);
 
-					l2 = sort_c(compareAlgo2, list_r, duration_c, copyof, hbox_right.getWidth());
+					l2 = sort_c(compareAlgo2, list_r, duration_c, copyof);
 					showTime(getTime(), time_right);
 					SequentialTransition sq = new SequentialTransition();
 					sq = playTwoAnimate(l1, l2);
@@ -1155,12 +1156,10 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		}
 
 		if (size == sq1.size()) {
-			// System.out.println("!");
 			for (int m = size; m < sq2.size(); m++) {
 				animationList.add(sq2.get(m));
 			}
 		} else {
-			// System.out.println("!!");
 			for (int m = size; m < sq1.size(); m++) {
 				animationList.add(sq1.get(m));
 			}
@@ -1173,31 +1172,27 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		label.setText("time: " + time + "millis");
 	}
 
-	private ArrayList<Animation> sort_c(String compareAlgo, ArrayList<StackPane> list, double duration, int[] input,
-			double dist) {
+	private ArrayList<Animation> sort_c(String compareAlgo, ArrayList<StackPane> list, double duration, int[] input) {
 		ArrayList<Animation> sq_c = new ArrayList<>();
 
-		double swap_dist = dist / input.length;
-		BigDecimal bg = new BigDecimal(swap_dist).setScale(5, RoundingMode.UP);
-		swap_dist = bg.doubleValue();
 		switch (compareAlgo) {
 		case "bubble":
-			sq_c = BubbleSort_c(input, list, duration, swap_dist);
+			sq_c = BubbleSort_c(input, list, duration, dist);
 			break;
 		case "insertion":
-			sq_c = InsertionSort_c(input, list, duration, swap_dist);
+			sq_c = InsertionSort_c(input, list, duration, dist);
 			break;
 		case "select":
-			sq_c = SelectionSort_c(input, list, duration, swap_dist);
+			sq_c = SelectionSort_c(input, list, duration, dist);
 			break;
 		case "quick":
-			sq_c = QuickSort_c(input, list, duration, swap_dist);
+			sq_c = QuickSort_c(input, list, duration, dist);
 			break;
 		case "merge":
-			sq_c = MergeSort_c(input, list, duration, swap_dist);
+			sq_c = MergeSort_c(input, list, duration, dist);
 			break;
 		case "heap":
-			sq_c = HeapSort_c(input, list, duration, swap_dist);
+			sq_c = HeapSort_c(input, list, duration, dist);
 			break;
 		default:
 			break;
@@ -1238,19 +1233,21 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 	private void generate_c(ArrayList<StackPane> list, HBox hbox, int[] input) {
 		Color shapeColor = PreferenceController.color;
-		double width, height;
+		double height;
 
 		int max = input[0];
 		for (int i : input) {
 			if (i >= max)
 				max = i;
 		}
-
-		width = hbox.getWidth() / input.length;
+		
+		dist = hbox.getWidth() / input.length;
+		BigDecimal bg = new BigDecimal(dist).setScale(5, RoundingMode.UP);
+		dist = bg.doubleValue();
 
 		for (int i = 0; i < input.length; i++) {
 			height = (hbox.getWidth() / max) * input[i];
-			Rectangle rectangle = new Rectangle(width, height);
+			Rectangle rectangle = new Rectangle(dist, height);
 			rectangle.setFill(shapeColor);
 			StackPane stackPane = new StackPane();
 			stackPane.setPrefSize(rectangle.getWidth(), rectangle.getHeight());
@@ -1268,27 +1265,27 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		switch (a1) {
 		case "bubble":
 			algo1.setText("Bubble Sort");
-			c1.setText("n²");
+			c1.setText("O(n^2)");
 			break;
 		case "insertion":
 			algo1.setText("Insertion Sort");
-			c1.setText("n²");
+			c1.setText("O(n^2)");
 			break;
 		case "select":
 			algo1.setText("Selection Sort");
-			c1.setText("n²");
+			c1.setText("O(n^2)");
 			break;
 		case "quick":
 			algo1.setText("Quick Sort");
-			c1.setText("nlogn");
+			c1.setText("O(nlogn)");
 			break;
 		case "merge":
 			algo1.setText("Merge Sort");
-			c1.setText("nlogn");
+			c1.setText("O(nlogn)");
 			break;
 		case "heap":
 			algo1.setText("Heap Sort");
-			c1.setText("nlogn");
+			c1.setText("O(nlogn)");
 			break;
 		default:
 			break;
@@ -1297,27 +1294,27 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		switch (a2) {
 		case "bubble":
 			algo2.setText("Bubble Sort");
-			c2.setText("n²");
+			c2.setText("O(n^2)");
 			break;
 		case "insertion":
 			algo2.setText("Insertion Sort");
-			c2.setText("n²");
+			c2.setText("O(n^2)");
 			break;
 		case "select":
 			algo2.setText("Selection Sort");
-			c2.setText("n²");
+			c2.setText("O(n^2)");
 			break;
 		case "quick":
 			algo2.setText("Quick Sort");
-			c2.setText("nlogn");
+			c2.setText("O(nlogn)");
 			break;
 		case "merge":
 			algo2.setText("Merge Sort");
-			c2.setText("nlogn");
+			c2.setText("O(nlogn)");
 			break;
 		case "heap":
 			algo2.setText("Heap Sort");
-			c2.setText("nlogn");
+			c2.setText("O(nlogn)");
 			break;
 		default:
 			break;
