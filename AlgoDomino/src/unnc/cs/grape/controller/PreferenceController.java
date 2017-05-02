@@ -1,7 +1,10 @@
 package unnc.cs.grape.controller;
 
 import com.jfoenix.controls.JFXColorPicker;
+<<<<<<< HEAD
 //import com.sun.javaws.Main;
+=======
+>>>>>>> origin/develop
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
