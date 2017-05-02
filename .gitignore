@@ -1,8 +1,8 @@
 
 # Created by https://www.gitignore.io/api/java,eclipse
 
-/out
-
+AlgoDomino/out
+/.idea
 
 ### Eclipse ###
 

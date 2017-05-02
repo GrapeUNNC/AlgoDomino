@@ -21,14 +21,14 @@
                               <Font size="16.0" />
                            </font>
                         </Button>
-                        <ImageView fitHeight="404.0" fitWidth="701.0" layoutX="75.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="464.0" fitWidth="776.0" layoutX="56.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@assets/icon/guide1.jpg" />
+                              <Image url="@assets/icon/sin.gif" />
                            </image>
                         </ImageView>
                      </children></AnchorPane>
                </content></Tab>
-            <Tab text="Comparision Two Algorithms Guide">
+            <Tab text="Comparing Two Algorithms Guide">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -37,9 +37,9 @@
                               <Font size="16.0" />
                            </font>
                         </Button>
-                        <ImageView fitHeight="422.0" fitWidth="705.0" layoutX="77.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="463.0" fitWidth="764.0" layoutX="59.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@assets/icon/guide2.jpg" />
+                              <Image url="@assets/icon/cmp.gif" />
                            </image>
                         </ImageView>
                      </children></AnchorPane>

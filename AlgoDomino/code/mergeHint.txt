@@ -1,0 +1,7 @@
+split each element into partitions of size 1
+recursively merge adjancent partitions
+    for i = leftPartStartIndex to rightPartLastIndex inclusive
+        if leftPartHeadValue <= rightPartHeadValue
+            copy leftPartHeadValue
+        else: copy rightPartHeadValue
+copy elements back to original array

@@ -1,0 +1,7 @@
+mark first element as sorted
+for each unsorted element
+    'extract' the element
+    for i = lastSortedIndex to 0
+        if currentSortedElement > extractedElement
+            move sorted element to the right by 1
+        else: insert extracted element

@@ -1,26 +1,26 @@
 package unnc.cs.grape;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import javax.imageio.ImageIO;
-
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import unnc.cs.grape.controller.GuidelineController;
 import unnc.cs.grape.controller.HelpBoxController;
-import unnc.cs.grape.controller.MainFrameController;
 import unnc.cs.grape.controller.PreferenceController;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * The type Main app.
@@ -36,8 +36,8 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        primaryStage.setTitle("Visualizing sorting algorithms");
+        MainApp.primaryStage = primaryStage;
+        primaryStage.setTitle("Domino");
         primaryStage.setWidth(1034);
         primaryStage.setHeight(660);
         primaryStage.setResizable(false);
@@ -70,9 +70,6 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/MainFrame.fxml"));
             AnchorPane rootLayout = loader.load();
-
-            MainFrameController mfc = loader.getController();
-            mfc.setup();
 
             // Show the scene containing the root layout.
              mainScene = new Scene(rootLayout);
@@ -201,9 +198,15 @@ public class MainApp extends Application {
 		fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showSaveDialog(primaryStage);
         String code=null;
-        if(algo==null)
+        if(algo==null){
         	System.out.println("No algorithm select");
-
+        	Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Error Dialog");
+        	alert.setHeaderText(null);
+        	alert.setContentText("No algorithm selected!");
+        	alert.showAndWait();
+        	return;
+        }
 
         String fileName = "./code/" + algo + language + ".txt";
         try {
@@ -212,12 +215,10 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
 
-
         if(file != null)
         {
             try {
-        		FileWriter fileWriter;
-        		fileWriter = new FileWriter(file);
+        		FileWriter fileWriter = new FileWriter(file);
         		fileWriter.write(code);
         		fileWriter.close();
             }
@@ -227,15 +228,6 @@ public class MainApp extends Application {
         }
    }
 
-
-    /**
-     * Returns the main stage.
-     *
-     * @return primary stage
-     */
-    public static Stage getPrimaryStage() {
-        return primaryStage;
-    }
 
     /**
      * The entry point of application.

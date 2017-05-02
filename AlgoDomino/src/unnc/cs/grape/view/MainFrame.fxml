@@ -5,20 +5,17 @@
 <?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TextArea?>
@@ -34,7 +31,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unnc.cs.grape.controller.MainFrameController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <left>
@@ -52,13 +49,6 @@
                           <MenuItem mnemonicParsing="false" onAction="#handleQuit" text="Quit" />
                         </items>
                       </Menu>
-                        <Menu mnemonicParsing="false" text="Run">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Run" />
-                              <MenuItem mnemonicParsing="false" text="Pause" />
-                              <MenuItem mnemonicParsing="false" text="Stop" />
-                          </items>
-                        </Menu>
                         <Menu mnemonicParsing="false" text="Function">
                            <items>
                               <Menu mnemonicParsing="false" text="Code Language">
@@ -71,9 +61,20 @@
                                     <RadioMenuItem mnemonicParsing="false" onAction="#handleJavaScript" text="JavaScript" toggleGroup="$language" />
                                     <RadioMenuItem mnemonicParsing="false" onAction="#handleC" text="C" toggleGroup="$language" />
                                     <RadioMenuItem mnemonicParsing="false" onAction="#handlePython" text="Python" toggleGroup="$language" />
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#handlePHP" text="PHP" toggleGroup="$language" />
                                  </items>
                               </Menu>
                               <MenuItem mnemonicParsing="false" onAction="#handlePreference" text="Color of Chart" />
+                              <Menu mnemonicParsing="false" text="Sort Order">
+                                 <items>
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#handleAscendingOrder" selected="true" text="Ascending Order">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="Order" />
+                                       </toggleGroup>
+                                    </RadioMenuItem>
+                                    <RadioMenuItem mnemonicParsing="false" onAction="#handleDescendingOrder" text="Descending Order" toggleGroup="$Order" />
+                                 </items>
+                              </Menu>
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Help">
@@ -102,48 +103,94 @@
                                              <children>
                                                 <SplitPane dividerPositions="0.23770491803278687" layoutX="186.0" layoutY="86.0" prefHeight="598.0" prefWidth="571.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <items>
-                                                    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="161.0">
+                                                    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefWidth="161.0">
                                                          <children>
-                                                            <VBox alignment="TOP_CENTER" layoutX="-24.0" layoutY="-116.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="163.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                               <children>
-                                                                  <ToggleButton fx:id="bubble" accessibleText="bubble" contentDisplay="CENTER" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Bubble sort">
-                                                                     <VBox.margin>
-                                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                                     </VBox.margin>
-                                                                     <toggleGroup>
-                                                                        <ToggleGroup fx:id="togglegroup" />
-                                                                     </toggleGroup>
-                                                                  </ToggleButton>
-                                                                  <ToggleButton fx:id="insertion" accessibleText="insert" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Insertion sort" toggleGroup="$togglegroup">
-                                                                     <VBox.margin>
-                                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                                     </VBox.margin>
-                                                                  </ToggleButton>
-                                                                  <ToggleButton fx:id="selection" accessibleText="select" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Selection sort" toggleGroup="$togglegroup">
-                                                                     <VBox.margin>
-                                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                                     </VBox.margin>
-                                                                  </ToggleButton>
-                                                                  <ToggleButton fx:id="quick" accessibleText="quick" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Quick sort" toggleGroup="$togglegroup">
-                                                                     <VBox.margin>
-                                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                                     </VBox.margin>
-                                                                  </ToggleButton>
-                                                                  <ToggleButton fx:id="merge" accessibleText="merge" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Merge sort" toggleGroup="$togglegroup">
-                                                                     <VBox.margin>
-                                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                                     </VBox.margin>
-                                                                  </ToggleButton>
-                                                                  <ToggleButton fx:id="heap" mnemonicParsing="false" onAction="#chooseAlgo" prefHeight="50.0" prefWidth="120.0" text="Heap sort" toggleGroup="$togglegroup">
-                                                                     <VBox.margin>
-                                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                                     </VBox.margin>
-                                                                  </ToggleButton>
-                                                               </children>
-                                                               <padding>
-                                                                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                               </padding>
-                                                            </VBox>
+                                                            <ScrollPane prefHeight="570.0" prefWidth="171.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <content>
+                                                                  <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="163.0">
+                                                                     <children>
+                                                                        <ToggleButton fx:id="bubble" accessibleText="bubble" contentDisplay="TOP" mnemonicParsing="false" onAction="#chooseAlgo" onMouseEntered="#bubbleEnter" onMouseExited="#bubbleExit" prefHeight="50.0" prefWidth="120.0" text="Bubble sort">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                                           </VBox.margin>
+                                                                           <toggleGroup>
+                                                                              <ToggleGroup fx:id="togglegroup" />
+                                                                           </toggleGroup>
+                                                                           <graphic>
+                                                                              <ImageView fx:id="bubbleImg" fitHeight="76.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                                                                                 <image>
+                                                                                    <Image url="@assets/icon/bubble.jpg" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </graphic>
+                                                                        </ToggleButton>
+                                                                        <ToggleButton fx:id="insertion" accessibleText="insert" contentDisplay="TOP" mnemonicParsing="false" onAction="#chooseAlgo" onMouseEntered="#insertionEnter" onMouseExited="#insertionExit" prefHeight="50.0" prefWidth="120.0" text="Insertion sort" toggleGroup="$togglegroup">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                                           </VBox.margin>
+                                                                           <graphic>
+                                                                              <ImageView fx:id="insertionImg" fitHeight="76.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                                                                                 <image>
+                                                                                    <Image url="@assets/icon/insertion.jpg" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </graphic>
+                                                                        </ToggleButton>
+                                                                        <ToggleButton fx:id="selection" accessibleText="select" contentDisplay="TOP" mnemonicParsing="false" onAction="#chooseAlgo" onMouseEntered="#selectionEnter" onMouseExited="#selectionExit" prefHeight="50.0" prefWidth="120.0" text="Selection sort" toggleGroup="$togglegroup">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                                           </VBox.margin>
+                                                                           <graphic>
+                                                                              <ImageView fx:id="selectionImg" fitHeight="76.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                                                                                 <image>
+                                                                                    <Image url="@assets/icon/selection.jpg" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </graphic>
+                                                                        </ToggleButton>
+                                                                        <ToggleButton fx:id="quick" accessibleText="quick" contentDisplay="TOP" mnemonicParsing="false" onAction="#chooseAlgo" onMouseEntered="#quickEnter" onMouseExited="#quickExit" prefHeight="50.0" prefWidth="120.0" text="Quick sort" toggleGroup="$togglegroup">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                                           </VBox.margin>
+                                                                           <graphic>
+                                                                              <ImageView fx:id="quickImg" fitHeight="76.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                                                                                 <image>
+                                                                                    <Image url="@assets/icon/quick.jpg" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </graphic>
+                                                                        </ToggleButton>
+                                                                        <ToggleButton fx:id="merge" accessibleText="merge" contentDisplay="TOP" mnemonicParsing="false" onAction="#chooseAlgo" onMouseEntered="#mergeEnter" onMouseExited="#mergeExit" prefHeight="50.0" prefWidth="120.0" text="Merge sort" toggleGroup="$togglegroup">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                                           </VBox.margin>
+                                                                           <graphic>
+                                                                              <ImageView fx:id="mergeImg" fitHeight="76.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                                                                                 <image>
+                                                                                    <Image url="@assets/icon/merge.jpg" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </graphic>
+                                                                        </ToggleButton>
+                                                                        <ToggleButton fx:id="heap" accessibleText="heap" contentDisplay="TOP" mnemonicParsing="false" onAction="#chooseAlgo" onMouseEntered="#heapEnter" onMouseExited="#heapExit" prefHeight="50.0" prefWidth="120.0" text="Heap sort" toggleGroup="$togglegroup">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                                           </VBox.margin>
+                                                                           <graphic>
+                                                                              <ImageView fx:id="heapImg" fitHeight="76.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                                                                                 <image>
+                                                                                    <Image url="@assets/icon/heap.jpg" />
+                                                                                 </image>
+                                                                              </ImageView>
+                                                                           </graphic>
+                                                                        </ToggleButton>
+                                                                     </children>
+                                                                     <padding>
+                                                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                                     </padding>
+                                                                  </VBox>
+                                                               </content>
+                                                            </ScrollPane>
                                                          </children>
                                                       </AnchorPane>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="596.0" prefWidth="452.0">
@@ -184,56 +231,33 @@
                                                                                           </ImageView>
                                                                                        </graphic>
                                                                                     </JFXButton>
-                                                                                    <JFXButton fx:id="initialize" layoutX="120.0" layoutY="103.0" onAction="#intializeRec" prefHeight="25.0" prefWidth="132.0" text="Initialize">
+                                                                                    <JFXButton fx:id="initialize" layoutX="120.0" layoutY="103.0" onAction="#initializeRec" prefHeight="25.0" prefWidth="132.0" text="Initialize">
                                                                                        <font>
                                                                                           <Font name="System Bold" size="12.0" />
                                                                                        </font>
                                                                                     </JFXButton>
-                                                                                    <Label layoutX="297.0" layoutY="21.0" text="Slow" />
-                                                                                    <Label layoutX="468.0" layoutY="21.0" text="Fast" />
-                                                                                    <JFXButton fx:id="start" contentDisplay="GRAPHIC_ONLY" layoutX="118.0" layoutY="11.0" onAction="#sortStart" prefHeight="33.0" prefWidth="28.0">
+                                                                                    <Label layoutX="339.0" layoutY="21.0" text="Slow" />
+                                                                                    <Label layoutX="510.0" layoutY="21.0" text="Fast" />
+                                                                                    <JFXButton fx:id="start" contentDisplay="GRAPHIC_ONLY" layoutX="41.0" layoutY="13.0" onAction="#sortStart" prefHeight="33.0" prefWidth="28.0">
                                                                                        <font>
                                                                                           <Font size="1.0" />
                                                                                        </font>
                                                                                        <graphic>
                                                                                           <ImageView fx:id="playbutton" fitHeight="37.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                                                                                              <image>
-                                                                                                <Image url="@assets/icon/play_128px_1086608_easyicon.net.png" />
-                                                                                             </image>
-                                                                                          </ImageView>
-                                                                                       </graphic>
-                                                                                    </JFXButton>
-                                                                                    <JFXButton fx:id="next" contentDisplay="GRAPHIC_ONLY" layoutX="157.0" layoutY="14.0" prefHeight="33.0" prefWidth="28.0">
-                                                                                       <font>
-                                                                                          <Font size="1.0" />
-                                                                                       </font>
-                                                                                       <graphic>
-                                                                                          <ImageView fitHeight="32.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                                                                             <image>
-                                                                                                <Image url="@assets/icon/next_track_128px_1086596_easyicon.net.png" />
-                                                                                             </image>
-                                                                                          </ImageView>
-                                                                                       </graphic>
-                                                                                    </JFXButton>
-                                                                                    <JFXButton fx:id="previous" contentDisplay="GRAPHIC_ONLY" layoutX="89.0" layoutY="14.0" prefHeight="33.0" prefWidth="28.0">
-                                                                                       <font>
-                                                                                          <Font size="1.0" />
-                                                                                       </font>
-                                                                                       <graphic>
-                                                                                          <ImageView fx:id="previous" fitHeight="32.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                                                                             <image>
-                                                                                                <Image url="@assets/icon/previous_track_128px_1086611_easyicon.net.png" />
+                                                                                                <Image url="@assets/icon/play.png" />
                                                                                              </image>
                                                                                           </ImageView>
                                                                                        </graphic>
                                                                                     </JFXButton>
                                                                                     <Separator layoutY="59.0" prefHeight="7.0" prefWidth="619.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0" />
-                                                                                    <JFXSlider fx:id="slider" blockIncrement="1.0" indicatorPosition="RIGHT" layoutX="335.0" layoutY="14.0" majorTickUnit="50.0" minorTickCount="5" onDragDetected="#speedChange" prefHeight="48.0" prefWidth="119.0" showTickLabels="true" showTickMarks="true" value="40.0" />
+                                                                                    <JFXSlider fx:id="volumeSlider" blockIncrement="1.0" indicatorPosition="RIGHT" layoutX="377.0" layoutY="14.0" majorTickUnit="50.0" minorTickCount="5" onDragDetected="#speedChange" prefHeight="48.0" prefWidth="119.0" showTickLabels="true" showTickMarks="true" value="40.0" />
                                                                                     <JFXButton fx:id="clear" layoutX="291.0" layoutY="103.0" onAction="#clear" prefHeight="25.0" prefWidth="132.0" text="Clear">
                                                                                        <font>
                                                                                           <Font name="System Bold" size="12.0" />
                                                                                        </font>
                                                                                     </JFXButton>
+                                                                                    <Slider fx:id="timeSlider" layoutX="88.0" layoutY="19.0" onDragDetected="#timeChange" prefHeight="27.0" prefWidth="237.0" />
                                                                                  </children>
                                                                               </AnchorPane>
                                                                            </children>
@@ -260,7 +284,7 @@
                                                                      <children>
                                                                         <TitledPane animated="false" collapsible="false" layoutX="-15.0" layoutY="-43.0" prefHeight="71.0" prefWidth="124.0" text="Algorithm Hint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                            <content>
-                                                                              <TextArea fx:id="hintDisplay" editable="false" prefHeight="200.0" prefWidth="200.0" style="-: ;" />
+                                                                              <TextArea fx:id="hintDisplay" editable="false" prefHeight="200.0" prefWidth="200.0" />
                                                                            </content>
                                                                         </TitledPane>
                                                                      </children>
@@ -288,7 +312,7 @@
                               </AnchorPane>
                            </content>
                       </Tab>
-                      <Tab text="Comparision">
+                      <Tab text="Comparison">
                            <content>
                               <AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@assets/css/Interface.css">
                                  <children>
@@ -296,7 +320,7 @@
                                        <items>
                                           <AnchorPane fx:id="Animation" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="100.0">
                                              <children>
-                                                <SplitPane dividerPositions="0.8651832460732984" layoutX="-14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="598.0" prefWidth="552.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <SplitPane dividerPositions="0.8262411347517731" layoutX="-14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="598.0" prefWidth="552.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <items>
                                                     <AnchorPane prefHeight="594.0" prefWidth="915.0">
                                                          <children>
@@ -311,8 +335,8 @@
                                                                                     <Font name="System Bold" size="17.0" />
                                                                                  </font>
                                                                               </Label>
-                                                                              <HBox alignment="TOP_CENTER" prefHeight="272.0" prefWidth="196.0" rotate="180.0" />
-                                                                              <Label prefHeight="23.0" prefWidth="90.0" text="time:">
+                                                                              <HBox fx:id="hbox_left" maxHeight="280.0" maxWidth="280.0" minHeight="280.0" minWidth="280.0" prefHeight="280.0" prefWidth="280.0" />
+                                                                              <Label fx:id="time_left" alignment="CENTER" prefHeight="23.0" prefWidth="200.0">
                                                                                  <font>
                                                                                     <Font name="System Bold" size="15.0" />
                                                                                  </font>
@@ -331,8 +355,8 @@
                                                                               <Font name="System Bold" size="17.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <HBox alignment="TOP_CENTER" prefHeight="272.0" prefWidth="196.0" rotate="180.0" />
-                                                                        <Label prefHeight="23.0" prefWidth="90.0" text="time:">
+                                                                        <HBox fx:id="hbox_right" maxHeight="280.0" maxWidth="280.0" minHeight="280.0" minWidth="280.0" prefHeight="280.0" prefWidth="280.0" />
+                                                                        <Label fx:id="time_right" alignment="CENTER" prefHeight="23.0" prefWidth="200.0">
                                                                            <font>
                                                                               <Font name="System Bold" size="15.0" />
                                                                            </font>
@@ -351,40 +375,22 @@
                                                       </AnchorPane>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="192.0" prefWidth="915.0" style="-fx-background-color: #DDDDDD;">
                                                          <children>
-                                                            <Label layoutX="678.0" layoutY="36.0" prefHeight="17.0" prefWidth="31.0" text="Fast">
-                                                               <font>
-                                                                  <Font name="System Bold" size="12.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <Label layoutX="479.0" layoutY="36.0" text="Slow">
-                                                               <font>
-                                                                  <Font name="System Bold" size="12.0" />
-                                                               </font>
-                                                            </Label>
                                                             <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="63.0" layoutY="16.0">
                                                                <font>
                                                                   <Font size="1.0" />
                                                                </font>
-                                                               <graphic>
-                                                                  <ImageView fx:id="playbutton2" fitHeight="114.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                                                                     <image>
-                                                                        <Image url="@assets/icon/play.png" />
-                                                                     </image>
-                                                                  </ImageView>
-                                                               </graphic>
                                                             </JFXButton>
-                                                            <Label layoutX="139.0" layoutY="16.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="81.0" text="input size:">
+                                                            <Label layoutX="142.0" layoutY="22.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="92.0" text="Input Size:">
                                                                <font>
-                                                                  <Font size="16.0" />
+                                                                  <Font name="System Bold" size="16.0" />
                                                                </font>
                                                             </Label>
-                                                            <JFXTextField fx:id="inputString_c" layoutX="227.0" layoutY="24.0" maxWidth="163.0" prefHeight="25.0" prefWidth="163.0" promptText="100-500" />
-                                                            <JFXButton fx:id="startButton" layoutX="405.0" layoutY="21.0" prefHeight="31.0" prefWidth="57.0" text="Start">
+                                                            <JFXTextField fx:id="inputString_c" layoutX="251.0" layoutY="27.0" maxWidth="262.0" prefHeight="25.0" prefWidth="262.0" promptText="100" />
+                                                            <JFXButton fx:id="startButton" layoutX="547.0" layoutY="24.0" onAction="#startCompare" prefHeight="31.0" prefWidth="57.0" text="Start">
                                                                <font>
                                                                   <Font name="System Bold" size="12.0" />
                                                                </font>
                                                             </JFXButton>
-                                                            <JFXSlider fx:id="slider_c" blockIncrement="1.0" layoutX="523.0" layoutY="37.0" max="10.0" showTickLabels="true" />
                                                          </children>
                                                       </AnchorPane>
                                                   </items>
@@ -399,45 +405,35 @@
                                                          <children>
                                                             <VBox alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="248.0" prefWidth="217.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
-                                                                  <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="147.0" text="Algorithms">
+                                                                  <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="147.0" text="Algorithms:">
                                                                      <font>
                                                                         <Font size="15.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <MenuButton fx:id="algo1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseAlgo_c" prefHeight="39.0" prefWidth="154.0" text="Choose Algorithm" VBox.vgrow="ALWAYS">
-                                                                     <items>
-                                                                        <MenuItem fx:id="bubble_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Bubble Sort" />
-                                                                        <MenuItem fx:id="selection_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Selection Sort" />
-                                                                        <MenuItem fx:id="insertion_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Insertion Sort" />
-                                                                        <MenuItem fx:id="quick_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Quick Sort" />
-                                                                        <MenuItem fx:id="merge_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Merge Sort" />
-                                                                        <MenuItem fx:id="heap_c" mnemonicParsing="false" onAction="#chooseAlgo_c" text="Heap Sort" />
-                                                                     </items>
-                                                                     <VBox.margin>
-                                                                        <Insets left="10.0" right="10.0" top="5.0" />
-                                                                     </VBox.margin>
-                                                                  </MenuButton>
-                                                                  <MenuButton fx:id="algo2" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseAlgo_c_2" prefHeight="36.0" prefWidth="154.0" text="Choose Algorithm" VBox.vgrow="ALWAYS">
-                                                                     <items>
-                                                                        <MenuItem fx:id="bubble_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Bubble Sort" />
-                                                                        <MenuItem fx:id="selection_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Selection Sort" />
-                                                                        <MenuItem fx:id="insertion_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Insertion Sort" />
-                                                                        <MenuItem fx:id="quick_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Quick Sort" />
-                                                                        <MenuItem fx:id="merge_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Merge Sort" />
-                                                                        <MenuItem fx:id="heap_c_2" mnemonicParsing="false" onAction="#chooseAlgo_c_2" text="Heap Sort" />
-                                                                     </items>
-                                                                     <VBox.margin>
-                                                                        <Insets left="10.0" right="10.0" top="10.0" />
-                                                                     </VBox.margin>
-                                                                  </MenuButton>
-                                                                  <JFXComboBox fx:id="comboBox" onAction="#chooseA1" prefHeight="25.0" prefWidth="154.0">
+
+                                                                  <JFXComboBox fx:id="combo1" onAction="#chooseFirstAlgo" prefHeight="25.0" prefWidth="154.0" unFocusColor="BLACK">
 																		<items>  
 																			<FXCollections fx:factory="observableArrayList">  
-																				<String fx:value="Bubble Sort" />  
-																				<String fx:value="Quick Sort" />  
-																				<String fx:value="Selection Sort" />  
-																			</FXCollections>  
+																				<Label accessibleText="bubble" text="Bubble Sort" />
+                                                                         	    <Label accessibleText="select" text="Selection Sort" />
+                                                                         		<Label accessibleText="insertion" text="Insertion Sort" />
+                                                                                <Label accessibleText="quick" text="Quick Sort" />
+                                                                           	    <Label accessibleText="merge" text="Merge Sort" />
+                                                                           		<Label accessibleText="heap" text="Heap Sort" />
+																			</FXCollections>
  																		</items>
+                                                                  </JFXComboBox>
+                                                                  <JFXComboBox fx:id="combo2" onAction="#chooseSecAlgo" prefHeight="25.0" prefWidth="154.0">
+                                                                     <items>
+                                                                        <FXCollections fx:factory="observableArrayList">
+                                                                           <Label accessibleText="bubble" text="Bubble Sort" />
+                                                                           <Label accessibleText="select" text="Selection Sort" />
+                                                                           <Label accessibleText="insertion" text="Insertion Sort" />
+                                                                           <Label accessibleText="quick" text="Quick Sort" />
+                                                                           <Label accessibleText="merge" text="Merge Sort" />
+                                                                           <Label accessibleText="heap" text="Heap Sort" />
+                                                                        </FXCollections>
+                                                                     </items>
                                                                   </JFXComboBox>
                                                                </children>
                                                                <padding>
@@ -455,16 +451,16 @@
                                                                         <Font name="System Bold" size="15.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <LineChart prefHeight="169.0" prefWidth="163.0" style="-fx-background-color: #FFF8DC;">
-                                                                     <xAxis>
-                                                                        <CategoryAxis side="BOTTOM" />
-                                                                     </xAxis>
-                                                                     <yAxis>
-                                                                        <NumberAxis side="LEFT" />
-                                                                     </yAxis>
-                                                                  </LineChart>
-                                                                  <Label text="bubble sort：————" />
-                                                                  <Label prefHeight="16.0" prefWidth="148.0" text="insertion sort：————" textFill="#ee0d0d" />
+                                                                  <AnchorPane prefHeight="138.0" prefWidth="260.0">
+                                                                     <children>
+                                                                        <Label layoutX="28.0" layoutY="29.0" text="Algorithm Name" />
+                                                                        <Label layoutX="166.0" layoutY="29.0" text="Comlexity" />
+                                                                        <Label fx:id="algo2" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="88.0" prefHeight="17.0" prefWidth="100.0" />
+                                                                        <Label fx:id="algo1" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="56.0" prefWidth="100.0" />
+                                                                        <Label fx:id="c2" alignment="CENTER" contentDisplay="CENTER" layoutX="168.0" layoutY="88.0" prefWidth="60.0" />
+                                                                        <Label fx:id="c1" alignment="CENTER" contentDisplay="CENTER" layoutX="168.0" layoutY="56.0" prefWidth="60.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
                                                                </children>
                                                                <padding>
                                                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
