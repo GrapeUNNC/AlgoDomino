@@ -8,9 +8,6 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -21,6 +18,8 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleButton?>
@@ -345,7 +344,7 @@
                                                                                  </font>
                                                                               </Label>
                                                                               <HBox fx:id="hbox_left" maxHeight="280.0" maxWidth="280.0" minHeight="280.0" minWidth="280.0" prefHeight="280.0" prefWidth="280.0" />
-                                                                              <Label fx:id="time_left" prefHeight="23.0" prefWidth="90.0">
+                                                                              <Label fx:id="time_left" prefHeight="23.0" prefWidth="200.0">
                                                                                  <font>
                                                                                     <Font name="System Bold" size="15.0" />
                                                                                  </font>
@@ -365,7 +364,7 @@
                                                                            </font>
                                                                         </Label>
                                                                         <HBox fx:id="hbox_right" maxHeight="280.0" maxWidth="280.0" minHeight="280.0" minWidth="280.0" prefHeight="280.0" prefWidth="280.0" />
-                                                                        <Label fx:id="time_right" prefHeight="23.0" prefWidth="90.0">
+                                                                        <Label fx:id="time_right" prefHeight="23.0" prefWidth="200.0">
                                                                            <font>
                                                                               <Font name="System Bold" size="15.0" />
                                                                            </font>
@@ -460,14 +459,14 @@
                                                                         <Font name="System Bold" size="15.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <LineChart prefHeight="169.0" prefWidth="163.0" style="-fx-background-color: #FFF8DC;">
-                                                                     <xAxis>
-                                                                        <CategoryAxis side="BOTTOM" />
-                                                                     </xAxis>
-                                                                     <yAxis>
-                                                                        <NumberAxis side="LEFT" />
-                                                                     </yAxis>
-                                                                  </LineChart>
+                                                                  <TableView fx:id="table" prefHeight="98.0" prefWidth="260.0">
+                                                                    <columns>
+                                                                      <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
+                                                                      <TableColumn fx:id="best" prefWidth="47.0" text="Best" />
+                                                                        <TableColumn fx:id="average" prefWidth="62.0" text="Average" />
+                                                                        <TableColumn fx:id="worst" prefWidth="75.0" text="Worst" />
+                                                                    </columns>
+                                                                  </TableView>
                                                                   <Label fx:id="firstAlgoComplex" />
                                                                   <Label fx:id="secondAlgoComplex" textFill="#ee0d0d" />
                                                                </children>
