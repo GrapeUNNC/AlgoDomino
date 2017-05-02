@@ -223,7 +223,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 				timeSlider.setValue(currentTime.divide(duration.toMillis()).toMillis() * 100);
 			} else {
 				timeSlider.setDisable(true);
-				inputString.setDisable(true);
 				st.stop();
 			}
 		});
@@ -399,7 +398,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		Color shapeColor = PreferenceController.color;
 
 		if (input == null || input.length == 0) {
-			input = defaultInput;
+			input = defaultInput.clone();
 		}
 
 		for (int anInput : input) {
@@ -415,6 +414,17 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			sp.setAlignment(Pos.BOTTOM_CENTER);
 			list.add(sp);
 		}
+
+		recList.get(0).accessibleTextProperty().addListener(e -> {
+            Animation.Status s = st.getStatus();
+            Duration d = st.getCurrentTime();
+            sort(selectAlgo);
+            st.playFrom(d);
+            if (s.equals(Animation.Status.PAUSED)) {
+                st.pause();
+                changeReplayButton();
+            }
+		});
 
 		hbox.getChildren().addAll(list);
 	}
@@ -1230,7 +1240,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	}
 
 	private void generate_c(ArrayList<StackPane> list, HBox hbox, int[] input) {
-		Color shapeColor = PreferenceController.color;
+		Color shapeColor = Color.BLACK;
 		double height;
 
 		int max = input[0];
