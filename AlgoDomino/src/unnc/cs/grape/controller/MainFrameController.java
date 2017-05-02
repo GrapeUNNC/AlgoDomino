@@ -654,13 +654,9 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 						arr[j - 1] = temp;
 						sq.getChildren().add(
 								changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
-
 						sq.getChildren().add(swapInsertion(list.get(j - 1), list.get(j), list, duration));
 						sq.getChildren().add(swapInsertion1(list.get(j - 1), list.get(j), list, duration));
 						sq.getChildren().add(swapInsertion2(list.get(j - 1), list.get(j), list, duration));
-
-						sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
-
 						sq.getChildren().add(
 								changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
 					} else {
@@ -673,13 +669,9 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 						arr[j - 1] = temp;
 						sq.getChildren().add(
 								changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
-
 						sq.getChildren().add(swapInsertion(list.get(j - 1), list.get(j), list, duration));
 						sq.getChildren().add(swapInsertion1(list.get(j - 1), list.get(j), list, duration));
 						sq.getChildren().add(swapInsertion2(list.get(j - 1), list.get(j), list, duration));
-
-						sq.getChildren().add(swap(list.get(j - 1), list.get(j), list, duration));
-
 						sq.getChildren().add(
 								changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
 					} else {
