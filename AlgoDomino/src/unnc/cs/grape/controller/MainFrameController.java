@@ -705,12 +705,10 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					tmp = arr[i];
 					arr[i] = arr[minIndex];
 					arr[minIndex] = tmp;
-					sq.getChildren().add(
-							changeColor(list.get(i), list.get(minIndex), PreferenceController.color, color_change));
+					sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), PreferenceController.color, color_change));
 					sq.getChildren().add(swapSelect1(list.get(i), list.get(minIndex), list, duration,minIndex-i));
 					sq.getChildren().add(swapSelect2(list.get(i), list.get(minIndex), list, duration,minIndex-i));
-					sq.getChildren().add(
-							changeColor(list.get(i), list.get(minIndex), color_change, PreferenceController.color));
+					sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), color_change, PreferenceController.color));
 				}
 			} else {
 				minIndex = i;
