@@ -703,6 +703,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 							changeColor(list.get(i), list.get(minIndex), PreferenceController.color, color_change));
 					sq.getChildren().add(swapSelect1(list.get(i), list.get(minIndex), list, duration,minIndex-i));
 					sq.getChildren().add(swapSelect2(list.get(i), list.get(minIndex), list, duration,minIndex-i));
+					sq.getChildren().add(swapSelect3(list.get(i), list.get(minIndex), list, duration,minIndex-i));
 					sq.getChildren().add(
 							changeColor(list.get(i), list.get(minIndex), color_change, PreferenceController.color));
 				}
@@ -719,6 +720,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 							changeColor(list.get(i), list.get(minIndex), PreferenceController.color, color_change));
 					sq.getChildren().add(swapSelect1(list.get(i), list.get(minIndex), list, duration,minIndex-i));
 					sq.getChildren().add(swapSelect2(list.get(i), list.get(minIndex), list, duration,minIndex-i));
+					sq.getChildren().add(swapSelect3(list.get(i), list.get(minIndex), list, duration,minIndex-i));
 					sq.getChildren().add(
 							changeColor(list.get(i), list.get(minIndex), color_change, PreferenceController.color));
 				}
@@ -810,12 +812,25 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 		int num = Math.abs(distance);
 		num *= 30;
 		t1.setByX(num);
-		t2.setToY(0);
 		t2.setByX(-num);
+		pl.getChildren().addAll(t1, t2);
+		return pl;
+	}
+
+	private ParallelTransition swapSelect3(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed, int distance) {
+		TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
+		TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
+		t1.setDuration(Duration.millis(speed));
+		t2.setDuration(Duration.millis(speed));
+		ParallelTransition pl = new ParallelTransition();
+		t1.setNode(l1);
+		t2.setNode(l2);
+		t2.setToY(0);
 		pl.getChildren().addAll(t1, t2);
 		Collections.swap(list, list.indexOf(l1), list.indexOf(l2));
 		return pl;
 	}
+
 
 
 	private ParallelTransition swapHeap2(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed,
@@ -1240,7 +1255,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			if (i >= max)
 				max = i;
 		}
-		
+
 		dist = hbox.getWidth() / input.length;
 		BigDecimal bg = new BigDecimal(dist).setScale(5, RoundingMode.UP);
 		dist = bg.doubleValue();
