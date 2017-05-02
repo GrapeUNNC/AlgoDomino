@@ -825,15 +825,12 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	}
 
 	private ParallelTransition swapSelect1(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed, int distance) {
-		TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
 		TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
-		t1.setDuration(Duration.millis(speed));
 		t2.setDuration(Duration.millis(speed));
 		ParallelTransition pl = new ParallelTransition();
-		t1.setNode(l1);
 		t2.setNode(l2);
 		t2.setToY(-100);
-		pl.getChildren().addAll(t1, t2);
+		pl.getChildren().addAll(t2);
 		return pl;
 	}
 
