@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.chart.LineChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -46,7 +47,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	private final int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
 	private int sortOrder = 0;
 	private double duration = 600;
-	private double duration_c = 100;
+	private double duration_c = 10;
 	private String selectAlgo = null;
 	private String languageSelect = "Java";
 	private final ArrayList<StackPane> list = new ArrayList<>();
@@ -151,6 +152,22 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 	@FXML
 	private JFXComboBox<Label> combo1, combo2;
+
+	@FXML
+	private TableView<String> table;
+
+	@FXML
+	private TableColumn<String, String> name;
+
+	@FXML
+	private TableColumn<String, String> best;
+
+	@FXML
+	private TableColumn<String, String> average;
+
+	@FXML
+	private TableColumn<String, String> worst;
+
 	private String compareAlgo1, compareAlgo2;
 
 	/**
@@ -803,8 +820,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 	private SequentialTransition HeapSort(int arr[], ArrayList<StackPane> list, double duration) {
 		SequentialTransition sq = new SequentialTransition();
-		if(sortOrder==0)
-		{
+		if (sortOrder == 0) {
 			for (int i = arr.length / 2; i >= 0; i--) {
 				int parent = i;
 				int temp = arr[parent];
@@ -819,11 +835,11 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					arr[child] = arr[parent];
 					arr[parent] = temp;
 					temp = arr[child];
-					sq.getChildren()
-						.add(changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
+					sq.getChildren().add(
+							changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
 					sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
-					sq.getChildren()
-						.add(changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
+					sq.getChildren().add(
+							changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
 					parent = child;
 					child = 2 * child + 1;
 				}
@@ -849,18 +865,16 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					arr[child] = arr[parent];
 					arr[parent] = tempFather;
 					tempFather = arr[child];
-					sq.getChildren()
-						.add(changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
+					sq.getChildren().add(
+							changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
 					sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
-					sq.getChildren()
-						.add(changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
+					sq.getChildren().add(
+							changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
 					parent = child;
 					child = 2 * child + 1;
 				}
 			}
-		}
-		else
-		{
+		} else {
 			for (int i = arr.length / 2; i >= 0; i--) {
 				int parent = i;
 				int temp = arr[parent];
@@ -875,11 +889,11 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					arr[child] = arr[parent];
 					arr[parent] = temp;
 					temp = arr[child];
-					sq.getChildren()
-						.add(changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
+					sq.getChildren().add(
+							changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
 					sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
-					sq.getChildren()
-						.add(changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
+					sq.getChildren().add(
+							changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
 					parent = child;
 					child = 2 * child + 1;
 				}
@@ -905,11 +919,11 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					arr[child] = arr[parent];
 					arr[parent] = tempFather;
 					tempFather = arr[child];
-					sq.getChildren()
-						.add(changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
+					sq.getChildren().add(
+							changeColor(list.get(parent), list.get(child), PreferenceController.color, color_change));
 					sq.getChildren().add(swapHeap1(list.get(parent), list.get(child), list, duration, parent, child));
-					sq.getChildren()
-						.add(changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
+					sq.getChildren().add(
+							changeColor(list.get(parent), list.get(child), color_change, PreferenceController.color));
 					parent = child;
 					child = 2 * child + 1;
 				}
@@ -1087,6 +1101,8 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					SequentialTransition sq = new SequentialTransition();
 					sq = playTwoAnimate(l1, l2);
 					sq.play();
+					
+					complexityTable(compareAlgo1, compareAlgo2);
 				}
 			} else {
 				Alert alert = new Alert(AlertType.WARNING);
@@ -1198,7 +1214,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 	private void generate_c(ArrayList<StackPane> list, HBox hbox, int[] input) {
 		Color shapeColor = PreferenceController.color;
-		double width, height, space;
+		double width, height;
 
 		int max = input[0];
 		for (int i : input) {
@@ -1206,9 +1222,8 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 				max = i;
 		}
 
-		width = (hbox.getWidth() / input.length) / 3 * 2;
+		width = hbox.getWidth() / input.length;
 		for (int i = 0; i < input.length; i++) {
-			// for (int anInput : input) {
 			height = (hbox.getWidth() / max) * input[i];
 			Rectangle rectangle = new Rectangle(width, height);
 			rectangle.setFill(shapeColor);
@@ -1220,9 +1235,19 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			list.add(stackPane);
 		}
 
-		space = width / 2;
-		hbox.setSpacing(space);
+		hbox.setSpacing(0);
 		hbox.getChildren().addAll(list);
+	}
+
+	private void complexityTable(String algo1, String algo2) {
+		String[] bubble = { "n", "n²", "n²" };
+		String[] select = { "n²", "n²", "n²" };
+		String[] insertion = { "n", "n²", "n²" };
+		String[] heap = { "nlogn", "nlogn", "nlogn" };
+		String[] quick = { "nlogn", "nlogn", "n²" };
+		String[] merge = { "nlogn", "nlogn", "nlogn" };
+		
+		
 	}
 
 	/**
