@@ -18,8 +18,6 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleButton?>
@@ -344,7 +342,7 @@
                                                                                  </font>
                                                                               </Label>
                                                                               <HBox fx:id="hbox_left" maxHeight="280.0" maxWidth="280.0" minHeight="280.0" minWidth="280.0" prefHeight="280.0" prefWidth="280.0" />
-                                                                              <Label fx:id="time_left" prefHeight="23.0" prefWidth="200.0">
+                                                                              <Label fx:id="time_left" alignment="CENTER" prefHeight="23.0" prefWidth="200.0">
                                                                                  <font>
                                                                                     <Font name="System Bold" size="15.0" />
                                                                                  </font>
@@ -364,7 +362,7 @@
                                                                            </font>
                                                                         </Label>
                                                                         <HBox fx:id="hbox_right" maxHeight="280.0" maxWidth="280.0" minHeight="280.0" minWidth="280.0" prefHeight="280.0" prefWidth="280.0" />
-                                                                        <Label fx:id="time_right" prefHeight="23.0" prefWidth="200.0">
+                                                                        <Label fx:id="time_right" alignment="CENTER" prefHeight="23.0" prefWidth="200.0">
                                                                            <font>
                                                                               <Font name="System Bold" size="15.0" />
                                                                            </font>
@@ -459,16 +457,16 @@
                                                                         <Font name="System Bold" size="15.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <TableView fx:id="table" prefHeight="98.0" prefWidth="260.0">
-                                                                    <columns>
-                                                                      <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
-                                                                      <TableColumn fx:id="best" prefWidth="47.0" text="Best" />
-                                                                        <TableColumn fx:id="average" prefWidth="62.0" text="Average" />
-                                                                        <TableColumn fx:id="worst" prefWidth="75.0" text="Worst" />
-                                                                    </columns>
-                                                                  </TableView>
-                                                                  <Label fx:id="firstAlgoComplex" />
-                                                                  <Label fx:id="secondAlgoComplex" textFill="#ee0d0d" />
+                                                                  <AnchorPane prefHeight="138.0" prefWidth="260.0">
+                                                                     <children>
+                                                                        <Label layoutX="34.0" layoutY="29.0" text="Algorithm Name" />
+                                                                        <Label layoutX="157.0" layoutY="29.0" text="Comlexity" />
+                                                                        <Label fx:id="algo2" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="88.0" prefHeight="17.0" prefWidth="85.0" />
+                                                                        <Label fx:id="algo1" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="56.0" prefWidth="85.0" />
+                                                                        <Label fx:id="c2" alignment="CENTER" contentDisplay="CENTER" layoutX="164.0" layoutY="88.0" prefWidth="45.0" />
+                                                                        <Label fx:id="c1" alignment="CENTER" contentDisplay="CENTER" layoutX="164.0" layoutY="56.0" prefWidth="45.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
                                                                </children>
                                                                <padding>
                                                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
