@@ -27,10 +27,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
 
@@ -46,7 +43,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	private final int[] defaultInput = { 4, 3, 2, 1, 5, 6, 9, 7, 8 };
 	private int sortOrder = 0;
 	private double duration = 600;
-	private double duration_c = 100;
+	private double duration_c = 10;
 	private String selectAlgo = null;
 	private String languageSelect = "Java";
 	private final ArrayList<StackPane> list = new ArrayList<>();
@@ -115,9 +112,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 	@FXML
 	private Slider timeSlider;
-
-	@FXML
-	private JFXSlider slider_c;
 
 	@FXML
 	private TextArea codeDisplay;
@@ -207,7 +201,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 			if (timeSlider.isValueChanging() && timeSlider.getValue() != 0) {
 				st.pause();
 				st.playFrom(st.getTotalDuration().multiply(timeSlider.getValue() / 100));
-				if (playbutton.getId() == "replaybutton") {
+				if (Objects.equals(playbutton.getId(), "replaybutton")) {
 					st.pause();
 				}
 			}
@@ -723,11 +717,9 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					tmp = arr[i];
 					arr[i] = arr[minIndex];
 					arr[minIndex] = tmp;
-					sq.getChildren().add(
-							changeColor(list.get(i), list.get(minIndex), PreferenceController.color, color_change));
+					sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), PreferenceController.color, color_change));
 					sq.getChildren().add(swapSelect(list.get(i), list.get(minIndex), list, duration));
-					sq.getChildren().add(
-							changeColor(list.get(i), list.get(minIndex), color_change, PreferenceController.color));
+					sq.getChildren().add(changeColor(list.get(i), list.get(minIndex), color_change, PreferenceController.color));
 				}
 			} else {
 				minIndex = i;
@@ -1076,15 +1068,15 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 					int[] copyof = Arrays.copyOf(input_c, input_c.length);
 					generate_c(list_l, hbox_left, input_c);
 					generate_c(list_r, hbox_right, input_c);
-					ArrayList<Animation> l1 = new ArrayList<Animation>();
-					ArrayList<Animation> l2 = new ArrayList<Animation>();
+					ArrayList<Animation> l1;
+					ArrayList<Animation> l2;
 
 					l1 = sort_c(compareAlgo1, list_l, duration_c, input_c, hbox_left.getWidth());
 					showTime(l1, duration_c, time_left);
 
 					l2 = sort_c(compareAlgo2, list_r, duration_c, copyof, hbox_right.getWidth());
 					showTime(l2, duration_c, time_right);
-					SequentialTransition sq = new SequentialTransition();
+					SequentialTransition sq;
 					sq = playTwoAnimate(l1, l2);
 					sq.play();
 				}
@@ -1181,7 +1173,7 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 
 		String str = inputString_c.getText();
 
-		int[] in = new int[1];
+		int[] in;
 		String[] sp = str.split("\\D+");
 		in = Stream.of(sp).mapToInt(Integer::parseInt).toArray();
 		if (in.length == 1) {

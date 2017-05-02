@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class PreferenceController {
 
 	 private Stage dialogStage;
-	 public static Color color=Color.valueOf("#ADD8E6");
+	 protected static Color color=Color.valueOf("#ADD8E6");
 
 	 @FXML
 	 private JFXColorPicker colorPicker;
@@ -40,6 +40,10 @@ public class PreferenceController {
 	    	{
 	    		MainFrameController.getRectangle().get(i).setFill(color);
 	    	}
+
+
+
+
 	    	//System.out.println(colorPicker.getValue());
 	        dialogStage.close();
 	    }
