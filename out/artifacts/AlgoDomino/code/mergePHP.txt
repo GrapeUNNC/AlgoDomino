@@ -1,0 +1,24 @@
+function mergeSort(array &$arr,$start,$mid,$end){
+    $i = $start;
+    $j=$mid + 1;
+    $k = $start;
+    $temparr = array();
+    while($i!=$mid+1 && $j!=$end+1)
+    {
+       if($arr[$i] >= $arr[$j]){    
+           $temparr[$k++] = $arr[$j++];
+       }
+       else{
+           $temparr[$k++] = $arr[$i++];
+       }
+    }
+    while($i != $mid+1){
+        $temparr[$k++] = $arr[$i++];
+    }    
+    while($j != $end+1){
+        $temparr[$k++] = $arr[$j++];
+    }    
+    for($i=$start; $i<=$end; $i++){
+        $arr[$i] = $temparr[$i];
+    }    
+}

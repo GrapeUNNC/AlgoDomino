@@ -2,14 +2,13 @@ package unnc.cs.grape.controller;
 
 import com.jfoenix.controls.JFXColorPicker;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class PreferenceController {
 
 	 private Stage dialogStage;
-	 public static Color color=Color.valueOf("#ADD8E6");
+	 protected static Color color=Color.valueOf("#ADD8E6");
 
 	 @FXML
 	 private JFXColorPicker colorPicker;
@@ -40,6 +39,8 @@ public class PreferenceController {
 	    	{
 	    		MainFrameController.getRectangle().get(i).setFill(color);
 	    	}
+	    	MainFrameController.getRectangle().get(0).setAccessibleText(color.toString());
+
 	    	//System.out.println(colorPicker.getValue());
 	        dialogStage.close();
 	    }

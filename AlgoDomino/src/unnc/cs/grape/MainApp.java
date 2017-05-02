@@ -218,8 +218,7 @@ public class MainApp extends Application {
         if(file != null)
         {
             try {
-        		FileWriter fileWriter;
-        		fileWriter = new FileWriter(file);
+        		FileWriter fileWriter = new FileWriter(file);
         		fileWriter.write(code);
         		fileWriter.close();
             }
