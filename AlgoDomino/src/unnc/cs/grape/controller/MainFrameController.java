@@ -662,13 +662,11 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 						temp = arr[j];
 						arr[j] = arr[j - 1];
 						arr[j - 1] = temp;
-						sq.getChildren().add(
-								changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
+						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), PreferenceController.color, color_change));
 						sq.getChildren().add(swapInsertion(list.get(j - 1), list.get(j), list, duration));
 						sq.getChildren().add(swapInsertion1(list.get(j - 1), list.get(j), list, duration));
 						sq.getChildren().add(swapInsertion2(list.get(j - 1), list.get(j), list, duration));
-						sq.getChildren().add(
-								changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
+						sq.getChildren().add(changeColor(list.get(j - 1), list.get(j), color_change, PreferenceController.color));
 					} else {
 						break;
 					}
@@ -783,8 +781,6 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	private ParallelTransition swapInsertion2(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed) {
 		TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
 		TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
-		t1.setDuration(Duration.millis(speed));
-		t2.setDuration(Duration.millis(speed));
 		ParallelTransition pl = new ParallelTransition();
 		t1.setNode(l1);
 		t2.setNode(l2);
@@ -795,15 +791,10 @@ public class MainFrameController extends Algorithm_c implements Initializable {
 	}
 
 	private ParallelTransition swapSelect1(StackPane l1, StackPane l2, ArrayList<StackPane> list, double speed, int distance) {
-		TranslateTransition t1 = new TranslateTransition(Duration.millis(speed), l1);
 		TranslateTransition t2 = new TranslateTransition(Duration.millis(speed), l2);
-		t1.setDuration(Duration.millis(speed));
-		t2.setDuration(Duration.millis(speed));
 		ParallelTransition pl = new ParallelTransition();
-		t1.setNode(l1);
-		t2.setNode(l2);
 		t2.setToY(-100);
-		pl.getChildren().addAll(t1, t2);
+		pl.getChildren().addAll(t2);
 		return pl;
 	}
 
